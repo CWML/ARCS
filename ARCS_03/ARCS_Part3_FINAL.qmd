@@ -1,0 +1,424 @@
+---
+title: "ARCS_Part3_intructor"
+format: html
+editor: visual
+---
+
+# Time for some coding
+
+## Load packages used for this session using Pacman()
+
+The **`pacman`** package helps ensure your script is **reproducible** as it automatically **installs and loads** the packages on someone else's computer that are needed to run your code. You can also add to the list if more packages are needed.
+
+```{r}
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+  tidyverse,
+  magrittr,     
+  here,
+  readr,
+  janitor
+)
+```
+
+## Importing data into R using the **'here()'** and **'readr()'** packages
+
+The **`here`** package improves reproducibility and sharing by creating file paths relative to your **R project's root directory**, eliminating the need for hard-coded absolute paths - as long as your script file is saved in the same folder as your R project
+
+### Run this code to make sure you are currently in the correct R Project
+
+```{r}
+
+here()
+```
+
+### OPTIONAL: If you are not in the current project you can run the following:
+
+```{r}
+
+## Replace 'path/to/your/desired/folder' with the actual path here:
+
+#set_here("path/to/your/desired/folder")
+```
+
+## Let's import the two data files for this instruction
+
+```{r}
+
+## Add the file name for the data we want including the file type (.csv)
+
+# This will import the raw data file
+raw_data <- read_csv(here("raw_data", "GSE113754_GeneLevel_Raw_data_3.csv"))
+
+# this will import the meta data file
+raw_metadata <- read_csv(here("raw_data", "GSE113754_filtered_metadata.csv"))
+
+## Used to show the difference between a tibble and regular DF (read.csv)
+#raw_data_b <- read.csv(here("raw_data", "GSE113754_GeneLevel_Raw_data_3.csv"))
+```
+
+In this chunk we used *read_csv* instead of *read.csv*
+
+1.  Part of the Tidyverse ecosystem, it has a clear system for defining column types, making scripts more reliable and reproducible
+    -   For example, col_double instead of numeric/integer
+2.  Reads larger data files faster
+3.  Returns a *tibble,* a modern data frame with features that make it print nicely, displays on a screen better, does not change variables names, and does not use row labels
+    -   Even the outputs for functions like str() are nicer looking and more informative
+
+# Let's start with the metadata file
+
+## Inspect data
+
+### Physically look at the data you just imported
+
+```{r}
+# Add dataframe name to the function
+
+view(raw_metadata)
+```
+
+### Use the head() function to see the first 6 rows of data, table dimension, column names, column data types, and row values
+
+```{r}
+# Add dataframe name to the function
+
+head(raw_metadata)
+```
+
+### Use the str() function to see the structure, data types, dimensions, classes, and how data are organized 
+
+Good for understanding the data structure
+
+```{r}
+# Add dataframe name to the function
+
+str(raw_metadata)
+```
+
+### EXTRA: We can even find the unique values within a variable and their count
+
+```{r}
+raw_metadata %>% count(genotype)
+
+## This code is similar to the unique() and table() exercise from last class
+#meta_data %>% 
+  #count(genotype) %>% 
+  #distinct(genotype) %>% 
+  #map(unique) %>% 
+  #map(table)
+```
+
+## Clean raw_metadata
+
+-   Start by creating a new dataset by assigning a new object using '\<-'
+
+-   Separate each function the pipe operator (%\>%)
+
+-   **TIP: you can run the code between each %\>% to see how the dataset changes and inspect any errors with your code**
+
+### What changes do we want to make?
+
+1.  Fix column names
+
+2.  Rename characteristic to condition
+
+3.  Clean up the values under condition
+
+4.  Clean up the values under genotype
+
+5.  Combine columns: condition and genotype (geno_cond)
+
+6.  Keep the following in this order: sample_id, genotype, condition, geno_cond
+
+7.  Make the values under sample_id lower case
+
+### Step 1: Fix all column names
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() 
+```
+
+### Step 2: Rename:
+
+-    column 1 (x1) to *sample_id*
+-   *characteristic* to *condition*
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() %>% 
+  rename(sample_id = x1, condition = characteristics)
+```
+
+### Step 3: Update values under condition
+
+-   if value includes "homecage", then change to "normal"
+-   if value includes "sleep deprivation", then change to "sleep_deprived"
+-   NOTE: notice how we use grepl here like we did during Sofia's presentation, again we can use base R code within the Tidyverse
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() %>% 
+  rename(sample_id = x1, condition = characteristics) %>% 
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition) ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition)) 
+```
+
+### Step 4: Update values under genotype
+
+-   if value includes "WT", then change to "WT"
+-   if value includes "shank3", then change to "shank3"
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() %>% 
+  rename(sample_id = x1, condition = characteristics) %>% 
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition) ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition))  %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT", genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype))
+```
+
+### Step 5: Combine columns "condition" and "genotype" and create new variable with their values called "geno_cond"
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() %>% 
+  rename(sample_id = x1, condition = characteristics) %>% 
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition) ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition))  %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT", genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype)) %>%
+  mutate(
+    geno_cond = paste0(genotype, condition)) 
+```
+
+### Step 6: Keep the following in this order: sample_id, genotype, condition, geno_cond
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() %>% 
+  rename(sample_id = x1, condition = characteristics) %>% 
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition) ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    ))  %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT", genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    )) %>%
+  mutate(
+    geno_cond = paste0(genotype, condition)) %>% 
+  select(sample_id, genotype, condition, geno_cond)
+```
+
+### Step 7: Make the values under sample_id lower case for processing in the next step (cleaning raw_data)
+
+```{r}
+clean_meta_data <- raw_metadata %>% 
+  clean_names() %>% 
+  rename(sample_id = x1, condition = characteristics) %>% 
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition) ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    ))  %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT", genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    )) %>%
+  mutate(
+    geno_cond = paste0(genotype, condition)) %>% 
+  select(sample_id, genotype, condition, geno_cond) %>%
+  mutate(sample_id = str_to_lower(sample_id))
+```
+
+# Now let's clean raw_data
+
+## Inspect data
+
+```{r}
+view(raw_data)
+```
+
+```{r}
+head(raw_data)
+```
+
+```{r}
+str(raw_data)
+```
+
+### What issues did you find? (see tenet 8)
+
+-   Column 1 has no label
+
+-   Column 1 includes row numbers, is inserted in error, & shouldn't be there
+
+-   Column 2 has no label
+
+-   Column 3, "gene symbol", column has a space
+
+-   All columns beginning with "GSM" are upper-case
+
+### EXTRA: let's look for NA values 
+
+Use filter(), if_any(), everything() functions with is.na to search all rows and columns for NA values
+
+```{r}
+raw_data %>%
+     filter(if_any(everything(), is.na)) 
+```
+
+The NA value will be addressed later on
+
+## Time to clean raw_data
+
+### clean_names()
+
+-   gives column 1 and 2 a label
+
+-   puts an underscore "\_" in place of the space in Column 3
+
+-   makes all uppercase letters into lower case
+
+```{r}
+clean_data <- raw_data %>% #add pipe to connect functions for one cohesive code chunk
+  clean_names()
+```
+
+### rename()
+
+-   Change the new name for Column 2 "x2" to "gene_id"
+
+```{r}
+clean_data <- raw_data %>%
+  clean_names() %>% 
+  rename(gene_id = x2)
+```
+
+### mutate() number 1
+
+-   Here we change any NAs under the column *gsm3119015* to a 0
+
+-   **NOTE: this is not the recommended approach for NAs in your dataset!**
+
+    -   depends on your data and analysis but sometimes rows are removed or missing data are imputations are calculated
+
+```{r}
+clean_data <- raw_data %>%
+  clean_names() %>% 
+  rename(gene_id = x2) %>% 
+  mutate(gsm3119015 = replace_na(gsm3119015, 0))
+  #drop_na() %>% #use this to drop all rows with at least one NA
+```
+
+### mutate() number 2
+
+-   Creates a new variable that combines the gene_id and gene_symbol together and separates them with "\|"; you will notice the new column is placed at the very end of the data frame
+
+-   Notice how we use paste() from base R - meaning that you can use base R functions within the Tidyverse programming
+
+```{r}
+clean_data <- raw_data %>%
+  clean_names() %>% 
+  rename(gene_id = x2) %>% 
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  #drop_na() %>% #use this to drop all rows with at least one NA
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|"))
+```
+
+### select()
+
+-   Makes gene_id_symbol the first column, keeps everything else in the same order using everything(), and deletes column 'x1' using the minus (-) operator
+
+```{r}
+clean_data <- raw_data %>%
+  clean_names() %>% 
+  rename(gene_id = x2) %>% 
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  #drop_na() %>% #use this to drop all rows with at least one NA
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)
+```
+
+## EXTRA processing steps to *harmonize* the study dataset with the metadata dataset
+
+### Extra 1: make the first column the row IDs
+
+-   Use column_to_rownames (from tibble package in the tidyverse) to change a column (this code is the first column) from a calculated variable to the row IDs
+
+```{r}
+
+clean_data <- raw_data %>%
+  clean_names() %>% 
+  rename(gene_id = x2) %>% 
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  #drop_na() %>% #use this to drop all rows with at least one NA
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%
+  column_to_rownames(var = colnames(.)[1])
+```
+
+### Extra 2: Change the order of the columns in *clean_data* based on the order of the values under *clean_meta_data*'s *sample_id* variable
+
+```{r}
+clean_data <- raw_data %>%
+  clean_names() %>% 
+  rename(gene_id = x2) %>% 
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  #drop_na() %>% #use this to drop all rows with at least one NA
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%
+  column_to_rownames(var = colnames(.)[1]) %>% 
+  select(all_of(clean_meta_data$sample_id))
+```
+
+### Extra 3: run a quick check to see if the *clean_data* column names and the s*ample_id* values in  *clean_meta_data* match exactly
+
+```{r}
+setequal(clean_meta_data$sample_id, colnames(clean_data))
+```
+
+###  Save *clean_data_label, clean_data*, and *clean_meta_data* locally using here()
+
+-   Write each to a CSV file
+
+-   "processed_data" is the folder we are saving to
+
+-   use the function read_csv to save "clean_data.csv" and "clean_meta_data.csv" clean CSV files - THIS WILL NOT INCLUDE THE ROW LABELS WE MADE
+
+-   Use the function read.csv to save "clean_data_label.csv" to save a csv file that include our row labels
+
+```{r}
+
+write.csv(clean_data, here("processed_data", "clean_data_label.csv"))
+
+write_csv(clean_data, here("processed_data", "clean_data.csv"))
+
+write_csv(clean_meta_data, here("processed_data", "clean_meta_data.csv"))
+```

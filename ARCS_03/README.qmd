@@ -1,0 +1,69 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# README
+
+## Project title: ARCS_series
+
+## In this project:
+
+```{r}
+#| echo: false
+#| message: false
+#| results: asis
+
+library(fs)
+
+# Get the actual structure
+tree_output <- capture.output(dir_tree(".", recurse = 2))
+
+# Define comments for specific files/folders
+comments <- list(
+  "raw_data" = " (original data goes here)",
+  "processed_data" = " (clean data goes here)", 
+  "scripts" = " (code goes here)",
+  "outputs" = " (results and charts go here)",
+  "README.qmd" = " (project documentation)"
+)
+
+# Add comments to matching lines
+for(item in seq_along(tree_output)) {
+  line <- tree_output[item]
+  for(name in names(comments)) {
+    if(grepl(name, line)) {
+      tree_output[item] <- paste0(line, comments[[name]])
+      break
+    }
+  }
+}
+
+# Print the result
+cat("```\n")
+cat(paste(tree_output, collapse = "\n"))
+cat("\n```\n")
+```
+
+## What this project does:
+
+This project contains materials from the ARCS workshop series.
+
+## How to use this project:
+
+1.  Open the .Rproj file
+
+2.  Run "scripts/\*.R"
+
+3.  Look for results in the "output/" folder
+
+## About the data:
+
+This data was retrieved through the Geo RNA-seq Experiments Interactive
+Navigator
+
+GREIN web platform, which interfaces with the NIH's Gene Expression
+Omnibus (GEO) repository.
+
+Link to dataset: https://www.ilincs.org/apps/grein/?gse=GSE113754
