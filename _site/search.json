@@ -177,5 +177,41 @@
       "ARCS 1",
       "Fundamentals of R"
     ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html",
+    "href": "workshops/arcs_01/02-projects.html",
+    "title": "Project Management",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nInitialize an R environment using renv for reproducible package management\nOrganize your project directory with a clear folder structure\nWrite a README file that documents your project for yourself and others\nUse fs::dir_tree() to capture and document your project structure\nUnderstand the purpose of the metadata cleaning and file naming scripts",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#why-project-management",
+    "href": "workshops/arcs_01/02-projects.html#why-project-management",
+    "title": "Project Management",
+    "section": "Why Project Management?",
+    "text": "Why Project Management?\nGood project management is not just about staying organized — it is a core part of reproducible research. When you structure your project consistently from the start, you make it easier for collaborators, reviewers, and your future self to understand, rerun, and build on your work.\nIn this workshop series, we embed reproducibility skills directly into foundational coding instruction. This section introduces two practices you will use in every project going forward: initializing a reproducible R environment and writing documentation.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#creating-an-r-environment",
+    "href": "workshops/arcs_01/02-projects.html#creating-an-r-environment",
+    "title": "Project Management",
+    "section": "Creating an R Environment",
+    "text": "Creating an R Environment\nWe use renv to manage package versions in your project. This ensures that anyone who clones your repository can restore the exact same R environment you used — no more “it works on my machine” problems.\n\nNavigate to the Console tab (left side of the panel)\nEnter getwd() to check that you are in the directory you cloned. If not, navigate there before continuing.\n\ngetwd()\n\nOnce you are in the correct directory, enter\n\nrenv::init()\n\n\n\n\n\n\nNoteWhat renv::init() does\n\n\n\n\nCreates an renv/ folder\nCreates an renv.lock file\nCreates or updates .gitignore to exclude the renv package cache\nSnapshots any packages already detected in the project\n\n\n\n\nRestart r\n\n\n\n\n\n\n\nTipIn the console\n\n\n\nYou can do this with the circular arrow icon in the upper right of the console window.\n\n\n\nTo capture your current environment, enter:\n\nrenv::snapshot()\nThis records the package versions currently in use.\n\n\n\n\n\n\nTipIn the console\n\n\n\nIf you get a message that says you are “in a project that hasn’t been activated yet”, choose option 1: Activate the project and use the project library\n\n\n\nTake a look at your project directory in the Explorer pane in Positron. In your project directory, you will see new files created by renv:\n\n├── .Rprofile\n├── renv.lock\n└── renv/\n    └── .gitignore    # renv's gitignore, scoped only to the renv/ folder\n    └── activate.R\n    └── settings.json\n    └── library/\nNow when this repository is cloned by a collaborator or reviewer, renv::restore() can find the renv files you have created and automatically load the matching package versions.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
   }
 ]

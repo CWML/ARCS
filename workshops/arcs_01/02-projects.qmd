@@ -2,3 +2,86 @@
 title: "Project Management"
 sidebar: arcs01
 ---
+
+::: {.callout-note}
+## By the end of this section, you should be able to...
+- Initialize an R environment using `renv` for reproducible package management
+- Organize your project directory with a clear folder structure
+- Write a README file that documents your project for yourself and others
+- Use `fs::dir_tree()` to capture and document your project structure
+- Understand the purpose of the metadata cleaning and file naming scripts
+:::
+
+---
+
+## Why Project Management?
+
+Good project management is not just about staying organized — it is a core
+part of reproducible research. When you structure your project consistently
+from the start, you make it easier for collaborators, reviewers, and your
+future self to understand, rerun, and build on your work.
+
+In this workshop series, we embed reproducibility skills directly into
+foundational coding instruction. This section introduces two practices you
+will use in every project going forward: initializing a reproducible R
+environment and writing documentation.
+
+---
+## Creating an R Environment
+
+We use `renv` to manage package versions in your project. This ensures that
+anyone who clones your repository can restore the exact same R environment
+you used — no more "it works on my machine" problems.
+
+1. Navigate to the **Console** tab (left side of the panel)
+
+2. Enter `getwd()` to check that you are in the directory you cloned. If not, navigate there before continuing.
+
+```r
+getwd()
+```
+3. Once you are in the correct directory, enter 
+```r
+renv::init()
+```
+::: {.callout-note}
+## What `renv::init()` does
+
+- Creates an `renv/` folder
+- Creates an `renv.lock` file
+- Creates or updates `.gitignore` to exclude the `renv` package cache
+- Snapshots any packages already detected in the project 
+:::
+
+4. Restart r
+
+::: {.callout-tip}
+## In the console
+You can do this with the circular arrow icon in the upper right of the console window.
+::: 
+
+5. To capture your current environment, enter:
+
+```r
+renv::snapshot()
+```
+This records the package versions currently in use.
+
+::: {.callout-tip}
+## In the console
+
+If you get a message that says you are "in a project that hasn't been activated yet", choose option `1: Activate the project and use the project library`
+:::
+
+6. Take a look at your project directory in the `Explorer` pane in Positron. In your project directory, you will see new files created by `renv`:
+
+```r
+├── .Rprofile
+├── renv.lock
+└── renv/
+    └── .gitignore    # renv's gitignore, scoped only to the renv/ folder
+    └── activate.R
+    └── settings.json
+    └── library/
+```
+Now when this repository is cloned by a collaborator or reviewer, `renv::restore()` can find the renv files you have created and automatically load the matching package versions.
