@@ -1,0 +1,309 @@
+---
+title: "Fundamentals of R"
+author: "Sofia Fertuzinhos, PhD"
+date: "2026"
+sidebar: arcs01
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
+
+::: {.callout-note}
+## By the end of this section, you should be able to...
+- Find and set your working directory in R
+- Write and run basic arithmetic and code in R
+- Create and use R objects to store information
+- Build vectors and understand the main data types in R
+- Understand the difference between data frames and matrices
+- Use functions like `c()`, `paste0()`, `data.frame()`, and `cbind()`
+:::
+
+---
+
+## Setting Up the Working Directory
+
+What is your working directory? Run `getwd()` to find out.
+
+::: {.callout-tip}
+## Learning About Any Function
+To learn more about any function, run `?function_name` in the console.
+For example: `?getwd`
+:::
+
+```r
+?getwd()
+```
+
+For the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called **ARCS_project** — this is where your data files and script files live for this workshop series.
+
+In Positron you can set your working directory using the Files pane:
+
+1. Navigate to your **ARCS_project** folder
+2. Click the gear icon in the Files pane toolbar
+3. Select **"Set as Working Directory"**
+
+Notice in your console that a line of code will appear similar to this:
+
+```r
+# Mac example
+setwd("~/Desktop/ARCS_project")
+
+# Windows example
+setwd("C:/Users/YourName/Desktop/ARCS_project")
+```
+
+setwd() is the programmatic way to establish a working directory — you just need to write the full path to your **ARCS_project** folder on your machine.
+
+::: {.callout-tip}
+## Verify Your Working Directory
+
+After setting it, confirm you're in the right place:
+
+```r
+getwd()
+```
+You should see the path ending in **ARCS_project**. 
+:::
+
+## Four Basic Rules for Writing Code
+1. Use `#` to annotate and document your code
+2. Use a noticeable pattern to break between coding chunks
+```r
+#----- Section Title ------#
+########################
+```
+3. Numbers and basic arithmetic work just as on paper
+```{webr-r}
+# A random number
+2025
+```
+```{webr-r}
+# Summation
+1 + 1
+```
+```{webr-r}
+# Subtraction
+1 - 1
+```
+```{webr-r}
+# Multiplication
+1 * 2
+```
+```{webr-r}
+# Division
+2 / 1
+```
+```{webr-r}
+# Exponentiation
+2^2
+```
+::: {.callout-note} 
+Using the colon : gives you a range of numbers between two values:
+
+```{webr-r}
+4:8
+8:4
+```
+:::
+4. Letters must be written between quotation marks `""`
+
+::: {.callout-note} 
+## Exception 
+Characters defining the name of an object can be written without quotation marks. 
+:::
+
+::: {.callout-tip}
+## Exercise 1
+
+1. Write and run: `Hello world!` 
+2. Now write and run: `"Hello world!"`
+```{webr-r}
+#your code here
+```
+
+What is different about the second step's output? 
+:::
+
+## Storing Information in R Objects
+
+Objects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don't have to repeat operations.
+
+To create an object, we need:
+
+```r
+name <- data
+```
+This way we are assigning to objects on the left the values on the right.
+
+::: {.callout-tip}
+## Exercise 2
+
+Run the following lines one at a time and observe what happens:
+
+```{webr-r}
+x <- "X marks the spot of the "
+```
+You have now stored information in the object `x`. That object is now visible in the Variables pane in Positron.
+
+When you run x, R retrieves the information stored in it.
+```{webr-r}
+paste0(x, "treasure.")
+```
+You can manipulate the information stored in the object by simply using the object name, saving you from repeating operations. 
+
+Let's play a little more! Fill in the blanks:
+```{webr-r}
+paste0(x, c("treasure.", " ", " "))
+```
+:::
+
+## Tricks and Rules for Creating R Objects
+
+1. It is good practice to always use `<-` instead of `=`
+
+::: {.callout-tip}
+## Keyboard Shortcut for `<-`
+    PC: Alt + -
+    Mac: Option + - 
+:::
+
+2. An R object can have almost any name. However, there are some important considerations:
+
+::: {.callout-important}
+## Naming Rules
+
+    ✗ No empty spaces — the code will not run
+    ✗ Cannot start with numbers (2x is not valid, but x2 is)
+    ✗ Cannot have the same name as functions — it gets confusing 
+:::
+
+::: {.callout-tip}
+## Exercise 3
+
+a) Assign your age to an object with a descriptive name:
+
+```{webr-r}
+# your code here
+```
+b) Subtract your object from the current year to obtain your birth year:
+```{webr-r}
+# your code here
+```
+:::
+
+## Vectors
+
+A vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.
+
+There are 5 main types of data:
+
+| Type | Description | Example |
+|---|---|---|
+| `double` / `numeric` | Numbers with decimals | `1.2` |
+| `integer` | Whole numbers | `10L` |
+| `complex` | Numbers with imaginary component | `2i` |
+| `logical` | True or False | `TRUE` |
+| `character` | String of characters | `"Sofia"` |
+
+
+To create a vector we use the function `c()`.
+
+::: {.callout-note}
+## Functions, Arguments, and Packages
+
+Functions like `c()` are "canned scripts" that automate more complicated sets of commands including operations and assignments.
+
+- A function often (but not always) takes one or more inputs called arguments
+- A function often (but not always) returns a value
+- Many functions are predefined, or can be made available by importing R packages (more on that later)
+
+To learn more enter `?c()` in your computer's terminal. 
+:::
+
+::: {.callout-tip}
+## Exercise 4
+
+1. Make a vector by combining the ages of four individuals you know with the function `c()`, separating the ages with commas, and assign that vector to an object.
+
+```{webr-r}
+FamAges <- c()
+```
+Now we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks `""`.
+
+2. Subtract the vector you created in step **1.** from the current year:
+```{webr-r}
+FamYear <- 2026 - 
+```
+3. Assign the result of step **2.** to a new object
+```{webr-r}
+# your code here
+```
+
+:::
+
+## Tabular Data
+
+Matrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.
+
+| | `Data Frame` | `Matrix` |
+|---|---|---|
+| `Data types` | Can mix types (heterogeneous) | Single type only (homogeneous) |
+| `Common use` | Data processing, statistics, plotting | Mathematical operations |
+| `Structure` | List of equal-length vectors | Vector with dimension attributes |
+
+Data frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.
+
+::: {.callout-warning}
+## Before Continuing...
+
+Make sure you have run the code blocks in the **Vectors** section above. The examples below depend on the objects FamAges and FamYear that you created there. 
+:::
+
+Let's pack the two vectors we have created into a data frame using `data.frame()`:
+```{webr-r}
+df_FamInfo <- data.frame(FamAges, FamYear)
+df_FamInfo
+```
+::: {.callout-note}
+## Inspecting Large Tables
+Use `head()` or `tail()` to inspect tables with more than 6 rows. Learn more by running `?head` and `?tail` in your Positron console. 
+:::
+The advantage of using data frame format instead of matrix is that we can combine different data types in the same table.
+
+::: {.callout-tip}
+## Exercise 5
+
+1. Assign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:
+
+```{webr-r}
+# Create a vector of names matching the ages in FamAges
+FamNames <- c()
+```
+2. Add the vector containing the names to the data frame we created using `cbind()`. 
+(Learn more with `?cbind` in your Positron console)
+```{webr-r}
+#| # Add FamNames to df_FamInfo using cbind()
+df_FamInfo <- cbind(df_FamInfo, )
+df_FamInfo
+```
+3. What do you think will happen if you use `cbind()` to add a character vector to your matrix? Run it and see — was your prediction correct?
+```{webr-r}
+mx_FamInfo <- cbind(mx_FamInfo, FamNames)
+mx_FamInfo
+```
+:::
+
+::: {.callout-note}
+## Can You...?
+
+    ✓ Find your working directory and set it?
+    ✓ Write and run basic arithmetic in R?
+    ✓ Explain what an R object is and create one using <-?
+    ✓ Name at least three rules for naming R objects?
+    ✓ Create a vector using c() and identify its data type?
+    ✓ Explain the difference between a data frame and a matrix?
+    ✓ Combine two vectors into a data frame using data.frame()?
+    ✓ Use cbind() to add a column to an existing data frame? 
+:::

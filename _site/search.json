@@ -1,0 +1,181 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "workshops/arcs_01/index.html",
+    "href": "workshops/arcs_01/index.html",
+    "title": "TEST Setting Up Your Python Environment",
+    "section": "",
+    "text": "Tip🎯 Learning Objectives\n\n\n\nBy the end of this section you will be able to:\n\nVerify your Python installation from the command line\nExplain what a virtual environment is and why it matters\nCreate and activate a virtual environment for a project"
+  },
+  {
+    "objectID": "workshops/arcs_01/index.html#why-environment-management-matters",
+    "href": "workshops/arcs_01/index.html#why-environment-management-matters",
+    "title": "TEST Setting Up Your Python Environment",
+    "section": "Why Environment Management Matters",
+    "text": "Why Environment Management Matters\nNarrative text here — keep this block to ~5 minutes of reading…\n\n\n\n\n\n\nNote💡 Key Concept: Virtual Environments\n\n\n\nA virtual environment is an isolated Python installation…\n\n\n\n\n\n\n\n\nWarning⚠️ Common Gotcha\n\n\n\nOn Windows, the activation command is different…"
+  },
+  {
+    "objectID": "workshops/arcs_01/index.html#live-coding-setting-up-your-first-environment",
+    "href": "workshops/arcs_01/index.html#live-coding-setting-up-your-first-environment",
+    "title": "TEST Setting Up Your Python Environment",
+    "section": "Live Coding: Setting Up Your First Environment",
+    "text": "Live Coding: Setting Up Your First Environment\n\n\n\n\n\n\nImportant💻 Follow Along\n\n\n\nClose any browser tabs and watch the screen. We will type this together step by step.\n\n\n```bash python –version python -m venv my-project-env source my-project-env/bin/activate # Mac/Linux # my-project-env# Windows"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ARCS",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html",
+    "href": "workshops/arcs_01/01-fundamentals.html",
+    "title": "Fundamentals of R",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nFind and set your working directory in R\nWrite and run basic arithmetic and code in R\nCreate and use R objects to store information\nBuild vectors and understand the main data types in R\nUnderstand the difference between data frames and matrices\nUse functions like c(), paste0(), data.frame(), and cbind()",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#why-environment-management-matters",
+    "href": "workshops/arcs_01/01-fundamentals.html#why-environment-management-matters",
+    "title": "TEST Fundamentals of R",
+    "section": "Why Environment Management Matters",
+    "text": "Why Environment Management Matters\nNarrative text here — keep this block to ~5 minutes of reading…\n\n\n\n\n\n\nNote💡 Key Concept: Virtual Environments\n\n\n\nA virtual environment is an isolated Python installation…\n\n\n\n\n\n\n\n\nWarning⚠️ Common Gotcha\n\n\n\nOn Windows, the activation command is different…",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#live-coding-setting-up-your-first-environment",
+    "href": "workshops/arcs_01/01-fundamentals.html#live-coding-setting-up-your-first-environment",
+    "title": "TEST Fundamentals of R",
+    "section": "Live Coding: Setting Up Your First Environment",
+    "text": "Live Coding: Setting Up Your First Environment\n\n\n\n\n\n\nImportant💻 Follow Along\n\n\n\nClose any browser tabs and watch the screen. We will type this together step by step.\n\n\n```bash python –version python -m venv my-project-env source my-project-env/bin/activate # Mac/Linux # my-project-env# Windows",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
+    "href": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
+    "title": "Fundamentals of R",
+    "section": "Setting Up the Working Directory",
+    "text": "Setting Up the Working Directory\nWhat is your working directory? Run getwd() to find out.\n\n\n\n\n\n\nTipLearning About Any Function\n\n\n\nTo learn more about any function, run ?function_name in the console. For example: ?getwd\n\n\n?getwd()\nFor the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called ARCS_project — this is where your data files and script files live for this workshop series.\nIn Positron you can set your working directory using the Files pane:\n\nNavigate to your ARCS_project folder\nClick the gear icon in the Files pane toolbar\nSelect “Set as Working Directory”\n\nNotice in your console that a line of code will appear similar to this:\n# Mac example\nsetwd(\"~/Desktop/ARCS_project\")\n\n# Windows example\nsetwd(\"C:/Users/YourName/Desktop/ARCS_project\")\nsetwd() is the programmatic way to establish a working directory — you just need to write the full path to your ARCS_project folder on your machine.\n\n\n\n\n\n\nTipVerify Your Working Directory\n\n\n\nAfter setting it, confirm you’re in the right place:\ngetwd()\nYou should see the path ending in ARCS_project.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#verify-your-working-directory",
+    "href": "workshops/arcs_01/01-fundamentals.html#verify-your-working-directory",
+    "title": "Fundamentals of R",
+    "section": "Verify Your Working Directory",
+    "text": "Verify Your Working Directory\nAfter setting it, confirm you’re in the right place:\ngetwd()\nYou should see the path ending in ARCS_project. :::",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
+    "href": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
+    "title": "Fundamentals of R",
+    "section": "Four Basic Rules for Writing Code",
+    "text": "Four Basic Rules for Writing Code\n\nUse # to annotate and document your code\nUse a noticeable pattern to break between coding chunks\n\n#----- Section Title ------#\n########################\n\nNumbers and basic arithmetic work just as on paper\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\n\nUsing the colon : gives you a range of numbers between two values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLetters must be written between quotation marks \"\"\n\n\n\n\n\n\n\nNoteException\n\n\n\nCharacters defining the name of an object can be written without quotation marks.\n\n\n\n\n\n\n\n\nTipExercise 1\n\n\n\n\nWrite and run: Hello world!\nNow write and run: \"Hello world!\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhat is different about the second step’s output?",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
+    "href": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
+    "title": "Fundamentals of R",
+    "section": "Storing Information in R Objects",
+    "text": "Storing Information in R Objects\nObjects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don’t have to repeat operations.\nTo create an object, we need:\nname &lt;- data\nThis way we are assigning to objects on the left the values on the right.\n\n\n\n\n\n\nTipExercise 2\n\n\n\nRun the following lines one at a time and observe what happens:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou have now stored information in the object x. That object is now visible in the Variables pane in Positron.\nWhen you run x, R retrieves the information stored in it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can manipulate the information stored in the object by simply using the object name, saving you from repeating operations.\nLet’s play a little more! Fill in the blanks:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
+    "href": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
+    "title": "Fundamentals of R",
+    "section": "Tricks and Rules for Creating R Objects",
+    "text": "Tricks and Rules for Creating R Objects\n\nIt is good practice to always use &lt;- instead of =\n\n\n\n\n\n\n\nTipKeyboard Shortcut for &lt;-\n\n\n\nPC: Alt + -\nMac: Option + - \n\n\n\nAn R object can have almost any name. However, there are some important considerations:\n\n\n\n\n\n\n\nImportantNaming Rules\n\n\n\n✗ No empty spaces — the code will not run\n✗ Cannot start with numbers (2x is not valid, but x2 is)\n✗ Cannot have the same name as functions — it gets confusing \n\n\n\n\n\n\n\n\nTipExercise 3\n\n\n\n\nAssign your age to an object with a descriptive name:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSubtract your object from the current year to obtain your birth year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#vectors",
+    "href": "workshops/arcs_01/01-fundamentals.html#vectors",
+    "title": "Fundamentals of R",
+    "section": "Vectors",
+    "text": "Vectors\nA vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.\nThere are 5 main types of data:\n\n\n\nType\nDescription\nExample\n\n\n\n\ndouble / numeric\nNumbers with decimals\n1.2\n\n\ninteger\nWhole numbers\n10L\n\n\ncomplex\nNumbers with imaginary component\n2i\n\n\nlogical\nTrue or False\nTRUE\n\n\ncharacter\nString of characters\n\"Sofia\"\n\n\n\nTo create a vector we use the function c().\n\n\n\n\n\n\nNoteFunctions, Arguments, and Packages\n\n\n\nFunctions like c() are “canned scripts” that automate more complicated sets of commands including operations and assignments.\n\nA function often (but not always) takes one or more inputs called arguments\nA function often (but not always) returns a value\nMany functions are predefined, or can be made available by importing R packages (more on that later)\n\nTo learn more enter ?c() in your computer’s terminal.\n\n\n\n\n\n\n\n\nTipExercise 4\n\n\n\n\nMake a vector by combining the ages of four individuals you know with the function c(), separating the ages with commas, and assign that vector to an object.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks \"\".\n\nSubtract the vector you created in step 1. from the current year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAssign the result of step 2. to a new object\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#tabular-data",
+    "href": "workshops/arcs_01/01-fundamentals.html#tabular-data",
+    "title": "Fundamentals of R",
+    "section": "Tabular Data",
+    "text": "Tabular Data\nMatrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.\n\n\n\n\n\n\n\n\n\nData Frame\nMatrix\n\n\n\n\nData types\nCan mix types (heterogeneous)\nSingle type only (homogeneous)\n\n\nCommon use\nData processing, statistics, plotting\nMathematical operations\n\n\nStructure\nList of equal-length vectors\nVector with dimension attributes\n\n\n\nData frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.\n\n\n\n\n\n\nWarningBefore Continuing…\n\n\n\nMake sure you have run the code blocks in the Vectors section above. The examples below depend on the objects FamAges and FamYear that you created there.\n\n\nLet’s pack the two vectors we have created into a data frame using data.frame():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteInspecting Large Tables\n\n\n\nUse head() or tail() to inspect tables with more than 6 rows. Learn more by running ?head and ?tail in your Positron console.\n\n\nThe advantage of using data frame format instead of matrix is that we can combine different data types in the same table.\n\n\n\n\n\n\nTipExercise 5\n\n\n\n\nAssign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdd the vector containing the names to the data frame we created using cbind(). (Learn more with ?cbind in your Positron console)\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhat do you think will happen if you use cbind() to add a character vector to your matrix? Run it and see — was your prediction correct?\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n✓ Find your working directory and set it?\n✓ Write and run basic arithmetic in R?\n✓ Explain what an R object is and create one using &lt;-?\n✓ Name at least three rules for naming R objects?\n✓ Create a vector using c() and identify its data type?\n✓ Explain the difference between a data frame and a matrix?\n✓ Combine two vectors into a data frame using data.frame()?\n✓ Use cbind() to add a column to an existing data frame?",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#before-continuing",
+    "href": "workshops/arcs_01/01-fundamentals.html#before-continuing",
+    "title": "Fundamentals",
+    "section": "Before Continuing…",
+    "text": "Before Continuing…\nMake sure you have run the code blocks in the Vectors section above. The examples below depend on the objects FamAges and FamYear that you created there. :::",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#inspecting-large-tables",
+    "href": "workshops/arcs_01/01-fundamentals.html#inspecting-large-tables",
+    "title": "Fundamentals",
+    "section": "Inspecting Large Tables",
+    "text": "Inspecting Large Tables\nUse head() or tail() to inspect tables with more than 6 rows. Learn more by running ?head and ?tail in your Positron console. :::",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  }
+]
