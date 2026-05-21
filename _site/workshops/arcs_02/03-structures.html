@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sofia Fertuzinhos, PhD">
-<meta name="dcterms.date" content="2025-12-31">
 
-<title>Fundamentals of R – Advancing Reproducibility with Computational Skills</title>
+<title>Data Structures in R – Advancing Reproducibility with Computational Skills</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -405,7 +403,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# A random number\n2025","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Summation\n1 + 1","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Subtraction\n1 - 1","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Multiplication\n1 * 2","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Division\n2 / 1","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Exponentiation\n2^2","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"4:8\n8:4","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#your code here","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"x <- \"X marks the spot of the \"","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"paste0(x, \"treasure.\")","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"paste0(x, c(\"treasure.\", \" \", \" \"))","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# your code here","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# your code here","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamAges <- c()","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamYear <- 2026 - ","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# your code here","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"df_FamInfo <- data.frame(FamAges, FamYear)\ndf_FamInfo","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Create a vector of names matching the ages in FamAges\nFamNames <- c()","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#| # Add FamNames to df_FamInfo using cbind()\ndf_FamInfo <- cbind(df_FamInfo, )\ndf_FamInfo","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"mx_FamInfo <- cbind(mx_FamInfo, FamNames)\nmx_FamInfo","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"# Run these in your Positron console with your imported data\nclass(rawc)\nclass(info)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"typeof(rawc)\ntypeof(info)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"typeof(rawc$GSM3119002)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"dim(rawc)\ndim(info)","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(rawc)\nstr(info)","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"summary(rawc)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"anyNA(rawc)","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"is.na(c(1, NA, 3, 6, 0))","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"which(is.na(rawc$GSM3119015 == \"NA\"))","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"rawc[1059, ]","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"rawc[1059, \"GSM3119015\"] <- 0\nrawc[1059, ]","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"unique(info$genotype)\ntable(info$genotype)","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"sapply(info, unique)\nsapply(info, table)","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"colnames(info)[1:3] <- c(\"sample_id\", \"condition\", \"genotype\")","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"info <- info[, -4]","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"genotype_clean <- ifelse(grepl(\"WT\", info$genotype),           # test\n                         \"WT\",                                  # yes\n                         ifelse(grepl(\"Shank3\", info$genotype), # no\n                                \"Shank3\",\n                                as.character(info$genotype)))","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"condition_clean <- ifelse(grepl(\"homecage control\", info$condition),   # test\n                          \"normal\",                                     # yes\n                          ifelse(grepl(\"sleep deprivation\",            # no\n                                       info$condition),\n                                 \"sleep_deprived\",\n                                 as.character(info$condition)))","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"geno_cond <- paste(genotype_clean, condition_clean, sep = \"_\")","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"info_clean <- data.frame(\n  sample_id = info[, 1],\n  genotype  = genotype_clean,\n  condition = condition_clean,\n  geno_cond = geno_cond\n)\n\nhead(info_clean)","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"identical(colnames(rawc), info_clean$sample_id)","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"colnames(rawc)\ninfo_clean$sample_id","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"gene_id <- paste(rawc[, 2], rawc[, 3], sep = \"|\")","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"rawc_clean <- data.frame(\n  rawc[, info_clean$sample_id],\n  row.names = gene_id\n)","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1727,7 +1725,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">ARCS 1</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">Fundamentals of R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_02/03-structures.html">ARCS 2</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_02/03-structures.html">Data Structures</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1746,7 +1744,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">ARCS 1</span></a>
+ <span class="menu-text">ARCS 2</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1754,14 +1752,14 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../workshops/arcs_01/01-fundamentals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Fundamentals of R</span></a>
+  <a href="../../workshops/arcs_02/03-structures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data Structures</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../workshops/arcs_01/02-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Management</span></a>
+  <a href="../../workshops/arcs_02/04-reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reports</span></a>
   </div>
 </li>
       </ul>
@@ -1776,12 +1774,27 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up-the-working-directory" id="toc-setting-up-the-working-directory" class="nav-link active" data-scroll-target="#setting-up-the-working-directory">Setting Up the Working Directory</a></li>
-  <li><a href="#four-basic-rules-for-writing-code" id="toc-four-basic-rules-for-writing-code" class="nav-link" data-scroll-target="#four-basic-rules-for-writing-code">Four Basic Rules for Writing Code</a></li>
-  <li><a href="#storing-information-in-r-objects" id="toc-storing-information-in-r-objects" class="nav-link" data-scroll-target="#storing-information-in-r-objects">Storing Information in R Objects</a></li>
-  <li><a href="#tricks-and-rules-for-creating-r-objects" id="toc-tricks-and-rules-for-creating-r-objects" class="nav-link" data-scroll-target="#tricks-and-rules-for-creating-r-objects">Tricks and Rules for Creating R Objects</a></li>
-  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
-  <li><a href="#tabular-data" id="toc-tabular-data" class="nav-link" data-scroll-target="#tabular-data">Tabular Data</a></li>
+  <li><a href="#opening-your-project" id="toc-opening-your-project" class="nav-link active" data-scroll-target="#opening-your-project">Opening Your Project</a></li>
+  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
+  <li><a href="#inspecting-data-structures" id="toc-inspecting-data-structures" class="nav-link" data-scroll-target="#inspecting-data-structures">Inspecting Data Structures</a>
+  <ul class="collapse">
+  <li><a href="#class-and-type" id="toc-class-and-type" class="nav-link" data-scroll-target="#class-and-type">Class and Type</a></li>
+  <li><a href="#dimensions-and-structure" id="toc-dimensions-and-structure" class="nav-link" data-scroll-target="#dimensions-and-structure">Dimensions and Structure</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
+  </ul></li>
+  <li><a href="#identifying-missing-values" id="toc-identifying-missing-values" class="nav-link" data-scroll-target="#identifying-missing-values">Identifying Missing Values</a></li>
+  <li><a href="#manipulating-specific-data-points" id="toc-manipulating-specific-data-points" class="nav-link" data-scroll-target="#manipulating-specific-data-points">Manipulating Specific Data Points</a></li>
+  <li><a href="#exploring-unique-values" id="toc-exploring-unique-values" class="nav-link" data-scroll-target="#exploring-unique-values">Exploring Unique Values</a></li>
+  <li><a href="#data-cleaning-and-subsetting" id="toc-data-cleaning-and-subsetting" class="nav-link" data-scroll-target="#data-cleaning-and-subsetting">Data Cleaning and Subsetting</a>
+  <ul class="collapse">
+  <li><a href="#renaming-columns" id="toc-renaming-columns" class="nav-link" data-scroll-target="#renaming-columns">Renaming Columns</a></li>
+  <li><a href="#removing-a-column" id="toc-removing-a-column" class="nav-link" data-scroll-target="#removing-a-column">Removing a Column</a></li>
+  <li><a href="#recoding-values" id="toc-recoding-values" class="nav-link" data-scroll-target="#recoding-values">Recoding Values</a></li>
+  </ul></li>
+  <li><a href="#data-harmonization" id="toc-data-harmonization" class="nav-link" data-scroll-target="#data-harmonization">Data Harmonization</a>
+  <ul class="collapse">
+  <li><a href="#save-cleaned-tables" id="toc-save-cleaned-tables" class="nav-link" data-scroll-target="#save-cleaned-tables">Save Cleaned Tables</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -2072,28 +2085,16 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">ARCS 1</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">Fundamentals of R</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_02/03-structures.html">ARCS 2</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_02/03-structures.html">Data Structures</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Fundamentals of R</h1>
+<h1 class="title">Data Structures in R</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sofia Fertuzinhos, PhD </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 31, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -2114,85 +2115,156 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Find and set your working directory in R</li>
-<li>Write and run basic arithmetic and code in R</li>
-<li>Create and use R objects to store information</li>
-<li>Build vectors and understand the main data types in R</li>
-<li>Understand the difference between data frames and matrices</li>
-<li>Use functions like <code>c()</code>, <code>paste0()</code>, <code>data.frame()</code>, and <code>cbind()</code></li>
+<li>Load a package and import <code>.csv</code> files into R using <code>read.csv()</code></li>
+<li>Inspect the structure, dimensions, and data types of an object</li>
+<li>Identify and locate missing values using <code>is.na()</code> and <code>which()</code></li>
+<li>Use indexing to retrieve and modify specific elements in a data frame</li>
+<li>Explore unique values and frequency counts using <code>unique()</code> and <code>table()</code></li>
+<li>Clean and subset a data frame by renaming columns, removing columns, and recoding values</li>
+<li>Harmonize two data frames so they are compatible for downstream analysis</li>
+<li>Save cleaned data frames to <code>.csv</code> files using <code>write.csv()</code></li>
 </ul>
 </div>
 </div>
 <hr>
-<section id="setting-up-the-working-directory" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-the-working-directory">Setting Up the Working Directory</h2>
-<p>What is your working directory? Run <code>getwd()</code> to find out.</p>
+<section id="opening-your-project" class="level2">
+<h2 class="anchored" data-anchor-id="opening-your-project">Opening Your Project</h2>
+<p>Before importing any data, make sure you are working inside your R project and that your working directory is set correctly.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="importing-data" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data">Importing Data</h2>
+<p>We use the <code>readr</code> package to import data. To learn more about any package, run <code>help(package = "package_name")</code> in your Positron console.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We will be working with two tables from the GREIN dataset. Import them using <code>read.csv()</code>. To learn more about any function, run <code>?function_name</code> in your Positron console.</p>
+<p><strong>1. Raw counts at the gene level:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rawc <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_GeneLevel_Raw_data_3.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Sample metadata — information about the sequenced samples:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>info <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="inspecting-data-structures" class="level2">
+<h2 class="anchored" data-anchor-id="inspecting-data-structures">Inspecting Data Structures</h2>
+<section id="class-and-type" class="level3">
+<h3 class="anchored" data-anchor-id="class-and-type">Class and Type</h3>
+<p>Find what type of structure an object has with <code>class()</code>:</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Find the type of data stored in an object with <code>typeof()</code>:</p>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning About Any Function
+<span class="screen-reader-only">Tip</span>Exercise 1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To learn more about any function, run <code>?function_name</code> in the console. For example: <code>?getwd</code></p>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called <strong>ARCS_project</strong> — this is where your data files and script files live for this workshop series.</p>
-<p>In Positron you can set your working directory using the Files pane:</p>
-<ol type="1">
-<li>Navigate to your <strong>ARCS_project</strong> folder</li>
-<li>Click the gear icon in the Files pane toolbar</li>
-<li>Select <strong>“Set as Working Directory”</strong></li>
-</ol>
-<p>Notice in your console that a line of code will appear similar to this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac example</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Desktop/ARCS_project"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows example</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/YourName/Desktop/ARCS_project"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>setwd() is the programmatic way to establish a working directory — you just need to write the full path to your <strong>ARCS_project</strong> folder on your machine.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Verify Your Working Directory
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>After setting it, confirm you’re in the right place:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see the path ending in <strong>ARCS_project</strong>.</p>
+<p>Find the type of data stored in a specific column of an object. Use <code>$</code> after the object name to access a column:</p>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
 </section>
-<section id="four-basic-rules-for-writing-code" class="level2">
-<h2 class="anchored" data-anchor-id="four-basic-rules-for-writing-code">Four Basic Rules for Writing Code</h2>
-<ol type="1">
-<li>Use <code>#</code> to annotate and document your code</li>
-<li>Use a noticeable pattern to break between coding chunks</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----- Section Title ------#</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Numbers and basic arithmetic work just as on paper</li>
-</ol>
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-2"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="dimensions-and-structure" class="level3">
+<h3 class="anchored" data-anchor-id="dimensions-and-structure">Dimensions and Structure</h3>
+<p>Find the dimensions of both tables using <code>dim()</code>:</p>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Get more detailed information about the overall structure of an object with <code>str()</code>:</p>
 <div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="summary-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h3>
+<p>To get an idea of the type of data and some minimal statistics, use <code>summary()</code>:</p>
 <div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What <code>summary()</code> returns
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>For numeric vectors:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Min.</code></td>
+<td>The minimum value</td>
+</tr>
+<tr class="even">
+<td><code>1st Qu.</code></td>
+<td>The first quartile (25th percentile)</td>
+</tr>
+<tr class="odd">
+<td><code>Median</code></td>
+<td>The median (50th percentile)</td>
+</tr>
+<tr class="even">
+<td><code>Mean</code></td>
+<td>The arithmetic mean</td>
+</tr>
+<tr class="odd">
+<td><code>3rd Qu.</code></td>
+<td>The third quartile (75th percentile)</td>
+</tr>
+<tr class="even">
+<td><code>Max.</code></td>
+<td>The maximum value</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For character variables:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Length</code></td>
+<td>Total number of elements</td>
+</tr>
+<tr class="even">
+<td><code>Class</code></td>
+<td>Data type — will show <code>"character"</code></td>
+</tr>
+<tr class="odd">
+<td><code>Mode</code></td>
+<td>Storage mode — will show <code>"character"</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="identifying-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="identifying-missing-values">Identifying Missing Values</h2>
+<p>To check whether an object contains any <code>NA</code> or missing values, we can use several functions.</p>
+<p>For a quick check of whether <strong>any</strong> missing values exist:</p>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>For a more granular analysis, use <code>is.na()</code>. Try it on a simple example first:</p>
+<div id="qwebr-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2204,53 +2276,89 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using the colon : gives you a range of numbers between two values:</p>
-<div id="qwebr-insertion-location-7"></div>
+<p>This function can be impractical when looking at a large data frame like <code>rawc</code> — it returns a value for every single element. For large objects, <code>anyNA()</code> or <code>which(is.na())</code> are more useful.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="manipulating-specific-data-points" class="level2">
+<h2 class="anchored" data-anchor-id="manipulating-specific-data-points">Manipulating Specific Data Points</h2>
+<p>The selection and inspection of specific elements or subsets of data are made easier in R by the use of an element’s <strong>numerical position</strong>, or <strong>index</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Indexing in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In R, element numbering starts at <strong>1</strong>. Note: Python uses 0-based indexing.</p>
+<p><strong>Vectors</strong> — access by position:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vector[<span class="dv">1</span>]       <span class="co"># first element</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Matrices and Data Frames</strong> — use a comma to separate row and column:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>table[<span class="dv">1</span>, <span class="dv">2</span>]     <span class="co"># element in row 1, column 2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>table[<span class="dv">1059</span>, ]   <span class="co"># entire row 1059</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>table[, <span class="dv">3</span>]      <span class="co"># entire column 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>We know that <code>rawc</code> has an <code>NA</code> value in a specific column (<code>$GSM3119015</code>). To find the exact row where it occurs, we can nest <code>is.na()</code> inside <code>which()</code>:</p>
+<div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Letters must be written between quotation marks <code>""</code></li>
-</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exception
+<span class="screen-reader-only">Note</span>Conditional Operators in R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Characters defining the name of an object can be written without quotation marks.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>equal</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>not equal</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>greater than</td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td>less than</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;=</code></td>
+<td>greater than or equal to</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>less than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>%in%</code></td>
+<td>included in</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 1
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Write and run: <code>Hello world!</code></li>
-<li>Now write and run: <code>"Hello world!"</code></li>
-</ol>
-<div id="qwebr-insertion-location-8"></div>
+<p>We can confirm the <code>NA</code> value is in row 1059 of <code>rawc</code> by inspecting that row:</p>
+<div id="qwebr-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>What is different about the second step’s output?</p>
-</div>
-</div>
-</section>
-<section id="storing-information-in-r-objects" class="level2">
-<h2 class="anchored" data-anchor-id="storing-information-in-r-objects">Storing Information in R Objects</h2>
-<p>Objects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don’t have to repeat operations.</p>
-<p>To create an object, we need:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This way we are assigning to objects on the left the values on the right.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2261,261 +2369,103 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Run the following lines one at a time and observe what happens:</p>
-<div id="qwebr-insertion-location-9"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>You have now stored information in the object <code>x</code>. That object is now visible in the Variables pane in Positron.</p>
-<p>When you run x, R retrieves the information stored in it.</p>
-<div id="qwebr-insertion-location-10"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>You can manipulate the information stored in the object by simply using the object name, saving you from repeating operations.</p>
-<p>Let’s play a little more! Fill in the blanks:</p>
+<p>Fix the <code>NA</code> value by using its positional coordinates — row and column index or name:</p>
 <div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
+<hr>
 </section>
-<section id="tricks-and-rules-for-creating-r-objects" class="level2">
-<h2 class="anchored" data-anchor-id="tricks-and-rules-for-creating-r-objects">Tricks and Rules for Creating R Objects</h2>
-<ol type="1">
-<li>It is good practice to always use <code>&lt;-</code> instead of <code>=</code></li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Keyboard Shortcut for <code>&lt;-</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<pre><code>PC: Alt + -
-Mac: Option + - </code></pre>
-</div>
-</div>
-<ol start="2" type="1">
-<li>An R object can have almost any name. However, there are some important considerations:</li>
-</ol>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Naming Rules
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<pre><code>✗ No empty spaces — the code will not run
-✗ Cannot start with numbers (2x is not valid, but x2 is)
-✗ Cannot have the same name as functions — it gets confusing </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 3
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="a">
-<li>Assign your age to an object with a descriptive name:</li>
-</ol>
+<section id="exploring-unique-values" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-unique-values">Exploring Unique Values</h2>
+<p>Let’s turn to the <code>info</code> object and inspect what unique values exist using <code>unique()</code> and <code>table()</code>:</p>
 <div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="2" type="a">
-<li>Subtract your object from the current year to obtain your birth year:</li>
-</ol>
+<p>For an organized view across the whole table, apply the same functions with <code>sapply()</code>:</p>
 <div id="qwebr-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
+<hr>
 </section>
-<section id="vectors" class="level2">
-<h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
-<p>A vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.</p>
-<p>There are 5 main types of data:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>double</code> / <code>numeric</code></td>
-<td>Numbers with decimals</td>
-<td><code>1.2</code></td>
-</tr>
-<tr class="even">
-<td><code>integer</code></td>
-<td>Whole numbers</td>
-<td><code>10L</code></td>
-</tr>
-<tr class="odd">
-<td><code>complex</code></td>
-<td>Numbers with imaginary component</td>
-<td><code>2i</code></td>
-</tr>
-<tr class="even">
-<td><code>logical</code></td>
-<td>True or False</td>
-<td><code>TRUE</code></td>
-</tr>
-<tr class="odd">
-<td><code>character</code></td>
-<td>String of characters</td>
-<td><code>"Sofia"</code></td>
-</tr>
-</tbody>
-</table>
-<p>To create a vector we use the function <code>c()</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Functions, Arguments, and Packages
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Functions like <code>c()</code> are “canned scripts” that automate more complicated sets of commands including operations and assignments.</p>
-<ul>
-<li>A function often (but not always) takes one or more inputs called arguments</li>
-<li>A function often (but not always) returns a value</li>
-<li>Many functions are predefined, or can be made available by importing R packages (more on that later)</li>
-</ul>
-<p>To learn more enter <code>?c()</code> in your computer’s terminal.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 4
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Make a vector by combining the ages of four individuals you know with the function <code>c()</code>, separating the ages with commas, and assign that vector to an object.</li>
-</ol>
+<section id="data-cleaning-and-subsetting" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-subsetting">Data Cleaning and Subsetting</h2>
+<section id="renaming-columns" class="level3">
+<h3 class="anchored" data-anchor-id="renaming-columns">Renaming Columns</h3>
+<p>Change specific column names using <code>colnames()</code> and <code>[]</code>:</p>
 <div id="qwebr-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Now we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks <code>""</code>.</p>
-<ol start="2" type="1">
-<li>Subtract the vector you created in step <strong>1.</strong> from the current year:</li>
-</ol>
-<div id="qwebr-insertion-location-15"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="3" type="1">
-<li>Assign the result of step <strong>2.</strong> to a new object</li>
-</ol>
-<div id="qwebr-insertion-location-16"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</section>
-<section id="tabular-data" class="level2">
-<h2 class="anchored" data-anchor-id="tabular-data">Tabular Data</h2>
-<p>Matrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><code>Data Frame</code></th>
-<th><code>Matrix</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Data types</code></td>
-<td>Can mix types (heterogeneous)</td>
-<td>Single type only (homogeneous)</td>
-</tr>
-<tr class="even">
-<td><code>Common use</code></td>
-<td>Data processing, statistics, plotting</td>
-<td>Mathematical operations</td>
-</tr>
-<tr class="odd">
-<td><code>Structure</code></td>
-<td>List of equal-length vectors</td>
-<td>Vector with dimension attributes</td>
-</tr>
-</tbody>
-</table>
-<p>Data frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Before Continuing…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Make sure you have run the code blocks in the <strong>Vectors</strong> section above. The examples below depend on the objects FamAges and FamYear that you created there.</p>
-</div>
-</div>
-<p>Let’s pack the two vectors we have created into a data frame using <code>data.frame()</code>:</p>
-<div id="qwebr-insertion-location-17"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Inspecting Large Tables
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use <code>head()</code> or <code>tail()</code> to inspect tables with more than 6 rows. Learn more by running <code>?head</code> and <code>?tail</code> in your Positron console.</p>
+<p><code>colnames()</code> retrieves a vector, so we only need <code>[]</code> without a comma — a vector is a one-dimensional structure and does not need row/column indexing.</p>
 </div>
 </div>
-<p>The advantage of using data frame format instead of matrix is that we can combine different data types in the same table.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+</section>
+<section id="removing-a-column" class="level3">
+<h3 class="anchored" data-anchor-id="removing-a-column">Removing a Column</h3>
+<p>Remove the redundant <code>genotype.ch1</code> column using its index number:</p>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="recoding-values" class="level3">
+<h3 class="anchored" data-anchor-id="recoding-values">Recoding Values</h3>
+<p>Clean up the <code>genotype</code> column — convert <code>"Shank3 Mutant"</code> to <code>"Shank3"</code>:</p>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Extract housing condition information from the <code>condition</code> column:</p>
+<div id="qwebr-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Create a new column combining genotype and condition separated by <code>_</code>:</p>
+<div id="qwebr-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Build the final cleaned data frame with selected columns:</p>
+<div id="qwebr-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<hr>
+</section>
+</section>
+<section id="data-harmonization" class="level2">
+<h2 class="anchored" data-anchor-id="data-harmonization">Data Harmonization</h2>
+<p>Data harmonization is the process of collecting and unifying data from various sources and formats into a consistent, standardized format — making it compatible for integration and analysis.</p>
+<p>We have two tables that need to be harmonized before conducting downstream analysis such as differential gene expression analysis. Specifically, the samples in <code>rawc</code> (raw counts) must be in the <strong>same number and order</strong> as in <code>info_clean</code> (metadata).</p>
+<p>Check whether the column names of <code>rawc</code> match the sample IDs in <code>info_clean</code>:</p>
+<div id="qwebr-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Let’s take a closer look at each:</p>
+<div id="qwebr-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>To harmonize the two objects:</p>
+<p><strong>Step 1:</strong> Create a <code>gene_id</code> vector by merging gene ID and gene symbol columns using <code>paste()</code>, separating them with <code>|</code>:</p>
+<div id="qwebr-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Step 2:</strong> Create a new data frame keeping only the columns that match <code>info_clean$sample_id</code>, and set <code>gene_id</code> as row names so it is not interpreted as data:</p>
+<div id="qwebr-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="save-cleaned-tables" class="level3">
+<h3 class="anchored" data-anchor-id="save-cleaned-tables">Save Cleaned Tables</h3>
+<p>Save the cleaned metadata and raw counts tables as <code>.csv</code> files in your <code>processed_data/</code> folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(info_clean, <span class="st">"processed_data/Shank3_metadata_clean.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(rawc_clean, <span class="st">"processed_data/Shank3_rawCounts_clean.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 5
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li>Assign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:</li>
-</ol>
-<div id="qwebr-insertion-location-18"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="2" type="1">
-<li>Add the vector containing the names to the data frame we created using <code>cbind()</code>. (Learn more with <code>?cbind</code> in your Positron console)</li>
-</ol>
-<div id="qwebr-insertion-location-19"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="3" type="1">
-<li>What do you think will happen if you use <code>cbind()</code> to add a character vector to your matrix? Run it and see — was your prediction correct?</li>
-</ol>
-<div id="qwebr-insertion-location-20"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code>write.csv()</code> is kept as a static block — it writes to your local file system and cannot be run in the browser.</p>
 </div>
 </div>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2526,18 +2476,23 @@ Mac: Option + - </code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>✓ Find your working directory and set it?
-✓ Write and run basic arithmetic in R?
-✓ Explain what an R object is and create one using &lt;-?
-✓ Name at least three rules for naming R objects?
-✓ Create a vector using c() and identify its data type?
-✓ Explain the difference between a data frame and a matrix?
-✓ Combine two vectors into a data frame using data.frame()?
-✓ Use cbind() to add a column to an existing data frame? </code></pre>
+<ul>
+<li>✓ Load a package with <code>library()</code> and import a <code>.csv</code> with <code>read.csv()</code>?</li>
+<li>✓ Use <code>class()</code>, <code>typeof()</code>, <code>dim()</code>, and <code>str()</code> to inspect an object?</li>
+<li>✓ Explain what <code>summary()</code> returns for numeric vs.&nbsp;character variables?</li>
+<li>✓ Use <code>is.na()</code> and <code>which()</code> to locate a missing value?</li>
+<li>✓ Retrieve and modify a specific element using row and column indexing?</li>
+<li>✓ Use <code>unique()</code> and <code>table()</code> to explore values in a column?</li>
+<li>✓ Rename and remove columns in a data frame?</li>
+<li>✓ Use <code>ifelse()</code> and <code>grepl()</code> to recode values in a column?</li>
+<li>✓ Explain what data harmonization is and why it matters?</li>
+<li>✓ Save a cleaned data frame to a <code>.csv</code> file with <code>write.csv()</code>?</li>
+</ul>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

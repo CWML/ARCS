@@ -12,12 +12,12 @@ website:
         href: index.qmd
       - text: "Workshops"
         menu:
-          - text: "ARCS 1: Introduction to R"
+          - text: "ARCS 1"
             href: workshops/arcs_01/01-fundamentals.qmd
           - text: "ARCS 2"
-            href: workshops/arcs_02/01-placeholder.qmd
+            href: workshops/arcs_02/03-structures.qmd
           - text: "ARCS 3"
-            href: workshops/arcs_03/01-placeholder.qmd
+            href: workshops/arcs_03/05-tidyverse.qmd
           - text: "ARCS 4"
             href: workshops/arcs_04/01-placeholder.qmd
     right:
@@ -26,7 +26,7 @@ website:
 
   sidebar:
     - id: arcs01
-      title: "ARCS 1: Introduction to R"
+      title: "ARCS 1"
       style: "docked"
       background: light
       contents:
@@ -36,32 +36,28 @@ website:
               href: workshops/arcs_01/01-fundamentals.qmd
             - text: "Project Management"
               href: workshops/arcs_01/02-projects.qmd
-            - text: "Data Structures"
-              href: workshops/arcs_01/03-structures.qmd
-            - text: "Reports"
-              href: workshops/arcs_01/04-reports.qmd
 
     - id: arcs02
       title: "ARCS 2"
       style: "docked"
       background: light
       contents:
-        - text: "Overview"
-          href: workshops/arcs_02/index.qmd
-        - section: "Section 1"
+        - section: "ARCS 2"
           contents:
-            - workshops/arcs_02/01-placeholder.qmd
+            - text: "Data Structures"
+              href: workshops/arcs_02/03-structures.qmd
+            - text: "Reports"
+              href: workshops/arcs_02/04-reports.qmd
 
     - id: arcs03
       title: "ARCS 3"
       style: "docked"
       background: light
       contents:
-        - text: "Overview"
-          href: workshops/arcs_03/index.qmd
-        - section: "Section 1"
+        - section: "ARCS 3"
           contents:
-            - workshops/arcs_03/01-placeholder.qmd
+            - text: "Tidyverse"
+              href: workshops/arcs_03/05-tidyverse
 
     - id: arcs04
       title: "ARCS 4"

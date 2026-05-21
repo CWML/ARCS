@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sofia Fertuzinhos, PhD">
-<meta name="dcterms.date" content="2025-12-31">
 
-<title>Fundamentals of R – Advancing Reproducibility with Computational Skills</title>
+<title>Tidyverse – Advancing Reproducibility with Computational Skills</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -405,7 +403,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# A random number\n2025","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Summation\n1 + 1","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Subtraction\n1 - 1","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Multiplication\n1 * 2","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Division\n2 / 1","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Exponentiation\n2^2","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"4:8\n8:4","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#your code here","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"x <- \"X marks the spot of the \"","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"paste0(x, \"treasure.\")","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"paste0(x, c(\"treasure.\", \" \", \" \"))","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# your code here","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# your code here","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamAges <- c()","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamYear <- 2026 - ","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# your code here","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"df_FamInfo <- data.frame(FamAges, FamYear)\ndf_FamInfo","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Create a vector of names matching the ages in FamAges\nFamNames <- c()","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#| # Add FamNames to df_FamInfo using cbind()\ndf_FamInfo <- cbind(df_FamInfo, )\ndf_FamInfo","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"mx_FamInfo <- cbind(mx_FamInfo, FamNames)\nmx_FamInfo","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"if (!require(\"pacman\")) install.packages(\"pacman\")\n\npacman::p_load(\n  tidyverse,\n  magrittr,\n  here,\n  readr,\n  janitor\n)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"here()","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_metadata)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_metadata)","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_metadata)","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_metadata %>% count(genotype)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names()","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics)","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)        ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    ))","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    ))","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition))","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond)","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_data)","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_data)","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_data)","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_data %>%\n  filter(if_any(everything(), is.na))","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names()","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2)","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0))\n  # drop_na() %>%  # alternative: drop all rows with at least one NA","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\"))","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1]) %>%\n  select(all_of(clean_meta_data$sample_id))","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"setequal(clean_meta_data$sample_id, colnames(clean_data))","id":25,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1727,7 +1725,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">ARCS 1</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">Fundamentals of R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Tidyverse</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1746,7 +1744,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">ARCS 1</span></a>
+ <span class="menu-text">ARCS 3</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1754,14 +1752,8 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../workshops/arcs_01/01-fundamentals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Fundamentals of R</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../workshops/arcs_01/02-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Management</span></a>
+  <a href="../../workshops/arcs_03/05-tidyverse" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
       </ul>
@@ -1776,12 +1768,37 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up-the-working-directory" id="toc-setting-up-the-working-directory" class="nav-link active" data-scroll-target="#setting-up-the-working-directory">Setting Up the Working Directory</a></li>
-  <li><a href="#four-basic-rules-for-writing-code" id="toc-four-basic-rules-for-writing-code" class="nav-link" data-scroll-target="#four-basic-rules-for-writing-code">Four Basic Rules for Writing Code</a></li>
-  <li><a href="#storing-information-in-r-objects" id="toc-storing-information-in-r-objects" class="nav-link" data-scroll-target="#storing-information-in-r-objects">Storing Information in R Objects</a></li>
-  <li><a href="#tricks-and-rules-for-creating-r-objects" id="toc-tricks-and-rules-for-creating-r-objects" class="nav-link" data-scroll-target="#tricks-and-rules-for-creating-r-objects">Tricks and Rules for Creating R Objects</a></li>
-  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
-  <li><a href="#tabular-data" id="toc-tabular-data" class="nav-link" data-scroll-target="#tabular-data">Tabular Data</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link active" data-scroll-target="#load-packages">Load Packages</a></li>
+  <li><a href="#importing-data-with-here-and-readr" id="toc-importing-data-with-here-and-readr" class="nav-link" data-scroll-target="#importing-data-with-here-and-readr">Importing Data with <code>here()</code> and <code>readr</code></a>
+  <ul class="collapse">
+  <li><a href="#confirm-your-working-directory" id="toc-confirm-your-working-directory" class="nav-link" data-scroll-target="#confirm-your-working-directory">Confirm Your Working Directory</a></li>
+  <li><a href="#import-the-data-files" id="toc-import-the-data-files" class="nav-link" data-scroll-target="#import-the-data-files">Import the Data Files</a></li>
+  </ul></li>
+  <li><a href="#cleaning-the-metadata" id="toc-cleaning-the-metadata" class="nav-link" data-scroll-target="#cleaning-the-metadata">Cleaning the Metadata</a>
+  <ul class="collapse">
+  <li><a href="#inspect-the-data" id="toc-inspect-the-data" class="nav-link" data-scroll-target="#inspect-the-data">Inspect the Data</a></li>
+  <li><a href="#what-changes-do-we-need-to-make" id="toc-what-changes-do-we-need-to-make" class="nav-link" data-scroll-target="#what-changes-do-we-need-to-make">What Changes Do We Need to Make?</a></li>
+  <li><a href="#step-1-fix-all-column-names" id="toc-step-1-fix-all-column-names" class="nav-link" data-scroll-target="#step-1-fix-all-column-names">Step 1: Fix All Column Names</a></li>
+  <li><a href="#step-2-rename-columns" id="toc-step-2-rename-columns" class="nav-link" data-scroll-target="#step-2-rename-columns">Step 2: Rename Columns</a></li>
+  <li><a href="#step-3-recode-values-in-condition" id="toc-step-3-recode-values-in-condition" class="nav-link" data-scroll-target="#step-3-recode-values-in-condition">Step 3: Recode Values in <code>condition</code></a></li>
+  <li><a href="#step-4-recode-values-in-genotype" id="toc-step-4-recode-values-in-genotype" class="nav-link" data-scroll-target="#step-4-recode-values-in-genotype">Step 4: Recode Values in <code>genotype</code></a></li>
+  <li><a href="#step-5-create-geno_cond-column" id="toc-step-5-create-geno_cond-column" class="nav-link" data-scroll-target="#step-5-create-geno_cond-column">Step 5: Create <code>geno_cond</code> Column</a></li>
+  <li><a href="#step-6-select-and-reorder-columns" id="toc-step-6-select-and-reorder-columns" class="nav-link" data-scroll-target="#step-6-select-and-reorder-columns">Step 6: Select and Reorder Columns</a></li>
+  <li><a href="#step-7-lowercase-sample_id" id="toc-step-7-lowercase-sample_id" class="nav-link" data-scroll-target="#step-7-lowercase-sample_id">Step 7: Lowercase <code>sample_id</code></a></li>
+  </ul></li>
+  <li><a href="#cleaning-the-raw-counts-data" id="toc-cleaning-the-raw-counts-data" class="nav-link" data-scroll-target="#cleaning-the-raw-counts-data">Cleaning the Raw Counts Data</a>
+  <ul class="collapse">
+  <li><a href="#inspect-the-data-1" id="toc-inspect-the-data-1" class="nav-link" data-scroll-target="#inspect-the-data-1">Inspect the Data</a></li>
+  <li><a href="#what-issues-did-you-find" id="toc-what-issues-did-you-find" class="nav-link" data-scroll-target="#what-issues-did-you-find">What Issues Did You Find?</a></li>
+  <li><a href="#cleaning-steps" id="toc-cleaning-steps" class="nav-link" data-scroll-target="#cleaning-steps">Cleaning Steps</a></li>
+  </ul></li>
+  <li><a href="#extra-harmonizing-the-two-data-frames" id="toc-extra-harmonizing-the-two-data-frames" class="nav-link" data-scroll-target="#extra-harmonizing-the-two-data-frames">EXTRA: Harmonizing the Two Data Frames</a>
+  <ul class="collapse">
+  <li><a href="#extra-1-set-row-ids" id="toc-extra-1-set-row-ids" class="nav-link" data-scroll-target="#extra-1-set-row-ids">Extra 1: Set Row IDs</a></li>
+  <li><a href="#extra-2-reorder-columns-to-match-metadata" id="toc-extra-2-reorder-columns-to-match-metadata" class="nav-link" data-scroll-target="#extra-2-reorder-columns-to-match-metadata">Extra 2: Reorder Columns to Match Metadata</a></li>
+  <li><a href="#extra-3-verify-harmonization" id="toc-extra-3-verify-harmonization" class="nav-link" data-scroll-target="#extra-3-verify-harmonization">Extra 3: Verify Harmonization</a></li>
+  </ul></li>
+  <li><a href="#save-cleaned-data" id="toc-save-cleaned-data" class="nav-link" data-scroll-target="#save-cleaned-data">Save Cleaned Data</a></li>
   </ul>
 </nav>
     </div>
@@ -2072,28 +2089,16 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">ARCS 1</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_01/01-fundamentals.html">Fundamentals of R</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Fundamentals of R</h1>
+<h1 class="title">Tidyverse</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sofia Fertuzinhos, PhD </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 31, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -2114,408 +2119,383 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Find and set your working directory in R</li>
-<li>Write and run basic arithmetic and code in R</li>
-<li>Create and use R objects to store information</li>
-<li>Build vectors and understand the main data types in R</li>
-<li>Understand the difference between data frames and matrices</li>
-<li>Use functions like <code>c()</code>, <code>paste0()</code>, <code>data.frame()</code>, and <code>cbind()</code></li>
+<li>Use <code>pacman::p_load()</code> to install and load multiple packages in a reproducible way</li>
+<li>Use the <code>here</code> package to build file paths relative to your project root</li>
+<li>Explain the difference between <code>read_csv()</code> and <code>read.csv()</code>, and what a tibble is</li>
+<li>Inspect a data frame using <code>view()</code>, <code>head()</code>, and <code>str()</code></li>
+<li>Use the pipe operator <code>%&gt;%</code> to chain multiple data cleaning steps together</li>
+<li>Clean column names automatically using <code>clean_names()</code></li>
+<li>Rename, recode, and create new columns using <code>rename()</code>, <code>mutate()</code>, and <code>case_when()</code></li>
+<li>Combine two columns into a new variable using <code>paste0()</code></li>
+<li>Select and reorder columns using <code>select()</code> and <code>everything()</code></li>
+<li>Handle missing values using <code>replace_na()</code></li>
+<li>Harmonize two data frames so their columns and row identifiers align</li>
+<li>Save cleaned data frames to <code>.csv</code> files using <code>write_csv()</code> and <code>write.csv()</code></li>
 </ul>
 </div>
 </div>
 <hr>
-<section id="setting-up-the-working-directory" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-the-working-directory">Setting Up the Working Directory</h2>
-<p>What is your working directory? Run <code>getwd()</code> to find out.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning About Any Function
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To learn more about any function, run <code>?function_name</code> in the console. For example: <code>?getwd</code></p>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called <strong>ARCS_project</strong> — this is where your data files and script files live for this workshop series.</p>
-<p>In Positron you can set your working directory using the Files pane:</p>
-<ol type="1">
-<li>Navigate to your <strong>ARCS_project</strong> folder</li>
-<li>Click the gear icon in the Files pane toolbar</li>
-<li>Select <strong>“Set as Working Directory”</strong></li>
-</ol>
-<p>Notice in your console that a line of code will appear similar to this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac example</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Desktop/ARCS_project"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows example</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/YourName/Desktop/ARCS_project"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>setwd() is the programmatic way to establish a working directory — you just need to write the full path to your <strong>ARCS_project</strong> folder on your machine.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Verify Your Working Directory
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>After setting it, confirm you’re in the right place:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see the path ending in <strong>ARCS_project</strong>.</p>
-</div>
-</div>
-</section>
-<section id="four-basic-rules-for-writing-code" class="level2">
-<h2 class="anchored" data-anchor-id="four-basic-rules-for-writing-code">Four Basic Rules for Writing Code</h2>
-<ol type="1">
-<li>Use <code>#</code> to annotate and document your code</li>
-<li>Use a noticeable pattern to break between coding chunks</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----- Section Title ------#</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Numbers and basic arithmetic work just as on paper</li>
-</ol>
+<section id="load-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-packages">Load Packages</h2>
+<p>The <code>pacman</code> package helps ensure your script is <strong>reproducible</strong> — it automatically <strong>installs and loads</strong> the packages needed to run your code, even on someone else’s computer. You can add to the list as more packages are needed.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<hr>
+</section>
+<section id="importing-data-with-here-and-readr" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data-with-here-and-readr">Importing Data with <code>here()</code> and <code>readr</code></h2>
+<p>The <code>here</code> package improves reproducibility and sharing by creating file paths relative to your <strong>R project’s root directory</strong>, eliminating the need for hard-coded absolute paths — as long as your script file is saved in the same folder as your R project.</p>
+<section id="confirm-your-working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="confirm-your-working-directory">Confirm Your Working Directory</h3>
+<p>Run this to make sure you are currently in the correct R project:</p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>If you are not in the correct project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can set the project root manually — replace the path with your actual folder location:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set_here("path/to/your/desired/folder")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="import-the-data-files" class="level3">
+<h3 class="anchored" data-anchor-id="import-the-data-files">Import the Data Files</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the raw counts data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data_3.csv"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the metadata</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>read_csv()</code> vs <code>read.csv()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section uses <code>read_csv()</code> from the Tidyverse rather than <code>read.csv()</code> from base R. Key differences:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th><code>read_csv()</code></th>
+<th><code>read.csv()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Column types</td>
+<td>Explicit (<code>col_double</code>, etc.)</td>
+<td>Inferred</td>
+</tr>
+<tr class="even">
+<td>Speed</td>
+<td>Faster on large files</td>
+<td>Slower</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td><strong>Tibble</strong></td>
+<td>Data frame</td>
+</tr>
+<tr class="even">
+<td>Column names</td>
+<td>Preserved as-is</td>
+<td>May be altered</td>
+</tr>
+<tr class="odd">
+<td>Row labels</td>
+<td>Not used</td>
+<td>Supported</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>tibble</strong> is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like <code>str()</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="cleaning-the-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-metadata">Cleaning the Metadata</h2>
+<section id="inspect-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-the-data">Inspect the Data</h3>
+<p>Physically look at the data you just imported:</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Use <code>head()</code> to see the first 6 rows, column names, and data types:</p>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Use <code>str()</code> to see the structure, data types, dimensions, and how data are organized:</p>
 <div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>EXTRA: Count unique values in a column
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can find the unique values within a variable and their counts using <code>count()</code> — similar to the <code>unique()</code> and <code>table()</code> exercises from the Data Structures section:</p>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-style-default callout-note callout-titled">
+</div>
+</div>
+</section>
+<section id="what-changes-do-we-need-to-make" class="level3">
+<h3 class="anchored" data-anchor-id="what-changes-do-we-need-to-make">What Changes Do We Need to Make?</h3>
+<ol type="1">
+<li>Fix column names</li>
+<li>Rename <code>characteristic</code> to <code>condition</code></li>
+<li>Clean up values under <code>condition</code></li>
+<li>Clean up values under <code>genotype</code></li>
+<li>Combine <code>condition</code> and <code>genotype</code> into a new column <code>geno_cond</code></li>
+<li>Keep columns in this order: <code>sample_id</code>, <code>genotype</code>, <code>condition</code>, <code>geno_cond</code></li>
+<li>Make values under <code>sample_id</code> lowercase</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Tip</span>Working with the pipe <code>%&gt;%</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using the colon : gives you a range of numbers between two values:</p>
+<p>Each step below builds on the previous one using the pipe operator <code>%&gt;%</code>. You can run the code up to any <code>%&gt;%</code> to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.</p>
+</div>
+</div>
+</section>
+<section id="step-1-fix-all-column-names" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-fix-all-column-names">Step 1: Fix All Column Names</h3>
+<p><code>clean_names()</code> standardizes all column names to lowercase with underscores:</p>
 <div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Letters must be written between quotation marks <code>""</code></li>
-</ol>
+</section>
+<section id="step-2-rename-columns" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-rename-columns">Step 2: Rename Columns</h3>
+<p>Rename column <code>x1</code> to <code>sample_id</code> and <code>characteristics</code> to <code>condition</code>:</p>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="step-3-recode-values-in-condition" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-recode-values-in-condition">Step 3: Recode Values in <code>condition</code></h3>
+<ul>
+<li>If the value includes <code>"homecage"</code> → change to <code>"normal"</code></li>
+<li>If the value includes <code>"sleep deprivation"</code> → change to <code>"sleep_deprived"</code></li>
+</ul>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exception
+<span class="screen-reader-only">Note</span>Base R inside the Tidyverse
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Characters defining the name of an object can be written without quotation marks.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 1
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Write and run: <code>Hello world!</code></li>
-<li>Now write and run: <code>"Hello world!"</code></li>
-</ol>
-<div id="qwebr-insertion-location-8"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>What is different about the second step’s output?</p>
+<p>Notice that <code>grepl()</code> is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with <code>ifelse()</code>.</p>
 </div>
 </div>
 </section>
-<section id="storing-information-in-r-objects" class="level2">
-<h2 class="anchored" data-anchor-id="storing-information-in-r-objects">Storing Information in R Objects</h2>
-<p>Objects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don’t have to repeat operations.</p>
-<p>To create an object, we need:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This way we are assigning to objects on the left the values on the right.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 2
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Run the following lines one at a time and observe what happens:</p>
-<div id="qwebr-insertion-location-9"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>You have now stored information in the object <code>x</code>. That object is now visible in the Variables pane in Positron.</p>
-<p>When you run x, R retrieves the information stored in it.</p>
+<section id="step-4-recode-values-in-genotype" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-recode-values-in-genotype">Step 4: Recode Values in <code>genotype</code></h3>
+<ul>
+<li>If the value includes <code>"WT"</code> → change to <code>"WT"</code></li>
+<li>If the value includes <code>"shank3"</code> → change to <code>"shank3"</code></li>
+</ul>
 <div id="qwebr-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>You can manipulate the information stored in the object by simply using the object name, saving you from repeating operations.</p>
-<p>Let’s play a little more! Fill in the blanks:</p>
+</section>
+<section id="step-5-create-geno_cond-column" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-create-geno_cond-column">Step 5: Create <code>geno_cond</code> Column</h3>
+<p>Combine <code>genotype</code> and <code>condition</code> into a new variable:</p>
 <div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
 </section>
-<section id="tricks-and-rules-for-creating-r-objects" class="level2">
-<h2 class="anchored" data-anchor-id="tricks-and-rules-for-creating-r-objects">Tricks and Rules for Creating R Objects</h2>
-<ol type="1">
-<li>It is good practice to always use <code>&lt;-</code> instead of <code>=</code></li>
-</ol>
+<section id="step-6-select-and-reorder-columns" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-select-and-reorder-columns">Step 6: Select and Reorder Columns</h3>
+<p>Keep only the columns we need in the correct order:</p>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="step-7-lowercase-sample_id" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-lowercase-sample_id">Step 7: Lowercase <code>sample_id</code></h3>
+<p>Make <code>sample_id</code> values lowercase — this will be important for harmonizing with the raw counts data in the next section:</p>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<hr>
+</section>
+</section>
+<section id="cleaning-the-raw-counts-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-raw-counts-data">Cleaning the Raw Counts Data</h2>
+<section id="inspect-the-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-the-data-1">Inspect the Data</h3>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="what-issues-did-you-find" class="level3">
+<h3 class="anchored" data-anchor-id="what-issues-did-you-find">What Issues Did You Find?</h3>
+<ul>
+<li>Column 1 has no label and contains row numbers inserted in error</li>
+<li>Column 2 has no label</li>
+<li>Column 3 (<code>gene symbol</code>) has a space in its name</li>
+<li>All columns beginning with <code>GSM</code> are uppercase</li>
+</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Keyboard Shortcut for <code>&lt;-</code>
+<span class="screen-reader-only">Tip</span>EXTRA: Search for NA values
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>PC: Alt + -
-Mac: Option + - </code></pre>
+<p>Use <code>filter()</code>, <code>if_any()</code>, and <code>everything()</code> with <code>is.na()</code> to search all rows and columns for missing values:</p>
+<div id="qwebr-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The NA value identified here will be addressed in the cleaning steps below.</p>
 </div>
 </div>
-<ol start="2" type="1">
-<li>An R object can have almost any name. However, there are some important considerations:</li>
-</ol>
+</section>
+<section id="cleaning-steps" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-steps">Cleaning Steps</h3>
+<section id="clean_names" class="level4">
+<h4 class="anchored" data-anchor-id="clean_names"><code>clean_names()</code></h4>
+<p>Gives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:</p>
+<div id="qwebr-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="rename" class="level4">
+<h4 class="anchored" data-anchor-id="rename"><code>rename()</code></h4>
+<p>Change the auto-generated name for column 2 (<code>x2</code>) to <code>gene_id</code>:</p>
+<div id="qwebr-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="mutate-handle-the-na-value" class="level4">
+<h4 class="anchored" data-anchor-id="mutate-handle-the-na-value"><code>mutate()</code> — Handle the NA Value</h4>
+<p>Replace the NA value under <code>gsm3119015</code> with <code>0</code>:</p>
+<div id="qwebr-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Naming Rules
+<span class="screen-reader-only">Important</span>A note on handling missing values
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>✗ No empty spaces — the code will not run
-✗ Cannot start with numbers (2x is not valid, but x2 is)
-✗ Cannot have the same name as functions — it gets confusing </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 3
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="a">
-<li>Assign your age to an object with a descriptive name:</li>
-</ol>
-<div id="qwebr-insertion-location-12"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="2" type="a">
-<li>Subtract your object from the current year to obtain your birth year:</li>
-</ol>
-<div id="qwebr-insertion-location-13"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Replacing NA with <code>0</code> is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.</p>
 </div>
 </div>
 </section>
-<section id="vectors" class="level2">
-<h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
-<p>A vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.</p>
-<p>There are 5 main types of data:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>double</code> / <code>numeric</code></td>
-<td>Numbers with decimals</td>
-<td><code>1.2</code></td>
-</tr>
-<tr class="even">
-<td><code>integer</code></td>
-<td>Whole numbers</td>
-<td><code>10L</code></td>
-</tr>
-<tr class="odd">
-<td><code>complex</code></td>
-<td>Numbers with imaginary component</td>
-<td><code>2i</code></td>
-</tr>
-<tr class="even">
-<td><code>logical</code></td>
-<td>True or False</td>
-<td><code>TRUE</code></td>
-</tr>
-<tr class="odd">
-<td><code>character</code></td>
-<td>String of characters</td>
-<td><code>"Sofia"</code></td>
-</tr>
-</tbody>
-</table>
-<p>To create a vector we use the function <code>c()</code>.</p>
+<section id="mutate-create-a-combined-gene-id-column" class="level4">
+<h4 class="anchored" data-anchor-id="mutate-create-a-combined-gene-id-column"><code>mutate()</code> — Create a Combined Gene ID Column</h4>
+<p>Create a new variable that combines <code>gene_id</code> and <code>gene_symbol</code> separated by <code>|</code>. Notice that <code>paste()</code> from base R works seamlessly inside a Tidyverse pipeline:</p>
+<div id="qwebr-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="select" class="level4">
+<h4 class="anchored" data-anchor-id="select"><code>select()</code></h4>
+<p>Make <code>gene_id_symbol</code> the first column, keep everything else in the same order using <code>everything()</code>, and remove <code>x1</code>, <code>gene_symbol</code>, and <code>gene_id</code> using the <code>-</code> operator:</p>
+<div id="qwebr-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<hr>
+</section>
+</section>
+</section>
+<section id="extra-harmonizing-the-two-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="extra-harmonizing-the-two-data-frames">EXTRA: Harmonizing the Two Data Frames</h2>
+<p>These extra steps align the structure of <code>clean_data</code> with <code>clean_meta_data</code> so they are ready for downstream analysis such as differential gene expression.</p>
+<section id="extra-1-set-row-ids" class="level3">
+<h3 class="anchored" data-anchor-id="extra-1-set-row-ids">Extra 1: Set Row IDs</h3>
+<p>Use <code>column_to_rownames()</code> from the <code>tibble</code> package to convert the first column from a data variable into row identifiers:</p>
+<div id="qwebr-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="extra-2-reorder-columns-to-match-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="extra-2-reorder-columns-to-match-metadata">Extra 2: Reorder Columns to Match Metadata</h3>
+<p>Reorder the columns in <code>clean_data</code> to match the order of <code>sample_id</code> values in <code>clean_meta_data</code>:</p>
+<div id="qwebr-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="extra-3-verify-harmonization" class="level3">
+<h3 class="anchored" data-anchor-id="extra-3-verify-harmonization">Extra 3: Verify Harmonization</h3>
+<p>Run a quick check to confirm that the column names in <code>clean_data</code> and the <code>sample_id</code> values in <code>clean_meta_data</code> match exactly:</p>
+<div id="qwebr-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<hr>
+</section>
+</section>
+<section id="save-cleaned-data" class="level2">
+<h2 class="anchored" data-anchor-id="save-cleaned-data">Save Cleaned Data</h2>
+<p>Save <code>clean_data</code> and <code>clean_meta_data</code> locally using <code>here()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves with row labels (use read.csv to reload with row labels intact)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(clean_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_data_label.csv"</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves without row labels (standard clean CSV)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_data.csv"</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save clean metadata</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_meta_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_meta_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Functions, Arguments, and Packages
+<span class="screen-reader-only">Note</span><code>write_csv()</code> vs <code>write.csv()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Functions like <code>c()</code> are “canned scripts” that automate more complicated sets of commands including operations and assignments.</p>
-<ul>
-<li>A function often (but not always) takes one or more inputs called arguments</li>
-<li>A function often (but not always) returns a value</li>
-<li>Many functions are predefined, or can be made available by importing R packages (more on that later)</li>
-</ul>
-<p>To learn more enter <code>?c()</code> in your computer’s terminal.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 4
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Make a vector by combining the ages of four individuals you know with the function <code>c()</code>, separating the ages with commas, and assign that vector to an object.</li>
-</ol>
-<div id="qwebr-insertion-location-14"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Now we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks <code>""</code>.</p>
-<ol start="2" type="1">
-<li>Subtract the vector you created in step <strong>1.</strong> from the current year:</li>
-</ol>
-<div id="qwebr-insertion-location-15"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="3" type="1">
-<li>Assign the result of step <strong>2.</strong> to a new object</li>
-</ol>
-<div id="qwebr-insertion-location-16"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</section>
-<section id="tabular-data" class="level2">
-<h2 class="anchored" data-anchor-id="tabular-data">Tabular Data</h2>
-<p>Matrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th><code>Data Frame</code></th>
-<th><code>Matrix</code></th>
+<th>Function</th>
+<th>Row labels</th>
+<th>Package</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>Data types</code></td>
-<td>Can mix types (heterogeneous)</td>
-<td>Single type only (homogeneous)</td>
+<td><code>write_csv()</code></td>
+<td>Not included</td>
+<td>Tidyverse (<code>readr</code>)</td>
 </tr>
 <tr class="even">
-<td><code>Common use</code></td>
-<td>Data processing, statistics, plotting</td>
-<td>Mathematical operations</td>
-</tr>
-<tr class="odd">
-<td><code>Structure</code></td>
-<td>List of equal-length vectors</td>
-<td>Vector with dimension attributes</td>
+<td><code>write.csv()</code></td>
+<td>Included</td>
+<td>Base R</td>
 </tr>
 </tbody>
 </table>
-<p>Data frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Before Continuing…
+<p>Use <code>write.csv()</code> when you need to preserve row labels (as in <code>clean_data_label.csv</code>). Use <code>write_csv()</code> for standard clean output.</p>
+<p>These blocks are static and cannot be run in the browser — they write to your local file system and must be run in your Positron session.</p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Make sure you have run the code blocks in the <strong>Vectors</strong> section above. The examples below depend on the objects FamAges and FamYear that you created there.</p>
-</div>
-</div>
-<p>Let’s pack the two vectors we have created into a data frame using <code>data.frame()</code>:</p>
-<div id="qwebr-insertion-location-17"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Inspecting Large Tables
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use <code>head()</code> or <code>tail()</code> to inspect tables with more than 6 rows. Learn more by running <code>?head</code> and <code>?tail</code> in your Positron console.</p>
-</div>
-</div>
-<p>The advantage of using data frame format instead of matrix is that we can combine different data types in the same table.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise 5
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Assign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:</li>
-</ol>
-<div id="qwebr-insertion-location-18"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="2" type="1">
-<li>Add the vector containing the names to the data frame we created using <code>cbind()</code>. (Learn more with <code>?cbind</code> in your Positron console)</li>
-</ol>
-<div id="qwebr-insertion-location-19"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol start="3" type="1">
-<li>What do you think will happen if you use <code>cbind()</code> to add a character vector to your matrix? Run it and see — was your prediction correct?</li>
-</ol>
-<div id="qwebr-insertion-location-20"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2526,14 +2506,19 @@ Mac: Option + - </code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>✓ Find your working directory and set it?
-✓ Write and run basic arithmetic in R?
-✓ Explain what an R object is and create one using &lt;-?
-✓ Name at least three rules for naming R objects?
-✓ Create a vector using c() and identify its data type?
-✓ Explain the difference between a data frame and a matrix?
-✓ Combine two vectors into a data frame using data.frame()?
-✓ Use cbind() to add a column to an existing data frame? </code></pre>
+<ul>
+<li>✓ Use <code>pacman::p_load()</code> to load multiple packages reproducibly?</li>
+<li>✓ Explain what <code>here()</code> does and why it improves reproducibility?</li>
+<li>✓ Describe at least two differences between <code>read_csv()</code> and <code>read.csv()</code>?</li>
+<li>✓ Explain what a tibble is and how it differs from a data frame?</li>
+<li>✓ Use <code>%&gt;%</code> to chain multiple data cleaning steps together?</li>
+<li>✓ Use <code>clean_names()</code> to standardize column names automatically?</li>
+<li>✓ Use <code>rename()</code>, <code>mutate()</code>, and <code>case_when()</code> to recode values?</li>
+<li>✓ Use <code>select()</code> and <code>everything()</code> to reorder and drop columns?</li>
+<li>✓ Replace NA values using <code>replace_na()</code>?</li>
+<li>✓ Explain what data harmonization means and verify it with <code>setequal()</code>?</li>
+<li>✓ Choose between <code>write_csv()</code> and <code>write.csv()</code> based on whether you need row labels?</li>
+</ul>
 </div>
 </div>
 
