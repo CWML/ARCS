@@ -27,6 +27,7 @@ will use in every project going forward: initializing a reproducible R
 environment and writing documentation.
 
 ---
+
 ## Creating an R Environment
 
 We use `renv` to manage package versions in your project. This ensures that
@@ -85,3 +86,58 @@ If you get a message that says you are "in a project that hasn't been activated 
     └── library/
 ```
 Now when this repository is cloned by a collaborator or reviewer, `renv::restore()` can find the renv files you have created and automatically load the matching package versions.
+
+---
+
+## Write a README file
+
+A README is the entry point to your project. It tells anyone who opens your repository — including your future self — what the project is, what the data is, and how to use it.
+
+1. Confirm that you are in the root directory of your workshop folder:
+```r
+getwd()
+```
+
+2. In the console, enter: 
+```r
+fs::dir_tree()
+```
+This calls the dir_tree function from the `fs` package - you should see an output that shows you all your project files and their relationships
+
+3. To write this output to a file, enter this command in the console: 
+```r
+capture.output(fs::dir_tree(), file = "README.txt")
+```
+
+4. Copy the text in the lines below (stop when you get to step 5) and paste at the top of your README.txt file (open in another window):
+
+```r
+This readme file was generated on [YYYY-MM-DD] by [NAME]
+
+GENERAL INFORMATION
+
+Title of Dataset:
+
+Author/Principal Investigator Information
+
+Name: ORCID: Institution: Address: Email:
+
+Date of data collection: provide single date, range, or approximate date; suggested format YYYY-MM-DD)
+
+Geographic location of data collection: provide latitude, longitude, or city/region, State, Country
+
+SHARING/ACCESS INFORMATION
+
+DATA & FILE OVERVIEW
+
+File List:
+
+This README template is a simplified version of Cornell's Readme Template for Data: 
+https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230 
+```
+
+5. Optional: in your README.txt file, write a short description next to these folders: 
+- `raw_data (original data goes here)` 
+- `processed data (clean data goes here)` 
+- `scripts (code to for analyses goes here)` 
+- `outputs (analyses outputs go here)`

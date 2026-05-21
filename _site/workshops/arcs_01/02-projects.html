@@ -235,6 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#why-project-management" id="toc-why-project-management" class="nav-link active" data-scroll-target="#why-project-management">Why Project Management?</a></li>
   <li><a href="#creating-an-r-environment" id="toc-creating-an-r-environment" class="nav-link" data-scroll-target="#creating-an-r-environment">Creating an R Environment</a></li>
+  <li><a href="#write-a-readme-file" id="toc-write-a-readme-file" class="nav-link" data-scroll-target="#write-a-readme-file">Write a README file</a></li>
   </ul>
 </nav>
     </div>
@@ -361,6 +362,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    └── settings.json</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    └── library<span class="sc">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now when this repository is cloned by a collaborator or reviewer, <code>renv::restore()</code> can find the renv files you have created and automatically load the matching package versions.</p>
+<hr>
+</section>
+<section id="write-a-readme-file" class="level2">
+<h2 class="anchored" data-anchor-id="write-a-readme-file">Write a README file</h2>
+<p>A README is the entry point to your project. It tells anyone who opens your repository — including your future self — what the project is, what the data is, and how to use it.</p>
+<ol type="1">
+<li>Confirm that you are in the root directory of your workshop folder:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>In the console, enter:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_tree</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This calls the dir_tree function from the <code>fs</code> package - you should see an output that shows you all your project files and their relationships</p>
+<ol start="3" type="1">
+<li>To write this output to a file, enter this command in the console:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">capture.output</span>(fs<span class="sc">::</span><span class="fu">dir_tree</span>(), <span class="at">file =</span> <span class="st">"README.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Copy the text in the lines below (stop when you get to step 5) and paste at the top of your README.txt file (open in another window):</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>This readme file was generated on [YYYY<span class="sc">-</span>MM<span class="sc">-</span>DD] by [NAME]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>GENERAL INFORMATION</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Title of Dataset<span class="sc">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Author<span class="sc">/</span>Principal Investigator Information</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>Name<span class="sc">:</span> ORCID<span class="sc">:</span> Institution<span class="sc">:</span> Address<span class="sc">:</span> Email<span class="sc">:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Date of data collection<span class="sc">:</span> provide single date, range, or approximate date; suggested format YYYY<span class="sc">-</span>MM<span class="sc">-</span>DD<span class="er">)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>Geographic location of data collection<span class="sc">:</span> provide latitude, longitude, or city<span class="sc">/</span>region, State, Country</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>SHARING<span class="sc">/</span>ACCESS INFORMATION</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>DATA <span class="sc">&amp;</span> FILE OVERVIEW</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>File List<span class="sc">:</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>This README template is a simplified version of Cornell<span class="st">'s Readme Template for Data: </span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="st">https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230 </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="5" type="1">
+<li>Optional: in your README.txt file, write a short description next to these folders:</li>
+</ol>
+<ul>
+<li><code>raw_data (original data goes here)</code></li>
+<li><code>processed data (clean data goes here)</code></li>
+<li><code>scripts (code to for analyses goes here)</code></li>
+<li><code>outputs (analyses outputs go here)</code></li>
+</ul>
 
 
 </section>
