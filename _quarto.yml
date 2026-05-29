@@ -19,7 +19,7 @@ website:
           - text: "ARCS 3"
             href: workshops/arcs_03/05-tidyverse.qmd
           - text: "ARCS 4"
-            href: workshops/arcs_04/01-placeholder.qmd
+            href: workshops/arcs_04/07-deseq2.qmd
     right:
       - icon: github
         href: https://github.com/CWML/ARCS
@@ -58,17 +58,20 @@ website:
           contents:
             - text: "Tidyverse"
               href: workshops/arcs_03/05-tidyverse
+            - text: "Git & Version Control"
+              href: workshops/arcs_03/06-git.qmd 
 
     - id: arcs04
       title: "ARCS 4"
       style: "docked"
       background: light
       contents:
-        - text: "Overview"
-          href: workshops/arcs_04/index.qmd
-        - section: "Section 1"
+        - section: "ARCS 4"
           contents:
-            - workshops/arcs_04/01-placeholder.qmd
+            - text: "DESeq2"
+              href: workshops/arcs_04/07-deseq2.qmd 
+            - text: "Apptainer"
+              href: workshops/arcs_04/08-apptainer.qmd 
 
   page-footer:
     left: "ARCS Workshop Series"

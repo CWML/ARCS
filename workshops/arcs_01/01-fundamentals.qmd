@@ -1,7 +1,5 @@
 ---
 title: "Fundamentals of R"
-author: "Sofia Fertuzinhos, PhD"
-date: "2026"
 sidebar: arcs01
 filters:
   - webr

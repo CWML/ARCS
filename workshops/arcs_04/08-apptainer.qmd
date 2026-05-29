@@ -1,0 +1,9 @@
+---
+title: "Apptainer"
+sidebar: arcs04
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
