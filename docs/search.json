@@ -500,5 +500,351 @@
     "title": "ARCS",
     "section": "",
     "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#slides",
+    "href": "workshops/arcs_01/02-projects.html#slides",
+    "title": "Project Management",
+    "section": "Slides",
+    "text": "Slides\nOpen slides fullscreen",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry",
+    "href": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "True Story: Data Management Gone Awry",
+    "text": "True Story: Data Management Gone Awry\n\n\nHere’s an example of what can happen when you don’t make data management decisions.\nThis screenshot is from a publication from a Yale School of Medicine lab. It was published in a Nature journal. You’ll notice the bright outlines in the images above, which were identified by an AI image recognition tool (imagetwin.ai)as being duplicative of each other. A human peer found these duplicative images in 2025 and this discussion I’m reporting comes from a public journal club platform (https://pubpeer.com/publications/1E57F80A4418124605D36D4B734480#)"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry-1",
+    "href": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry-1",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "True Story: Data Management Gone Awry",
+    "text": "True Story: Data Management Gone Awry\n\n\nThese are microscopy images from a mouse’s ear. We can see how it could be possible to get them mixed up by mistake.\nMagnified, we can see some evidence of repeating patterns. (USE chalk)"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#author-explanation",
+    "href": "workshops/arcs_01/02-slides.html#author-explanation",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Author Explanation",
+    "text": "Author Explanation\n“…several postdocs and students were involved in this project from 2008 to 2018. We, as a team, have careful examined the original files and data folders. We have identified the potential processes that could cause the mistakes, including file transfer, image processing and figure assembly. All these mistakes were made unintentionally and inadvertently during the processes. We sincerely apologize for any impact that might have caused.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#where-in-the-computational-process-did-this-happen",
+    "href": "workshops/arcs_01/02-slides.html#where-in-the-computational-process-did-this-happen",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Where in the computational process did this happen?",
+    "text": "Where in the computational process did this happen?\n“Upon complete of the STZ study in the lab, Dr. X left Yale and other lab members helped transfer files and processes from microscope facility to the lab computer. During the figure assembly, one panel of images in the WT/ECKO group were mistakenly considered as the STZ group while the real STZ panel was not used for the figure assembly…Due to this mistake, essentially all images from Fig.7f for STZ were from the WT/ECKO study.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#how-does-this-happen",
+    "href": "workshops/arcs_01/02-slides.html#how-does-this-happen",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "How does this happen?",
+    "text": "How does this happen?\n\nPipeline Gaps - different pieces of the process done in different environments\nFile Transfers - dragging and dropping allows for errors\nFilenaming Variation - images were not grouped by file name\n\n\nWait for students to speak first\nWhere in the computational process did the mix up happen?"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#reproducible-research-from-the-ground-up",
+    "href": "workshops/arcs_01/02-slides.html#reproducible-research-from-the-ground-up",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Reproducible research from the ground up",
+    "text": "Reproducible research from the ground up\n\nGet some research data\nSet up an R project\nManage data"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#pick-a-repository",
+    "href": "workshops/arcs_01/02-slides.html#pick-a-repository",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Pick a repository",
+    "text": "Pick a repository"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#pick-a-dataset",
+    "href": "workshops/arcs_01/02-slides.html#pick-a-dataset",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Pick a dataset",
+    "text": "Pick a dataset"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#download-raw-data",
+    "href": "workshops/arcs_01/02-slides.html#download-raw-data",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Download raw data",
+    "text": "Download raw data"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#download-metadata",
+    "href": "workshops/arcs_01/02-slides.html#download-metadata",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Download metadata",
+    "text": "Download metadata"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#metadata-we-downloaded",
+    "href": "workshops/arcs_01/02-slides.html#metadata-we-downloaded",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Metadata we downloaded",
+    "text": "Metadata we downloaded"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#metadata-we-want",
+    "href": "workshops/arcs_01/02-slides.html#metadata-we-want",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Metadata we want",
+    "text": "Metadata we want"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#why-do-this-in-r",
+    "href": "workshops/arcs_01/02-slides.html#why-do-this-in-r",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Why do this in R?",
+    "text": "Why do this in R?\n\nAny ideas?"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#if-we-did-it-in-excel",
+    "href": "workshops/arcs_01/02-slides.html#if-we-did-it-in-excel",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "If we did it in Excel…",
+    "text": "If we did it in Excel…"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#when-we-do-it-in-r",
+    "href": "workshops/arcs_01/02-slides.html#when-we-do-it-in-r",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "When we do it in R…",
+    "text": "When we do it in R…"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#data-processing",
+    "href": "workshops/arcs_01/02-slides.html#data-processing",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Data Processing",
+    "text": "Data Processing\n\n\nExcel\n\nProcesses one observation at a time\nOpportunity for copy/paste errors\nSteps are not documented\nNew file means redoing all steps\nSetup time may be shorter\n\n\nR\n\nProcesses entire vectors of observations\nNo copy/paste errors during processing\nCode can document itself\nNew file means a small change (if any)\nSetup may take longer"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#computational-performance",
+    "href": "workshops/arcs_01/02-slides.html#computational-performance",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Computational Performance",
+    "text": "Computational Performance\n\n\n\nDataset\n20 rows\n1,000 rows\n100,000 rows\n1,000,000 rows +\n\n\n\n\nExcel\nfast\nslowing\ncrashing\ncannot open\n\n\nR\nfast\nfast\nfast\nfast\n\n\n\n\nPractical implications\nExcel is looping behind a friendly interface, which means that:\nExcel hits walls at:\n\n~50,000 rows (becomes very slow)\n~1 million rows (Excel’s row limit)\nComplex nested formulas (exponential slowdown)\n\nR scales to:\n\nMillions of rows routinely\nBillions of rows with proper techniques\nComplex operations remain fast\n\n\n\n\nThe big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproduciblity."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#rs-flexibility-creates-new-responsibilities",
+    "href": "workshops/arcs_01/02-slides.html#rs-flexibility-creates-new-responsibilities",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "R’s Flexibility Creates New Responsibilities",
+    "text": "R’s Flexibility Creates New Responsibilities\n\nEfficiency - You can still write code that runs slowly\nBest practices - R is agnostic to readability, optimal analysis, data ethics\nData management - Explicit instructions are needed to select and organize pipelines, folders, files\nInformation - Code that runs is not always code that produces desired or understandable results"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#meet-r-where-its-at",
+    "href": "workshops/arcs_01/02-slides.html#meet-r-where-its-at",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Meet R where it’s at",
+    "text": "Meet R where it’s at\n\nR Projects - Keep your files organized\nREADME - Document what you do\nFilenaming Conventions - Name your files consistently\nWorkflow automation - Use code to handle repetitive tasks\nLook beyond R - Use complimentary tools"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#what-are-r-projects",
+    "href": "workshops/arcs_01/02-slides.html#what-are-r-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "What Are R Projects?",
+    "text": "What Are R Projects?\n\nSelf-contained workspace for each analysis or research project\nAutomatic working directory management. No more setwd()\nSeamless integration with version control and documentation tools\n\n\nThink of an R Project like having a dedicated laboratory bench for each experiment. Just like you wouldn’t mix chemicals from different experiments on the same bench, you shouldn’t mix files from different analyses in the same folder. When you open an R Project, R automatically “knows” where all your files are located - your data, scripts, outputs, and documentation all live together. This eliminates one of the most common beginner frustrations: the dreaded “Error: cannot open file” because R can’t find your data. The working directory is automatically set to your project folder, so file paths just work."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#when-and-where-to-create-r-projects",
+    "href": "workshops/arcs_01/02-slides.html#when-and-where-to-create-r-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "WHEN and WHERE to Create R Projects",
+    "text": "WHEN and WHERE to Create R Projects\n\nWHEN: At the very beginning, before writing any code\nWHERE: Create a dedicated folder for each project inside of one “Code” or “R_Projects” folder\nOne R project = one research question/paper/analysis (not one project for all your R work)\n\n\nThe biggest mistake beginners make is creating one giant “R_Work” folder and throwing everything in there. Instead, think of each research question or manuscript as deserving its own project. Create the R Project FIRST, before you even download your data. This is like setting up your lab notebook before starting an experiment - it ensures everything stays organized from day one. Choose descriptive names that will make sense to you (and your collaborators) months later. A good rule of thumb: if you might publish this as a separate paper, it should be its own R Project. The folder location should be somewhere logical on your computer - many people create a “Research” or “Projects” folder in their Documents."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#data-management-advantages-to-r-projects",
+    "href": "workshops/arcs_01/02-slides.html#data-management-advantages-to-r-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Data Management Advantages to R Projects",
+    "text": "Data Management Advantages to R Projects\n\nRelative file paths work everywhere\n\ninput_file &lt;- \"raw_data/GSE113754_GeneLevel_Raw_data.xlsx\" #this\ninput_file &lt;- \"C:/Users/Username/Code/ARCS/raw_data/GSE113754_GeneLevel_Raw_data.xlsx\" #NOT this\n\nShare projects easily (zip the folder, send to collaborators/your future self)\nClear project boundaries (everything stays together)\n\n\nHere’s where R Projects really shine for reproducibility. When you use relative paths like “data/metadata.csv”, your code works on any computer - yours, your advisor’s, your collaborator’s - as long as they have the project folder. No more changing file paths when you switch from your laptop to the lab computer! The automatic working directory means you’ll never again see that frustrated student debugging session where half the time is spent figuring out where R is looking for files. When you want to share your analysis, just zip the entire project folder - everything your collaborator needs is in one place. RStudio keeps track of your recent projects, so you can easily switch between your Shank3 analysis and your methods comparison without confusion. This organization becomes crucial when you’re juggling multiple research projects simultaneously.\n\n\n.Rproj\n\nOpening RStudio from an .Rproj file automatically sets the working directory to that folder\nLets RStudio remember project-specific session settings (like which files were open)\nYour project appears in RStudio’s recent projects list\nEverything just works - No need to hunt for files or set paths\n\nThe .Rproj File: Your Project’s “ID Card”\nWhat it does: The .Rproj file is like an ID card that tells RStudio “this folder is a special R project folder.”\nWhat happens when you double-click it: RStudio opens and automatically sets the working directory to that folder RStudio “remembers” project-specific settings (like which files were open) Your project appears in RStudio’s recent projects list Everything “just works” - no need to hunt for files or set paths\nDEMO: if I click on a new .Rproj file, then go to terminal, pwd will show my new directory. If I ls, I will see the files that are in my directory."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#what-is-git",
+    "href": "workshops/arcs_01/02-slides.html#what-is-git",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "What is Git?",
+    "text": "What is Git?\n\nVersion control system - like track changes for your entire project, not just one document\nTakes snapshots of your project at different points in time\nRemembers what changed\nWorks locally on your computer\nDifferent from GitHub - Git is the technology, GitHub is the website\nEvery R Project can use Git\n\n\nThe .gitignore file is our first encounter with version control using git. Has anyone heard about this technology or used it before? What do you know about it? This is a technology that you will learn more about through the GitHub platform in part 3 of this class.\nFor now, you just need to know that git is a more powerful way of doing something like tracking changes and resolving differences if you and perhaps your collaborators iterate through different versions of a script and expand your project, or, if you need to roll back to an earlier version of your project, you can do that with Git. Git creates an audit-proof version of record for the coding work that you do. It can be one very important part of making your work reproducible.\nNow, since Git pays attention to EVERY file in your project, we need to tell it which files to ignore - and that’s where .gitignore comes in…"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#building-reproducible-projects",
+    "href": "workshops/arcs_01/02-slides.html#building-reproducible-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Building Reproducible Projects",
+    "text": "Building Reproducible Projects\n\n\nWhat we just built:\n\nOrganized File Structure - dedicated folders\nProtected Raw Data - original data stays untouched\nR Project + Git - portable, trackable, self-contained\nComplete README - project map, instructions, data sources\n\n\n\n\nWhy this matters:\n\nMakes your project understandable\nAnyone can run your analysis\nAnyone can verify your results\nFuture-proofs your projects (when initialized early and modified regularly)\n\n\n\nWhat we just did in this exercise is build the foundation of reproducible computational research. We created two things that work together: structure and documentation.\nThe file structure- separating raw data from processed data, organizing scripts and outputs - that’s not just about being neat. It creates a clear audit trail that anyone can follow. Your raw data folder is like evidence that stays untouched, while your folder structure shows exactly how data flows through your analysis.\nThe README we created is what makes your structured project actually usable. You could have the most organized folders in the world, but without documentation explaining what everything does and how to use it, it’s still a mystery to others - and to your future self.\nTogether, these create true computational reproducibility. Someone else can look at your project, quickly understand what you did, run your analysis, and get the same results. That’s the gold standard in research - work that others can independently verify.\nSix months from now, when you’ve forgotten the details, this combination of clear organization and good documentation will be your lifeline. Ideally, you’ll open your project, read your README, and immediately know exactly what you were doing and how to continue.\nThis isn’t just good practice - it’s what separates amateur data analysis from trustworthy research, and what protects you as a researcher when funders, publishers, and peers ask you to show your work."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#filenaming-conventions",
+    "href": "workshops/arcs_01/02-slides.html#filenaming-conventions",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Filenaming Conventions",
+    "text": "Filenaming Conventions\n\nNo spaces (use underscore or en dash)\nStart with dates using International Organization for Standardization (ISO)\n\nYYYYMMDDHHMMSS\n\nUse descriptive names\n\n\nLet’s talk about something that seems simple but will save you hours of frustration: naming your files well.\nFirst rule: no spaces in file names. Spaces are often special characters in programming languages that have a specific assigned use behind the scenes. Or, they may keep your computer from understanding that words belong together. Use underscores or dashes instead - both work fine, just pick one and stick with it.\nFor dates, I want you to learn the ISO standard: YYYY-MM-DD. So October 2, 2025 becomes 20251002. Why? Because when your computer sorts files alphabetically, they’ll automatically sort in chronological order too. The American date format won’t do this.\nBe descriptive with your names. In six months when you’re looking through your files, ‘data.csv’ tells you nothing, but ‘participant_demographics.csv’ immediately tells you what’s inside.\nThe key is consistency. Whatever naming pattern you choose, use it for everything in your project. Your future self will thank you when you can find files instantly instead of opening each one to see what’s inside.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#filenaming-conventions-1",
+    "href": "workshops/arcs_01/02-slides.html#filenaming-conventions-1",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Filenaming Conventions",
+    "text": "Filenaming Conventions\n❌ Bad Examples:\n\ndata analysis.R (spaces)\ndata.csv (not descriptive)\nfinal_FINAL_really_final.R (version chaos)\n\n✅ Good Examples:\n\n2024-03-15_survey_analysis.R\nparticipant_demographics_clean.csv\nREADME.md"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#automating-file-naming-line-132",
+    "href": "workshops/arcs_01/02-slides.html#automating-file-naming-line-132",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Automating File Naming (Line 132)",
+    "text": "Automating File Naming (Line 132)\nWhat this script does:\n\nGenerates standardized file names automatically\nDemonstrates how to set up your own data analysis functions\nAsks for minimal configuration changes\nBuilds on the reproducible foundation we created\n\n\nIf needed:\nWhy automate?\nConsistency at scale - same format every time\nTimestamps - automatic ISO format dating\nNo typos - R handles the formatting\nAudit trail - never overwrite results"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#why-arcs",
+    "href": "workshops/arcs_01/02-slides.html#why-arcs",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Why ARCS",
+    "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What can happen",
+    "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Integrated Documentation Strategy",
+    "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Automate Filenaming",
+    "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Summary",
+    "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Filter",
+    "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Group",
+    "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "From Static Documentation to Living Documents",
+    "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
+    "href": "workshops/arcs_02/04-slides.html#literate-programming",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Literate Programming",
+    "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What we just did",
+    "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "This works in Quarto Presentations!",
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "When it’s time to write up what you did:",
+    "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
+    "href": "workshops/arcs_02/04-slides.html#static-limitations",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Static Limitations",
+    "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Dynamic Possibility",
+    "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Building Reproducible Documents",
+    "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Reproducibility in Phases",
+    "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Evaluating Reproducibility",
+    "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Extending Reproducibility",
+    "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
+    "href": "workshops/arcs_02/04-slides.html#why-arcs",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Why ARCS",
+    "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#slides",
+    "href": "workshops/arcs_02/04-reports.html#slides",
+    "title": "Reports",
+    "section": "Slides",
+    "text": "Slides\nOpen slides fullscreen",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
   }
 ]

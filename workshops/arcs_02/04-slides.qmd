@@ -1,0 +1,315 @@
+---
+title: |
+      Introduction to \ 
+      Programming in R Part 2:\
+      Reports
+author: Levi Dolan, Data Librarian for the Health Sciences
+format: 
+  #pptx:
+  revealjs:
+      theme: [moon]
+      incremental: true
+      scrollable: true
+      transition: slide
+      chalkboard: true
+      view-distance: 15
+      mobile-view-distance: 10
+      footer: "Advancing Reproducibility with Computational Skills"
+editor: visual
+---
+
+## What can happen
+
+-   Analysis decisions made in the moment, not recorded
+
+-   Methods written months later from memory
+
+-   File naming is arbitrary
+
+-   No clear link between code, data, and publications
+
+-   **Result: Irreproducible research, forgotten reasoning**[^1]
+
+[^1]: Sandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. *PLoS Comput Biol* 9:e1003285.
+
+## Integrated Documentation Strategy
+
+-   **Auto-Generated File Names**
+
+-   **Self-Updating README Files**
+
+-   **Code-Publication Integration**
+
+## Automate Filenaming
+
+-   20241205143022 = timestamp
+
+-   LD_ProjectARCS = user and project identifiers
+
+-   summary_stats = analysis type
+
+-   .xlsx = format
+
+-   TOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx
+
+## What the example functions do: Summary
+
+`summary_result <- run_single_analysis("summary")`
+
+-   Calculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset
+
+-   Output: One row with statistical summaries for each numeric variable
+
+-   Useful for: Getting an overview of your data's central tendencies and spread
+
+## What the example functions do: Filter
+
+`filtered_result <- run_single_analysis("filtered", filter_condition = "column_name > 50")`
+
+-   Applies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = "age \> 50" keeps only participants over 50
+
+-   Output: Reduced dataset containing only rows that meet your condition
+
+-   Useful for: Subsetting data based on criteria, creating focused datasets
+
+## What the example functions do: Group
+
+`grouped_result <- run_single_analysis("grouped", group_by_col = "category")`
+
+-   Groups data by categories (as defined by your columns.) and calculates summary statistics within each group
+
+-   Output: Summary statistics broken down by your grouping variable
+
+-   Useful for: Comparing groups, identifying patterns across categories
+
+## From Static Documentation to Living Documents
+
+-   You have organized R projects and started good data management habits
+
+-   Now let's start automating documentation
+
+-   Our goal is for documents to update themselves as your data changes
+
+## Literate Programming
+
+What's this?!
+
+-   **Code + Text + Results** presented together rather than separately
+
+-   An iterative approach toward finished projects
+
+-   Builds in flexibility in output formats
+
+-   ::: callout-note
+    The slides I'm using were made in the tool you'll learn today!
+    :::
+
+## What we just did
+
+-   Started with a traditional README - a static project description
+
+-   Created an automated file inventory - a dynamic record that can grow with your project
+
+## This works in Quarto Presentations!
+
+```{r}
+#| echo: false
+#| message: false
+#| results: asis
+
+library(fs)
+
+# Get the actual structure
+tree_output <- capture.output(dir_tree(".", recurse = 2))
+
+# Define comments for specific files/folders
+comments <- list(
+  "raw_data" = " (original data goes here)",
+  "processed_data" = " (clean data goes here)", 
+  "scripts" = " (code goes here)",
+  "outputs" = " (results and charts go here)",
+  "GSE113754_GeneLevel_Raw_data.xlsx" = " (main dataset)",
+  "GSE113754_filtered_metadata.csv" = " (sample information)",
+  "README.qmd" = " (project documentation)"
+)
+
+# Add comments to matching lines
+for(item in seq_along(tree_output)) {
+  line <- tree_output[item]
+  for(name in names(comments)) {
+    if(grepl(name, line)) {
+      tree_output[item] <- paste0(line, comments[[name]])
+      break
+    }
+  }
+}
+
+# Print the result
+cat("```\n")
+cat(paste(tree_output, collapse = "\n"))
+cat("\n```\n")
+```
+
+::: notes
+DEMO: I can add to my comment "outputs" comment "and Quarto doc" and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file.
+:::
+
+## When it's time to write up what you did:
+
+Static script:
+
+```         
+# analysis.R
+data <- read.csv("data.csv")
+summary(data)
+mean_x <- mean(data$x)
+# Output: 42.5
+```
+
+Static document:
+
+["Scholarly_Article_About_My_Research.docx"]{style="font-size: 0.7em;"}
+
+[Methods: We loaded the dataset and calculated summary statistics.]{style="font-size: 0.7em;"}
+
+[Results: The mean of variable X was 42.5.]{style="font-size: 0.7em;"}
+
+## Static Limitations
+
+-   If data changes → Report is wrong
+
+-   If analysis changes → Must remember to update
+
+-   No direct link to how reports were generated
+
+## Dynamic Possibility
+
+Quarto Document: "Scholarly_Article_About_My_Research"
+
+Methods: We loaded the dataset with `#| eval: false {r} nrow(data)` observations. These are summary stastics:`#| eval: false {r} data <- read.csv("data.csv") summary(data)`.
+
+Results: The mean of variable x was `#| eval: false {r} mean_x <- mean(data$x)`.
+
+-   Data/analysis changes → Report updates automatically
+
+-   Complete transparency of methods
+
+## Building Reproducible Documents
+
+:::::: columns
+::: {.column width="45%"}
+### **What we just built:** {.column width="45%"}
+
+-   **A dynamic document**
+
+-   **Embedded executable code chunks**
+
+-   **Embedded plot**
+
+-   **Introduced template outputs**
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+### **Why it matters:** {.column width="45%"}
+
+-   Directly connects your data and your document
+
+-   Builds transparency into your findings
+
+-   Minimizes typo risk
+
+-   Gives you flexibility in final output formats
+:::
+::::::
+
+## Reproducibility in Phases
+
+:::::: columns
+::: {.column width="45%"}
+CREATING
+
+PHASE
+
+-   Iterative data management
+
+-   Timestamped files
+
+-   Testing and dead ends
+
+-   Exploratory analysis
+:::
+
+::: {.column width="10%"}
+```         
+
+
+───►
+```
+:::
+
+::: {.column width="45%"}
+SHARING PHASE
+
+-   Articulating your process
+
+-   Dynamic documents
+
+-   Data necessary to validate and replicate findings
+
+-   Preserving data in repositories
+:::
+::::::
+
+## Evaluating Reproducibility
+
+:::::: columns
+::: {.column width="45%"}
+AS ETHICAL PRACTICE
+
+-   Accountability in research
+
+-   Transparency serves scientific rigor
+
+-   Levels the scientific playing field
+
+-   Reliable translation to clinical practice
+:::
+
+::: {.column width="10%"}
+```         
+```
+:::
+
+::: {.column width="45%"}
+AS POTENTIAL HARM
+
+-   Data re-identification
+
+-   Informed consent for secondary use of data
+
+-   Intensification of extractive research
+
+-   Data access prioritized over data quality
+:::
+::::::
+
+## Extending Reproducibility
+
+![](images/FAIR_CARE.png)
+
+<https://www.gida-global.org/care>
+
+## Why ARCS
+
+-   Learn computational skills while establishing best practices
+
+-   Think about the future as you are forming habits
+
+-   Document and automate iteratively
+
+-   Give your work collaborative potential
+
+    ...so reproducibility becomes how you work, not someone else's checklist.

@@ -14,6 +14,12 @@ sidebar: arcs01
 
 ---
 
+## Slides
+
+[Open slides fullscreen](02-slides.html){target="_blank"}
+
+<iframe src="02-slides.html" width="100%" height="500px" style="border:none;"></iframe>
+
 ## Why Project Management?
 
 Good project management is not just about staying organized — it is a core

@@ -24,6 +24,12 @@ webr:
 
 ---
 
+## Slides
+
+[Open slides fullscreen](04-slides.html){target="_blank"}
+
+<iframe src="04-slides.html" width="100%" height="500px" style="border:none;"></iframe>
+
 ## Why Reports?
 
 Quarto documents let you combine code, results, and narrative text in a
