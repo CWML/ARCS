@@ -19,6 +19,18 @@
     ]
   },
   {
+    "objectID": "workshops/arcs_01/02-projects.html#slides",
+    "href": "workshops/arcs_01/02-projects.html#slides",
+    "title": "Project Management",
+    "section": "Slides",
+    "text": "Slides\nOpen slides fullscreen",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
     "objectID": "workshops/arcs_01/02-projects.html#why-project-management",
     "href": "workshops/arcs_01/02-projects.html#why-project-management",
     "title": "Project Management",
@@ -67,64 +79,214 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_02/04-reports.html",
-    "href": "workshops/arcs_02/04-reports.html",
-    "title": "Reports",
+    "objectID": "workshops/arcs_01/01-fundamentals.html",
+    "href": "workshops/arcs_01/01-fundamentals.html",
+    "title": "Fundamentals of R",
     "section": "",
-    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nConvert a plain text file into a Quarto document (.qmd)\nRender a .qmd file to HTML and understand what “localhost” means\nEmbed R code chunks into a Quarto document with correct syntax\nUse fs::dir_tree() to automatically generate and annotate a project structure in your README\nRe-render a document to reflect updated content\nCreate a Quarto document using a journal template (PLOS)\nRun a gene variability analysis and interpret summary statistics\nGenerate and save a publication-quality expression heatmap",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nFind and set your working directory in R\nWrite and run basic arithmetic and code in R\nCreate and use R objects to store information\nBuild vectors and understand the main data types in R\nUnderstand the difference between data frames and matrices\nUse functions like c(), paste0(), data.frame(), and cbind()",
     "crumbs": [
       "Home",
-      "ARCS 2",
-      "Reports"
+      "ARCS 1",
+      "Fundamentals of R"
     ]
   },
   {
-    "objectID": "workshops/arcs_02/04-reports.html#why-reports",
-    "href": "workshops/arcs_02/04-reports.html#why-reports",
-    "title": "Reports",
-    "section": "Why Reports?",
-    "text": "Why Reports?\nQuarto documents let you combine code, results, and narrative text in a single file that can be rendered to HTML, PDF, or Word. This means your analysis and its documentation live together — when your code changes, your report updates automatically. This is a core reproducibility practice.",
+    "objectID": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
+    "href": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
+    "title": "Fundamentals of R",
+    "section": "Setting Up the Working Directory",
+    "text": "Setting Up the Working Directory\nWhat is your working directory? Run getwd() to find out.\n\n\n\n\n\n\nTipLearning About Any Function\n\n\n\nTo learn more about any function, run ?function_name in the console. For example: ?getwd\n\n\n?getwd()\nFor the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called ARCS_project — this is where your data files and script files live for this workshop series.\nIn Positron you can set your working directory using the Files pane:\n\nNavigate to your ARCS_project folder\nClick the gear icon in the Files pane toolbar\nSelect “Set as Working Directory”\n\nNotice in your console that a line of code will appear similar to this:\n# Mac example\nsetwd(\"~/Desktop/ARCS_project\")\n\n# Windows example\nsetwd(\"C:/Users/YourName/Desktop/ARCS_project\")\nsetwd() is the programmatic way to establish a working directory — you just need to write the full path to your ARCS_project folder on your machine.\n\n\n\n\n\n\nTipVerify Your Working Directory\n\n\n\nAfter setting it, confirm you’re in the right place:\ngetwd()\nYou should see the path ending in ARCS_project.",
     "crumbs": [
       "Home",
-      "ARCS 2",
-      "Reports"
+      "ARCS 1",
+      "Fundamentals of R"
     ]
   },
   {
-    "objectID": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
-    "href": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
-    "title": "Reports",
-    "section": "Convert README.txt to a Quarto Document",
-    "text": "Convert README.txt to a Quarto Document\n\nNavigate to your README.txt file in your ARCS project folder (PC: Windows Explorer; Mac: Finder)\nRight click on the file and select Rename\nChange the file extension from .txt to .qmd (Mac: type .qmd after README)\nAccept the file extension change and save the file\nGo back to Positron and open your README.qmd file\nAdd triple backticks ( ``` ) before and after your README’s file structure tree to format it as a code block\nIn Positron, click the Render button to render your document\nA browser window should open and display your README.qmd file as HTML\n\n\n\n\n\n\n\nNoteWhat is localhost?\n\n\n\nNotice that the browser window’s address starts with localhost followed by a port number. This means your computer is serving your .qmd file locally to itself — the file is not on the internet, it is being previewed from your own machine.",
+    "objectID": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
+    "href": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
+    "title": "Fundamentals of R",
+    "section": "Four Basic Rules for Writing Code",
+    "text": "Four Basic Rules for Writing Code\n\nUse # to annotate and document your code\nUse a noticeable pattern to break between coding chunks\n\n#----- Section Title ------#\n########################\n\nNumbers and basic arithmetic work just as on paper\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\n\nUsing the colon : gives you a range of numbers between two values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLetters must be written between quotation marks \"\"\n\n\n\n\n\n\n\nNoteException\n\n\n\nCharacters defining the name of an object can be written without quotation marks.\n\n\n\n\n\n\n\n\nTipExercise 1\n\n\n\n\nWrite and run: Hello world!\nNow write and run: \"Hello world!\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhat is different about the second step’s output?",
     "crumbs": [
       "Home",
-      "ARCS 2",
-      "Reports"
+      "ARCS 1",
+      "Fundamentals of R"
     ]
   },
   {
-    "objectID": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
-    "href": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
-    "title": "Reports",
-    "section": "Automate README.qmd Updates",
-    "text": "Automate README.qmd Updates\nInstead of manually updating your README every time your project structure changes, we can write an R code chunk that generates the file tree automatically each time you render.\n\nCheck whether you have the fs package installed:\n\nlibrary(fs)\nIf you get an error, install it first:\ninstall.packages(\"fs\")\n\nCopy the script below:\n\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\n# Get the actual structure\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\n# Define comments for specific files/folders\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\n# Add comments to matching lines\nfor(item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for(name in names(comments)) {\n    if(grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\n# Print the result\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNoteWhat this script does\n\n\n\n\ndir_tree() generates a visual tree of your project folder up to 2 levels deep\ncapture.output() stores that tree as a character vector\nThe comments list defines annotations to add next to specific folders or files\nThe for loop finds matching lines and appends the annotations\ncat() prints the result as a formatted code block in your rendered document\n\n\n\n\nPaste this script into your README.qmd file in between the triple backticks where your file tree currently appears\nNext to the opening triple backticks, add {r} to make it an R code chunk — it should look like this: ```{r}\nSave your README.qmd file\nClick the Render button in Positron\nGo back to your browser window to see the result\nMake any changes you would like to the comments &lt;- list() section and re-render to see them reflected",
+    "objectID": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
+    "href": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
+    "title": "Fundamentals of R",
+    "section": "Storing Information in R Objects",
+    "text": "Storing Information in R Objects\nObjects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don’t have to repeat operations.\nTo create an object, we need:\nname &lt;- data\nThis way we are assigning to objects on the left the values on the right.\n\n\n\n\n\n\nTipExercise 2\n\n\n\nRun the following lines one at a time and observe what happens:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou have now stored information in the object x. That object is now visible in the Variables pane in Positron.\nWhen you run x, R retrieves the information stored in it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can manipulate the information stored in the object by simply using the object name, saving you from repeating operations.\nLet’s play a little more! Fill in the blanks:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
-      "ARCS 2",
-      "Reports"
+      "ARCS 1",
+      "Fundamentals of R"
     ]
   },
   {
-    "objectID": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
-    "href": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
-    "title": "Reports",
-    "section": "Create a Quarto Document for Publishing",
-    "text": "Create a Quarto Document for Publishing\nIn this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.\n\nSetup\n\nCheck whether you have the following packages installed:\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(scales)\nIf any are missing, install them in your console:\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\ninstall.packages(\"scales\")\n\n\n\n\n\n\nTipChecking installed packages in Positron\n\n\n\nYou can also check in the Extensions pane by searching for the package name.\n\n\n\n\nInstall the PLOS Template\n\nIn your Terminal tab, run the following commands one at a time:\n\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\n\n\n\n\n\n\nNoteWhat this does\n\n\n\nThis installs a Quarto extension that formats your document to match PLOS journal submission requirements — including layout, fonts, and figure formatting. This is the same approach used for many other journal templates available through quarto-journals.\n\n\n\n\nGene Variability Analysis\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Gene Variability Analysis. Start your code block with ```{r} and close it with ```.\n\n\n\n\n\n\n\nNoteAbout the #| lines\n\n\n\nThese are chunk options — they tell Quarto how to handle the output when this code runs inside a .qmd file. message: false suppresses package loading messages, and warning: false suppresses warnings.\n\n\n#| message: false\n#| warning: false\n\n# Prepare data - rename the first column and use both ID columns\ngene_data_long &lt;- gene_data %&gt;%\n  rename(ensembl_id = `...1`) %&gt;%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %&gt;%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\n# Calculate variance for each gene across all samples\ngene_variability &lt;- gene_data_long %&gt;%\n  group_by(gene_symbol, ensembl_id) %&gt;%\n  summarise(\n    mean_expression        = mean(expression, na.rm = TRUE),\n    variance               = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\n# Identify top 15 most variable genes\ntop_genes &lt;- gene_variability %&gt;%\n  arrange(desc(variance)) %&gt;%\n  slice_head(n = 15)\n\n# Display summary statistics\ncat(\"Total genes analyzed:\", nrow(gene_variability), \"\\n\")\ncat(\"Mean variance across all genes:\",\n    round(mean(gene_variability$variance, na.rm = TRUE), 2), \"\\n\")\ncat(\"Most variable gene:\", top_genes$gene_symbol[1],\n    \"with variance =\", round(top_genes$variance[1], 2), \"\\n\")\n\n# Show the top 10 most variable genes\ncat(\"\\nTop 10 most variable genes:\\n\")\nprint(top_genes %&gt;%\n        select(gene_symbol, variance) %&gt;%\n        slice_head(n = 10) %&gt;%\n        mutate(variance = round(variance, 2)))\n\n\nData Visualization\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Data Visualization. Start your code block with ```{r} and close it with ```.\n\n#| fig-cap: \"Expression heatmap showing scaled expression levels of the\n#|   15 most variable genes across all samples. Blue indicates\n#|   below-average expression, white indicates average expression,\n#|   and red indicates above-average expression for each gene.\"\n#| fig-width: 10\n#| fig-height: 6\n\n# Prepare heatmap data\nheatmap_data &lt;- gene_data_long %&gt;%\n  filter(gene_symbol %in% top_genes$gene_symbol) %&gt;%\n  left_join(top_genes %&gt;% select(gene_symbol, variance),\n            by = \"gene_symbol\") %&gt;%\n  group_by(gene_symbol) %&gt;%\n  mutate(scaled_expr = scale(expression)[, 1]) %&gt;%\n  ungroup()\n\n# Create heatmap visualization\nexpression_heatmap &lt;- heatmap_data %&gt;%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low   = \"blue\",\n    mid   = \"white\",\n    high  = \"red\",\n    name  = \"Scaled\\nExpression\",\n    limits = c(-3, 3),\n    oob   = scales::squish\n  ) +\n  labs(\n    title    = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x        = \"Sample ID\",\n    y        = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x  = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y  = element_text(size = 10, face = \"italic\"),\n    plot.title   = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    legend.position = \"right\",\n    panel.grid   = element_blank()\n  )\n\nprint(expression_heatmap)\n\n# Save high-resolution figure\nggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n       plot   = expression_heatmap,\n       width  = 10,\n       height = 6,\n       dpi    = 300)\n\nRender your publication.qmd document to see your PLOS-formatted article\n\n\n\n\n\n\n\nTipSaving your figure\n\n\n\nNotice the ggsave() call at the end of the visualization block. This saves a high-resolution .png to your outputs/ folder with a timestamp in the filename — the same automated file naming pattern introduced in the Project Management section.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Convert a .txt file to a .qmd file and render it to HTML?\n✓ Explain what localhost means when previewing a rendered document?\n✓ Add an R code chunk to a .qmd file with correct syntax?\n✓ Use dir_tree() and capture.output() to auto-generate a project tree in your README?\n✓ Modify the comments list and re-render to see updated annotations?\n✓ Install and apply a Quarto journal template from the terminal?\n✓ Explain what the gene variability analysis is doing at a high level?\n✓ Render a publication-quality heatmap and save it to your outputs/ folder?",
+    "objectID": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
+    "href": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
+    "title": "Fundamentals of R",
+    "section": "Tricks and Rules for Creating R Objects",
+    "text": "Tricks and Rules for Creating R Objects\n\nIt is good practice to always use &lt;- instead of =\n\n\n\n\n\n\n\nTipKeyboard Shortcut for &lt;-\n\n\n\nPC: Alt + -\nMac: Option + - \n\n\n\nAn R object can have almost any name. However, there are some important considerations:\n\n\n\n\n\n\n\nImportantNaming Rules\n\n\n\n✗ No empty spaces — the code will not run\n✗ Cannot start with numbers (2x is not valid, but x2 is)\n✗ Cannot have the same name as functions — it gets confusing \n\n\n\n\n\n\n\n\nTipExercise 3\n\n\n\n\nAssign your age to an object with a descriptive name:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSubtract your object from the current year to obtain your birth year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
-      "ARCS 2",
-      "Reports"
+      "ARCS 1",
+      "Fundamentals of R"
     ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#vectors",
+    "href": "workshops/arcs_01/01-fundamentals.html#vectors",
+    "title": "Fundamentals of R",
+    "section": "Vectors",
+    "text": "Vectors\nA vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.\nThere are 5 main types of data:\n\n\n\nType\nDescription\nExample\n\n\n\n\ndouble / numeric\nNumbers with decimals\n1.2\n\n\ninteger\nWhole numbers\n10L\n\n\ncomplex\nNumbers with imaginary component\n2i\n\n\nlogical\nTrue or False\nTRUE\n\n\ncharacter\nString of characters\n\"Sofia\"\n\n\n\nTo create a vector we use the function c().\n\n\n\n\n\n\nNoteFunctions, Arguments, and Packages\n\n\n\nFunctions like c() are “canned scripts” that automate more complicated sets of commands including operations and assignments.\n\nA function often (but not always) takes one or more inputs called arguments\nA function often (but not always) returns a value\nMany functions are predefined, or can be made available by importing R packages (more on that later)\n\nTo learn more enter ?c() in your computer’s terminal.\n\n\n\n\n\n\n\n\nTipExercise 4\n\n\n\n\nMake a vector by combining the ages of four individuals you know with the function c(), separating the ages with commas, and assign that vector to an object.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks \"\".\n\nSubtract the vector you created in step 1. from the current year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAssign the result of step 2. to a new object\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#tabular-data",
+    "href": "workshops/arcs_01/01-fundamentals.html#tabular-data",
+    "title": "Fundamentals of R",
+    "section": "Tabular Data",
+    "text": "Tabular Data\nMatrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.\n\n\n\n\n\n\n\n\n\nData Frame\nMatrix\n\n\n\n\nData types\nCan mix types (heterogeneous)\nSingle type only (homogeneous)\n\n\nCommon use\nData processing, statistics, plotting\nMathematical operations\n\n\nStructure\nList of equal-length vectors\nVector with dimension attributes\n\n\n\nData frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.\n\n\n\n\n\n\nWarningBefore Continuing…\n\n\n\nMake sure you have run the code blocks in the Vectors section above. The examples below depend on the objects FamAges and FamYear that you created there.\n\n\nLet’s pack the two vectors we have created into a data frame using data.frame():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteInspecting Large Tables\n\n\n\nUse head() or tail() to inspect tables with more than 6 rows. Learn more by running ?head and ?tail in your Positron console.\n\n\nThe advantage of using data frame format instead of matrix is that we can combine different data types in the same table.\n\n\n\n\n\n\nTipExercise 5\n\n\n\n\nAssign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdd the vector containing the names to the data frame we created using cbind(). (Learn more with ?cbind in your Positron console)\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhat do you think will happen if you use cbind() to add a character vector to your matrix? Run it and see — was your prediction correct?\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n✓ Find your working directory and set it?\n✓ Write and run basic arithmetic in R?\n✓ Explain what an R object is and create one using &lt;-?\n✓ Name at least three rules for naming R objects?\n✓ Create a vector using c() and identify its data type?\n✓ Explain the difference between a data frame and a matrix?\n✓ Combine two vectors into a data frame using data.frame()?\n✓ Use cbind() to add a column to an existing data frame?",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What can happen",
+    "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Integrated Documentation Strategy",
+    "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Automate Filenaming",
+    "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Summary",
+    "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Filter",
+    "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Group",
+    "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "From Static Documentation to Living Documents",
+    "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
+    "href": "workshops/arcs_02/04-slides.html#literate-programming",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Literate Programming",
+    "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What we just did",
+    "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "This works in Quarto Presentations!",
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "When it’s time to write up what you did:",
+    "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
+    "href": "workshops/arcs_02/04-slides.html#static-limitations",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Static Limitations",
+    "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Dynamic Possibility",
+    "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Building Reproducible Documents",
+    "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Reproducibility in Phases",
+    "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Evaluating Reproducibility",
+    "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Extending Reproducibility",
+    "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
+    "href": "workshops/arcs_02/04-slides.html#why-arcs",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Why ARCS",
+    "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
   },
   {
     "objectID": "workshops/arcs_03/06-git.html",
@@ -251,49 +413,84 @@
     "href": "workshops/arcs_03/05-tidyverse.html",
     "title": "Tidyverse",
     "section": "",
-    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nUse pacman::p_load() to install and load multiple packages in a reproducible way\nUse the here package to build file paths relative to your project root\nExplain the difference between read_csv() and read.csv(), and what a tibble is\nInspect a data frame using view(), head(), and str()\nUse the pipe operator %&gt;% to chain multiple data cleaning steps together\nClean column names automatically using clean_names()\nRename, recode, and create new columns using rename(), mutate(), and case_when()\nCombine two columns into a new variable using paste0()\nSelect and reorder columns using select() and everything()\nHandle missing values using replace_na()\nHarmonize two data frames so their columns and row identifiers align\nSave cleaned data frames to .csv files using write_csv() and write.csv()"
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nUse pacman::p_load() to install and load multiple packages in a reproducible way\nUse the here package to build file paths relative to your project root\nExplain the difference between read_csv() and read.csv(), and what a tibble is\nInspect a data frame using view(), head(), and str()\nUse the pipe operator %&gt;% to chain multiple data cleaning steps together\nClean column names automatically using clean_names()\nRename, recode, and create new columns using rename(), mutate(), and case_when()\nCombine two columns into a new variable using paste0()\nSelect and reorder columns using select() and everything()\nHandle missing values using replace_na()\nHarmonize two data frames so their columns and row identifiers align\nSave cleaned data frames to .csv files using write_csv() and write.csv()",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_03/05-tidyverse.html#load-packages",
     "href": "workshops/arcs_03/05-tidyverse.html#load-packages",
     "title": "Tidyverse",
     "section": "Load Packages",
-    "text": "Load Packages\nThe pacman package helps ensure your script is reproducible — it automatically installs and loads the packages needed to run your code, even on someone else’s computer. You can add to the list as more packages are needed.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Load Packages\nThe pacman package helps ensure your script is reproducible — it automatically installs and loads the packages needed to run your code, even on someone else’s computer. You can add to the list as more packages are needed.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_03/05-tidyverse.html#importing-data-with-here-and-readr",
     "href": "workshops/arcs_03/05-tidyverse.html#importing-data-with-here-and-readr",
     "title": "Tidyverse",
     "section": "Importing Data with here() and readr",
-    "text": "Importing Data with here() and readr\nThe here package improves reproducibility and sharing by creating file paths relative to your R project’s root directory, eliminating the need for hard-coded absolute paths — as long as your script file is saved in the same folder as your R project.\n\nConfirm Your Working Directory\nRun this to make sure you are currently in the correct R project:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteIf you are not in the correct project\n\n\n\nYou can set the project root manually — replace the path with your actual folder location:\n# set_here(\"path/to/your/desired/folder\")\n\n\n\n\nImport the Data Files\n# Import the raw counts data\nraw_data &lt;- read_csv(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data_3.csv\"))\n\n# Import the metadata\nraw_metadata &lt;- read_csv(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\n\n\n\n\n\n\nNoteread_csv() vs read.csv()\n\n\n\nThis section uses read_csv() from the Tidyverse rather than read.csv() from base R. Key differences:\n\n\n\nFeature\nread_csv()\nread.csv()\n\n\n\n\nColumn types\nExplicit (col_double, etc.)\nInferred\n\n\nSpeed\nFaster on large files\nSlower\n\n\nOutput\nTibble\nData frame\n\n\nColumn names\nPreserved as-is\nMay be altered\n\n\nRow labels\nNot used\nSupported\n\n\n\nA tibble is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like str()."
+    "text": "Importing Data with here() and readr\nThe here package improves reproducibility and sharing by creating file paths relative to your R project’s root directory, eliminating the need for hard-coded absolute paths — as long as your script file is saved in the same folder as your R project.\n\nConfirm Your Working Directory\nRun this to make sure you are currently in the correct R project:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteIf you are not in the correct project\n\n\n\nYou can set the project root manually — replace the path with your actual folder location:\n# set_here(\"path/to/your/desired/folder\")\n\n\n\n\nImport the Data Files\n# Import the raw counts data\nraw_data &lt;- read_csv(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data_3.csv\"))\n\n# Import the metadata\nraw_metadata &lt;- read_csv(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\n\n\n\n\n\n\nNoteread_csv() vs read.csv()\n\n\n\nThis section uses read_csv() from the Tidyverse rather than read.csv() from base R. Key differences:\n\n\n\nFeature\nread_csv()\nread.csv()\n\n\n\n\nColumn types\nExplicit (col_double, etc.)\nInferred\n\n\nSpeed\nFaster on large files\nSlower\n\n\nOutput\nTibble\nData frame\n\n\nColumn names\nPreserved as-is\nMay be altered\n\n\nRow labels\nNot used\nSupported\n\n\n\nA tibble is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like str().",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_03/05-tidyverse.html#cleaning-the-metadata",
     "href": "workshops/arcs_03/05-tidyverse.html#cleaning-the-metadata",
     "title": "Tidyverse",
     "section": "Cleaning the Metadata",
-    "text": "Cleaning the Metadata\n\nInspect the Data\nPhysically look at the data you just imported:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse head() to see the first 6 rows, column names, and data types:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse str() to see the structure, data types, dimensions, and how data are organized:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipEXTRA: Count unique values in a column\n\n\n\nWe can find the unique values within a variable and their counts using count() — similar to the unique() and table() exercises from the Data Structures section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nWhat Changes Do We Need to Make?\n\nFix column names\nRename characteristic to condition\nClean up values under condition\nClean up values under genotype\nCombine condition and genotype into a new column geno_cond\nKeep columns in this order: sample_id, genotype, condition, geno_cond\nMake values under sample_id lowercase\n\n\n\n\n\n\n\nTipWorking with the pipe %&gt;%\n\n\n\nEach step below builds on the previous one using the pipe operator %&gt;%. You can run the code up to any %&gt;% to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.\n\n\n\n\nStep 1: Fix All Column Names\nclean_names() standardizes all column names to lowercase with underscores:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 2: Rename Columns\nRename column x1 to sample_id and characteristics to condition:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 3: Recode Values in condition\n\nIf the value includes \"homecage\" → change to \"normal\"\nIf the value includes \"sleep deprivation\" → change to \"sleep_deprived\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteBase R inside the Tidyverse\n\n\n\nNotice that grepl() is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with ifelse().\n\n\n\n\nStep 4: Recode Values in genotype\n\nIf the value includes \"WT\" → change to \"WT\"\nIf the value includes \"shank3\" → change to \"shank3\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 5: Create geno_cond Column\nCombine genotype and condition into a new variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 6: Select and Reorder Columns\nKeep only the columns we need in the correct order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 7: Lowercase sample_id\nMake sample_id values lowercase — this will be important for harmonizing with the raw counts data in the next section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Cleaning the Metadata\n\nInspect the Data\nPhysically look at the data you just imported:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse head() to see the first 6 rows, column names, and data types:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse str() to see the structure, data types, dimensions, and how data are organized:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipEXTRA: Count unique values in a column\n\n\n\nWe can find the unique values within a variable and their counts using count() — similar to the unique() and table() exercises from the Data Structures section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nWhat Changes Do We Need to Make?\n\nFix column names\nRename characteristic to condition\nClean up values under condition\nClean up values under genotype\nCombine condition and genotype into a new column geno_cond\nKeep columns in this order: sample_id, genotype, condition, geno_cond\nMake values under sample_id lowercase\n\n\n\n\n\n\n\nTipWorking with the pipe %&gt;%\n\n\n\nEach step below builds on the previous one using the pipe operator %&gt;%. You can run the code up to any %&gt;% to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.\n\n\n\n\nStep 1: Fix All Column Names\nclean_names() standardizes all column names to lowercase with underscores:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 2: Rename Columns\nRename column x1 to sample_id and characteristics to condition:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 3: Recode Values in condition\n\nIf the value includes \"homecage\" → change to \"normal\"\nIf the value includes \"sleep deprivation\" → change to \"sleep_deprived\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteBase R inside the Tidyverse\n\n\n\nNotice that grepl() is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with ifelse().\n\n\n\n\nStep 4: Recode Values in genotype\n\nIf the value includes \"WT\" → change to \"WT\"\nIf the value includes \"shank3\" → change to \"shank3\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 5: Create geno_cond Column\nCombine genotype and condition into a new variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 6: Select and Reorder Columns\nKeep only the columns we need in the correct order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 7: Lowercase sample_id\nMake sample_id values lowercase — this will be important for harmonizing with the raw counts data in the next section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_03/05-tidyverse.html#cleaning-the-raw-counts-data",
     "href": "workshops/arcs_03/05-tidyverse.html#cleaning-the-raw-counts-data",
     "title": "Tidyverse",
     "section": "Cleaning the Raw Counts Data",
-    "text": "Cleaning the Raw Counts Data\n\nInspect the Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nWhat Issues Did You Find?\n\nColumn 1 has no label and contains row numbers inserted in error\nColumn 2 has no label\nColumn 3 (gene symbol) has a space in its name\nAll columns beginning with GSM are uppercase\n\n\n\n\n\n\n\nTipEXTRA: Search for NA values\n\n\n\nUse filter(), if_any(), and everything() with is.na() to search all rows and columns for missing values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe NA value identified here will be addressed in the cleaning steps below.\n\n\n\n\nCleaning Steps\n\nclean_names()\nGives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nrename()\nChange the auto-generated name for column 2 (x2) to gene_id:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nmutate() — Handle the NA Value\nReplace the NA value under gsm3119015 with 0:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nImportantA note on handling missing values\n\n\n\nReplacing NA with 0 is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.\n\n\n\n\nmutate() — Create a Combined Gene ID Column\nCreate a new variable that combines gene_id and gene_symbol separated by |. Notice that paste() from base R works seamlessly inside a Tidyverse pipeline:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nselect()\nMake gene_id_symbol the first column, keep everything else in the same order using everything(), and remove x1, gene_symbol, and gene_id using the - operator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Cleaning the Raw Counts Data\n\nInspect the Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nWhat Issues Did You Find?\n\nColumn 1 has no label and contains row numbers inserted in error\nColumn 2 has no label\nColumn 3 (gene symbol) has a space in its name\nAll columns beginning with GSM are uppercase\n\n\n\n\n\n\n\nTipEXTRA: Search for NA values\n\n\n\nUse filter(), if_any(), and everything() with is.na() to search all rows and columns for missing values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe NA value identified here will be addressed in the cleaning steps below.\n\n\n\n\nCleaning Steps\n\nclean_names()\nGives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nrename()\nChange the auto-generated name for column 2 (x2) to gene_id:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nmutate() — Handle the NA Value\nReplace the NA value under gsm3119015 with 0:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nImportantA note on handling missing values\n\n\n\nReplacing NA with 0 is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.\n\n\n\n\nmutate() — Create a Combined Gene ID Column\nCreate a new variable that combines gene_id and gene_symbol separated by |. Notice that paste() from base R works seamlessly inside a Tidyverse pipeline:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nselect()\nMake gene_id_symbol the first column, keep everything else in the same order using everything(), and remove x1, gene_symbol, and gene_id using the - operator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_03/05-tidyverse.html#extra-harmonizing-the-two-data-frames",
     "href": "workshops/arcs_03/05-tidyverse.html#extra-harmonizing-the-two-data-frames",
     "title": "Tidyverse",
     "section": "EXTRA: Harmonizing the Two Data Frames",
-    "text": "EXTRA: Harmonizing the Two Data Frames\nThese extra steps align the structure of clean_data with clean_meta_data so they are ready for downstream analysis such as differential gene expression.\n\nExtra 1: Set Row IDs\nUse column_to_rownames() from the tibble package to convert the first column from a data variable into row identifiers:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nExtra 2: Reorder Columns to Match Metadata\nReorder the columns in clean_data to match the order of sample_id values in clean_meta_data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nExtra 3: Verify Harmonization\nRun a quick check to confirm that the column names in clean_data and the sample_id values in clean_meta_data match exactly:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "EXTRA: Harmonizing the Two Data Frames\nThese extra steps align the structure of clean_data with clean_meta_data so they are ready for downstream analysis such as differential gene expression.\n\nExtra 1: Set Row IDs\nUse column_to_rownames() from the tibble package to convert the first column from a data variable into row identifiers:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nExtra 2: Reorder Columns to Match Metadata\nReorder the columns in clean_data to match the order of sample_id values in clean_meta_data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nExtra 3: Verify Harmonization\nRun a quick check to confirm that the column names in clean_data and the sample_id values in clean_meta_data match exactly:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_03/05-tidyverse.html#save-cleaned-data",
     "href": "workshops/arcs_03/05-tidyverse.html#save-cleaned-data",
     "title": "Tidyverse",
     "section": "Save Cleaned Data",
-    "text": "Save Cleaned Data\nSave clean_data and clean_meta_data locally using here():\n# Saves with row labels (use read.csv to reload with row labels intact)\nwrite.csv(clean_data, here(\"processed_data\", \"clean_data_label.csv\"))\n\n# Saves without row labels (standard clean CSV)\nwrite_csv(clean_data, here(\"processed_data\", \"clean_data.csv\"))\n\n# Save clean metadata\nwrite_csv(clean_meta_data, here(\"processed_data\", \"clean_meta_data.csv\"))\n\n\n\n\n\n\nNotewrite_csv() vs write.csv()\n\n\n\n\n\n\nFunction\nRow labels\nPackage\n\n\n\n\nwrite_csv()\nNot included\nTidyverse (readr)\n\n\nwrite.csv()\nIncluded\nBase R\n\n\n\nUse write.csv() when you need to preserve row labels (as in clean_data_label.csv). Use write_csv() for standard clean output.\nThese blocks are static and cannot be run in the browser — they write to your local file system and must be run in your Positron session.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Use pacman::p_load() to load multiple packages reproducibly?\n✓ Explain what here() does and why it improves reproducibility?\n✓ Describe at least two differences between read_csv() and read.csv()?\n✓ Explain what a tibble is and how it differs from a data frame?\n✓ Use %&gt;% to chain multiple data cleaning steps together?\n✓ Use clean_names() to standardize column names automatically?\n✓ Use rename(), mutate(), and case_when() to recode values?\n✓ Use select() and everything() to reorder and drop columns?\n✓ Replace NA values using replace_na()?\n✓ Explain what data harmonization means and verify it with setequal()?\n✓ Choose between write_csv() and write.csv() based on whether you need row labels?"
+    "text": "Save Cleaned Data\nSave clean_data and clean_meta_data locally using here():\n# Saves with row labels (use read.csv to reload with row labels intact)\nwrite.csv(clean_data, here(\"processed_data\", \"clean_data_label.csv\"))\n\n# Saves without row labels (standard clean CSV)\nwrite_csv(clean_data, here(\"processed_data\", \"clean_data.csv\"))\n\n# Save clean metadata\nwrite_csv(clean_meta_data, here(\"processed_data\", \"clean_meta_data.csv\"))\n\n\n\n\n\n\nNotewrite_csv() vs write.csv()\n\n\n\n\n\n\nFunction\nRow labels\nPackage\n\n\n\n\nwrite_csv()\nNot included\nTidyverse (readr)\n\n\nwrite.csv()\nIncluded\nBase R\n\n\n\nUse write.csv() when you need to preserve row labels (as in clean_data_label.csv). Use write_csv() for standard clean output.\nThese blocks are static and cannot be run in the browser — they write to your local file system and must be run in your Positron session.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Use pacman::p_load() to load multiple packages reproducibly?\n✓ Explain what here() does and why it improves reproducibility?\n✓ Describe at least two differences between read_csv() and read.csv()?\n✓ Explain what a tibble is and how it differs from a data frame?\n✓ Use %&gt;% to chain multiple data cleaning steps together?\n✓ Use clean_names() to standardize column names automatically?\n✓ Use rename(), mutate(), and case_when() to recode values?\n✓ Use select() and everything() to reorder and drop columns?\n✓ Replace NA values using replace_na()?\n✓ Explain what data harmonization means and verify it with setequal()?\n✓ Choose between write_csv() and write.csv() based on whether you need row labels?",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
   },
   {
     "objectID": "workshops/arcs_02/03-structures.html",
@@ -404,113 +601,75 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_01/01-fundamentals.html",
-    "href": "workshops/arcs_01/01-fundamentals.html",
-    "title": "Fundamentals of R",
+    "objectID": "workshops/arcs_02/04-reports.html",
+    "href": "workshops/arcs_02/04-reports.html",
+    "title": "Reports",
     "section": "",
-    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nFind and set your working directory in R\nWrite and run basic arithmetic and code in R\nCreate and use R objects to store information\nBuild vectors and understand the main data types in R\nUnderstand the difference between data frames and matrices\nUse functions like c(), paste0(), data.frame(), and cbind()",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nConvert a plain text file into a Quarto document (.qmd)\nRender a .qmd file to HTML and understand what “localhost” means\nEmbed R code chunks into a Quarto document with correct syntax\nUse fs::dir_tree() to automatically generate and annotate a project structure in your README\nRe-render a document to reflect updated content\nCreate a Quarto document using a journal template (PLOS)\nRun a gene variability analysis and interpret summary statistics\nGenerate and save a publication-quality expression heatmap",
     "crumbs": [
       "Home",
-      "ARCS 1",
-      "Fundamentals of R"
+      "ARCS 2",
+      "Reports"
     ]
   },
   {
-    "objectID": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
-    "href": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
-    "title": "Fundamentals of R",
-    "section": "Setting Up the Working Directory",
-    "text": "Setting Up the Working Directory\nWhat is your working directory? Run getwd() to find out.\n\n\n\n\n\n\nTipLearning About Any Function\n\n\n\nTo learn more about any function, run ?function_name in the console. For example: ?getwd\n\n\n?getwd()\nFor the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called ARCS_project — this is where your data files and script files live for this workshop series.\nIn Positron you can set your working directory using the Files pane:\n\nNavigate to your ARCS_project folder\nClick the gear icon in the Files pane toolbar\nSelect “Set as Working Directory”\n\nNotice in your console that a line of code will appear similar to this:\n# Mac example\nsetwd(\"~/Desktop/ARCS_project\")\n\n# Windows example\nsetwd(\"C:/Users/YourName/Desktop/ARCS_project\")\nsetwd() is the programmatic way to establish a working directory — you just need to write the full path to your ARCS_project folder on your machine.\n\n\n\n\n\n\nTipVerify Your Working Directory\n\n\n\nAfter setting it, confirm you’re in the right place:\ngetwd()\nYou should see the path ending in ARCS_project.",
-    "crumbs": [
-      "Home",
-      "ARCS 1",
-      "Fundamentals of R"
-    ]
-  },
-  {
-    "objectID": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
-    "href": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
-    "title": "Fundamentals of R",
-    "section": "Four Basic Rules for Writing Code",
-    "text": "Four Basic Rules for Writing Code\n\nUse # to annotate and document your code\nUse a noticeable pattern to break between coding chunks\n\n#----- Section Title ------#\n########################\n\nNumbers and basic arithmetic work just as on paper\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\n\nUsing the colon : gives you a range of numbers between two values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLetters must be written between quotation marks \"\"\n\n\n\n\n\n\n\nNoteException\n\n\n\nCharacters defining the name of an object can be written without quotation marks.\n\n\n\n\n\n\n\n\nTipExercise 1\n\n\n\n\nWrite and run: Hello world!\nNow write and run: \"Hello world!\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhat is different about the second step’s output?",
-    "crumbs": [
-      "Home",
-      "ARCS 1",
-      "Fundamentals of R"
-    ]
-  },
-  {
-    "objectID": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
-    "href": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
-    "title": "Fundamentals of R",
-    "section": "Storing Information in R Objects",
-    "text": "Storing Information in R Objects\nObjects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don’t have to repeat operations.\nTo create an object, we need:\nname &lt;- data\nThis way we are assigning to objects on the left the values on the right.\n\n\n\n\n\n\nTipExercise 2\n\n\n\nRun the following lines one at a time and observe what happens:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou have now stored information in the object x. That object is now visible in the Variables pane in Positron.\nWhen you run x, R retrieves the information stored in it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can manipulate the information stored in the object by simply using the object name, saving you from repeating operations.\nLet’s play a little more! Fill in the blanks:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Home",
-      "ARCS 1",
-      "Fundamentals of R"
-    ]
-  },
-  {
-    "objectID": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
-    "href": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
-    "title": "Fundamentals of R",
-    "section": "Tricks and Rules for Creating R Objects",
-    "text": "Tricks and Rules for Creating R Objects\n\nIt is good practice to always use &lt;- instead of =\n\n\n\n\n\n\n\nTipKeyboard Shortcut for &lt;-\n\n\n\nPC: Alt + -\nMac: Option + - \n\n\n\nAn R object can have almost any name. However, there are some important considerations:\n\n\n\n\n\n\n\nImportantNaming Rules\n\n\n\n✗ No empty spaces — the code will not run\n✗ Cannot start with numbers (2x is not valid, but x2 is)\n✗ Cannot have the same name as functions — it gets confusing \n\n\n\n\n\n\n\n\nTipExercise 3\n\n\n\n\nAssign your age to an object with a descriptive name:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSubtract your object from the current year to obtain your birth year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Home",
-      "ARCS 1",
-      "Fundamentals of R"
-    ]
-  },
-  {
-    "objectID": "workshops/arcs_01/01-fundamentals.html#vectors",
-    "href": "workshops/arcs_01/01-fundamentals.html#vectors",
-    "title": "Fundamentals of R",
-    "section": "Vectors",
-    "text": "Vectors\nA vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.\nThere are 5 main types of data:\n\n\n\nType\nDescription\nExample\n\n\n\n\ndouble / numeric\nNumbers with decimals\n1.2\n\n\ninteger\nWhole numbers\n10L\n\n\ncomplex\nNumbers with imaginary component\n2i\n\n\nlogical\nTrue or False\nTRUE\n\n\ncharacter\nString of characters\n\"Sofia\"\n\n\n\nTo create a vector we use the function c().\n\n\n\n\n\n\nNoteFunctions, Arguments, and Packages\n\n\n\nFunctions like c() are “canned scripts” that automate more complicated sets of commands including operations and assignments.\n\nA function often (but not always) takes one or more inputs called arguments\nA function often (but not always) returns a value\nMany functions are predefined, or can be made available by importing R packages (more on that later)\n\nTo learn more enter ?c() in your computer’s terminal.\n\n\n\n\n\n\n\n\nTipExercise 4\n\n\n\n\nMake a vector by combining the ages of four individuals you know with the function c(), separating the ages with commas, and assign that vector to an object.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks \"\".\n\nSubtract the vector you created in step 1. from the current year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAssign the result of step 2. to a new object\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Home",
-      "ARCS 1",
-      "Fundamentals of R"
-    ]
-  },
-  {
-    "objectID": "workshops/arcs_01/01-fundamentals.html#tabular-data",
-    "href": "workshops/arcs_01/01-fundamentals.html#tabular-data",
-    "title": "Fundamentals of R",
-    "section": "Tabular Data",
-    "text": "Tabular Data\nMatrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.\n\n\n\n\n\n\n\n\n\nData Frame\nMatrix\n\n\n\n\nData types\nCan mix types (heterogeneous)\nSingle type only (homogeneous)\n\n\nCommon use\nData processing, statistics, plotting\nMathematical operations\n\n\nStructure\nList of equal-length vectors\nVector with dimension attributes\n\n\n\nData frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.\n\n\n\n\n\n\nWarningBefore Continuing…\n\n\n\nMake sure you have run the code blocks in the Vectors section above. The examples below depend on the objects FamAges and FamYear that you created there.\n\n\nLet’s pack the two vectors we have created into a data frame using data.frame():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteInspecting Large Tables\n\n\n\nUse head() or tail() to inspect tables with more than 6 rows. Learn more by running ?head and ?tail in your Positron console.\n\n\nThe advantage of using data frame format instead of matrix is that we can combine different data types in the same table.\n\n\n\n\n\n\nTipExercise 5\n\n\n\n\nAssign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdd the vector containing the names to the data frame we created using cbind(). (Learn more with ?cbind in your Positron console)\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhat do you think will happen if you use cbind() to add a character vector to your matrix? Run it and see — was your prediction correct?\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n✓ Find your working directory and set it?\n✓ Write and run basic arithmetic in R?\n✓ Explain what an R object is and create one using &lt;-?\n✓ Name at least three rules for naming R objects?\n✓ Create a vector using c() and identify its data type?\n✓ Explain the difference between a data frame and a matrix?\n✓ Combine two vectors into a data frame using data.frame()?\n✓ Use cbind() to add a column to an existing data frame?",
-    "crumbs": [
-      "Home",
-      "ARCS 1",
-      "Fundamentals of R"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ARCS",
-    "section": "",
-    "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "index.html#july-2026-arcs-2.0-workshop-schedule",
-    "href": "index.html#july-2026-arcs-2.0-workshop-schedule",
-    "title": "ARCS",
-    "section": "",
-    "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "workshops/arcs_01/02-projects.html#slides",
-    "href": "workshops/arcs_01/02-projects.html#slides",
-    "title": "Project Management",
+    "objectID": "workshops/arcs_02/04-reports.html#slides",
+    "href": "workshops/arcs_02/04-reports.html#slides",
+    "title": "Reports",
     "section": "Slides",
     "text": "Slides\nOpen slides fullscreen",
     "crumbs": [
       "Home",
-      "ARCS 1",
-      "Project Management"
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#why-reports",
+    "href": "workshops/arcs_02/04-reports.html#why-reports",
+    "title": "Reports",
+    "section": "Why Reports?",
+    "text": "Why Reports?\nQuarto documents let you combine code, results, and narrative text in a single file that can be rendered to HTML, PDF, or Word. This means your analysis and its documentation live together — when your code changes, your report updates automatically. This is a core reproducibility practice.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
+    "href": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
+    "title": "Reports",
+    "section": "Convert README.txt to a Quarto Document",
+    "text": "Convert README.txt to a Quarto Document\n\nNavigate to your README.txt file in your ARCS project folder (PC: Windows Explorer; Mac: Finder)\nRight click on the file and select Rename\nChange the file extension from .txt to .qmd (Mac: type .qmd after README)\nAccept the file extension change and save the file\nGo back to Positron and open your README.qmd file\nAdd triple backticks ( ``` ) before and after your README’s file structure tree to format it as a code block\nIn Positron, click the Render button to render your document\nA browser window should open and display your README.qmd file as HTML\n\n\n\n\n\n\n\nNoteWhat is localhost?\n\n\n\nNotice that the browser window’s address starts with localhost followed by a port number. This means your computer is serving your .qmd file locally to itself — the file is not on the internet, it is being previewed from your own machine.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
+    "href": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
+    "title": "Reports",
+    "section": "Automate README.qmd Updates",
+    "text": "Automate README.qmd Updates\nInstead of manually updating your README every time your project structure changes, we can write an R code chunk that generates the file tree automatically each time you render.\n\nCheck whether you have the fs package installed:\n\nlibrary(fs)\nIf you get an error, install it first:\ninstall.packages(\"fs\")\n\nCopy the script below:\n\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\n# Get the actual structure\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\n# Define comments for specific files/folders\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\n# Add comments to matching lines\nfor(item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for(name in names(comments)) {\n    if(grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\n# Print the result\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNoteWhat this script does\n\n\n\n\ndir_tree() generates a visual tree of your project folder up to 2 levels deep\ncapture.output() stores that tree as a character vector\nThe comments list defines annotations to add next to specific folders or files\nThe for loop finds matching lines and appends the annotations\ncat() prints the result as a formatted code block in your rendered document\n\n\n\n\nPaste this script into your README.qmd file in between the triple backticks where your file tree currently appears\nNext to the opening triple backticks, add {r} to make it an R code chunk — it should look like this: ```{r}\nSave your README.qmd file\nClick the Render button in Positron\nGo back to your browser window to see the result\nMake any changes you would like to the comments &lt;- list() section and re-render to see them reflected",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
+    "href": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
+    "title": "Reports",
+    "section": "Create a Quarto Document for Publishing",
+    "text": "Create a Quarto Document for Publishing\nIn this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.\n\nSetup\n\nCheck whether you have the following packages installed:\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(scales)\nIf any are missing, install them in your console:\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\ninstall.packages(\"scales\")\n\n\n\n\n\n\nTipChecking installed packages in Positron\n\n\n\nYou can also check in the Extensions pane by searching for the package name.\n\n\n\n\nInstall the PLOS Template\n\nIn your Terminal tab, run the following commands one at a time:\n\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\n\n\n\n\n\n\nNoteWhat this does\n\n\n\nThis installs a Quarto extension that formats your document to match PLOS journal submission requirements — including layout, fonts, and figure formatting. This is the same approach used for many other journal templates available through quarto-journals.\n\n\n\n\nGene Variability Analysis\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Gene Variability Analysis. Start your code block with ```{r} and close it with ```.\n\n\n\n\n\n\n\nNoteAbout the #| lines\n\n\n\nThese are chunk options — they tell Quarto how to handle the output when this code runs inside a .qmd file. message: false suppresses package loading messages, and warning: false suppresses warnings.\n\n\n#| message: false\n#| warning: false\n\n# Prepare data - rename the first column and use both ID columns\ngene_data_long &lt;- gene_data %&gt;%\n  rename(ensembl_id = `...1`) %&gt;%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %&gt;%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\n# Calculate variance for each gene across all samples\ngene_variability &lt;- gene_data_long %&gt;%\n  group_by(gene_symbol, ensembl_id) %&gt;%\n  summarise(\n    mean_expression        = mean(expression, na.rm = TRUE),\n    variance               = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\n# Identify top 15 most variable genes\ntop_genes &lt;- gene_variability %&gt;%\n  arrange(desc(variance)) %&gt;%\n  slice_head(n = 15)\n\n# Display summary statistics\ncat(\"Total genes analyzed:\", nrow(gene_variability), \"\\n\")\ncat(\"Mean variance across all genes:\",\n    round(mean(gene_variability$variance, na.rm = TRUE), 2), \"\\n\")\ncat(\"Most variable gene:\", top_genes$gene_symbol[1],\n    \"with variance =\", round(top_genes$variance[1], 2), \"\\n\")\n\n# Show the top 10 most variable genes\ncat(\"\\nTop 10 most variable genes:\\n\")\nprint(top_genes %&gt;%\n        select(gene_symbol, variance) %&gt;%\n        slice_head(n = 10) %&gt;%\n        mutate(variance = round(variance, 2)))\n\n\nData Visualization\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Data Visualization. Start your code block with ```{r} and close it with ```.\n\n#| fig-cap: \"Expression heatmap showing scaled expression levels of the\n#|   15 most variable genes across all samples. Blue indicates\n#|   below-average expression, white indicates average expression,\n#|   and red indicates above-average expression for each gene.\"\n#| fig-width: 10\n#| fig-height: 6\n\n# Prepare heatmap data\nheatmap_data &lt;- gene_data_long %&gt;%\n  filter(gene_symbol %in% top_genes$gene_symbol) %&gt;%\n  left_join(top_genes %&gt;% select(gene_symbol, variance),\n            by = \"gene_symbol\") %&gt;%\n  group_by(gene_symbol) %&gt;%\n  mutate(scaled_expr = scale(expression)[, 1]) %&gt;%\n  ungroup()\n\n# Create heatmap visualization\nexpression_heatmap &lt;- heatmap_data %&gt;%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low   = \"blue\",\n    mid   = \"white\",\n    high  = \"red\",\n    name  = \"Scaled\\nExpression\",\n    limits = c(-3, 3),\n    oob   = scales::squish\n  ) +\n  labs(\n    title    = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x        = \"Sample ID\",\n    y        = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x  = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y  = element_text(size = 10, face = \"italic\"),\n    plot.title   = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    legend.position = \"right\",\n    panel.grid   = element_blank()\n  )\n\nprint(expression_heatmap)\n\n# Save high-resolution figure\nggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n       plot   = expression_heatmap,\n       width  = 10,\n       height = 6,\n       dpi    = 300)\n\nRender your publication.qmd document to see your PLOS-formatted article\n\n\n\n\n\n\n\nTipSaving your figure\n\n\n\nNotice the ggsave() call at the end of the visualization block. This saves a high-resolution .png to your outputs/ folder with a timestamp in the filename — the same automated file naming pattern introduced in the Project Management section.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Convert a .txt file to a .qmd file and render it to HTML?\n✓ Explain what localhost means when previewing a rendered document?\n✓ Add an R code chunk to a .qmd file with correct syntax?\n✓ Use dir_tree() and capture.output() to auto-generate a project tree in your README?\n✓ Modify the comments list and re-render to see updated annotations?\n✓ Install and apply a Quarto journal template from the terminal?\n✓ Explain what the gene variability analysis is doing at a high level?\n✓ Render a publication-quality heatmap and save it to your outputs/ folder?",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
     ]
   },
   {
@@ -710,141 +869,17 @@
     "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
-    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "What can happen",
-    "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ARCS",
+    "section": "",
+    "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
-    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Integrated Documentation Strategy",
-    "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
-    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Automate Filenaming",
-    "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
-    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "What the example functions do: Summary",
-    "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
-    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "What the example functions do: Filter",
-    "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
-    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "What the example functions do: Group",
-    "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
-    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "From Static Documentation to Living Documents",
-    "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
-    "href": "workshops/arcs_02/04-slides.html#literate-programming",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Literate Programming",
-    "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
-    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "What we just did",
-    "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
-    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "This works in Quarto Presentations!",
-    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
-    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "When it’s time to write up what you did:",
-    "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
-    "href": "workshops/arcs_02/04-slides.html#static-limitations",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Static Limitations",
-    "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
-    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Dynamic Possibility",
-    "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
-    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Building Reproducible Documents",
-    "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
-    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Reproducibility in Phases",
-    "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
-    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Evaluating Reproducibility",
-    "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
-    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Extending Reproducibility",
-    "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
-  },
-  {
-    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
-    "href": "workshops/arcs_02/04-slides.html#why-arcs",
-    "title": "Introduction to\nProgramming in R Part 2:\nReports",
-    "section": "Why ARCS",
-    "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
-  },
-  {
-    "objectID": "workshops/arcs_02/04-reports.html#slides",
-    "href": "workshops/arcs_02/04-reports.html#slides",
-    "title": "Reports",
-    "section": "Slides",
-    "text": "Slides\nOpen slides fullscreen",
-    "crumbs": [
-      "Home",
-      "ARCS 2",
-      "Reports"
-    ]
+    "objectID": "index.html#july-2026-arcs-2.0-workshop-schedule",
+    "href": "index.html#july-2026-arcs-2.0-workshop-schedule",
+    "title": "ARCS",
+    "section": "",
+    "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   }
 ]

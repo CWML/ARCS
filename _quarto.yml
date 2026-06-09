@@ -57,7 +57,7 @@ website:
         - section: "ARCS 3"
           contents:
             - text: "Tidyverse"
-              href: workshops/arcs_03/05-tidyverse
+              href: workshops/arcs_03/05-tidyverse.qmd
             - text: "Git & Version Control"
               href: workshops/arcs_03/06-git.qmd 
 
