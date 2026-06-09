@@ -1,0 +1,385 @@
+---
+title: "Project Management"
+sidebar: arcs01
+---
+
+::: {.callout-note}
+## By the end of this section, you should be able to...
+- Initialize an R environment using `renv` for reproducible package management
+- Organize your project directory with a clear folder structure
+- Write a README file that documents your project for yourself and others
+- Use `fs::dir_tree()` to capture and document your project structure
+- Understand the purpose of the metadata cleaning and file naming scripts
+:::
+
+---
+
+## Slides
+
+[Open slides fullscreen](02-slides.html){target="_blank"}
+
+<iframe src="02-slides.html" width="100%" height="500px" style="border:none;"></iframe>
+
+## Why Project Management?
+
+Good project management is not just about staying organized — it is a core
+part of reproducible research. When you structure your project consistently
+from the start, you make it easier for collaborators, reviewers, and your
+future self to understand, rerun, and build on your work.
+
+In this workshop series, we embed reproducibility skills directly into
+foundational coding instruction. This section introduces two practices you
+will use in every project going forward: initializing a reproducible R
+environment and writing documentation.
+
+---
+
+## Creating an R Environment
+
+We use `renv` to manage package versions in your project. This ensures that
+anyone who clones your repository can restore the exact same R environment
+you used — no more "it works on my machine" problems.
+
+1. Navigate to the **Console** tab (left side of the panel)
+
+2. Enter `getwd()` to check that you are in the directory you cloned. If not, navigate there before continuing.
+
+```r
+getwd()
+```
+3. Once you are in the correct directory, enter 
+```r
+renv::init()
+```
+::: {.callout-note}
+## What `renv::init()` does
+
+- Creates an `renv/` folder
+- Creates an `renv.lock` file
+- Creates or updates `.gitignore` to exclude the `renv` package cache
+- Snapshots any packages already detected in the project 
+:::
+
+4. Restart r
+
+::: {.callout-tip}
+## In the console
+You can do this with the circular arrow icon in the upper right of the console window.
+::: 
+
+5. To capture your current environment, enter:
+
+```r
+renv::snapshot()
+```
+This records the package versions currently in use.
+
+::: {.callout-tip}
+## In the console
+
+If you get a message that says you are "in a project that hasn't been activated yet", choose option `1: Activate the project and use the project library`
+:::
+
+6. Take a look at your project directory in the `Explorer` pane in Positron. In your project directory, you will see new files created by `renv`:
+
+```r
+├── .Rprofile
+├── renv.lock
+└── renv/
+    └── .gitignore    # renv's gitignore, scoped only to the renv/ folder
+    └── activate.R
+    └── settings.json
+    └── library/
+```
+Now when this repository is cloned by a collaborator or reviewer, `renv::restore()` can find the renv files you have created and automatically load the matching package versions.
+
+---
+
+## Write a README file
+
+A README is the entry point to your project. It tells anyone who opens your repository — including your future self — what the project is, what the data is, and how to use it.
+
+1. Confirm that you are in the root directory of your workshop folder:
+```r
+getwd()
+```
+
+2. In the console, enter: 
+```r
+fs::dir_tree()
+```
+This calls the dir_tree function from the `fs` package - you should see an output that shows you all your project files and their relationships
+
+3. To write this output to a file, enter this command in the console: 
+```r
+capture.output(fs::dir_tree(), file = "README.txt")
+```
+
+4. Copy the text in the lines below (stop when you get to step 5) and paste at the top of your README.txt file (open in another window):
+
+```r
+This readme file was generated on [YYYY-MM-DD] by [NAME]
+
+GENERAL INFORMATION
+
+Title of Dataset:
+
+Author/Principal Investigator Information
+
+Name: ORCID: Institution: Address: Email:
+
+Date of data collection: provide single date, range, or approximate date; suggested format YYYY-MM-DD)
+
+Geographic location of data collection: provide latitude, longitude, or city/region, State, Country
+
+SHARING/ACCESS INFORMATION
+
+DATA & FILE OVERVIEW
+
+File List:
+
+This README template is a simplified version of Cornell's Readme Template for Data: 
+https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230 
+```
+
+5. Optional: in your README.txt file, write a short description next to these folders: 
+- `raw_data (original data goes here)` 
+- `processed data (clean data goes here)` 
+- `scripts (code to for analyses goes here)` 
+- `outputs (analyses outputs go here)`
+
+---
+
+## Scripts for Project Management
+
+The following scripts are used in this workshop series. They are designed to be run in your local Positron session — copy them into your scripts/ folder and run them from there.
+
+::: {.callout-important}
+Before Running These Scripts
+
+These scripts load data files from your local raw_data/ folder. Make sure you have completed Exercises 1 and 2 and that your folder structure is in place before running them. 
+:::
+
+#### Metadata Cleaning for Analysis
+
+This script creates the metadata file needed for further analysis, using the same dataset contrasted with Excel earlier in this workshop.
+
+```r
+# Metadata Cleaning for Analysis
+# This script creates the metadata file that we need for further analysis
+
+library(dplyr)
+library(stringr)
+
+# Load data
+metadata <- read.csv("raw_data/GSE113754_filtered_metadata.csv",
+                     header = TRUE,
+                     stringsAsFactors = TRUE)
+
+# Create the desired output format
+metadata_parsed <- metadata %>%
+  dplyr::mutate(
+    # Clean up genotype column - convert "Shank3 Mutant" to "Shank3"
+    genotype = case_when(
+      str_detect(genotype, "WT") ~ "WT",
+      str_detect(genotype, "Shank3") ~ "Shank3",
+      TRUE ~ as.character(genotype)
+    ),
+
+    # Extract condition from characteristics column,
+    # format and store in a new column called "Condition"
+    Condition = case_when(
+      str_detect(characteristics, "homecage control") ~ "_normal",
+      str_detect(characteristics, "sleep deprivation") ~ "_sleep_deprived",
+      TRUE ~ "Unknown"
+    ),
+
+    # Create Geno_Cond column by combining results from the
+    # "genotype" and "Condition" column mutations
+    Geno_Cond = paste(genotype, str_remove(Condition, "^_"), sep = "_")
+  ) %>%
+  # Select only the columns you want in the final output
+  dplyr::select(Sample = 1, genotype, Condition, Geno_Cond)
+
+# Check the result
+head(metadata_parsed)
+
+# Save to CSV
+write.csv(metadata_parsed, "Shank3_metadata_parsed.csv", row.names = FALSE)
+```
+
+#### Automate File Naming
+
+This script demonstrates how to automatically add a timestamp to any R function and store the result in your outputs/ folder as a new file each time you call it. This ensures you never accidentally overwrite a previous result.
+
+```r
+# Automate File Naming
+# Automatically timestamps output files and stores them in the outputs/ folder
+
+library(readxl)
+library(writexl)
+library(dplyr)
+library(lubridate)
+
+# Configuration section — update these paths for your project
+CONFIG <- list(
+  input_file = "raw_data/GSE113754_GeneLevel_Raw_data.xlsx",
+  output_folder = "outputs",
+  prefix = "LD_ProjectARCS"
+)
+
+# Function to generate timestamped filename
+generate_filename <- function(prefix, analysis_type = "", extension = ".xlsx") {
+  timestamp <- format(Sys.time(), "%Y%m%dT%H%M%S")  # ISO 8601 format
+  if (analysis_type != "") {
+    filename <- paste0(timestamp, "_", prefix, "_", analysis_type, extension)
+  } else {
+    filename <- paste0(timestamp, "_", prefix, extension)
+  }
+  return(filename)
+}
+
+# Function to ensure output directory exists
+ensure_output_dir <- function(output_folder) {
+  if (!dir.exists(output_folder)) {
+    dir.create(output_folder, recursive = TRUE)
+    cat("Created output directory:", output_folder, "\n")
+  }
+}
+
+# Function to load Excel data
+load_excel_data <- function(file_path, sheet = 1) {
+  cat("Loading data from:", file_path, "\n")
+  data <- read_excel(file_path, sheet = sheet)
+  cat("Data loaded successfully. Dimensions:", dim(data), "\n")
+  return(data)
+}
+
+# Function to save results
+save_results <- function(data, output_folder, prefix, analysis_type = "") {
+  ensure_output_dir(output_folder)
+  filename <- generate_filename(prefix, analysis_type)
+  full_path <- file.path(output_folder, filename)
+  write_xlsx(data, full_path)
+  cat("Results saved to:", full_path, "\n")
+  return(full_path)
+}
+
+# Analysis 1: Basic summary statistics
+analysis_summary_stats <- function(df, output_folder, prefix) {
+  cat("\n=== Running Summary Statistics Analysis ===\n")
+  summary_data <- df %>%
+    summarise_if(is.numeric, list(
+      mean = ~mean(., na.rm = TRUE),
+      median = ~median(., na.rm = TRUE),
+      sd = ~sd(., na.rm = TRUE),
+      min = ~min(., na.rm = TRUE),
+      max = ~max(., na.rm = TRUE)
+    ))
+  save_path <- save_results(summary_data, output_folder, prefix, "summary_stats")
+  return(summary_data)
+}
+
+# Analysis 2: Filtered data analysis
+analysis_filtered_data <- function(df, output_folder, prefix,
+                                   filter_condition = NULL) {
+  cat("\n=== Running Filtered Data Analysis ===\n")
+  if (!is.null(filter_condition)) {
+    processed_data <- df %>%
+      filter(eval(parse(text = filter_condition))) %>%
+      arrange(desc(if(is.numeric(.[,1])) .[,1] else row_number()))
+  } else {
+    processed_data <- df %>%
+      arrange(if(is.numeric(.[,1])) desc(.[,1]) else .[,1])
+  }
+  save_path <- save_results(processed_data, output_folder, prefix,
+                            "filtered_data")
+  return(processed_data)
+}
+
+# Analysis 3: Grouped analysis
+analysis_grouped <- function(df, output_folder, prefix,
+                             group_by_col = NULL) {
+  cat("\n=== Running Grouped Analysis ===\n")
+  if (!is.null(group_by_col) && group_by_col %in% names(df)) {
+    grouped_data <- df %>%
+      group_by(across(all_of(group_by_col))) %>%
+      summarise_if(is.numeric, list(
+        count = ~n(),
+        mean = ~mean(., na.rm = TRUE),
+        sum = ~sum(., na.rm = TRUE)
+      ), .groups = 'drop')
+  } else {
+    first_char_col <- names(select_if(df, is.character))[1]
+    if (!is.null(first_char_col)) {
+      grouped_data <- df %>%
+        count(across(all_of(first_char_col)), name = "frequency") %>%
+        arrange(desc(frequency))
+    } else {
+      grouped_data <- data.frame(note = "No grouping column available")
+    }
+  }
+  save_path <- save_results(grouped_data, output_folder, prefix,
+                            "grouped_analysis")
+  return(grouped_data)
+}
+
+# Main execution function
+run_analysis <- function() {
+  cat("=== Starting Analysis Pipeline ===\n")
+  cat("Timestamp:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n\n")
+
+  original_data <- load_excel_data(CONFIG$input_file)
+  working_data <- original_data
+
+  results <- list()
+  results$summary <- analysis_summary_stats(
+    working_data, CONFIG$output_folder, CONFIG$prefix)
+  results$filtered <- analysis_filtered_data(
+    working_data, CONFIG$output_folder, CONFIG$prefix)
+  results$grouped <- analysis_grouped(
+    working_data, CONFIG$output_folder, CONFIG$prefix)
+
+  cat("\n=== Analysis Pipeline Complete ===\n")
+  cat("All results saved to:", CONFIG$output_folder, "\n")
+  return(results)
+}
+
+# Helper function to run individual analyses
+run_single_analysis <- function(analysis_type, ...) {
+  original_data <- load_excel_data(CONFIG$input_file)
+  working_data <- original_data
+  switch(analysis_type,
+    "summary"  = analysis_summary_stats(working_data,
+                   CONFIG$output_folder, CONFIG$prefix),
+    "filtered" = analysis_filtered_data(working_data,
+                   CONFIG$output_folder, CONFIG$prefix, ...),
+    "grouped"  = analysis_grouped(working_data,
+                   CONFIG$output_folder, CONFIG$prefix, ...),
+    stop("Unknown analysis type. Use 'summary', 'filtered', or 'grouped'")
+  )
+}
+
+# To use this script:
+# 1. Update the CONFIG section above with your file paths
+# 2. Run all analyses:
+results <- run_analysis()
+
+# Or run individual analyses:
+summary_result <- run_single_analysis("summary")
+# filtered_result <- run_single_analysis("filtered",
+#                      filter_condition = "column_name > 50")
+grouped_result <- run_single_analysis("grouped",
+                    group_by_col = "category")
+```
+::: {.callout-note}
+Can You...?
+
+    ✓ Initialize an R environment with renv::init()?
+    ✓ Explain what renv.lock is and why it matters for reproducibility?
+    ✓ Use fs::dir_tree() to inspect your project structure?
+    ✓ Write and populate a README file for a project?
+    ✓ Explain what the metadata cleaning script does at a high level?
+    ✓ Explain why timestamped file naming helps prevent data loss? 
+:::
+

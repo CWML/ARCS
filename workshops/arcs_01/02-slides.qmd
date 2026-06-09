@@ -1,0 +1,402 @@
+---
+title: |
+      Introduction to \ 
+      Programming in R Part 1:\
+      Project Management
+author: Levi Dolan
+format: 
+  #pptx:
+  revealjs:
+      theme: [moon]
+      incremental: true
+      scrollable: true
+      transition: slide
+      chalkboard: true
+      view-distance: 15
+      mobile-view-distance: 10
+      footer: "Advancing Reproducibility with Computational Skills"
+editor: visual
+---
+
+## True Story: Data Management Gone Awry
+
+![](images/Pasted%20image%2020250805151439.png)
+
+::: notes
+Here's an example of what can happen when you don't make data management decisions.
+
+This screenshot is from a publication from a Yale School of Medicine lab. It was published in a Nature journal. You'll notice the bright outlines in the images above, which were identified by an AI image recognition tool (imagetwin.ai)as being duplicative of each other. A human peer found these duplicative images in 2025 and this discussion I'm reporting comes from a public journal club platform (<https://pubpeer.com/publications/1E57F80A4418124605D36D4B734480#>)
+:::
+
+## True Story: Data Management Gone Awry
+
+![](images/clipboard-1706816145.png)
+
+::: notes
+These are microscopy images from a mouse's ear. We can see how it could be possible to get them mixed up by mistake.
+
+Magnified, we can see some evidence of repeating patterns. (USE chalk)
+:::
+
+## Author Explanation
+
+"...several postdocs and students were involved in this project from 2008 to 2018. We, as a team, have careful examined the original files and data folders. We have identified the potential processes that could cause the mistakes, including file transfer, image processing and figure assembly. All these mistakes were made unintentionally and inadvertently during the processes. We sincerely apologize for any impact that might have caused. "
+
+## Where in the computational process did this happen?
+
+"Upon complete of the STZ study in the lab, Dr. X left Yale and other lab members helped transfer files and processes from microscope facility to the lab computer. During the figure assembly, one panel of images in the WT/ECKO group were mistakenly considered as the STZ group while the real STZ panel was not used for the figure assembly...Due to this mistake, essentially all images from Fig.7f for STZ were from the WT/ECKO study."
+
+## How does this happen?
+
+-   **Pipeline Gaps** - [different pieces of the process done in different environments]{style="font-size: 0.7em;"}
+
+-   **File Transfers** - [dragging and dropping allows for errors]{style="font-size: 0.7em;"}
+
+-   **Filenaming Variation** - [images were not grouped by file name]{style="font-size: 0.7em;"}
+
+::: notes
+Wait for students to speak first
+
+Where in the computational process did the mix up happen?
+:::
+
+## Reproducible research from the ground up
+
+-   Get some research data
+-   Set up an R project
+-   Manage data
+
+## Pick a repository
+
+![](grab1.png)
+
+## Pick a dataset
+
+![](grab2.png)
+
+## Download raw data
+
+![](grab4.png)
+
+## Download metadata
+
+![](grab3.png)
+
+## Metadata we downloaded
+
+![](metadata1.png)
+
+## Metadata we want
+
+![](metadata2.png)
+
+## Why do this in R?
+
+::: notes
+Any ideas?
+:::
+
+## If we did it in Excel...
+
+{{< video ARCS_1.mp4 >}}
+
+## When we do it in R...
+
+![](code_metadata.png)
+
+## Data Processing {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+Excel
+
+-   Processes one observation at a time
+
+-   Opportunity for copy/paste errors
+
+-   Steps are not documented
+
+-   New file means redoing all steps
+
+-   Setup time may be shorter
+:::
+
+::: {.column width="50%"}
+R
+
+-   Processes entire vectors of observations
+
+-   No copy/paste errors during processing
+
+-   Code can document itself
+
+-   New file means a small change (if any)
+
+-   Setup may take longer
+:::
+:::::
+
+## Computational Performance
+
+| Dataset | 20 rows | 1,000 rows | 100,000 rows | 1,000,000 rows + |
+|---------|---------|------------|--------------|------------------|
+| Excel   | fast    | slowing    | crashing     | cannot open      |
+| R       | fast    | fast       | fast         | fast             |
+
+::: notes
+Practical implications
+
+Excel is looping behind a friendly interface, which means that:
+
+### Excel hits walls at:
+
+-   \~50,000 rows (becomes very slow)
+
+-   \~1 million rows (Excel's row limit)
+
+-   Complex nested formulas (exponential slowdown)
+
+### R scales to:
+
+-   Millions of rows routinely
+
+-   Billions of rows with proper techniques
+
+-   Complex operations remain fast
+:::
+
+:::: notes
+::: notes
+The big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproduciblity.
+:::
+::::
+
+## R's Flexibility Creates New Responsibilities
+
+-   **Efficiency** - [You can still write code that runs slowly]{style="font-size: 0.7em;"}
+
+-   **Best practices** - [R is agnostic to readability, optimal analysis, data ethics]{style="font-size: 0.7em;"}
+
+-   **Data management** - [Explicit instructions are needed to select and organize pipelines, folders, files]{style="font-size: 0.7em;"}
+
+-   **Information** - [Code that runs is not always code that produces desired or understandable results]{style="font-size: 0.7em;"}
+
+## Meet R where it's at
+
+-   R Projects - Keep your files organized
+
+-   README - Document what you do
+
+-   Filenaming Conventions - Name your files consistently
+
+-   Workflow automation - Use code to handle repetitive tasks
+
+-   Look beyond R - Use complimentary tools
+
+## What Are R Projects?
+
+-   **Self-contained workspace** for each analysis or research project
+
+-   **Automatic working directory** management. No more setwd()
+
+-   **Seamless integration** with version control and documentation tools
+
+::: notes
+Think of an R Project like having a dedicated laboratory bench for each experiment. Just like you wouldn't mix chemicals from different experiments on the same bench, you shouldn't mix files from different analyses in the same folder. When you open an R Project, R automatically "knows" where all your files are located - your data, scripts, outputs, and documentation all live together. This eliminates one of the most common beginner frustrations: the dreaded "Error: cannot open file" because R can't find your data. The working directory is automatically set to your project folder, so file paths just work.
+:::
+
+## WHEN and WHERE to Create R Projects
+
+-   WHEN: At the very beginning, before writing any code
+
+-   WHERE: Create a dedicated folder for each project inside of one "Code" or "R_Projects" folder
+
+-   One R project = one research question/paper/analysis (not one project for all your R work)
+
+::: notes
+The biggest mistake beginners make is creating one giant "R_Work" folder and throwing everything in there. Instead, think of each research question or manuscript as deserving its own project. Create the R Project FIRST, before you even download your data. This is like setting up your lab notebook before starting an experiment - it ensures everything stays organized from day one. Choose descriptive names that will make sense to you (and your collaborators) months later. A good rule of thumb: if you might publish this as a separate paper, it should be its own R Project. The folder location should be somewhere logical on your computer - many people create a "Research" or "Projects" folder in their Documents.
+:::
+
+## Data Management Advantages to R Projects {.smaller}
+
+-   Relative file paths work everywhere
+
+    -   `input_file <- "raw_data/GSE113754_GeneLevel_Raw_data.xlsx" #this`
+
+    -   `input_file <- "C:/Users/Username/Code/ARCS/raw_data/GSE113754_GeneLevel_Raw_data.xlsx" #NOT this`
+
+-   Share projects easily (zip the folder, send to collaborators/your future self)
+
+-   Clear project boundaries (everything stays together)
+
+::: notes
+Here's where R Projects really shine for reproducibility. When you use relative paths like "data/metadata.csv", your code works on any computer - yours, your advisor's, your collaborator's - as long as they have the project folder. No more changing file paths when you switch from your laptop to the lab computer! The automatic working directory means you'll never again see that frustrated student debugging session where half the time is spent figuring out where R is looking for files. When you want to share your analysis, just zip the entire project folder - everything your collaborator needs is in one place. RStudio keeps track of your recent projects, so you can easily switch between your Shank3 analysis and your methods comparison without confusion. This organization becomes crucial when you're juggling multiple research projects simultaneously.
+:::
+
+::: notes
+.Rproj
+
+-   Opening RStudio from an .Rproj file automatically sets the working directory to that folder
+
+-   Lets RStudio remember project-specific session settings (like which files were open)
+
+-   Your project appears in RStudio's recent projects list
+
+-   Everything just works - No need to hunt for files or set paths
+
+The .Rproj File: Your Project's "ID Card"
+
+What it does: The .Rproj file is like an ID card that tells RStudio "this folder is a special R project folder."
+
+What happens when you double-click it: RStudio opens and automatically sets the working directory to that folder RStudio "remembers" project-specific settings (like which files were open) Your project appears in RStudio's recent projects list Everything "just works" - no need to hunt for files or set paths
+
+DEMO: if I click on a new .Rproj file, then go to terminal, pwd will show my new directory. If I ls, I will see the files that are in my directory.
+:::
+
+## What is Git?
+
+-   Version control system - like track changes for your entire project, not just one document
+
+-   Takes snapshots of your project at different points in time
+
+-   Remembers what changed
+
+-   Works locally on your computer
+
+-   Different from GitHub - Git is the technology, GitHub is the website
+
+-   Every R Project can use Git
+
+::: notes
+The .gitignore file is our first encounter with version control using git. Has anyone heard about this technology or used it before? What do you know about it? This is a technology that you will learn more about through the GitHub platform in part 3 of this class.
+
+For now, you just need to know that git is a more powerful way of doing something like tracking changes and resolving differences if you and perhaps your collaborators iterate through different versions of a script and expand your project, or, if you need to roll back to an earlier version of your project, you can do that with Git. Git creates an audit-proof version of record for the coding work that you do. It can be one very important part of making your work reproducible.
+
+Now, since Git pays attention to EVERY file in your project, we need to tell it which files to ignore - and that's where .gitignore comes in...
+:::
+
+## Building Reproducible Projects {.smaller}
+
+:::::: columns
+::: {.column width="45%"}
+### What we just built:
+
+-   **Organized File Structure -** dedicated folders
+
+-   **Protected Raw Data -** original data stays untouched
+
+-   **R Project + Git -** portable, trackable, self-contained
+
+-   **Complete README -** project map, instructions, data sources
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+### Why this matters:
+
+-   Makes your project understandable
+
+-   Anyone can run your analysis
+
+-   Anyone can verify your results
+
+-   Future-proofs your projects (when initialized early and modified regularly)
+:::
+::::::
+
+::: notes
+What we just did in this exercise is build the foundation of reproducible computational research. We created two things that work together: structure and documentation.
+
+The file structure- separating raw data from processed data, organizing scripts and outputs - that's not just about being neat. It creates a clear audit trail that anyone can follow. Your raw data folder is like evidence that stays untouched, while your folder structure shows exactly how data flows through your analysis.
+
+The README we created is what makes your structured project actually usable. You could have the most organized folders in the world, but without documentation explaining what everything does and how to use it, it's still a mystery to others - and to your future self.
+
+Together, these create true computational reproducibility. Someone else can look at your project, quickly understand what you did, run your analysis, and get the same results. That's the gold standard in research - work that others can independently verify.
+
+Six months from now, when you've forgotten the details, this combination of clear organization and good documentation will be your lifeline. Ideally, you'll open your project, read your README, and immediately know exactly what you were doing and how to continue.
+
+This isn't just good practice - it's what separates amateur data analysis from trustworthy research, and what protects you as a researcher when funders, publishers, and peers ask you to show your work.
+:::
+
+## Filenaming Conventions
+
+-   No spaces (use underscore or en dash)
+
+-   Start with dates using International Organization for Standardization (ISO)
+
+    -   YYYYMMDDHHMMSS
+
+-   Use descriptive names
+
+::: notes
+Let's talk about something that seems simple but will save you hours of frustration: naming your files well.
+
+First rule: no spaces in file names. Spaces are often special characters in programming languages that have a specific assigned use behind the scenes. Or, they may keep your computer from understanding that words belong together. Use underscores or dashes instead - both work fine, just pick one and stick with it.
+
+For dates, I want you to learn the ISO standard: YYYY-MM-DD. So October 2, 2025 becomes 20251002. Why? Because when your computer sorts files alphabetically, they'll automatically sort in chronological order too. The American date format won't do this.
+
+Be descriptive with your names. In six months when you're looking through your files, 'data.csv' tells you nothing, but 'participant_demographics.csv' immediately tells you what's inside.
+
+The key is consistency. Whatever naming pattern you choose, use it for everything in your project. Your future self will thank you when you can find files instantly instead of opening each one to see what's inside."
+:::
+
+## Filenaming Conventions
+
+**❌ Bad Examples:**
+
+-   `data analysis.R` (spaces)
+
+-   `data.csv` (not descriptive)
+
+-   `final_FINAL_really_final.R` (version chaos)
+
+**✅ Good Examples:**
+
+-   `2024-03-15_survey_analysis.R`
+
+-   `participant_demographics_clean.csv`
+
+-   `README.md`
+
+::: notes
+:::
+
+## Automating File Naming (Line 132) {.smaller}
+
+**What this script does:**
+
+-   Generates standardized file names automatically
+
+-   Demonstrates how to set up your own data analysis functions
+
+-   Asks for minimal configuration changes
+
+-   Builds on the reproducible foundation we created
+
+::: notes
+If needed:
+
+### Why automate?
+
+**Consistency at scale -** same format every time
+
+**Timestamps -** automatic ISO format dating
+
+**No typos -** R handles the formatting
+
+**Audit trail -** never overwrite results
+:::
+
+## Why ARCS
+
+-   Learn computational skills while establishing best practices
+
+-   Think about the future as you are forming habits
+
+-   Document and automate iteratively
+
+-   Give your work collaborative potential
+
+    ...so reproducibility becomes how you work, not someone else's checklist.

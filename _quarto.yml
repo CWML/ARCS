@@ -1,0 +1,86 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Advancing Reproducibility with Computational Skills"
+  description: "Advancing Reproducibility with Computational Skills"
+  
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Workshops"
+        menu:
+          - text: "ARCS 1"
+            href: workshops/arcs_01/01-fundamentals.qmd
+          - text: "ARCS 2"
+            href: workshops/arcs_02/03-structures.qmd
+          - text: "ARCS 3"
+            href: workshops/arcs_03/05-tidyverse.qmd
+          - text: "ARCS 4"
+            href: workshops/arcs_04/07-deseq2.qmd
+    right:
+      - icon: github
+        href: https://github.com/CWML/ARCS
+
+  sidebar:
+    - id: arcs01
+      title: "ARCS 1"
+      style: "docked"
+      background: light
+      contents:
+        - section: "ARCS 1"
+          contents:
+            - text: "Fundamentals of R"
+              href: workshops/arcs_01/01-fundamentals.qmd
+            - text: "Project Management"
+              href: workshops/arcs_01/02-projects.qmd
+
+    - id: arcs02
+      title: "ARCS 2"
+      style: "docked"
+      background: light
+      contents:
+        - section: "ARCS 2"
+          contents:
+            - text: "Data Structures"
+              href: workshops/arcs_02/03-structures.qmd
+            - text: "Reports"
+              href: workshops/arcs_02/04-reports.qmd
+
+    - id: arcs03
+      title: "ARCS 3"
+      style: "docked"
+      background: light
+      contents:
+        - section: "ARCS 3"
+          contents:
+            - text: "Tidyverse"
+              href: workshops/arcs_03/05-tidyverse.qmd
+            - text: "Git & Version Control"
+              href: workshops/arcs_03/06-git.qmd 
+
+    - id: arcs04
+      title: "ARCS 4"
+      style: "docked"
+      background: light
+      contents:
+        - section: "ARCS 4"
+          contents:
+            - text: "DESeq2"
+              href: workshops/arcs_04/07-deseq2.qmd 
+            - text: "Apptainer"
+              href: workshops/arcs_04/08-apptainer.qmd 
+
+  page-footer:
+    left: "ARCS Workshop Series"
+    right: "Built with [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true

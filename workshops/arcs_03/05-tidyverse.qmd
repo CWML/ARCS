@@ -1,0 +1,514 @@
+---
+title: "Tidyverse"
+sidebar: arcs03
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
+
+::: {.callout-note}
+## By the end of this section, you should be able to...
+- Use `pacman::p_load()` to install and load multiple packages in a
+  reproducible way
+- Use the `here` package to build file paths relative to your project
+  root
+- Explain the difference between `read_csv()` and `read.csv()`, and
+  what a tibble is
+- Inspect a data frame using `view()`, `head()`, and `str()`
+- Use the pipe operator `%>%` to chain multiple data cleaning steps
+  together
+- Clean column names automatically using `clean_names()`
+- Rename, recode, and create new columns using `rename()`, `mutate()`,
+  and `case_when()`
+- Combine two columns into a new variable using `paste0()`
+- Select and reorder columns using `select()` and `everything()`
+- Handle missing values using `replace_na()`
+- Harmonize two data frames so their columns and row identifiers align
+- Save cleaned data frames to `.csv` files using `write_csv()` and
+  `write.csv()`
+:::
+
+---
+
+## Load Packages
+
+The `pacman` package helps ensure your script is **reproducible** — it
+automatically **installs and loads** the packages needed to run your
+code, even on someone else's computer. You can add to the list as more
+packages are needed.
+
+```{webr-r}
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+  tidyverse,
+  magrittr,
+  here,
+  readr,
+  janitor
+)
+```
+
+---
+
+## Importing Data with `here()` and `readr`
+
+The `here` package improves reproducibility and sharing by creating file
+paths relative to your **R project's root directory**, eliminating the
+need for hard-coded absolute paths — as long as your script file is
+saved in the same folder as your R project.
+
+### Confirm Your Working Directory
+
+Run this to make sure you are currently in the correct R project:
+
+```{webr-r}
+here()
+```
+
+::: {.callout-note}
+## If you are not in the correct project
+You can set the project root manually — replace the path with your
+actual folder location:
+
+```r
+# set_here("path/to/your/desired/folder")
+```
+:::
+
+### Import the Data Files
+
+```r
+# Import the raw counts data
+raw_data <- read_csv(here("raw_data", "GSE113754_GeneLevel_Raw_data_3.csv"))
+
+# Import the metadata
+raw_metadata <- read_csv(here("raw_data", "GSE113754_filtered_metadata.csv"))
+```
+
+::: {.callout-note}
+## `read_csv()` vs `read.csv()`
+This section uses `read_csv()` from the Tidyverse rather than
+`read.csv()` from base R. Key differences:
+
+| Feature | `read_csv()` | `read.csv()` |
+|---|---|---|
+| Column types | Explicit (`col_double`, etc.) | Inferred |
+| Speed | Faster on large files | Slower |
+| Output | **Tibble** | Data frame |
+| Column names | Preserved as-is | May be altered |
+| Row labels | Not used | Supported |
+
+A **tibble** is a modern data frame that prints more cleanly, displays
+better on screen, and produces more informative output from functions
+like `str()`.
+:::
+
+---
+
+## Cleaning the Metadata
+
+### Inspect the Data
+
+Physically look at the data you just imported:
+
+```{webr-r}
+view(raw_metadata)
+```
+
+Use `head()` to see the first 6 rows, column names, and data types:
+
+```{webr-r}
+head(raw_metadata)
+```
+
+Use `str()` to see the structure, data types, dimensions, and how data
+are organized:
+
+```{webr-r}
+str(raw_metadata)
+```
+
+::: {.callout-tip}
+## EXTRA: Count unique values in a column
+We can find the unique values within a variable and their counts using
+`count()` — similar to the `unique()` and `table()` exercises from the
+Data Structures section:
+
+```{webr-r}
+raw_metadata %>% count(genotype)
+```
+:::
+
+### What Changes Do We Need to Make?
+
+1. Fix column names
+2. Rename `characteristic` to `condition`
+3. Clean up values under `condition`
+4. Clean up values under `genotype`
+5. Combine `condition` and `genotype` into a new column `geno_cond`
+6. Keep columns in this order: `sample_id`, `genotype`, `condition`,
+   `geno_cond`
+7. Make values under `sample_id` lowercase
+
+::: {.callout-tip}
+## Working with the pipe `%>%`
+Each step below builds on the previous one using the pipe operator
+`%>%`. You can run the code up to any `%>%` to inspect the result at
+that point — this is a great way to debug and understand how the data
+changes at each step.
+:::
+
+### Step 1: Fix All Column Names
+
+`clean_names()` standardizes all column names to lowercase with
+underscores:
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names()
+```
+
+### Step 2: Rename Columns
+
+Rename column `x1` to `sample_id` and `characteristics` to
+`condition`:
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = x1, condition = characteristics)
+```
+
+### Step 3: Recode Values in `condition`
+
+- If the value includes `"homecage"` → change to `"normal"`
+- If the value includes `"sleep deprivation"` → change to
+  `"sleep_deprived"`
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = x1, condition = characteristics) %>%
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition)        ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    ))
+```
+
+::: {.callout-note}
+## Base R inside the Tidyverse
+Notice that `grepl()` is a base R function — you can use base R freely
+within Tidyverse pipelines. This is the same function used in the Data
+Structures section with `ifelse()`.
+:::
+
+### Step 4: Recode Values in `genotype`
+
+- If the value includes `"WT"` → change to `"WT"`
+- If the value includes `"shank3"` → change to `"shank3"`
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = x1, condition = characteristics) %>%
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition)          ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    )) %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT",     genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    ))
+```
+
+### Step 5: Create `geno_cond` Column
+
+Combine `genotype` and `condition` into a new variable:
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = x1, condition = characteristics) %>%
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition)          ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    )) %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT",     genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    )) %>%
+  mutate(geno_cond = paste0(genotype, condition))
+```
+
+### Step 6: Select and Reorder Columns
+
+Keep only the columns we need in the correct order:
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = x1, condition = characteristics) %>%
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition)          ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    )) %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT",     genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    )) %>%
+  mutate(geno_cond = paste0(genotype, condition)) %>%
+  select(sample_id, genotype, condition, geno_cond)
+```
+
+### Step 7: Lowercase `sample_id`
+
+Make `sample_id` values lowercase — this will be important for
+harmonizing with the raw counts data in the next section:
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = x1, condition = characteristics) %>%
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition)          ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    )) %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT",     genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    )) %>%
+  mutate(geno_cond = paste0(genotype, condition)) %>%
+  select(sample_id, genotype, condition, geno_cond) %>%
+  mutate(sample_id = str_to_lower(sample_id))
+```
+
+---
+
+## Cleaning the Raw Counts Data
+
+### Inspect the Data
+
+```{webr-r}
+view(raw_data)
+```
+
+```{webr-r}
+head(raw_data)
+```
+
+```{webr-r}
+str(raw_data)
+```
+
+### What Issues Did You Find?
+
+- Column 1 has no label and contains row numbers inserted in error
+- Column 2 has no label
+- Column 3 (`gene symbol`) has a space in its name
+- All columns beginning with `GSM` are uppercase
+
+::: {.callout-tip}
+## EXTRA: Search for NA values
+Use `filter()`, `if_any()`, and `everything()` with `is.na()` to search
+all rows and columns for missing values:
+
+```{webr-r}
+raw_data %>%
+  filter(if_any(everything(), is.na))
+```
+
+The NA value identified here will be addressed in the cleaning steps
+below.
+:::
+
+### Cleaning Steps
+
+#### `clean_names()`
+
+Gives columns 1 and 2 auto-generated labels, replaces spaces in column
+names with underscores, and converts all uppercase letters to lowercase:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names()
+```
+
+#### `rename()`
+
+Change the auto-generated name for column 2 (`x2`) to `gene_id`:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = x2)
+```
+
+#### `mutate()` — Handle the NA Value
+
+Replace the NA value under `gsm3119015` with `0`:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = x2) %>%
+  mutate(gsm3119015 = replace_na(gsm3119015, 0))
+  # drop_na() %>%  # alternative: drop all rows with at least one NA
+```
+
+::: {.callout-important}
+## A note on handling missing values
+Replacing NA with `0` is used here for demonstration purposes. In
+practice, the right approach depends on your data and analysis —
+options include removing rows, leaving the NA, or calculating an
+imputed value. Always think carefully before replacing missing data.
+:::
+
+#### `mutate()` — Create a Combined Gene ID Column
+
+Create a new variable that combines `gene_id` and `gene_symbol`
+separated by `|`. Notice that `paste()` from base R works seamlessly
+inside a Tidyverse pipeline:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = x2) %>%
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|"))
+```
+
+#### `select()`
+
+Make `gene_id_symbol` the first column, keep everything else in the
+same order using `everything()`, and remove `x1`, `gene_symbol`, and
+`gene_id` using the `-` operator:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = x2) %>%
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)
+```
+
+---
+
+## EXTRA: Harmonizing the Two Data Frames
+
+These extra steps align the structure of `clean_data` with
+`clean_meta_data` so they are ready for downstream analysis such as
+differential gene expression.
+
+### Extra 1: Set Row IDs
+
+Use `column_to_rownames()` from the `tibble` package to convert the
+first column from a data variable into row identifiers:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = x2) %>%
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%
+  column_to_rownames(var = colnames(.)[1])
+```
+
+### Extra 2: Reorder Columns to Match Metadata
+
+Reorder the columns in `clean_data` to match the order of `sample_id`
+values in `clean_meta_data`:
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = x2) %>%
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%
+  column_to_rownames(var = colnames(.)[1]) %>%
+  select(all_of(clean_meta_data$sample_id))
+```
+
+### Extra 3: Verify Harmonization
+
+Run a quick check to confirm that the column names in `clean_data` and
+the `sample_id` values in `clean_meta_data` match exactly:
+
+```{webr-r}
+setequal(clean_meta_data$sample_id, colnames(clean_data))
+```
+
+---
+
+## Save Cleaned Data
+
+Save `clean_data` and `clean_meta_data` locally using `here()`:
+
+```r
+# Saves with row labels (use read.csv to reload with row labels intact)
+write.csv(clean_data, here("processed_data", "clean_data_label.csv"))
+
+# Saves without row labels (standard clean CSV)
+write_csv(clean_data, here("processed_data", "clean_data.csv"))
+
+# Save clean metadata
+write_csv(clean_meta_data, here("processed_data", "clean_meta_data.csv"))
+```
+
+::: {.callout-note}
+## `write_csv()` vs `write.csv()`
+
+| Function | Row labels | Package |
+|---|---|---|
+| `write_csv()` | Not included | Tidyverse (`readr`) |
+| `write.csv()` | Included | Base R |
+
+Use `write.csv()` when you need to preserve row labels (as in
+`clean_data_label.csv`). Use `write_csv()` for standard clean output.
+
+These blocks are static and cannot be run in the browser — they write
+to your local file system and must be run in your Positron session.
+:::
+
+---
+
+::: {.callout-note}
+## Can You...?
+- ✓ Use `pacman::p_load()` to load multiple packages reproducibly?
+- ✓ Explain what `here()` does and why it improves reproducibility?
+- ✓ Describe at least two differences between `read_csv()` and
+  `read.csv()`?
+- ✓ Explain what a tibble is and how it differs from a data frame?
+- ✓ Use `%>%` to chain multiple data cleaning steps together?
+- ✓ Use `clean_names()` to standardize column names automatically?
+- ✓ Use `rename()`, `mutate()`, and `case_when()` to recode values?
+- ✓ Use `select()` and `everything()` to reorder and drop columns?
+- ✓ Replace NA values using `replace_na()`?
+- ✓ Explain what data harmonization means and verify it with
+  `setequal()`?
+- ✓ Choose between `write_csv()` and `write.csv()` based on whether
+  you need row labels?
+:::

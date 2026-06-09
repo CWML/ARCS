@@ -1,0 +1,885 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html",
+    "href": "workshops/arcs_01/02-projects.html",
+    "title": "Project Management",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nInitialize an R environment using renv for reproducible package management\nOrganize your project directory with a clear folder structure\nWrite a README file that documents your project for yourself and others\nUse fs::dir_tree() to capture and document your project structure\nUnderstand the purpose of the metadata cleaning and file naming scripts",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#slides",
+    "href": "workshops/arcs_01/02-projects.html#slides",
+    "title": "Project Management",
+    "section": "Slides",
+    "text": "Slides\nOpen slides fullscreen",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#why-project-management",
+    "href": "workshops/arcs_01/02-projects.html#why-project-management",
+    "title": "Project Management",
+    "section": "Why Project Management?",
+    "text": "Why Project Management?\nGood project management is not just about staying organized — it is a core part of reproducible research. When you structure your project consistently from the start, you make it easier for collaborators, reviewers, and your future self to understand, rerun, and build on your work.\nIn this workshop series, we embed reproducibility skills directly into foundational coding instruction. This section introduces two practices you will use in every project going forward: initializing a reproducible R environment and writing documentation.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#creating-an-r-environment",
+    "href": "workshops/arcs_01/02-projects.html#creating-an-r-environment",
+    "title": "Project Management",
+    "section": "Creating an R Environment",
+    "text": "Creating an R Environment\nWe use renv to manage package versions in your project. This ensures that anyone who clones your repository can restore the exact same R environment you used — no more “it works on my machine” problems.\n\nNavigate to the Console tab (left side of the panel)\nEnter getwd() to check that you are in the directory you cloned. If not, navigate there before continuing.\n\ngetwd()\n\nOnce you are in the correct directory, enter\n\nrenv::init()\n\n\n\n\n\n\nNoteWhat renv::init() does\n\n\n\n\nCreates an renv/ folder\nCreates an renv.lock file\nCreates or updates .gitignore to exclude the renv package cache\nSnapshots any packages already detected in the project\n\n\n\n\nRestart r\n\n\n\n\n\n\n\nTipIn the console\n\n\n\nYou can do this with the circular arrow icon in the upper right of the console window.\n\n\n\nTo capture your current environment, enter:\n\nrenv::snapshot()\nThis records the package versions currently in use.\n\n\n\n\n\n\nTipIn the console\n\n\n\nIf you get a message that says you are “in a project that hasn’t been activated yet”, choose option 1: Activate the project and use the project library\n\n\n\nTake a look at your project directory in the Explorer pane in Positron. In your project directory, you will see new files created by renv:\n\n├── .Rprofile\n├── renv.lock\n└── renv/\n    └── .gitignore    # renv's gitignore, scoped only to the renv/ folder\n    └── activate.R\n    └── settings.json\n    └── library/\nNow when this repository is cloned by a collaborator or reviewer, renv::restore() can find the renv files you have created and automatically load the matching package versions.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#write-a-readme-file",
+    "href": "workshops/arcs_01/02-projects.html#write-a-readme-file",
+    "title": "Project Management",
+    "section": "Write a README file",
+    "text": "Write a README file\nA README is the entry point to your project. It tells anyone who opens your repository — including your future self — what the project is, what the data is, and how to use it.\n\nConfirm that you are in the root directory of your workshop folder:\n\ngetwd()\n\nIn the console, enter:\n\nfs::dir_tree()\nThis calls the dir_tree function from the fs package - you should see an output that shows you all your project files and their relationships\n\nTo write this output to a file, enter this command in the console:\n\ncapture.output(fs::dir_tree(), file = \"README.txt\")\n\nCopy the text in the lines below (stop when you get to step 5) and paste at the top of your README.txt file (open in another window):\n\nThis readme file was generated on [YYYY-MM-DD] by [NAME]\n\nGENERAL INFORMATION\n\nTitle of Dataset:\n\nAuthor/Principal Investigator Information\n\nName: ORCID: Institution: Address: Email:\n\nDate of data collection: provide single date, range, or approximate date; suggested format YYYY-MM-DD)\n\nGeographic location of data collection: provide latitude, longitude, or city/region, State, Country\n\nSHARING/ACCESS INFORMATION\n\nDATA & FILE OVERVIEW\n\nFile List:\n\nThis README template is a simplified version of Cornell's Readme Template for Data: \nhttps://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230 \n\nOptional: in your README.txt file, write a short description next to these folders:\n\n\nraw_data (original data goes here)\nprocessed data (clean data goes here)\nscripts (code to for analyses goes here)\noutputs (analyses outputs go here)",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-projects.html#scripts-for-project-management",
+    "href": "workshops/arcs_01/02-projects.html#scripts-for-project-management",
+    "title": "Project Management",
+    "section": "Scripts for Project Management",
+    "text": "Scripts for Project Management\nThe following scripts are used in this workshop series. They are designed to be run in your local Positron session — copy them into your scripts/ folder and run them from there.\n\n\n\n\n\n\nImportant\n\n\n\nBefore Running These Scripts\nThese scripts load data files from your local raw_data/ folder. Make sure you have completed Exercises 1 and 2 and that your folder structure is in place before running them.\n\n\n\nMetadata Cleaning for Analysis\nThis script creates the metadata file needed for further analysis, using the same dataset contrasted with Excel earlier in this workshop.\n# Metadata Cleaning for Analysis\n# This script creates the metadata file that we need for further analysis\n\nlibrary(dplyr)\nlibrary(stringr)\n\n# Load data\nmetadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\",\n                     header = TRUE,\n                     stringsAsFactors = TRUE)\n\n# Create the desired output format\nmetadata_parsed &lt;- metadata %&gt;%\n  dplyr::mutate(\n    # Clean up genotype column - convert \"Shank3 Mutant\" to \"Shank3\"\n    genotype = case_when(\n      str_detect(genotype, \"WT\") ~ \"WT\",\n      str_detect(genotype, \"Shank3\") ~ \"Shank3\",\n      TRUE ~ as.character(genotype)\n    ),\n\n    # Extract condition from characteristics column,\n    # format and store in a new column called \"Condition\"\n    Condition = case_when(\n      str_detect(characteristics, \"homecage control\") ~ \"_normal\",\n      str_detect(characteristics, \"sleep deprivation\") ~ \"_sleep_deprived\",\n      TRUE ~ \"Unknown\"\n    ),\n\n    # Create Geno_Cond column by combining results from the\n    # \"genotype\" and \"Condition\" column mutations\n    Geno_Cond = paste(genotype, str_remove(Condition, \"^_\"), sep = \"_\")\n  ) %&gt;%\n  # Select only the columns you want in the final output\n  dplyr::select(Sample = 1, genotype, Condition, Geno_Cond)\n\n# Check the result\nhead(metadata_parsed)\n\n# Save to CSV\nwrite.csv(metadata_parsed, \"Shank3_metadata_parsed.csv\", row.names = FALSE)\n\n\nAutomate File Naming\nThis script demonstrates how to automatically add a timestamp to any R function and store the result in your outputs/ folder as a new file each time you call it. This ensures you never accidentally overwrite a previous result.\n# Automate File Naming\n# Automatically timestamps output files and stores them in the outputs/ folder\n\nlibrary(readxl)\nlibrary(writexl)\nlibrary(dplyr)\nlibrary(lubridate)\n\n# Configuration section — update these paths for your project\nCONFIG &lt;- list(\n  input_file = \"raw_data/GSE113754_GeneLevel_Raw_data.xlsx\",\n  output_folder = \"outputs\",\n  prefix = \"LD_ProjectARCS\"\n)\n\n# Function to generate timestamped filename\ngenerate_filename &lt;- function(prefix, analysis_type = \"\", extension = \".xlsx\") {\n  timestamp &lt;- format(Sys.time(), \"%Y%m%dT%H%M%S\")  # ISO 8601 format\n  if (analysis_type != \"\") {\n    filename &lt;- paste0(timestamp, \"_\", prefix, \"_\", analysis_type, extension)\n  } else {\n    filename &lt;- paste0(timestamp, \"_\", prefix, extension)\n  }\n  return(filename)\n}\n\n# Function to ensure output directory exists\nensure_output_dir &lt;- function(output_folder) {\n  if (!dir.exists(output_folder)) {\n    dir.create(output_folder, recursive = TRUE)\n    cat(\"Created output directory:\", output_folder, \"\\n\")\n  }\n}\n\n# Function to load Excel data\nload_excel_data &lt;- function(file_path, sheet = 1) {\n  cat(\"Loading data from:\", file_path, \"\\n\")\n  data &lt;- read_excel(file_path, sheet = sheet)\n  cat(\"Data loaded successfully. Dimensions:\", dim(data), \"\\n\")\n  return(data)\n}\n\n# Function to save results\nsave_results &lt;- function(data, output_folder, prefix, analysis_type = \"\") {\n  ensure_output_dir(output_folder)\n  filename &lt;- generate_filename(prefix, analysis_type)\n  full_path &lt;- file.path(output_folder, filename)\n  write_xlsx(data, full_path)\n  cat(\"Results saved to:\", full_path, \"\\n\")\n  return(full_path)\n}\n\n# Analysis 1: Basic summary statistics\nanalysis_summary_stats &lt;- function(df, output_folder, prefix) {\n  cat(\"\\n=== Running Summary Statistics Analysis ===\\n\")\n  summary_data &lt;- df %&gt;%\n    summarise_if(is.numeric, list(\n      mean = ~mean(., na.rm = TRUE),\n      median = ~median(., na.rm = TRUE),\n      sd = ~sd(., na.rm = TRUE),\n      min = ~min(., na.rm = TRUE),\n      max = ~max(., na.rm = TRUE)\n    ))\n  save_path &lt;- save_results(summary_data, output_folder, prefix, \"summary_stats\")\n  return(summary_data)\n}\n\n# Analysis 2: Filtered data analysis\nanalysis_filtered_data &lt;- function(df, output_folder, prefix,\n                                   filter_condition = NULL) {\n  cat(\"\\n=== Running Filtered Data Analysis ===\\n\")\n  if (!is.null(filter_condition)) {\n    processed_data &lt;- df %&gt;%\n      filter(eval(parse(text = filter_condition))) %&gt;%\n      arrange(desc(if(is.numeric(.[,1])) .[,1] else row_number()))\n  } else {\n    processed_data &lt;- df %&gt;%\n      arrange(if(is.numeric(.[,1])) desc(.[,1]) else .[,1])\n  }\n  save_path &lt;- save_results(processed_data, output_folder, prefix,\n                            \"filtered_data\")\n  return(processed_data)\n}\n\n# Analysis 3: Grouped analysis\nanalysis_grouped &lt;- function(df, output_folder, prefix,\n                             group_by_col = NULL) {\n  cat(\"\\n=== Running Grouped Analysis ===\\n\")\n  if (!is.null(group_by_col) && group_by_col %in% names(df)) {\n    grouped_data &lt;- df %&gt;%\n      group_by(across(all_of(group_by_col))) %&gt;%\n      summarise_if(is.numeric, list(\n        count = ~n(),\n        mean = ~mean(., na.rm = TRUE),\n        sum = ~sum(., na.rm = TRUE)\n      ), .groups = 'drop')\n  } else {\n    first_char_col &lt;- names(select_if(df, is.character))[1]\n    if (!is.null(first_char_col)) {\n      grouped_data &lt;- df %&gt;%\n        count(across(all_of(first_char_col)), name = \"frequency\") %&gt;%\n        arrange(desc(frequency))\n    } else {\n      grouped_data &lt;- data.frame(note = \"No grouping column available\")\n    }\n  }\n  save_path &lt;- save_results(grouped_data, output_folder, prefix,\n                            \"grouped_analysis\")\n  return(grouped_data)\n}\n\n# Main execution function\nrun_analysis &lt;- function() {\n  cat(\"=== Starting Analysis Pipeline ===\\n\")\n  cat(\"Timestamp:\", format(Sys.time(), \"%Y-%m-%d %H:%M:%S\"), \"\\n\\n\")\n\n  original_data &lt;- load_excel_data(CONFIG$input_file)\n  working_data &lt;- original_data\n\n  results &lt;- list()\n  results$summary &lt;- analysis_summary_stats(\n    working_data, CONFIG$output_folder, CONFIG$prefix)\n  results$filtered &lt;- analysis_filtered_data(\n    working_data, CONFIG$output_folder, CONFIG$prefix)\n  results$grouped &lt;- analysis_grouped(\n    working_data, CONFIG$output_folder, CONFIG$prefix)\n\n  cat(\"\\n=== Analysis Pipeline Complete ===\\n\")\n  cat(\"All results saved to:\", CONFIG$output_folder, \"\\n\")\n  return(results)\n}\n\n# Helper function to run individual analyses\nrun_single_analysis &lt;- function(analysis_type, ...) {\n  original_data &lt;- load_excel_data(CONFIG$input_file)\n  working_data &lt;- original_data\n  switch(analysis_type,\n    \"summary\"  = analysis_summary_stats(working_data,\n                   CONFIG$output_folder, CONFIG$prefix),\n    \"filtered\" = analysis_filtered_data(working_data,\n                   CONFIG$output_folder, CONFIG$prefix, ...),\n    \"grouped\"  = analysis_grouped(working_data,\n                   CONFIG$output_folder, CONFIG$prefix, ...),\n    stop(\"Unknown analysis type. Use 'summary', 'filtered', or 'grouped'\")\n  )\n}\n\n# To use this script:\n# 1. Update the CONFIG section above with your file paths\n# 2. Run all analyses:\nresults &lt;- run_analysis()\n\n# Or run individual analyses:\nsummary_result &lt;- run_single_analysis(\"summary\")\n# filtered_result &lt;- run_single_analysis(\"filtered\",\n#                      filter_condition = \"column_name &gt; 50\")\ngrouped_result &lt;- run_single_analysis(\"grouped\",\n                    group_by_col = \"category\")\n\n\n\n\n\n\nNote\n\n\n\nCan You…?\n✓ Initialize an R environment with renv::init()?\n✓ Explain what renv.lock is and why it matters for reproducibility?\n✓ Use fs::dir_tree() to inspect your project structure?\n✓ Write and populate a README file for a project?\n✓ Explain what the metadata cleaning script does at a high level?\n✓ Explain why timestamped file naming helps prevent data loss?",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Project Management"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html",
+    "href": "workshops/arcs_01/01-fundamentals.html",
+    "title": "Fundamentals of R",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nFind and set your working directory in R\nWrite and run basic arithmetic and code in R\nCreate and use R objects to store information\nBuild vectors and understand the main data types in R\nUnderstand the difference between data frames and matrices\nUse functions like c(), paste0(), data.frame(), and cbind()",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
+    "href": "workshops/arcs_01/01-fundamentals.html#setting-up-the-working-directory",
+    "title": "Fundamentals of R",
+    "section": "Setting Up the Working Directory",
+    "text": "Setting Up the Working Directory\nWhat is your working directory? Run getwd() to find out.\n\n\n\n\n\n\nTipLearning About Any Function\n\n\n\nTo learn more about any function, run ?function_name in the console. For example: ?getwd\n\n\n?getwd()\nFor the sake of simplifying reading data into R, we need to set our working directory to the folder where our data is located. We will be working from a folder called ARCS_project — this is where your data files and script files live for this workshop series.\nIn Positron you can set your working directory using the Files pane:\n\nNavigate to your ARCS_project folder\nClick the gear icon in the Files pane toolbar\nSelect “Set as Working Directory”\n\nNotice in your console that a line of code will appear similar to this:\n# Mac example\nsetwd(\"~/Desktop/ARCS_project\")\n\n# Windows example\nsetwd(\"C:/Users/YourName/Desktop/ARCS_project\")\nsetwd() is the programmatic way to establish a working directory — you just need to write the full path to your ARCS_project folder on your machine.\n\n\n\n\n\n\nTipVerify Your Working Directory\n\n\n\nAfter setting it, confirm you’re in the right place:\ngetwd()\nYou should see the path ending in ARCS_project.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
+    "href": "workshops/arcs_01/01-fundamentals.html#four-basic-rules-for-writing-code",
+    "title": "Fundamentals of R",
+    "section": "Four Basic Rules for Writing Code",
+    "text": "Four Basic Rules for Writing Code\n\nUse # to annotate and document your code\nUse a noticeable pattern to break between coding chunks\n\n#----- Section Title ------#\n########################\n\nNumbers and basic arithmetic work just as on paper\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\n\nUsing the colon : gives you a range of numbers between two values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLetters must be written between quotation marks \"\"\n\n\n\n\n\n\n\nNoteException\n\n\n\nCharacters defining the name of an object can be written without quotation marks.\n\n\n\n\n\n\n\n\nTipExercise 1\n\n\n\n\nWrite and run: Hello world!\nNow write and run: \"Hello world!\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhat is different about the second step’s output?",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
+    "href": "workshops/arcs_01/01-fundamentals.html#storing-information-in-r-objects",
+    "title": "Fundamentals of R",
+    "section": "Storing Information in R Objects",
+    "text": "Storing Information in R Objects\nObjects simplify data manipulation. Objects result from assigning to a name values or data we want to transform/analyse. This data can then be easily used and re-used. This way, we don’t have to repeat operations.\nTo create an object, we need:\nname &lt;- data\nThis way we are assigning to objects on the left the values on the right.\n\n\n\n\n\n\nTipExercise 2\n\n\n\nRun the following lines one at a time and observe what happens:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou have now stored information in the object x. That object is now visible in the Variables pane in Positron.\nWhen you run x, R retrieves the information stored in it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can manipulate the information stored in the object by simply using the object name, saving you from repeating operations.\nLet’s play a little more! Fill in the blanks:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
+    "href": "workshops/arcs_01/01-fundamentals.html#tricks-and-rules-for-creating-r-objects",
+    "title": "Fundamentals of R",
+    "section": "Tricks and Rules for Creating R Objects",
+    "text": "Tricks and Rules for Creating R Objects\n\nIt is good practice to always use &lt;- instead of =\n\n\n\n\n\n\n\nTipKeyboard Shortcut for &lt;-\n\n\n\nPC: Alt + -\nMac: Option + - \n\n\n\nAn R object can have almost any name. However, there are some important considerations:\n\n\n\n\n\n\n\nImportantNaming Rules\n\n\n\n✗ No empty spaces — the code will not run\n✗ Cannot start with numbers (2x is not valid, but x2 is)\n✗ Cannot have the same name as functions — it gets confusing \n\n\n\n\n\n\n\n\nTipExercise 3\n\n\n\n\nAssign your age to an object with a descriptive name:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSubtract your object from the current year to obtain your birth year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#vectors",
+    "href": "workshops/arcs_01/01-fundamentals.html#vectors",
+    "title": "Fundamentals of R",
+    "section": "Vectors",
+    "text": "Vectors\nA vector is the most common and basic data structure in R. A vector is composed by a series of values of one specific data type.\nThere are 5 main types of data:\n\n\n\nType\nDescription\nExample\n\n\n\n\ndouble / numeric\nNumbers with decimals\n1.2\n\n\ninteger\nWhole numbers\n10L\n\n\ncomplex\nNumbers with imaginary component\n2i\n\n\nlogical\nTrue or False\nTRUE\n\n\ncharacter\nString of characters\n\"Sofia\"\n\n\n\nTo create a vector we use the function c().\n\n\n\n\n\n\nNoteFunctions, Arguments, and Packages\n\n\n\nFunctions like c() are “canned scripts” that automate more complicated sets of commands including operations and assignments.\n\nA function often (but not always) takes one or more inputs called arguments\nA function often (but not always) returns a value\nMany functions are predefined, or can be made available by importing R packages (more on that later)\n\nTo learn more enter ?c() in your computer’s terminal.\n\n\n\n\n\n\n\n\nTipExercise 4\n\n\n\n\nMake a vector by combining the ages of four individuals you know with the function c(), separating the ages with commas, and assign that vector to an object.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we can manipulate the information in the vector by simply using the name of the object — no need for quotation marks \"\".\n\nSubtract the vector you created in step 1. from the current year:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAssign the result of step 2. to a new object\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/01-fundamentals.html#tabular-data",
+    "href": "workshops/arcs_01/01-fundamentals.html#tabular-data",
+    "title": "Fundamentals of R",
+    "section": "Tabular Data",
+    "text": "Tabular Data\nMatrices and data frames are both two-dimensional data structures used to store tabular data (rows and columns), but they differ primarily in the types of data they can contain and their underlying structure.\n\n\n\n\n\n\n\n\n\nData Frame\nMatrix\n\n\n\n\nData types\nCan mix types (heterogeneous)\nSingle type only (homogeneous)\n\n\nCommon use\nData processing, statistics, plotting\nMathematical operations\n\n\nStructure\nList of equal-length vectors\nVector with dimension attributes\n\n\n\nData frames are what we will most commonly use for data processing, statistics, and plotting of tabular data in R.\n\n\n\n\n\n\nWarningBefore Continuing…\n\n\n\nMake sure you have run the code blocks in the Vectors section above. The examples below depend on the objects FamAges and FamYear that you created there.\n\n\nLet’s pack the two vectors we have created into a data frame using data.frame():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteInspecting Large Tables\n\n\n\nUse head() or tail() to inspect tables with more than 6 rows. Learn more by running ?head and ?tail in your Positron console.\n\n\nThe advantage of using data frame format instead of matrix is that we can combine different data types in the same table.\n\n\n\n\n\n\nTipExercise 5\n\n\n\n\nAssign to a new object a vector containing the names of your family members with the correspondent ages described in the vector we previously created:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdd the vector containing the names to the data frame we created using cbind(). (Learn more with ?cbind in your Positron console)\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhat do you think will happen if you use cbind() to add a character vector to your matrix? Run it and see — was your prediction correct?\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n✓ Find your working directory and set it?\n✓ Write and run basic arithmetic in R?\n✓ Explain what an R object is and create one using &lt;-?\n✓ Name at least three rules for naming R objects?\n✓ Create a vector using c() and identify its data type?\n✓ Explain the difference between a data frame and a matrix?\n✓ Combine two vectors into a data frame using data.frame()?\n✓ Use cbind() to add a column to an existing data frame?",
+    "crumbs": [
+      "Home",
+      "ARCS 1",
+      "Fundamentals of R"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What can happen",
+    "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Integrated Documentation Strategy",
+    "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Automate Filenaming",
+    "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Summary",
+    "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Filter",
+    "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What the example functions do: Group",
+    "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "From Static Documentation to Living Documents",
+    "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
+    "href": "workshops/arcs_02/04-slides.html#literate-programming",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Literate Programming",
+    "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "What we just did",
+    "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "This works in Quarto Presentations!",
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "When it’s time to write up what you did:",
+    "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
+    "href": "workshops/arcs_02/04-slides.html#static-limitations",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Static Limitations",
+    "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Dynamic Possibility",
+    "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Building Reproducible Documents",
+    "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Reproducibility in Phases",
+    "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Evaluating Reproducibility",
+    "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Extending Reproducibility",
+    "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
+  },
+  {
+    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
+    "href": "workshops/arcs_02/04-slides.html#why-arcs",
+    "title": "Introduction to\nProgramming in R Part 2:\nReports",
+    "section": "Why ARCS",
+    "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html",
+    "href": "workshops/arcs_03/06-git.html",
+    "title": "Git & Version Control",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nLocate and interpret the git tab in Positron, including status indicators for staged and unstaged changes\nExplain the three-step local git workflow: modify → stage → commit\nCreate your first commit using both the Positron GUI and the command line terminal\nExplain why large data files should be excluded from git repositories and create a .gitignore file to manage this\nUse core git commands: git status, git add, git commit, git log\nExplain the difference between local-first and remote-first (clone) repository workflows\nGenerate and add an SSH key to GitHub to authenticate securely\nCreate a remote repository on GitHub.com and push your local commits to it\nChoose the appropriate GitHub platform (GitHub.com, GitHub Enterprise Cloud, or GitHub Enterprise Server) for a given research scenario\nFork a repository, create a branch, propose changes via a Pull Request, and review and merge an incoming Pull Request",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#introduction",
+    "href": "workshops/arcs_03/06-git.html#introduction",
+    "title": "Git & Version Control",
+    "section": "Introduction",
+    "text": "Introduction\nIn this section, we will get hands-on with git right inside Positron. We’ll learn the fundamental workflow of saving changes to our project’s history. This entire process happens locally, on our own computers. We will explore this workflow in two ways: using Positron’s graphical interface and using the command line terminal.\nWhat we’ll cover:\n\nLocal git workflow — Making and saving changes to your project history\nBest practices — Managing data files with .gitignore to keep repositories lean\nConnecting to GitHub — Publishing your local repository to GitHub.com as a remote backup and optionally sharing it publicly\nCollaboration — If time permits, we’ll explore how to collaborate with colleagues using Pull Requests (also called Merge Requests), which allow you to propose changes to each other’s projects safely and professionally",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#recap-the-initialized-repository",
+    "href": "workshops/arcs_03/06-git.html#recap-the-initialized-repository",
+    "title": "Git & Version Control",
+    "section": "1. Recap: The Initialized Repository",
+    "text": "1. Recap: The Initialized Repository\nWhen your Positron Project was created with the option to initialize a git repository, git began tracking your project folder immediately.\nYour mission control for git in Positron is the Source Control tab, located in the left activity bar (the same panel used in VS Code).\nAction: Click on the Source Control tab. If there are no pending changes, the panel will be empty — which means git doesn’t see any unsaved modifications.\n\nUnderstanding git Status Indicators\nWhen you make changes to files in your project, they appear in the Source Control panel with status indicators. There are two zones:\n\nStaged Changes (What Will Be Committed)\n\n\n\nIndicator\nMeaning\nWhat It Tells You\n\n\n\n\n🟢 A\nAdded\nNew file staged for commit\n\n\n🔵 M\nModified\nChanged file staged for commit\n\n\n🔴 D\nDeleted\nFile staged for deletion\n\n\n\n\n\nChanges (Working Directory — Not Yet Staged)\n\n\n\nIndicator\nMeaning\nWhat It Tells You\n\n\n\n\n🟡 M\nModified\nFile has unstaged changes\n\n\n🟡 U\nUntracked\nNew file git doesn’t know about\n\n\n🔴 D\nDeleted\nFile deleted but not staged\n\n\n\n\n\nCommon Combinations\n\n\n\nStaged\nUnstaged\nWhat This Means\n\n\n\n\n(empty)\nU\nBrand new file, not tracked yet\n\n\n(empty)\nM\nExisting file changed, not staged\n\n\nA\n(empty)\nNew file staged, ready to commit\n\n\nM\n(empty)\nModified file staged, ready to commit\n\n\nM\nM\nSome changes staged, more changes unstaged\n\n\n\n\n\n\n\n\n\nTipQuick Reference\n\n\n\n\nStaged Changes = What’s packed and ready for your commit\nChanges = What’s changed but not staged yet\nClicking the + icon next to a file moves it from Changes → Staged Changes",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#the-git-workflow-in-positron",
+    "href": "workshops/arcs_03/06-git.html#the-git-workflow-in-positron",
+    "title": "Git & Version Control",
+    "section": "2. The git Workflow in Positron",
+    "text": "2. The git Workflow in Positron\nThe core git workflow involves three steps:\n\nMake changes to your files\nStage the specific changes you want to save\nCommit those staged changes, creating a permanent snapshot in your project’s history\n\n\nConfirm You Have a git Repository\n\nCheck the Source Control tab. Look at the left activity bar in Positron. If you see a Source Control icon with a badge, your repository is initialized. If not, ask your instructor for help.\nOpen the Terminal. Click on the Terminal tab at the bottom of Positron.\nVerify the repository. In the terminal, type:\n\ngit status\nYou should see a message listing “Untracked files” — these are the R scripts and data files you’ve been working with throughout the workshop. This confirms git is watching your project folder but hasn’t saved any snapshots yet.\n\nCheck what files you have:\n\nls\nYou should see your workshop files like ARCS_Part1.R, ARCS_Part2.R, folders like raw_data/, scripts/, etc.\n\n\nYour First Commit: Saving Existing Work\n\nCheck the Source Control tab. You should see several files listed as untracked (U), indicating git doesn’t know about them yet. You might see files like:\n\nARCS_Part1.R and ARCS_Part1b.R\nARCS_Part2.R and ARCS_Part2b.R\nShank3_metadata_parsed.csv\nVarious files in your raw_data/ folder\n\nStage all files. Open the Terminal tab and type:\n\ngit add .\nThe . means “add all changed files in the current directory and subdirectories.”\n\n\n\n\n\n\nNoteAbout Line Ending Warnings\n\n\n\nYou may see warnings like “CRLF will be replaced by LF the next time Git touches it.” This is normal — git is automatically converting Windows-style line endings to Unix-style for consistency across operating systems. You can safely ignore these warnings.\n\n\n\nCheck the Source Control tab again. All your files should now appear under Staged Changes, meaning they’re ready to commit.\nCommit your work. In the Source Control panel, type your commit message in the message box at the top:\nAdd workshop scripts and data from Parts 1 and 2\nThen click the ✓ Commit button.\nView the history. In the terminal, run:\n\ngit log --oneline\nYou can see your first commit listed!\nCongratulations — you’ve created your first snapshot of the project!\n\n\nCreating New Files for Practice\n\nCreate a new file. In Positron, go to File → New File → R Script and save it as ARCS_Part3b.R in your scripts folder.\nAdd a comment:\n\n# This is a placeholder for our script content\n\nView the change. Go back to the Source Control tab. You’ll see ARCS_Part3b.R listed as untracked (U).\nStage the file. Click the + icon next to ARCS_Part3b.R. It will move to Staged Changes with an A indicator.\nCommit the change. Type the message Add initial analysis script in the commit message box and click ✓ Commit.\n\nYou’ve completed your second version control cycle!",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#excluding-data-files-the-.gitignore-file",
+    "href": "workshops/arcs_03/06-git.html#excluding-data-files-the-.gitignore-file",
+    "title": "Git & Version Control",
+    "section": "3. Excluding Data Files: The .gitignore File",
+    "text": "3. Excluding Data Files: The .gitignore File\nBefore we continue, let’s discuss an important best practice: not storing large data files in git repositories.\n\nWhy Exclude Data Files?\nGit is designed to track code and text files, not large data files:\n\nRepository bloat: Data files can make your repository huge and slow to clone, push, and pull\nVersion control inefficiency: Git tracks every version of every file — a 100MB dataset becomes 500MB after 5 versions\nGitHub limitations: GitHub has a 100MB per-file limit and recommends keeping repositories under 1GB\nNot designed for data: Git compresses text efficiently but struggles with binary data formats\n\n\n\n\n\n\n\nNoteWhat About Data Storage?\n\n\n\nFor data files, consider these alternatives:\n\n\n\n\n\n\n\nData Size\nRecommended Approach\n\n\n\n\nSmall reference data (&lt; 10MB)\nCan include in repository if rarely changes\n\n\nMedium data (10MB–1GB)\nCloud storage (Dropbox, Google Drive, OneDrive) — document the location\n\n\nLarge data (&gt; 1GB)\nInstitutional repositories, OSF, Zenodo, or Figshare\n\n\nVery large data\nGit LFS (Large File Storage) — stores large files externally while keeping references in git\n\n\n\n\n\n\n\nCreating a .gitignore File\n\nCreate the file. In Positron, go to File → New File → Text File\nAdd these lines:\n\n# Ignore data folders\nraw_data/\nprocessed_data/\n\n# Ignore large output files\noutputs/*.pdf\noutputs/*.html\n\n# Keep the folder structure but ignore contents\n!raw_data/.gitkeep\n!processed_data/.gitkeep\n!outputs/.gitkeep\n\nSave the file as .gitignore (with the dot!) in your project root folder\nCreate placeholder files so the folders still exist in git. In the terminal:\n\ntouch raw_data/.gitkeep\ntouch processed_data/.gitkeep\ntouch outputs/.gitkeep\nThe .gitkeep files are empty placeholders that preserve your folder structure in the repository even though the data files themselves are ignored.\n\nCommit the .gitignore file. Stage .gitignore and the three .gitkeep files and commit with the message: Add .gitignore to exclude data files\n\n\n\n\n\n\n\nTipVerify What’s Being Tracked\n\n\n\nAfter adding .gitignore, run this to confirm your data files are ignored:\ngit status --ignored\nYou should see your data folders listed under “Ignored files”.\n\n\n\n\n\n\n\n\nImportantKey Takeaway\n\n\n\nKeep your git repository lean by tracking code, not data. Document where your data lives in your README file instead.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#git-on-the-command-line-a-quick-look",
+    "href": "workshops/arcs_03/06-git.html#git-on-the-command-line-a-quick-look",
+    "title": "Git & Version Control",
+    "section": "4. git on the Command Line — A Quick Look",
+    "text": "4. git on the Command Line — A Quick Look\nThe Positron Source Control panel is a visual interface that runs git commands for you in the background. Let’s pull back the curtain and run those same commands ourselves.\n\nOpen the Terminal in Positron (bottom panel).\nCheck the project status:\n\ngit status\nIt should say nothing to commit, working tree clean since we just committed all our changes.\n\nMake another change. Go back to ARCS_Part3b.R and add a new line:\n\n# This is our first tracked change.\nprint(\"Hello from R!\")\n\nCheck the status again:\n\ngit status\ngit now sees that ARCS_Part3b.R has been modified.\n\nStage the change (CLI):\n\ngit add .\nRun git status once more — you’ll see the file listed under “Changes to be committed.”\n\nCommit the change (CLI):\n\ngit commit -m \"Add print statement via CLI\"\nYou’ve just done the exact same workflow as before, but entirely from the command line!\n\n\n\n\n\n\nNoteKey Takeaway\n\n\n\nThe Positron Source Control panel is a user-friendly interface for running these fundamental git commands. You can use whichever you prefer, but knowing what’s happening behind the scenes makes you a more confident and capable user.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#practice-making-commits-with-gui-and-cli",
+    "href": "workshops/arcs_03/06-git.html#practice-making-commits-with-gui-and-cli",
+    "title": "Git & Version Control",
+    "section": "5. Practice: Making Commits with GUI and CLI",
+    "text": "5. Practice: Making Commits with GUI and CLI\n\nCommit 1: Load and Explore Data (GUI Method)\n\nAdd data loading code. Open ARCS_Part3b.R and add these lines:\n\n# ==============================================================================\n# ARCS Workshop Part 3 - Gene Expression Analysis\n# This script demonstrates data loading and visualization with git version control\n# ==============================================================================\n\nlibrary(tidyverse)\n\n# ------------------------------------------------------------------------------\n# 1. LOAD DATA\n# ------------------------------------------------------------------------------\n\ngene_data &lt;- read_csv(\"processed_data/clean_data_label.csv\")\nmetadata  &lt;- read_csv(\"processed_data/clean_meta_data.csv\")\n\n# ------------------------------------------------------------------------------\n# 2. EXPLORE DATA STRUCTURE\n# ------------------------------------------------------------------------------\n\ncat(\"Dataset dimensions:\", nrow(gene_data), \"genes x\",\n    (ncol(gene_data) - 1), \"samples\\n\")\n\ngene_data %&gt;%\n  select(1:6) %&gt;%\n  head()\n\ncat(\"\\nMetadata structure:\\n\")\nglimpse(metadata)\n\n# ------------------------------------------------------------------------------\n# 3. DATA ANALYSIS AND VISUALIZATION\n# (Additional analysis code will be added here)\n# ------------------------------------------------------------------------------\n\nCheck the Source Control tab. You’ll see ARCS_Part3b.R with a M (modified) indicator.\nReview your changes (optional but recommended). Click on the filename in the Source Control panel to open a diff view showing your new code highlighted in green. This is useful for catching mistakes before they become part of your history.\nStage and commit. Click + to stage the file, type the message Add data loading and exploration, and click ✓ Commit.\n\n\n\n\n\n\n\nTipAlways Review the Diff Before Committing\n\n\n\nGreen highlighting shows additions and red shows deletions. Reviewing your diff before committing helps you catch mistakes, debug code, and avoid committing unwanted changes.\n\n\n\n\nCommit 2: Add Visualization (CLI Method)\n\nAdd plotting code. Replace the placeholder comment in Section 3 of ARCS_Part3b.R with:\n\n# ------------------------------------------------------------------------------\n# 3. DATA ANALYSIS AND VISUALIZATION\n# ------------------------------------------------------------------------------\n\ngnai3_data &lt;- gene_data %&gt;%\n  filter(str_detect(names(gene_data)[1], \"Gnai3\") |\n         str_detect(.[[1]], \"Gnai3\"))\n\ngnai3_long &lt;- gnai3_data %&gt;%\n  pivot_longer(\n    cols      = -1,\n    names_to  = \"sample_id\",\n    values_to = \"expression\"\n  ) %&gt;%\n  left_join(metadata, by = \"sample_id\")\n\ngnai3_plot &lt;- ggplot(gnai3_long,\n                     aes(x = geno_cond, y = expression, fill = genotype)) +\n  geom_boxplot(alpha = 0.7, outlier.shape = NA) +\n  geom_jitter(width = 0.2, size = 2, alpha = 0.6) +\n  scale_fill_manual(values = c(\"WT\" = \"lightblue\", \"Shank3\" = \"salmon\")) +\n  labs(\n    title = \"Gnai3 Gene Expression by Genotype and Condition\",\n    x     = \"Experimental Group\",\n    y     = \"Read Counts\",\n    fill  = \"Genotype\"\n  ) +\n  theme_minimal() +\n  theme(\n    plot.title   = element_text(hjust = 0.5, face = \"bold\"),\n    axis.text.x  = element_text(angle = 45, hjust = 1)\n  )\n\nprint(gnai3_plot)\n\ngnai3_summary &lt;- gnai3_long %&gt;%\n  group_by(geno_cond, genotype) %&gt;%\n  summarise(\n    mean = mean(expression),\n    sd   = sd(expression),\n    n    = n(),\n    .groups = \"drop\"\n  )\n\ncat(\"\\nGnai3 Expression Summary Statistics:\\n\")\nprint(gnai3_summary)\n\n# ==============================================================================\n# END OF SCRIPT\n# ==============================================================================\n\nUse the Terminal workflow:\n\ngit status\ngit add scripts/ARCS_Part3b.R\ngit status\ngit commit -m \"Add Gnai3 expression visualization and summary statistics\"\n\nVerify your work:\n\ngit log --oneline\nYou should see all your commits listed.\n\n\n\n\n\n\nNoteGUI vs. CLI — When to Use Each\n\n\n\n\n\n\n\n\n\n\nApproach\nBest For\n\n\n\n\nGUI (Source Control panel)\nVisual learners, reviewing diffs, getting started\n\n\nCLI (Terminal)\nSpeed, advanced operations, working on remote servers\n\n\n\nMany experienced users mix both: GUI for reviewing diffs, CLI for quick commits.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#local-first-vs.-remote-first-repositories",
+    "href": "workshops/arcs_03/06-git.html#local-first-vs.-remote-first-repositories",
+    "title": "Git & Version Control",
+    "section": "6. Local-First vs. Remote-First Repositories",
+    "text": "6. Local-First vs. Remote-First Repositories\n\nLocal-First (What We Just Did)\nYou start a project on your own computer, initialize a git repository, work on your files, and build a commit history — all locally. Later, you can push this project to GitHub to back it up, share it, or collaborate.\nAnalogy: You write a document in your text editor on your desktop. When you’re ready, you upload it to cloud storage to share with colleagues.\n\n\nRemote-First (Cloning)\nThe project already exists on a remote server like GitHub. Your first step is to clone it — downloading a complete copy of the project and its entire version history to your local computer.\nAnalogy: A colleague shares a document with you via cloud storage. You download a local copy so you can start editing.\n\n\n\n\n\n\nNote\n\n\n\nIn this workshop we started local-first. In the collaboration section below, you will experience the remote-first workflow when you clone a partner’s repository.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#publishing-your-repository-to-github",
+    "href": "workshops/arcs_03/06-git.html#publishing-your-repository-to-github",
+    "title": "Git & Version Control",
+    "section": "7. Publishing Your Repository to GitHub",
+    "text": "7. Publishing Your Repository to GitHub\nNow that we have a local repository with a commit history, let’s back it up and share it by publishing to GitHub.com. This requires two steps: setting up SSH authentication and creating a remote repository.\n\nStep 1: Set Up SSH Authentication\nSSH (Secure Shell) is a secure way to connect your computer to GitHub. Think of it as a special key that proves your identity without typing your password every time.\n\n\n\n\n\n\nNoteAlternative: Personal Access Tokens (PATs)\n\n\n\nPATs are an alternative authentication method using HTTPS. However, they expire every 90 days and require renewal, which can disrupt your workflow. SSH is strongly preferred for long-term research projects because it is a one-time setup.\nIf SSH doesn’t work due to network or firewall restrictions, GitHub Desktop (which uses HTTPS) is a good backup option.\n\n\n\nCheck for Existing SSH Keys\nIn the Positron Terminal, run:\nls ~/.ssh\nIf you see files named id_ed25519 or id_rsa, you already have keys — skip to Add Your Key to GitHub below. If not, continue.\n\n\nGenerate a New SSH Key\n\nmacOS / LinuxWindows\n\n\n\nGenerate the key (replace with your GitHub email):\n\nssh-keygen -t ed25519 -C \"your_email@example.com\"\n\nSave the key. Press Enter to accept the default location.\nSet a passphrase (optional). Press Enter twice to skip, or type a passphrase you’ll remember.\nStart the SSH agent:\n\neval \"$(ssh-agent -s)\"\n\nAdd your key:\n\nssh-add ~/.ssh/id_ed25519\n\nCopy your public key:\n\npbcopy &lt; ~/.ssh/id_ed25519.pub\n\n\n\n\n\n\n\n\nNoteWindows Users: Use the Positron Terminal\n\n\n\nThese commands work in the Positron Terminal or git Bash (installed with git for Windows). We recommend using the Positron Terminal for consistency.\n\n\n\nGenerate the key (replace with your GitHub email):\n\nssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"\n\nSave the key. Press Enter to accept the default location.\nSet a passphrase (optional). Press Enter twice to skip.\nStart the SSH agent:\n\neval \"$(ssh-agent -s)\"\n\nAdd your key:\n\nssh-add ~/.ssh/id_rsa\n\nCopy your public key:\n\ncat ~/.ssh/id_rsa.pub | clip\nIf clip doesn’t work, run cat ~/.ssh/id_rsa.pub and manually copy the output.\n\n\n\n\n\n\nWarningWindows Troubleshooting\n\n\n\nIf ssh-agent won’t start, try running Positron or git Bash as Administrator. If you see “Could not open a connection to your authentication agent,” run ssh-agent bash first, then retry ssh-add.\n\n\n\n\n\n\n\n\n\n\n\nImportantKeep Your Keys Safe!\n\n\n\n\nThe .pub file is your public key — safe to share with GitHub\nThe file without .pub is your private key — never share this\nIf someone asks for your SSH key, they always mean the public one\n\n\n\n\n\nAdd Your SSH Key to GitHub\n\nGo to github.com and log in\nClick your profile photo → Settings\nIn the left sidebar, click SSH and GPG keys\nClick New SSH key\nAdd a descriptive title like My Positron Laptop\nPaste your key in the Key field\nClick Add SSH key\n\n\n\nTest Your Connection\nssh -T git@github.com\nType yes if prompted about authenticity. You should see: Hi username! You've successfully authenticated...\n\n\n\nStep 2: Create a Repository on GitHub.com\n\nGo to github.com and log in\nClick your profile picture → Your repositories\nClick the green New button\nRepository name: e.g., ARCS-workshop\nDescription (optional): Reproducibility workshop project\nVisibility: Private (or Public if you want others to see it)\nImportant: Do NOT check “Add a README file” — we already have files locally\nClick Create repository\n\n\n\nStep 3: Connect and Push\nGitHub will show setup instructions for “push an existing repository from the command line.” Run these one at a time in your Positron Terminal (replace username and yourreponame with yours):\ngit remote add origin git@github.com:username/yourreponame.git\ngit branch -M main\ngit push -u origin main\nRefresh your GitHub repository page — you should see all your files and commit history.\n\n\n\n\n\n\nTipTroubleshooting: GitHub Desktop as a Backup Method\n\n\n\nIf you encounter authorization issues, GitHub Desktop is a reliable alternative:\n\nDownload and install GitHub Desktop\nSign in with your GitHub account\nClick Add → Add Existing Repository and navigate to your project folder\nClick Publish repository\n\nThis method uses HTTPS authentication instead of SSH.\n\n\n\n\nGitHub Enterprise Options at Yale\nIf you’re working with sensitive research data, Yale offers two GitHub Enterprise options beyond the standard GitHub.com platform:\n\nGitHub Enterprise Server (On-Premises)\nA self-hosted platform running within Yale’s secure infrastructure. Suitable for version-controlling analysis scripts, maintaining reproducible research pipelines, and integrating with Yale’s research computing resources — all with strict data security and compliance.\n\nHosted on Yale’s own infrastructure\nData Classification Level Supported: High (suitable for sensitive research data including HIPAA-covered data)\nFull control over data location and security policies\n\n\n\nGitHub Enterprise Cloud\nAdds advanced functionality to GitHub.com, including SAML single sign-on with Yale credentials, additional GitHub Actions minutes, and enhanced security and compliance features.\n\nCloud-based (managed by GitHub)\nSeamless integration with Yale’s authentication systems\nData Classification Level Supported: Moderate (not suitable for high-sensitivity data)\n\n\n\n\n\n\n\nTipChoosing the Right GitHub Platform\n\n\n\n\n\n\n\n\n\n\nPlatform\nBest For\n\n\n\n\nGitHub.com\nPublic research, open-source projects, teaching\n\n\nGitHub Enterprise Cloud\nCollaborative research with Yale auth, moderate-sensitivity data\n\n\nGitHub Enterprise Server\nHigh-sensitivity data, HIPAA compliance, institutional governance\n\n\n\nContact Yale ITS for access to GitHub Enterprise options.\nGitHub Enterprise Service & Support: Request access via Yale ServiceNow",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/06-git.html#bonus-collaboration-with-github-desktop-positron",
+    "href": "workshops/arcs_03/06-git.html#bonus-collaboration-with-github-desktop-positron",
+    "title": "Git & Version Control",
+    "section": "8. Bonus: Collaboration with GitHub Desktop & Positron",
+    "text": "8. Bonus: Collaboration with GitHub Desktop & Positron\nNow let’s explore one of the most powerful aspects of version control: collaboration. This section demonstrates a complete, real-world collaborative workflow where one person proposes a change to another person’s project.\n\nUnderstanding the Roles\n\nProject Owner: Owns the original repository and has authority to accept or reject changes\nContributor: Wants to suggest improvements, fixes, or additions\n\n\n\nThe Fork-and-Pull Request Workflow\n\nFork — Contributor creates their own complete copy of the project\nClone — They download their copy to work on locally\nBranch — They create a separate branch for their contribution\nEdit — They make changes and commit them\nPush — They upload changes to their fork on GitHub\nPull Request — They formally ask the owner to review and merge\n\n\n\nPart 1: The Contributor’s Workflow\n\nStep 1: Fork the Repository\n\nNavigate to the project owner’s repository on GitHub.com\nClick the Fork button in the top-right corner\nGitHub creates a copy of the entire project under your own account\n\n\n\n\n\n\n\nNoteWhat Forking Actually Does\n\n\n\nForking creates an exact copy of the entire project history — all commits, branches, and files — under your account. You can experiment freely without affecting the original project.\n\n\n\n\nStep 2: Clone Your Fork to GitHub Desktop\n\nIn your forked repository, click the green &lt;&gt; Code button\nCopy the HTTPS URL\nOpen GitHub Desktop → File → Clone Repository\nPaste the URL, choose a save location, and click Clone\n\n\n\nStep 3: Create a New Branch\n\nIn GitHub Desktop, click the Current Branch dropdown\nClick New Branch\nGive it a descriptive name (e.g., add-readme-documentation)\nClick Create Branch\nClick Publish branch\n\n\n\n\n\n\n\nTipBranch Naming Conventions\n\n\n\nGood branch names are descriptive, verb-focused, and lowercase with hyphens:\n\n✓ add-ggplot-visualization\n✓ fix-data-loading\n✗ new-feature\n✗ MyBranch\n\n\n\n\n\nStep 4: Make Your Edits in Positron\n\nIn GitHub Desktop, click Open in Positron (or open the .Rproj file directly)\nCreate a new Markdown file: File → New File → Markdown File\nSave it as README.md in the project root folder\nAdd the following content:\n\n# Introduction to Programming in R: A Workshop Series 💻\n\nWelcome! This repository was created as part of the 3-part\n\"Introduction to Programming in R\" workshop series, part of the\n**Advancing Reproducibility with Computational Skills (ARCS)**\ninitiative at the Yale Medical Library.\n\n---\n\n## Part 1: Fundamentals and Project Management\n\n### In this workshop, you will learn to:\n- Navigate the Positron interface and execute basic R commands\n- Apply fundamental programming concepts (objects, functions,\n  basic operations)\n- Create vectors, data frames, and matrices\n- Find a dataset in a public repository and read it into Positron\n- Implement file organization and naming conventions for\n  reproducible research\n\n### Prerequisites:\n- A computer with permissions to install software\n- [R](https://cran.r-project.org/) and\n  [Positron](https://positron.posit.co/) installation\n\n---\n\n## Part 2: Data Structures and Reports\n\n### In this workshop, you will learn to:\n- Manipulate vectors, lists, matrices, and data frames\n- Implement literate programming principles in data analysis\n- Generate dynamic reports using Quarto for reproducible\n  documentation\n\n### Prerequisites:\n- Completion of Part 1\n- [Quarto](https://quarto.org/docs/get-started/) installation\n\n---\n\n## Part 3: Tidyverse Packages and Git\n\n### In this workshop, you will learn to:\n- Execute complex data transformations using `dplyr` and related\n  packages\n- Initialize git repositories and commit project changes\n- Collaborate effectively using GitHub for version control\n\n### Prerequisites:\n- Completion of Part 2\n- [GitHub Account](https://github.com/signup)\n- [GitHub Desktop](https://desktop.github.com/)\n- Windows users only: [Git Bash](https://git-scm.com/downloads/)\n\n\n\n\n\n\nNoteWhy Add a README?\n\n\n\nA README is the first thing people see when they visit a repository. It should explain what the project is about, how to get started, what prerequisites are needed, and how the project is organized. Good documentation makes your research more accessible and reproducible.\n\n\n\n\nStep 5: Commit and Push\n\nSwitch back to GitHub Desktop\nReview your changes by clicking the file names in the left panel\nWrite a commit message: Add README documentation for workshop series\nClick Commit to [your-branch-name]\nClick Push origin\n\n\n\nStep 6: Open a Pull Request\n\nAfter pushing, click Create Pull Request in GitHub Desktop\nGive your PR a clear, descriptive title\nIn the description, explain what you changed and why\nClick Create pull request\n\nExample PR description:\n## Summary\nAdded comprehensive README documentation to help users understand\nthe ARCS workshop series structure, objectives, and prerequisites.\n\n## Changes Made\n- Created README.md in the project root\n- Documented all three workshop parts with learning objectives\n- Listed prerequisites and installation links\n- Updated RStudio references to Positron throughout\n\n## Why This Improvement\nThe repository lacked documentation explaining what the series\ncovers, how the three parts build on each other, and what software\nparticipants need.\n\n\n\nPart 2: The Project Owner’s Review Process\n\nStep 7: Review and Manage the Pull Request\n\nNavigate to your original repository on GitHub.com\nClick the Pull requests tab\nClick the specific PR to review it\nIn Files changed, review the exact differences:\n\nGreen lines = additions\nRed lines = deletions\nLeave line-by-line comments for discussion\n\nIn Conversation, ask questions, request changes, or approve\n\nReview options:\n\nApprove and Merge: Click Merge pull request → Confirm merge\nRequest Changes: Leave comments asking for modifications first\nClose without Merging: If the contribution doesn’t fit the project’s direction\n\n\n\n\n\n\n\nImportantCode Review Best Practices\n\n\n\n\nBe constructive: Focus on the code, not the person\nBe specific: Point to exact lines and suggest improvements\nBe appreciative: Thank contributors for their time and effort\nTest locally: For important changes, pull the branch and test it yourself before merging\n\n\n\n\n\nAfter Merging\nFor the Project Owner: - The contribution is now part of the main project - The contributor’s branch can be safely deleted\nFor the Contributor: - Switch back to main and pull the latest changes - Delete your feature branch — it’s no longer needed - Your contribution is now part of the official project history!\n\n\n\nKey Benefits of This Workflow\n\nSafety: The original project is never at risk during development\nReview: All changes go through a review process before integration\nDiscussion: Contributors and maintainers can discuss improvements openly\nHistory: Every contribution is documented with clear attribution\nLearning: Contributors improve their skills through feedback\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Find the Source Control tab in Positron and interpret the status indicators for staged and unstaged files?\n✓ Explain the modify → stage → commit workflow in your own words?\n✓ Make a commit using the Positron Source Control panel?\n✓ Make a commit using git add and git commit in the terminal?\n✓ Explain why large data files should not be stored in git repositories?\n✓ Create a .gitignore file and verify it is working with git status --ignored?\n✓ Explain the difference between a local-first and remote-first (clone) workflow?\n✓ Generate an SSH key and add it to your GitHub account?\n✓ Push a local repository to GitHub.com?\n✓ Choose the right GitHub platform (GitHub.com, Enterprise Cloud, or Enterprise Server) for a given research scenario?\n✓ Fork a repository, create a branch, and open a Pull Request?\n✓ Review and merge an incoming Pull Request as a project owner?",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Git & Version Control"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html",
+    "href": "workshops/arcs_03/05-tidyverse.html",
+    "title": "Tidyverse",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nUse pacman::p_load() to install and load multiple packages in a reproducible way\nUse the here package to build file paths relative to your project root\nExplain the difference between read_csv() and read.csv(), and what a tibble is\nInspect a data frame using view(), head(), and str()\nUse the pipe operator %&gt;% to chain multiple data cleaning steps together\nClean column names automatically using clean_names()\nRename, recode, and create new columns using rename(), mutate(), and case_when()\nCombine two columns into a new variable using paste0()\nSelect and reorder columns using select() and everything()\nHandle missing values using replace_na()\nHarmonize two data frames so their columns and row identifiers align\nSave cleaned data frames to .csv files using write_csv() and write.csv()",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#load-packages",
+    "href": "workshops/arcs_03/05-tidyverse.html#load-packages",
+    "title": "Tidyverse",
+    "section": "Load Packages",
+    "text": "Load Packages\nThe pacman package helps ensure your script is reproducible — it automatically installs and loads the packages needed to run your code, even on someone else’s computer. You can add to the list as more packages are needed.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#importing-data-with-here-and-readr",
+    "href": "workshops/arcs_03/05-tidyverse.html#importing-data-with-here-and-readr",
+    "title": "Tidyverse",
+    "section": "Importing Data with here() and readr",
+    "text": "Importing Data with here() and readr\nThe here package improves reproducibility and sharing by creating file paths relative to your R project’s root directory, eliminating the need for hard-coded absolute paths — as long as your script file is saved in the same folder as your R project.\n\nConfirm Your Working Directory\nRun this to make sure you are currently in the correct R project:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteIf you are not in the correct project\n\n\n\nYou can set the project root manually — replace the path with your actual folder location:\n# set_here(\"path/to/your/desired/folder\")\n\n\n\n\nImport the Data Files\n# Import the raw counts data\nraw_data &lt;- read_csv(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data_3.csv\"))\n\n# Import the metadata\nraw_metadata &lt;- read_csv(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\n\n\n\n\n\n\nNoteread_csv() vs read.csv()\n\n\n\nThis section uses read_csv() from the Tidyverse rather than read.csv() from base R. Key differences:\n\n\n\nFeature\nread_csv()\nread.csv()\n\n\n\n\nColumn types\nExplicit (col_double, etc.)\nInferred\n\n\nSpeed\nFaster on large files\nSlower\n\n\nOutput\nTibble\nData frame\n\n\nColumn names\nPreserved as-is\nMay be altered\n\n\nRow labels\nNot used\nSupported\n\n\n\nA tibble is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like str().",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#cleaning-the-metadata",
+    "href": "workshops/arcs_03/05-tidyverse.html#cleaning-the-metadata",
+    "title": "Tidyverse",
+    "section": "Cleaning the Metadata",
+    "text": "Cleaning the Metadata\n\nInspect the Data\nPhysically look at the data you just imported:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse head() to see the first 6 rows, column names, and data types:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse str() to see the structure, data types, dimensions, and how data are organized:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipEXTRA: Count unique values in a column\n\n\n\nWe can find the unique values within a variable and their counts using count() — similar to the unique() and table() exercises from the Data Structures section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nWhat Changes Do We Need to Make?\n\nFix column names\nRename characteristic to condition\nClean up values under condition\nClean up values under genotype\nCombine condition and genotype into a new column geno_cond\nKeep columns in this order: sample_id, genotype, condition, geno_cond\nMake values under sample_id lowercase\n\n\n\n\n\n\n\nTipWorking with the pipe %&gt;%\n\n\n\nEach step below builds on the previous one using the pipe operator %&gt;%. You can run the code up to any %&gt;% to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.\n\n\n\n\nStep 1: Fix All Column Names\nclean_names() standardizes all column names to lowercase with underscores:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 2: Rename Columns\nRename column x1 to sample_id and characteristics to condition:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 3: Recode Values in condition\n\nIf the value includes \"homecage\" → change to \"normal\"\nIf the value includes \"sleep deprivation\" → change to \"sleep_deprived\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteBase R inside the Tidyverse\n\n\n\nNotice that grepl() is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with ifelse().\n\n\n\n\nStep 4: Recode Values in genotype\n\nIf the value includes \"WT\" → change to \"WT\"\nIf the value includes \"shank3\" → change to \"shank3\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 5: Create geno_cond Column\nCombine genotype and condition into a new variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 6: Select and Reorder Columns\nKeep only the columns we need in the correct order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 7: Lowercase sample_id\nMake sample_id values lowercase — this will be important for harmonizing with the raw counts data in the next section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#cleaning-the-raw-counts-data",
+    "href": "workshops/arcs_03/05-tidyverse.html#cleaning-the-raw-counts-data",
+    "title": "Tidyverse",
+    "section": "Cleaning the Raw Counts Data",
+    "text": "Cleaning the Raw Counts Data\n\nInspect the Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nWhat Issues Did You Find?\n\nColumn 1 has no label and contains row numbers inserted in error\nColumn 2 has no label\nColumn 3 (gene symbol) has a space in its name\nAll columns beginning with GSM are uppercase\n\n\n\n\n\n\n\nTipEXTRA: Search for NA values\n\n\n\nUse filter(), if_any(), and everything() with is.na() to search all rows and columns for missing values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe NA value identified here will be addressed in the cleaning steps below.\n\n\n\n\nCleaning Steps\n\nclean_names()\nGives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nrename()\nChange the auto-generated name for column 2 (x2) to gene_id:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nmutate() — Handle the NA Value\nReplace the NA value under gsm3119015 with 0:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nImportantA note on handling missing values\n\n\n\nReplacing NA with 0 is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.\n\n\n\n\nmutate() — Create a Combined Gene ID Column\nCreate a new variable that combines gene_id and gene_symbol separated by |. Notice that paste() from base R works seamlessly inside a Tidyverse pipeline:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nselect()\nMake gene_id_symbol the first column, keep everything else in the same order using everything(), and remove x1, gene_symbol, and gene_id using the - operator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#extra-harmonizing-the-two-data-frames",
+    "href": "workshops/arcs_03/05-tidyverse.html#extra-harmonizing-the-two-data-frames",
+    "title": "Tidyverse",
+    "section": "EXTRA: Harmonizing the Two Data Frames",
+    "text": "EXTRA: Harmonizing the Two Data Frames\nThese extra steps align the structure of clean_data with clean_meta_data so they are ready for downstream analysis such as differential gene expression.\n\nExtra 1: Set Row IDs\nUse column_to_rownames() from the tibble package to convert the first column from a data variable into row identifiers:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nExtra 2: Reorder Columns to Match Metadata\nReorder the columns in clean_data to match the order of sample_id values in clean_meta_data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nExtra 3: Verify Harmonization\nRun a quick check to confirm that the column names in clean_data and the sample_id values in clean_meta_data match exactly:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#save-cleaned-data",
+    "href": "workshops/arcs_03/05-tidyverse.html#save-cleaned-data",
+    "title": "Tidyverse",
+    "section": "Save Cleaned Data",
+    "text": "Save Cleaned Data\nSave clean_data and clean_meta_data locally using here():\n# Saves with row labels (use read.csv to reload with row labels intact)\nwrite.csv(clean_data, here(\"processed_data\", \"clean_data_label.csv\"))\n\n# Saves without row labels (standard clean CSV)\nwrite_csv(clean_data, here(\"processed_data\", \"clean_data.csv\"))\n\n# Save clean metadata\nwrite_csv(clean_meta_data, here(\"processed_data\", \"clean_meta_data.csv\"))\n\n\n\n\n\n\nNotewrite_csv() vs write.csv()\n\n\n\n\n\n\nFunction\nRow labels\nPackage\n\n\n\n\nwrite_csv()\nNot included\nTidyverse (readr)\n\n\nwrite.csv()\nIncluded\nBase R\n\n\n\nUse write.csv() when you need to preserve row labels (as in clean_data_label.csv). Use write_csv() for standard clean output.\nThese blocks are static and cannot be run in the browser — they write to your local file system and must be run in your Positron session.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Use pacman::p_load() to load multiple packages reproducibly?\n✓ Explain what here() does and why it improves reproducibility?\n✓ Describe at least two differences between read_csv() and read.csv()?\n✓ Explain what a tibble is and how it differs from a data frame?\n✓ Use %&gt;% to chain multiple data cleaning steps together?\n✓ Use clean_names() to standardize column names automatically?\n✓ Use rename(), mutate(), and case_when() to recode values?\n✓ Use select() and everything() to reorder and drop columns?\n✓ Replace NA values using replace_na()?\n✓ Explain what data harmonization means and verify it with setequal()?\n✓ Choose between write_csv() and write.csv() based on whether you need row labels?",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html",
+    "href": "workshops/arcs_02/03-structures.html",
+    "title": "Data Structures in R",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nLoad a package and import .csv files into R using read.csv()\nInspect the structure, dimensions, and data types of an object\nIdentify and locate missing values using is.na() and which()\nUse indexing to retrieve and modify specific elements in a data frame\nExplore unique values and frequency counts using unique() and table()\nClean and subset a data frame by renaming columns, removing columns, and recoding values\nHarmonize two data frames so they are compatible for downstream analysis\nSave cleaned data frames to .csv files using write.csv()",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#opening-your-project",
+    "href": "workshops/arcs_02/03-structures.html#opening-your-project",
+    "title": "Data Structures in R",
+    "section": "Opening Your Project",
+    "text": "Opening Your Project\nBefore importing any data, make sure you are working inside your R project and that your working directory is set correctly.\ngetwd()",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#importing-data",
+    "href": "workshops/arcs_02/03-structures.html#importing-data",
+    "title": "Data Structures in R",
+    "section": "Importing Data",
+    "text": "Importing Data\nWe use the readr package to import data. To learn more about any package, run help(package = \"package_name\") in your Positron console.\nlibrary(readr)\nWe will be working with two tables from the GREIN dataset. Import them using read.csv(). To learn more about any function, run ?function_name in your Positron console.\n1. Raw counts at the gene level:\nrawc &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data_3.csv\")\n2. Sample metadata — information about the sequenced samples:\ninfo &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#inspecting-data-structures",
+    "href": "workshops/arcs_02/03-structures.html#inspecting-data-structures",
+    "title": "Data Structures in R",
+    "section": "Inspecting Data Structures",
+    "text": "Inspecting Data Structures\n\nClass and Type\nFind what type of structure an object has with class():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nFind the type of data stored in an object with typeof():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipExercise 1\n\n\n\nFind the type of data stored in a specific column of an object. Use $ after the object name to access a column:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nDimensions and Structure\nFind the dimensions of both tables using dim():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nGet more detailed information about the overall structure of an object with str():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nSummary Statistics\nTo get an idea of the type of data and some minimal statistics, use summary():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteWhat summary() returns\n\n\n\nFor numeric vectors:\n\n\n\nOutput\nDescription\n\n\n\n\nMin.\nThe minimum value\n\n\n1st Qu.\nThe first quartile (25th percentile)\n\n\nMedian\nThe median (50th percentile)\n\n\nMean\nThe arithmetic mean\n\n\n3rd Qu.\nThe third quartile (75th percentile)\n\n\nMax.\nThe maximum value\n\n\n\nFor character variables:\n\n\n\nOutput\nDescription\n\n\n\n\nLength\nTotal number of elements\n\n\nClass\nData type — will show \"character\"\n\n\nMode\nStorage mode — will show \"character\"",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#identifying-missing-values",
+    "href": "workshops/arcs_02/03-structures.html#identifying-missing-values",
+    "title": "Data Structures in R",
+    "section": "Identifying Missing Values",
+    "text": "Identifying Missing Values\nTo check whether an object contains any NA or missing values, we can use several functions.\nFor a quick check of whether any missing values exist:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nFor a more granular analysis, use is.na(). Try it on a simple example first:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\n\nThis function can be impractical when looking at a large data frame like rawc — it returns a value for every single element. For large objects, anyNA() or which(is.na()) are more useful.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#manipulating-specific-data-points",
+    "href": "workshops/arcs_02/03-structures.html#manipulating-specific-data-points",
+    "title": "Data Structures in R",
+    "section": "Manipulating Specific Data Points",
+    "text": "Manipulating Specific Data Points\nThe selection and inspection of specific elements or subsets of data are made easier in R by the use of an element’s numerical position, or index.\n\n\n\n\n\n\nImportantIndexing in R\n\n\n\nIn R, element numbering starts at 1. Note: Python uses 0-based indexing.\nVectors — access by position:\nvector[1]       # first element\nMatrices and Data Frames — use a comma to separate row and column:\ntable[1, 2]     # element in row 1, column 2\ntable[1059, ]   # entire row 1059\ntable[, 3]      # entire column 3\n\n\nWe know that rawc has an NA value in a specific column ($GSM3119015). To find the exact row where it occurs, we can nest is.na() inside which():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteConditional Operators in R\n\n\n\n\n\n\nOperator\nMeaning\n\n\n\n\n==\nequal\n\n\n!=\nnot equal\n\n\n&gt;\ngreater than\n\n\n&lt;\nless than\n\n\n&gt;=\ngreater than or equal to\n\n\n&lt;=\nless than or equal to\n\n\n%in%\nincluded in\n\n\n\n\n\nWe can confirm the NA value is in row 1059 of rawc by inspecting that row:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipExercise 2\n\n\n\nFix the NA value by using its positional coordinates — row and column index or name:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#exploring-unique-values",
+    "href": "workshops/arcs_02/03-structures.html#exploring-unique-values",
+    "title": "Data Structures in R",
+    "section": "Exploring Unique Values",
+    "text": "Exploring Unique Values\nLet’s turn to the info object and inspect what unique values exist using unique() and table():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nFor an organized view across the whole table, apply the same functions with sapply():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#data-cleaning-and-subsetting",
+    "href": "workshops/arcs_02/03-structures.html#data-cleaning-and-subsetting",
+    "title": "Data Structures in R",
+    "section": "Data Cleaning and Subsetting",
+    "text": "Data Cleaning and Subsetting\n\nRenaming Columns\nChange specific column names using colnames() and []:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\n\ncolnames() retrieves a vector, so we only need [] without a comma — a vector is a one-dimensional structure and does not need row/column indexing.\n\n\n\n\nRemoving a Column\nRemove the redundant genotype.ch1 column using its index number:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRecoding Values\nClean up the genotype column — convert \"Shank3 Mutant\" to \"Shank3\":\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExtract housing condition information from the condition column:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCreate a new column combining genotype and condition separated by _:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBuild the final cleaned data frame with selected columns:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/03-structures.html#data-harmonization",
+    "href": "workshops/arcs_02/03-structures.html#data-harmonization",
+    "title": "Data Structures in R",
+    "section": "Data Harmonization",
+    "text": "Data Harmonization\nData harmonization is the process of collecting and unifying data from various sources and formats into a consistent, standardized format — making it compatible for integration and analysis.\nWe have two tables that need to be harmonized before conducting downstream analysis such as differential gene expression analysis. Specifically, the samples in rawc (raw counts) must be in the same number and order as in info_clean (metadata).\nCheck whether the column names of rawc match the sample IDs in info_clean:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLet’s take a closer look at each:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo harmonize the two objects:\nStep 1: Create a gene_id vector by merging gene ID and gene symbol columns using paste(), separating them with |:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nStep 2: Create a new data frame keeping only the columns that match info_clean$sample_id, and set gene_id as row names so it is not interpreted as data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nSave Cleaned Tables\nSave the cleaned metadata and raw counts tables as .csv files in your processed_data/ folder:\nwrite.csv(info_clean, \"processed_data/Shank3_metadata_clean.csv\")\nwrite.csv(rawc_clean, \"processed_data/Shank3_rawCounts_clean.csv\")\n\n\n\n\n\n\nNote\n\n\n\nwrite.csv() is kept as a static block — it writes to your local file system and cannot be run in the browser.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Load a package with library() and import a .csv with read.csv()?\n✓ Use class(), typeof(), dim(), and str() to inspect an object?\n✓ Explain what summary() returns for numeric vs. character variables?\n✓ Use is.na() and which() to locate a missing value?\n✓ Retrieve and modify a specific element using row and column indexing?\n✓ Use unique() and table() to explore values in a column?\n✓ Rename and remove columns in a data frame?\n✓ Use ifelse() and grepl() to recode values in a column?\n✓ Explain what data harmonization is and why it matters?\n✓ Save a cleaned data frame to a .csv file with write.csv()?",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Data Structures"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html",
+    "href": "workshops/arcs_02/04-reports.html",
+    "title": "Reports",
+    "section": "",
+    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nConvert a plain text file into a Quarto document (.qmd)\nRender a .qmd file to HTML and understand what “localhost” means\nEmbed R code chunks into a Quarto document with correct syntax\nUse fs::dir_tree() to automatically generate and annotate a project structure in your README\nRe-render a document to reflect updated content\nCreate a Quarto document using a journal template (PLOS)\nRun a gene variability analysis and interpret summary statistics\nGenerate and save a publication-quality expression heatmap",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#slides",
+    "href": "workshops/arcs_02/04-reports.html#slides",
+    "title": "Reports",
+    "section": "Slides",
+    "text": "Slides\nOpen slides fullscreen",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#why-reports",
+    "href": "workshops/arcs_02/04-reports.html#why-reports",
+    "title": "Reports",
+    "section": "Why Reports?",
+    "text": "Why Reports?\nQuarto documents let you combine code, results, and narrative text in a single file that can be rendered to HTML, PDF, or Word. This means your analysis and its documentation live together — when your code changes, your report updates automatically. This is a core reproducibility practice.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
+    "href": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
+    "title": "Reports",
+    "section": "Convert README.txt to a Quarto Document",
+    "text": "Convert README.txt to a Quarto Document\n\nNavigate to your README.txt file in your ARCS project folder (PC: Windows Explorer; Mac: Finder)\nRight click on the file and select Rename\nChange the file extension from .txt to .qmd (Mac: type .qmd after README)\nAccept the file extension change and save the file\nGo back to Positron and open your README.qmd file\nAdd triple backticks ( ``` ) before and after your README’s file structure tree to format it as a code block\nIn Positron, click the Render button to render your document\nA browser window should open and display your README.qmd file as HTML\n\n\n\n\n\n\n\nNoteWhat is localhost?\n\n\n\nNotice that the browser window’s address starts with localhost followed by a port number. This means your computer is serving your .qmd file locally to itself — the file is not on the internet, it is being previewed from your own machine.",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
+    "href": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
+    "title": "Reports",
+    "section": "Automate README.qmd Updates",
+    "text": "Automate README.qmd Updates\nInstead of manually updating your README every time your project structure changes, we can write an R code chunk that generates the file tree automatically each time you render.\n\nCheck whether you have the fs package installed:\n\nlibrary(fs)\nIf you get an error, install it first:\ninstall.packages(\"fs\")\n\nCopy the script below:\n\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\n# Get the actual structure\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\n# Define comments for specific files/folders\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\n# Add comments to matching lines\nfor(item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for(name in names(comments)) {\n    if(grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\n# Print the result\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNoteWhat this script does\n\n\n\n\ndir_tree() generates a visual tree of your project folder up to 2 levels deep\ncapture.output() stores that tree as a character vector\nThe comments list defines annotations to add next to specific folders or files\nThe for loop finds matching lines and appends the annotations\ncat() prints the result as a formatted code block in your rendered document\n\n\n\n\nPaste this script into your README.qmd file in between the triple backticks where your file tree currently appears\nNext to the opening triple backticks, add {r} to make it an R code chunk — it should look like this: ```{r}\nSave your README.qmd file\nClick the Render button in Positron\nGo back to your browser window to see the result\nMake any changes you would like to the comments &lt;- list() section and re-render to see them reflected",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
+    "href": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
+    "title": "Reports",
+    "section": "Create a Quarto Document for Publishing",
+    "text": "Create a Quarto Document for Publishing\nIn this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.\n\nSetup\n\nCheck whether you have the following packages installed:\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(scales)\nIf any are missing, install them in your console:\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\ninstall.packages(\"scales\")\n\n\n\n\n\n\nTipChecking installed packages in Positron\n\n\n\nYou can also check in the Extensions pane by searching for the package name.\n\n\n\n\nInstall the PLOS Template\n\nIn your Terminal tab, run the following commands one at a time:\n\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\n\n\n\n\n\n\nNoteWhat this does\n\n\n\nThis installs a Quarto extension that formats your document to match PLOS journal submission requirements — including layout, fonts, and figure formatting. This is the same approach used for many other journal templates available through quarto-journals.\n\n\n\n\nGene Variability Analysis\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Gene Variability Analysis. Start your code block with ```{r} and close it with ```.\n\n\n\n\n\n\n\nNoteAbout the #| lines\n\n\n\nThese are chunk options — they tell Quarto how to handle the output when this code runs inside a .qmd file. message: false suppresses package loading messages, and warning: false suppresses warnings.\n\n\n#| message: false\n#| warning: false\n\n# Prepare data - rename the first column and use both ID columns\ngene_data_long &lt;- gene_data %&gt;%\n  rename(ensembl_id = `...1`) %&gt;%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %&gt;%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\n# Calculate variance for each gene across all samples\ngene_variability &lt;- gene_data_long %&gt;%\n  group_by(gene_symbol, ensembl_id) %&gt;%\n  summarise(\n    mean_expression        = mean(expression, na.rm = TRUE),\n    variance               = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\n# Identify top 15 most variable genes\ntop_genes &lt;- gene_variability %&gt;%\n  arrange(desc(variance)) %&gt;%\n  slice_head(n = 15)\n\n# Display summary statistics\ncat(\"Total genes analyzed:\", nrow(gene_variability), \"\\n\")\ncat(\"Mean variance across all genes:\",\n    round(mean(gene_variability$variance, na.rm = TRUE), 2), \"\\n\")\ncat(\"Most variable gene:\", top_genes$gene_symbol[1],\n    \"with variance =\", round(top_genes$variance[1], 2), \"\\n\")\n\n# Show the top 10 most variable genes\ncat(\"\\nTop 10 most variable genes:\\n\")\nprint(top_genes %&gt;%\n        select(gene_symbol, variance) %&gt;%\n        slice_head(n = 10) %&gt;%\n        mutate(variance = round(variance, 2)))\n\n\nData Visualization\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Data Visualization. Start your code block with ```{r} and close it with ```.\n\n#| fig-cap: \"Expression heatmap showing scaled expression levels of the\n#|   15 most variable genes across all samples. Blue indicates\n#|   below-average expression, white indicates average expression,\n#|   and red indicates above-average expression for each gene.\"\n#| fig-width: 10\n#| fig-height: 6\n\n# Prepare heatmap data\nheatmap_data &lt;- gene_data_long %&gt;%\n  filter(gene_symbol %in% top_genes$gene_symbol) %&gt;%\n  left_join(top_genes %&gt;% select(gene_symbol, variance),\n            by = \"gene_symbol\") %&gt;%\n  group_by(gene_symbol) %&gt;%\n  mutate(scaled_expr = scale(expression)[, 1]) %&gt;%\n  ungroup()\n\n# Create heatmap visualization\nexpression_heatmap &lt;- heatmap_data %&gt;%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low   = \"blue\",\n    mid   = \"white\",\n    high  = \"red\",\n    name  = \"Scaled\\nExpression\",\n    limits = c(-3, 3),\n    oob   = scales::squish\n  ) +\n  labs(\n    title    = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x        = \"Sample ID\",\n    y        = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x  = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y  = element_text(size = 10, face = \"italic\"),\n    plot.title   = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    legend.position = \"right\",\n    panel.grid   = element_blank()\n  )\n\nprint(expression_heatmap)\n\n# Save high-resolution figure\nggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n       plot   = expression_heatmap,\n       width  = 10,\n       height = 6,\n       dpi    = 300)\n\nRender your publication.qmd document to see your PLOS-formatted article\n\n\n\n\n\n\n\nTipSaving your figure\n\n\n\nNotice the ggsave() call at the end of the visualization block. This saves a high-resolution .png to your outputs/ folder with a timestamp in the filename — the same automated file naming pattern introduced in the Project Management section.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Convert a .txt file to a .qmd file and render it to HTML?\n✓ Explain what localhost means when previewing a rendered document?\n✓ Add an R code chunk to a .qmd file with correct syntax?\n✓ Use dir_tree() and capture.output() to auto-generate a project tree in your README?\n✓ Modify the comments list and re-render to see updated annotations?\n✓ Install and apply a Quarto journal template from the terminal?\n✓ Explain what the gene variability analysis is doing at a high level?\n✓ Render a publication-quality heatmap and save it to your outputs/ folder?",
+    "crumbs": [
+      "Home",
+      "ARCS 2",
+      "Reports"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry",
+    "href": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "True Story: Data Management Gone Awry",
+    "text": "True Story: Data Management Gone Awry\n\n\nHere’s an example of what can happen when you don’t make data management decisions.\nThis screenshot is from a publication from a Yale School of Medicine lab. It was published in a Nature journal. You’ll notice the bright outlines in the images above, which were identified by an AI image recognition tool (imagetwin.ai)as being duplicative of each other. A human peer found these duplicative images in 2025 and this discussion I’m reporting comes from a public journal club platform (https://pubpeer.com/publications/1E57F80A4418124605D36D4B734480#)"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry-1",
+    "href": "workshops/arcs_01/02-slides.html#true-story-data-management-gone-awry-1",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "True Story: Data Management Gone Awry",
+    "text": "True Story: Data Management Gone Awry\n\n\nThese are microscopy images from a mouse’s ear. We can see how it could be possible to get them mixed up by mistake.\nMagnified, we can see some evidence of repeating patterns. (USE chalk)"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#author-explanation",
+    "href": "workshops/arcs_01/02-slides.html#author-explanation",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Author Explanation",
+    "text": "Author Explanation\n“…several postdocs and students were involved in this project from 2008 to 2018. We, as a team, have careful examined the original files and data folders. We have identified the potential processes that could cause the mistakes, including file transfer, image processing and figure assembly. All these mistakes were made unintentionally and inadvertently during the processes. We sincerely apologize for any impact that might have caused.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#where-in-the-computational-process-did-this-happen",
+    "href": "workshops/arcs_01/02-slides.html#where-in-the-computational-process-did-this-happen",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Where in the computational process did this happen?",
+    "text": "Where in the computational process did this happen?\n“Upon complete of the STZ study in the lab, Dr. X left Yale and other lab members helped transfer files and processes from microscope facility to the lab computer. During the figure assembly, one panel of images in the WT/ECKO group were mistakenly considered as the STZ group while the real STZ panel was not used for the figure assembly…Due to this mistake, essentially all images from Fig.7f for STZ were from the WT/ECKO study.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#how-does-this-happen",
+    "href": "workshops/arcs_01/02-slides.html#how-does-this-happen",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "How does this happen?",
+    "text": "How does this happen?\n\nPipeline Gaps - different pieces of the process done in different environments\nFile Transfers - dragging and dropping allows for errors\nFilenaming Variation - images were not grouped by file name\n\n\nWait for students to speak first\nWhere in the computational process did the mix up happen?"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#reproducible-research-from-the-ground-up",
+    "href": "workshops/arcs_01/02-slides.html#reproducible-research-from-the-ground-up",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Reproducible research from the ground up",
+    "text": "Reproducible research from the ground up\n\nGet some research data\nSet up an R project\nManage data"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#pick-a-repository",
+    "href": "workshops/arcs_01/02-slides.html#pick-a-repository",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Pick a repository",
+    "text": "Pick a repository"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#pick-a-dataset",
+    "href": "workshops/arcs_01/02-slides.html#pick-a-dataset",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Pick a dataset",
+    "text": "Pick a dataset"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#download-raw-data",
+    "href": "workshops/arcs_01/02-slides.html#download-raw-data",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Download raw data",
+    "text": "Download raw data"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#download-metadata",
+    "href": "workshops/arcs_01/02-slides.html#download-metadata",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Download metadata",
+    "text": "Download metadata"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#metadata-we-downloaded",
+    "href": "workshops/arcs_01/02-slides.html#metadata-we-downloaded",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Metadata we downloaded",
+    "text": "Metadata we downloaded"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#metadata-we-want",
+    "href": "workshops/arcs_01/02-slides.html#metadata-we-want",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Metadata we want",
+    "text": "Metadata we want"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#why-do-this-in-r",
+    "href": "workshops/arcs_01/02-slides.html#why-do-this-in-r",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Why do this in R?",
+    "text": "Why do this in R?\n\nAny ideas?"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#if-we-did-it-in-excel",
+    "href": "workshops/arcs_01/02-slides.html#if-we-did-it-in-excel",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "If we did it in Excel…",
+    "text": "If we did it in Excel…"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#when-we-do-it-in-r",
+    "href": "workshops/arcs_01/02-slides.html#when-we-do-it-in-r",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "When we do it in R…",
+    "text": "When we do it in R…"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#data-processing",
+    "href": "workshops/arcs_01/02-slides.html#data-processing",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Data Processing",
+    "text": "Data Processing\n\n\nExcel\n\nProcesses one observation at a time\nOpportunity for copy/paste errors\nSteps are not documented\nNew file means redoing all steps\nSetup time may be shorter\n\n\nR\n\nProcesses entire vectors of observations\nNo copy/paste errors during processing\nCode can document itself\nNew file means a small change (if any)\nSetup may take longer"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#computational-performance",
+    "href": "workshops/arcs_01/02-slides.html#computational-performance",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Computational Performance",
+    "text": "Computational Performance\n\n\n\nDataset\n20 rows\n1,000 rows\n100,000 rows\n1,000,000 rows +\n\n\n\n\nExcel\nfast\nslowing\ncrashing\ncannot open\n\n\nR\nfast\nfast\nfast\nfast\n\n\n\n\nPractical implications\nExcel is looping behind a friendly interface, which means that:\nExcel hits walls at:\n\n~50,000 rows (becomes very slow)\n~1 million rows (Excel’s row limit)\nComplex nested formulas (exponential slowdown)\n\nR scales to:\n\nMillions of rows routinely\nBillions of rows with proper techniques\nComplex operations remain fast\n\n\n\n\nThe big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproduciblity."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#rs-flexibility-creates-new-responsibilities",
+    "href": "workshops/arcs_01/02-slides.html#rs-flexibility-creates-new-responsibilities",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "R’s Flexibility Creates New Responsibilities",
+    "text": "R’s Flexibility Creates New Responsibilities\n\nEfficiency - You can still write code that runs slowly\nBest practices - R is agnostic to readability, optimal analysis, data ethics\nData management - Explicit instructions are needed to select and organize pipelines, folders, files\nInformation - Code that runs is not always code that produces desired or understandable results"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#meet-r-where-its-at",
+    "href": "workshops/arcs_01/02-slides.html#meet-r-where-its-at",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Meet R where it’s at",
+    "text": "Meet R where it’s at\n\nR Projects - Keep your files organized\nREADME - Document what you do\nFilenaming Conventions - Name your files consistently\nWorkflow automation - Use code to handle repetitive tasks\nLook beyond R - Use complimentary tools"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#what-are-r-projects",
+    "href": "workshops/arcs_01/02-slides.html#what-are-r-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "What Are R Projects?",
+    "text": "What Are R Projects?\n\nSelf-contained workspace for each analysis or research project\nAutomatic working directory management. No more setwd()\nSeamless integration with version control and documentation tools\n\n\nThink of an R Project like having a dedicated laboratory bench for each experiment. Just like you wouldn’t mix chemicals from different experiments on the same bench, you shouldn’t mix files from different analyses in the same folder. When you open an R Project, R automatically “knows” where all your files are located - your data, scripts, outputs, and documentation all live together. This eliminates one of the most common beginner frustrations: the dreaded “Error: cannot open file” because R can’t find your data. The working directory is automatically set to your project folder, so file paths just work."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#when-and-where-to-create-r-projects",
+    "href": "workshops/arcs_01/02-slides.html#when-and-where-to-create-r-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "WHEN and WHERE to Create R Projects",
+    "text": "WHEN and WHERE to Create R Projects\n\nWHEN: At the very beginning, before writing any code\nWHERE: Create a dedicated folder for each project inside of one “Code” or “R_Projects” folder\nOne R project = one research question/paper/analysis (not one project for all your R work)\n\n\nThe biggest mistake beginners make is creating one giant “R_Work” folder and throwing everything in there. Instead, think of each research question or manuscript as deserving its own project. Create the R Project FIRST, before you even download your data. This is like setting up your lab notebook before starting an experiment - it ensures everything stays organized from day one. Choose descriptive names that will make sense to you (and your collaborators) months later. A good rule of thumb: if you might publish this as a separate paper, it should be its own R Project. The folder location should be somewhere logical on your computer - many people create a “Research” or “Projects” folder in their Documents."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#data-management-advantages-to-r-projects",
+    "href": "workshops/arcs_01/02-slides.html#data-management-advantages-to-r-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Data Management Advantages to R Projects",
+    "text": "Data Management Advantages to R Projects\n\nRelative file paths work everywhere\n\ninput_file &lt;- \"raw_data/GSE113754_GeneLevel_Raw_data.xlsx\" #this\ninput_file &lt;- \"C:/Users/Username/Code/ARCS/raw_data/GSE113754_GeneLevel_Raw_data.xlsx\" #NOT this\n\nShare projects easily (zip the folder, send to collaborators/your future self)\nClear project boundaries (everything stays together)\n\n\nHere’s where R Projects really shine for reproducibility. When you use relative paths like “data/metadata.csv”, your code works on any computer - yours, your advisor’s, your collaborator’s - as long as they have the project folder. No more changing file paths when you switch from your laptop to the lab computer! The automatic working directory means you’ll never again see that frustrated student debugging session where half the time is spent figuring out where R is looking for files. When you want to share your analysis, just zip the entire project folder - everything your collaborator needs is in one place. RStudio keeps track of your recent projects, so you can easily switch between your Shank3 analysis and your methods comparison without confusion. This organization becomes crucial when you’re juggling multiple research projects simultaneously.\n\n\n.Rproj\n\nOpening RStudio from an .Rproj file automatically sets the working directory to that folder\nLets RStudio remember project-specific session settings (like which files were open)\nYour project appears in RStudio’s recent projects list\nEverything just works - No need to hunt for files or set paths\n\nThe .Rproj File: Your Project’s “ID Card”\nWhat it does: The .Rproj file is like an ID card that tells RStudio “this folder is a special R project folder.”\nWhat happens when you double-click it: RStudio opens and automatically sets the working directory to that folder RStudio “remembers” project-specific settings (like which files were open) Your project appears in RStudio’s recent projects list Everything “just works” - no need to hunt for files or set paths\nDEMO: if I click on a new .Rproj file, then go to terminal, pwd will show my new directory. If I ls, I will see the files that are in my directory."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#what-is-git",
+    "href": "workshops/arcs_01/02-slides.html#what-is-git",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "What is Git?",
+    "text": "What is Git?\n\nVersion control system - like track changes for your entire project, not just one document\nTakes snapshots of your project at different points in time\nRemembers what changed\nWorks locally on your computer\nDifferent from GitHub - Git is the technology, GitHub is the website\nEvery R Project can use Git\n\n\nThe .gitignore file is our first encounter with version control using git. Has anyone heard about this technology or used it before? What do you know about it? This is a technology that you will learn more about through the GitHub platform in part 3 of this class.\nFor now, you just need to know that git is a more powerful way of doing something like tracking changes and resolving differences if you and perhaps your collaborators iterate through different versions of a script and expand your project, or, if you need to roll back to an earlier version of your project, you can do that with Git. Git creates an audit-proof version of record for the coding work that you do. It can be one very important part of making your work reproducible.\nNow, since Git pays attention to EVERY file in your project, we need to tell it which files to ignore - and that’s where .gitignore comes in…"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#building-reproducible-projects",
+    "href": "workshops/arcs_01/02-slides.html#building-reproducible-projects",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Building Reproducible Projects",
+    "text": "Building Reproducible Projects\n\n\nWhat we just built:\n\nOrganized File Structure - dedicated folders\nProtected Raw Data - original data stays untouched\nR Project + Git - portable, trackable, self-contained\nComplete README - project map, instructions, data sources\n\n\n\n\nWhy this matters:\n\nMakes your project understandable\nAnyone can run your analysis\nAnyone can verify your results\nFuture-proofs your projects (when initialized early and modified regularly)\n\n\n\nWhat we just did in this exercise is build the foundation of reproducible computational research. We created two things that work together: structure and documentation.\nThe file structure- separating raw data from processed data, organizing scripts and outputs - that’s not just about being neat. It creates a clear audit trail that anyone can follow. Your raw data folder is like evidence that stays untouched, while your folder structure shows exactly how data flows through your analysis.\nThe README we created is what makes your structured project actually usable. You could have the most organized folders in the world, but without documentation explaining what everything does and how to use it, it’s still a mystery to others - and to your future self.\nTogether, these create true computational reproducibility. Someone else can look at your project, quickly understand what you did, run your analysis, and get the same results. That’s the gold standard in research - work that others can independently verify.\nSix months from now, when you’ve forgotten the details, this combination of clear organization and good documentation will be your lifeline. Ideally, you’ll open your project, read your README, and immediately know exactly what you were doing and how to continue.\nThis isn’t just good practice - it’s what separates amateur data analysis from trustworthy research, and what protects you as a researcher when funders, publishers, and peers ask you to show your work."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#filenaming-conventions",
+    "href": "workshops/arcs_01/02-slides.html#filenaming-conventions",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Filenaming Conventions",
+    "text": "Filenaming Conventions\n\nNo spaces (use underscore or en dash)\nStart with dates using International Organization for Standardization (ISO)\n\nYYYYMMDDHHMMSS\n\nUse descriptive names\n\n\nLet’s talk about something that seems simple but will save you hours of frustration: naming your files well.\nFirst rule: no spaces in file names. Spaces are often special characters in programming languages that have a specific assigned use behind the scenes. Or, they may keep your computer from understanding that words belong together. Use underscores or dashes instead - both work fine, just pick one and stick with it.\nFor dates, I want you to learn the ISO standard: YYYY-MM-DD. So October 2, 2025 becomes 20251002. Why? Because when your computer sorts files alphabetically, they’ll automatically sort in chronological order too. The American date format won’t do this.\nBe descriptive with your names. In six months when you’re looking through your files, ‘data.csv’ tells you nothing, but ‘participant_demographics.csv’ immediately tells you what’s inside.\nThe key is consistency. Whatever naming pattern you choose, use it for everything in your project. Your future self will thank you when you can find files instantly instead of opening each one to see what’s inside.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#filenaming-conventions-1",
+    "href": "workshops/arcs_01/02-slides.html#filenaming-conventions-1",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Filenaming Conventions",
+    "text": "Filenaming Conventions\n❌ Bad Examples:\n\ndata analysis.R (spaces)\ndata.csv (not descriptive)\nfinal_FINAL_really_final.R (version chaos)\n\n✅ Good Examples:\n\n2024-03-15_survey_analysis.R\nparticipant_demographics_clean.csv\nREADME.md"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#automating-file-naming-line-132",
+    "href": "workshops/arcs_01/02-slides.html#automating-file-naming-line-132",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Automating File Naming (Line 132)",
+    "text": "Automating File Naming (Line 132)\nWhat this script does:\n\nGenerates standardized file names automatically\nDemonstrates how to set up your own data analysis functions\nAsks for minimal configuration changes\nBuilds on the reproducible foundation we created\n\n\nIf needed:\nWhy automate?\nConsistency at scale - same format every time\nTimestamps - automatic ISO format dating\nNo typos - R handles the formatting\nAudit trail - never overwrite results"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#why-arcs",
+    "href": "workshops/arcs_01/02-slides.html#why-arcs",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "Why ARCS",
+    "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ARCS",
+    "section": "",
+    "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "index.html#july-2026-arcs-2.0-workshop-schedule",
+    "href": "index.html#july-2026-arcs-2.0-workshop-schedule",
+    "title": "ARCS",
+    "section": "",
+    "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  }
+]

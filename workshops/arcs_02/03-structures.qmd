@@ -1,0 +1,395 @@
+---
+title: "Data Structures in R"
+sidebar: arcs02
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+
+---
+
+::: {.callout-note}
+## By the end of this section, you should be able to...
+- Load a package and import `.csv` files into R using `read.csv()`
+- Inspect the structure, dimensions, and data types of an object
+- Identify and locate missing values using `is.na()` and `which()`
+- Use indexing to retrieve and modify specific elements in a data frame
+- Explore unique values and frequency counts using `unique()` and `table()`
+- Clean and subset a data frame by renaming columns, removing columns, and
+  recoding values
+- Harmonize two data frames so they are compatible for downstream analysis
+- Save cleaned data frames to `.csv` files using `write.csv()`
+:::
+
+---
+
+## Opening Your Project
+
+Before importing any data, make sure you are working inside your R project
+and that your working directory is set correctly.
+
+```r
+getwd()
+```
+
+---
+
+## Importing Data
+
+We use the `readr` package to import data. To learn more about any package,
+run `help(package = "package_name")` in your Positron console.
+
+```r
+library(readr)
+```
+
+We will be working with two tables from the GREIN dataset. Import them using
+`read.csv()`. To learn more about any function, run `?function_name` in your
+Positron console.
+
+**1. Raw counts at the gene level:**
+
+```r
+rawc <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data_3.csv")
+```
+
+**2. Sample metadata — information about the sequenced samples:**
+
+```r
+info <- read.csv("raw_data/GSE113754_filtered_metadata.csv")
+```
+
+---
+
+## Inspecting Data Structures
+
+### Class and Type
+
+Find what type of structure an object has with `class()`:
+
+```{webr-r}
+# Run these in your Positron console with your imported data
+class(rawc)
+class(info)
+```
+
+Find the type of data stored in an object with `typeof()`:
+
+```{webr-r}
+typeof(rawc)
+typeof(info)
+```
+
+::: {.callout-tip}
+## Exercise 1
+Find the type of data stored in a specific column of an object.
+Use `$` after the object name to access a column:
+
+```{webr-r}
+typeof(rawc$GSM3119002)
+```
+:::
+
+### Dimensions and Structure
+
+Find the dimensions of both tables using `dim()`:
+
+```{webr-r}
+dim(rawc)
+dim(info)
+```
+
+Get more detailed information about the overall structure of an object with
+`str()`:
+
+```{webr-r}
+str(rawc)
+str(info)
+```
+
+### Summary Statistics
+
+To get an idea of the type of data and some minimal statistics, use
+`summary()`:
+
+```{webr-r}
+summary(rawc)
+```
+
+::: {.callout-note}
+## What `summary()` returns
+
+**For numeric vectors:**
+
+| Output | Description |
+|---|---|
+| `Min.` | The minimum value |
+| `1st Qu.` | The first quartile (25th percentile) |
+| `Median` | The median (50th percentile) |
+| `Mean` | The arithmetic mean |
+| `3rd Qu.` | The third quartile (75th percentile) |
+| `Max.` | The maximum value |
+
+**For character variables:**
+
+| Output | Description |
+|---|---|
+| `Length` | Total number of elements |
+| `Class` | Data type — will show `"character"` |
+| `Mode` | Storage mode — will show `"character"` |
+:::
+
+---
+
+## Identifying Missing Values
+
+To check whether an object contains any `NA` or missing values, we can use
+several functions.
+
+For a quick check of whether **any** missing values exist:
+
+```{webr-r}
+anyNA(rawc)
+```
+
+For a more granular analysis, use `is.na()`. Try it on a simple example first:
+
+```{webr-r}
+is.na(c(1, NA, 3, 6, 0))
+```
+
+::: {.callout-note}
+This function can be impractical when looking at a large data frame like
+`rawc` — it returns a value for every single element. For large objects,
+`anyNA()` or `which(is.na())` are more useful.
+:::
+
+---
+
+## Manipulating Specific Data Points
+
+The selection and inspection of specific elements or subsets of data are made
+easier in R by the use of an element's **numerical position**, or **index**.
+
+::: {.callout-important}
+## Indexing in R
+In R, element numbering starts at **1**.
+Note: Python uses 0-based indexing.
+
+**Vectors** — access by position:
+```r
+vector[1]       # first element
+```
+
+**Matrices and Data Frames** — use a comma to separate row and column:
+```r
+table[1, 2]     # element in row 1, column 2
+table[1059, ]   # entire row 1059
+table[, 3]      # entire column 3
+```
+:::
+
+We know that `rawc` has an `NA` value in a specific column (`$GSM3119015`).
+To find the exact row where it occurs, we can nest `is.na()` inside `which()`:
+
+```{webr-r}
+which(is.na(rawc$GSM3119015 == "NA"))
+```
+
+::: {.callout-note}
+## Conditional Operators in R
+
+| Operator | Meaning |
+|---|---|
+| `==` | equal |
+| `!=` | not equal |
+| `>` | greater than |
+| `<` | less than |
+| `>=` | greater than or equal to |
+| `<=` | less than or equal to |
+| `%in%` | included in |
+:::
+
+We can confirm the `NA` value is in row 1059 of `rawc` by inspecting that row:
+
+```{webr-r}
+rawc[1059, ]
+```
+
+::: {.callout-tip}
+## Exercise 2
+Fix the `NA` value by using its positional coordinates — row and column
+index or name:
+
+```{webr-r}
+rawc[1059, "GSM3119015"] <- 0
+rawc[1059, ]
+```
+:::
+
+---
+
+## Exploring Unique Values
+
+Let's turn to the `info` object and inspect what unique values exist using
+`unique()` and `table()`:
+
+```{webr-r}
+unique(info$genotype)
+table(info$genotype)
+```
+
+For an organized view across the whole table, apply the same functions with
+`sapply()`:
+
+```{webr-r}
+sapply(info, unique)
+sapply(info, table)
+```
+
+---
+
+## Data Cleaning and Subsetting
+
+### Renaming Columns
+
+Change specific column names using `colnames()` and `[]`:
+
+```{webr-r}
+colnames(info)[1:3] <- c("sample_id", "condition", "genotype")
+```
+
+::: {.callout-note}
+`colnames()` retrieves a vector, so we only need `[]` without a comma —
+a vector is a one-dimensional structure and does not need row/column
+indexing.
+:::
+
+### Removing a Column
+
+Remove the redundant `genotype.ch1` column using its index number:
+
+```{webr-r}
+info <- info[, -4]
+```
+
+### Recoding Values
+
+Clean up the `genotype` column — convert `"Shank3 Mutant"` to `"Shank3"`:
+
+```{webr-r}
+genotype_clean <- ifelse(grepl("WT", info$genotype),           # test
+                         "WT",                                  # yes
+                         ifelse(grepl("Shank3", info$genotype), # no
+                                "Shank3",
+                                as.character(info$genotype)))
+```
+
+Extract housing condition information from the `condition` column:
+
+```{webr-r}
+condition_clean <- ifelse(grepl("homecage control", info$condition),   # test
+                          "normal",                                     # yes
+                          ifelse(grepl("sleep deprivation",            # no
+                                       info$condition),
+                                 "sleep_deprived",
+                                 as.character(info$condition)))
+```
+
+Create a new column combining genotype and condition separated by `_`:
+
+```{webr-r}
+geno_cond <- paste(genotype_clean, condition_clean, sep = "_")
+```
+
+Build the final cleaned data frame with selected columns:
+
+```{webr-r}
+info_clean <- data.frame(
+  sample_id = info[, 1],
+  genotype  = genotype_clean,
+  condition = condition_clean,
+  geno_cond = geno_cond
+)
+
+head(info_clean)
+```
+
+---
+
+## Data Harmonization
+
+Data harmonization is the process of collecting and unifying data from
+various sources and formats into a consistent, standardized format — making
+it compatible for integration and analysis.
+
+We have two tables that need to be harmonized before conducting downstream
+analysis such as differential gene expression analysis. Specifically, the
+samples in `rawc` (raw counts) must be in the **same number and order** as
+in `info_clean` (metadata).
+
+Check whether the column names of `rawc` match the sample IDs in `info_clean`:
+
+```{webr-r}
+identical(colnames(rawc), info_clean$sample_id)
+```
+
+Let's take a closer look at each:
+
+```{webr-r}
+colnames(rawc)
+info_clean$sample_id
+```
+
+To harmonize the two objects:
+
+**Step 1:** Create a `gene_id` vector by merging gene ID and gene symbol
+columns using `paste()`, separating them with `|`:
+
+```{webr-r}
+gene_id <- paste(rawc[, 2], rawc[, 3], sep = "|")
+```
+
+**Step 2:** Create a new data frame keeping only the columns that match
+`info_clean$sample_id`, and set `gene_id` as row names so it is not
+interpreted as data:
+
+```{webr-r}
+rawc_clean <- data.frame(
+  rawc[, info_clean$sample_id],
+  row.names = gene_id
+)
+```
+
+### Save Cleaned Tables
+
+Save the cleaned metadata and raw counts tables as `.csv` files in your
+`processed_data/` folder:
+
+```r
+write.csv(info_clean, "processed_data/Shank3_metadata_clean.csv")
+write.csv(rawc_clean, "processed_data/Shank3_rawCounts_clean.csv")
+```
+
+::: {.callout-note}
+`write.csv()` is kept as a static block — it writes to your local file
+system and cannot be run in the browser.
+:::
+
+---
+
+::: {.callout-note}
+## Can You...?
+- ✓ Load a package with `library()` and import a `.csv` with `read.csv()`?
+- ✓ Use `class()`, `typeof()`, `dim()`, and `str()` to inspect an object?
+- ✓ Explain what `summary()` returns for numeric vs. character variables?
+- ✓ Use `is.na()` and `which()` to locate a missing value?
+- ✓ Retrieve and modify a specific element using row and column indexing?
+- ✓ Use `unique()` and `table()` to explore values in a column?
+- ✓ Rename and remove columns in a data frame?
+- ✓ Use `ifelse()` and `grepl()` to recode values in a column?
+- ✓ Explain what data harmonization is and why it matters?
+- ✓ Save a cleaned data frame to a `.csv` file with `write.csv()`?
+:::
+
