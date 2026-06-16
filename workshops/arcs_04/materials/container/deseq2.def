@@ -1,0 +1,54 @@
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:RELEASE_3_19
+
+# ARCS Part 4 — DESeq2 analysis container
+#
+# Built on the official Bioconductor image so DESeq2 and its dependencies are
+# already present and version-pinned to a Bioconductor release. Layer in only
+# the extra packages the workshop pipeline needs.
+#
+# Build (Linux or Codespace):
+#   apptainer build deseq2.sif deseq2.def
+#
+# Publish to GHCR (one-time, by maintainer):
+#   apptainer push deseq2.sif oras://ghcr.io/arcs-workshop/deseq2:latest
+
+%labels
+    Maintainer  ARCS workshop team
+    Workshop    ARCS Part 4
+    R_version   4.4
+    BioC        3.19
+
+%post
+    # Keep apt quiet and non-interactive during build.
+    export DEBIAN_FRONTEND=noninteractive
+
+    # System libs that some R packages need at install time.
+    apt-get update -qq
+    apt-get install -y --no-install-recommends \
+        libxml2-dev \
+        libcurl4-openssl-dev \
+        libssl-dev
+    rm -rf /var/lib/apt/lists/*
+
+    # Workshop R packages. DESeq2 + apeglm come from the base image; we add
+    # the tidyverse pieces the pipeline uses and a couple of plotting helpers.
+    #
+    # >>> Learners: this is the block you'll edit in the "Modify" exercise. <<<
+    R -e 'install.packages(c("readr", "dplyr", "ggplot2", "pheatmap"), repos = "https://cloud.r-project.org")'
+    R -e 'BiocManager::install(c("EnhancedVolcano"), ask = FALSE, update = FALSE)'
+
+%environment
+    # Make R use a consistent locale inside the container regardless of host.
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+
+%runscript
+    # Default action: run the pipeline script that's bind-mounted from the repo.
+    # Usage:
+    #   apptainer run --bind $PWD:/work deseq2.sif scripts/pipeline.R
+    exec Rscript "$@"
+
+%test
+    # Sanity check the image at build time: DESeq2 must load.
+    R -e 'stopifnot("DESeq2" %in% rownames(installed.packages())); library(DESeq2); cat("DESeq2 OK\n")'

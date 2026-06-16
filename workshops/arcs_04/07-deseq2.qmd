@@ -1,0 +1,87 @@
+---
+title: "DESeq2: A Reproducible Differential Expression Pipeline"
+sidebar: arcs04
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
+
+> **Part 4a of a 2-hour session.** This first hour builds a real DESeq2 pipeline
+> locally in Positron. Hour 2 ([Apptainer](08-apptainer.qmd)) packages this same
+> pipeline in a container so it runs identically on any operating system.
+
+## Learning objectives
+
+By the end of this hour you will be able to:
+
+- **Execute** a DESeq2 differential expression pipeline on a shared RNA-seq dataset
+- **Organize** the analysis as a scripted, re-runnable pipeline inside an R Project
+- **Interpret** DESeq2 output (log2 fold change, adjusted p-values) in the context of the experimental design
+
+## Prerequisites
+
+ARCS Parts 1–3, or equivalent comfort with R Projects, the tidyverse, and Git.
+
+---
+
+## 1. Why DESeq2 — and why a *pipeline*?
+
+<!-- Frame: in Parts 1–3 you ran code interactively. Real analyses need to be
+     re-runnable end-to-end. DESeq2 is a realistic, dependency-heavy workflow
+     that exposes every reproducibility weak point. -->
+
+## 2. Set up the R Project
+
+<!-- Open the workshop repo in Positron. Walk through the project layout:
+     data/, scripts/, results/, README.md. Confirm renv or sessionInfo()
+     baseline so we know what "works on my machine" means today. -->
+
+```{webr-r}
+# Confirm your environment matches the workshop baseline.
+R.version.string
+```
+
+## 3. The dataset
+
+<!-- Brief description of the count matrix and sample sheet. Where it came
+     from, what the comparison is, what we expect to find. -->
+
+## 4. Build the pipeline, step by step
+
+### 4a. Load counts and sample metadata
+
+```{webr-r}
+# counts <- readr::read_tsv("data/counts.tsv")
+# coldata <- readr::read_csv("data/samples.csv")
+```
+
+### 4b. Construct the DESeqDataSet
+
+<!-- Show DESeqDataSetFromMatrix, the design formula, and why design matters. -->
+
+### 4c. Run DESeq() and extract results
+
+<!-- results(), summary(), lfcShrink() with apeglm. -->
+
+### 4d. Diagnostic plots
+
+<!-- MA plot, PCA on rlog/vst transform, one volcano. Save to results/. -->
+
+## 5. Wrap it in a script
+
+<!-- Collapse the chunks above into scripts/pipeline.R that runs end-to-end
+     from `Rscript scripts/pipeline.R`. This is the artifact hour 2 will
+     containerize. -->
+
+## 6. Commit and push
+
+<!-- Push code + results to the GitHub repo. The repo is now the deliverable
+     of hour 1. -->
+
+## What's next
+
+You have a working DESeq2 pipeline on *your* laptop. In the [next hour](08-apptainer.qmd)
+you'll prove it runs identically on a machine that isn't yours, by packaging
+it in an Apptainer container.

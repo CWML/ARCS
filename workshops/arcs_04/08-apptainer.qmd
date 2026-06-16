@@ -1,9 +1,104 @@
 ---
-title: "Apptainer"
+title: "Apptainer: Containerizing Your Analysis for Portability"
 sidebar: arcs04
-filters:
-  - webr
-webr:
-  cell-options:
-    reset-button: true
 ---
+
+> **Part 4b of a 2-hour session.** Hour 1 ([DESeq2](07-deseq2.qmd)) built a
+> working pipeline locally. This hour packages that same pipeline in an
+> Apptainer container so it runs identically on any operating system. We work
+> in GitHub Codespaces because Apptainer is Linux-only — Codespaces gives
+> everyone an identical browser-based Linux environment in about two minutes.
+
+## Learning objectives
+
+By the end of this hour you will be able to:
+
+- **Explain** how containerization addresses reproducibility problems caused by software and OS differences
+- **Execute** the Part 4a DESeq2 pipeline from inside an Apptainer container
+- **Differentiate** a host environment from a containerized environment, and identify when each is appropriate
+- **Modify** a provided Apptainer definition and re-run the pipeline to confirm reproducible results
+
+## Prerequisites
+
+[Part 4a — DESeq2](07-deseq2.qmd). A GitHub account with Codespaces access.
+
+---
+
+## 1. The problem: "works on my machine"
+
+<!-- Frame: your pipeline runs in Positron on your laptop. Your collaborator
+     on Windows can't install half the Bioconductor dependencies. The OS,
+     R version, and package versions all differ. Containers are how we make
+     that problem go away. -->
+
+## 2. Launch the Codespace
+
+<!-- Click "Open in Codespace" on the workshop repo. The devcontainer.json
+     pre-installs Apptainer and pulls a pre-built .sif image, so by the time
+     the Codespace opens you're ready to run.
+
+     Budget ~5 minutes here for the slowest launches. -->
+
+Confirm the environment is ready:
+
+```bash
+apptainer --version
+ls ~/images/deseq2.sif
+```
+
+## 3. Host vs. container — what just changed?
+
+<!-- Same machine, two environments. Show R version on the host vs. inside
+     the container. Talk through when each is appropriate: host for daily
+     interactive work, container for "this must run identically elsewhere." -->
+
+```bash
+# Host R (whatever the Codespace ships with — may be absent)
+R --version || echo "no R on the host"
+
+# Container R (pinned by the .sif image)
+apptainer exec ~/images/deseq2.sif R --version
+```
+
+## 4. Run the Part 4a pipeline from inside the container
+
+<!-- Clone the learner's own Part 4a repo into the Codespace. Bind-mount
+     the project directory into the container and run pipeline.R. Compare
+     results/ to what they produced locally in hour 1 — they should match. -->
+
+```bash
+git clone https://github.com/<your-username>/arcs-part4.git
+cd arcs-part4
+
+apptainer exec --bind "$PWD":/work \
+  ~/images/deseq2.sif \
+  Rscript /work/scripts/pipeline.R
+```
+
+## 5. Read the container definition
+
+<!-- Open container/deseq2.def. Walk through the sections: Bootstrap/From,
+     %post (what gets installed), %environment, %runscript, %test.
+     This is the file that *defines* the reproducible environment. -->
+
+## 6. Modify the definition and re-run
+
+<!-- The "Create"-level exercise. Pick ONE change:
+       - Add a CRAN package to the %post block
+       - Pin a different Bioconductor release in the From: line
+     Rebuild the image (or pull the instructor's pre-built variant to save
+     time), re-run the pipeline, confirm results are still reproducible. -->
+
+## 7. Wrap-up: the repo is the reproducible artifact
+
+<!-- Push the modified .def alongside the code. Anyone with the repo + a
+     Linux machine (or a Codespace) can reproduce the analysis bit-for-bit.
+     This is the end of the ARCS arc: reproducible code (Parts 1–2),
+     reproducible data wrangling (Part 3a), reproducible history (Part 3b),
+     reproducible environment (Part 4). -->
+
+## Materials
+
+The `devcontainer.json`, `setup.sh`, and `deseq2.def` used in this hour live
+under `workshops/arcs_04/materials/` in the ARCS repo — use them as a starting
+template for containerizing your own analyses.

@@ -1,0 +1,35 @@
+{
+  "name": "ARCS Part 4 — DESeq2 + Apptainer",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+
+  // 4 CPU / 8 GB is the smallest Codespace where DESeq2 on the workshop dataset
+  // runs comfortably. Drop to 2/4 only if you've trimmed the dataset.
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb"
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "upgradePackages": true
+    }
+  },
+
+  // setup.sh installs Apptainer and pulls the pre-built DESeq2 .sif so that
+  // the first thing learners do in class is `apptainer exec`, not a 20-minute
+  // build. Runs once at Codespace creation.
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",
+        "quarto.quarto"
+      ]
+    }
+  },
+
+  // Forward nothing by default — this workshop is terminal-driven.
+  "forwardPorts": []
+}
