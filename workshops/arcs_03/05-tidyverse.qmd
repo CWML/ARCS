@@ -8,109 +8,240 @@ webr:
     reset-button: true
 ---
 
-::: {.callout-note}
+## Overview
+
+In this session we will cover data importing and exporting using the `rio` package along with cleaning and validation with Tidyverse.
+
+::: callout-note
 ## By the end of this section, you should be able to...
-- Use `pacman::p_load()` to install and load multiple packages in a
-  reproducible way
-- Use the `here` package to build file paths relative to your project
-  root
-- Explain the difference between `read_csv()` and `read.csv()`, and
-  what a tibble is
+
+- Use the `here` package to build file paths relative to your project root
+- Use rio::import() and rio::export() to streamline reading and writing diverse file formats
+- Explain the difference between `read_csv()` and `read.csv()`, and what a tibble is
 - Inspect a data frame using `view()`, `head()`, and `str()`
-- Use the pipe operator `%>%` to chain multiple data cleaning steps
-  together
+- Use the pipe operator `%>%` to chain multiple data cleaning steps together
 - Clean column names automatically using `clean_names()`
-- Rename, recode, and create new columns using `rename()`, `mutate()`,
-  and `case_when()`
+- Rename, recode, and create new columns using `rename()`, `mutate()`, and `case_when()`
 - Combine two columns into a new variable using `paste0()`
 - Select and reorder columns using `select()` and `everything()`
 - Handle missing values using `replace_na()`
 - Harmonize two data frames so their columns and row identifiers align
-- Save cleaned data frames to `.csv` files using `write_csv()` and
-  `write.csv()`
 :::
 
----
+------------------------------------------------------------------------
+
+## What are R Packages
+
+- Packages are collections of functions and data that extend the functionality of the base R programming language.
+
+- They are used to perform specialized tasks, from creating graphs to running complex statistical models.
+
+- Packages are a core reason for R's popularity, as they are created and shared by a global community of users.
+
+## Installing packages
+
+You can easily install (most of) packages using the install.packages() function directly in R. For example:
+
+One at a time:
+
+```{webr-r}
+install.packages("tidyverse")
+```
+
+Multiple at once:
+
+```{webr-r}
+install.packages(c("tidyverse", "magrittr", "here", "readr", "janitor"))
+```
 
 ## Load Packages
 
-The `pacman` package helps ensure your script is **reproducible** — it
-automatically **installs and loads** the packages needed to run your
-code, even on someone else's computer. You can add to the list as more
-packages are needed.
+After installing any package or after you restart R, you need to load them into your R session using the `library()` function. For example:
+
+One at a time:
 
 ```{webr-r}
-if (!require("pacman")) install.packages("pacman")
 
-pacman::p_load(
-  tidyverse,
-  magrittr,
-  here,
-  readr,
-  janitor
-)
+library(tidyverse)
+library(magrittr)
+library(here)
+library(readr)
+library(janitor)
 ```
 
----
+Multiple at once:
 
-## Importing Data with `here()` and `readr`
+```{webr-r}
+library(c("tidyverse", "magrittr", "here", "readr", "janitor"))
+```
 
-The `here` package improves reproducibility and sharing by creating file
-paths relative to your **R project's root directory**, eliminating the
-need for hard-coded absolute paths — as long as your script file is
-saved in the same folder as your R project.
+------------------------------------------------------------------------
+
+## Importing data into R using Rio() and Here()
+
+## Quick background
+
+### Base R (no packages)
+
+- This is the original, old school way of reading `.csv`, `.txt`, and `.dat` files and returns a data frame in the R environment using the function read.*csv,* read.*table*, etc.
+
+- Cumbersome - it requires additional manual coding specifications based on the file type; it can be slow for large datasets; and can lead to unexpected behaviors with certain column types (i.e. converting character columns into factors)
+
+### readr package
+
+- Modern alternative to *Base R* and requires less configuration while being faster, cleaner, and provides less coding headaches (its does not convert character columns into factors) and uses the function read\_*csv,* read\_*tsv,* etc.
+
+- Returns a *tibble,* a modern data frame with features that make it print nicely, displays on a screen better, does not change variables names, and does not use row labels. The output when inspecting the data set using *str()* are nicer looking and more informative
+
+::: callout-note
+## `read_csv()` vs `read.csv()`
+
+This section uses `read_csv()` from the Tidyverse rather than `read.csv()` from base R. Key differences:
+
+| Feature      | `read_csv()`                  | `read.csv()`   |
+|--------------|-------------------------------|----------------|
+| Column types | Explicit (`col_double`, etc.) | Inferred       |
+| Speed        | Faster on large files         | Slower         |
+| Output       | **Tibble**                    | Data frame     |
+| Column names | Preserved as-is               | May be altered |
+| Row labels   | Not used                      | Supported      |
+
+A **tibble** is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like `str()`.
+:::
+
+### haven package
+
+- The **`haven`** package is the dedicated tool for reading proprietary formats like SPSS (`.sav`), SAS (`.xpt` & `.sas7bdat`), and Stata (`.dta`), and is a key part of the Tidyverse ecosystem.
+
+### openxlsx package
+
+- The **`openxlsx`** package is the dedicated tool for reading and writing data from **Excel files** (`.xlsx`) without needing external dependencies like Java. It is widely used for working with multi-sheet workbooks, applying styles, and handling complex Excel features, offering functions like `read.xlsx()` for import. 
+
+## Why use the `rio` and `here` packages instead of base R?
+
+### rio package
+
+- Is highly useful because it provides a single, **universal function** for importing virtually any data file format.
+
+- The `import()` function automatically **detects the file type** based on the file extension (e.g., `.csv`, `.xlsx`, `.RData`, `.rds`, `.xpt`, `.sas7bdat`, `.dta`, `.sav`, `.json,.txt`, `.dat`) and uses the appropriate specialized package (`readr`,`haven`, and `openxlsx`) to import it.
+
+### here package
+
+- The package **here** and its function `here()` make it easy to tell R where to find and to save your files - in essence, it builds file paths.
+
+- Using **here()** works with you **R Project** to eliminate path problems -\> Relative paths = good for sharing; Absolute paths = Bad for sharing
+
+  - **Bad:** `"/Users/mwegener/Desktop/maybe_here/data.csv"`
+
+  - **Good:** `here("raw_data", "data.csv")`
+
+- This is useful when the R project may be shared or accessed by multiple people/computers
 
 ### Confirm Your Working Directory
 
 Run this to make sure you are currently in the correct R project:
 
 ```{webr-r}
+# library(here)
 here()
 ```
 
-::: {.callout-note}
+::: callout-note
 ## If you are not in the correct project
-You can set the project root manually — replace the path with your
-actual folder location:
 
-```r
+You can set the project root manually — replace the path with your actual folder location:
+
+``` r
 # set_here("path/to/your/desired/folder")
 ```
 :::
 
 ### Import the Data Files
 
-```r
-# Import the raw counts data
-raw_data <- read_csv(here("raw_data", "GSE113754_GeneLevel_Raw_data_3.csv"))
+Import the raw counts data
 
-# Import the metadata
-raw_metadata <- read_csv(here("raw_data", "GSE113754_filtered_metadata.csv"))
+``` r
+# library(rio), library(here)
+raw_data <- import(here("raw_data", "GSE113754_GeneLevel_Raw_data_3.csv"))
 ```
 
-::: {.callout-note}
-## `read_csv()` vs `read.csv()`
-This section uses `read_csv()` from the Tidyverse rather than
-`read.csv()` from base R. Key differences:
+Import the metadata
+``` r
+# library(rio), library(here)
+raw_metadata <- import(here("raw_data", "GSE113754_filtered_metadata.csv"))
+```
 
-| Feature | `read_csv()` | `read.csv()` |
-|---|---|---|
-| Column types | Explicit (`col_double`, etc.) | Inferred |
-| Speed | Faster on large files | Slower |
-| Output | **Tibble** | Data frame |
-| Column names | Preserved as-is | May be altered |
-| Row labels | Not used | Supported |
+------------------------------------------------------------------------
 
-A **tibble** is a modern data frame that prints more cleanly, displays
-better on screen, and produces more informative output from functions
-like `str()`.
-:::
+## Data cleaning and validation using the Tidyverse
 
----
+The **tidyverse** is a collection of R packages designed around shared principles for efficient, readable data analysis. Install all packages at once with `install.packages("tidyverse")` and load with `library(tidyverse)`.
 
-## Cleaning the Metadata
+### **Core Philosophy:**
 
-### Inspect the Data
+- **Tidy data structure**: Each variable = column, each observation = row, each value = cell
+
+- **Consistent syntax**: Predictable function behavior across all packages
+
+- **Human-centered design**: Intuitive functions that reduce learning curve
+
+- **Pipe workflows**: Use `%>%` (`|>`) to chain operations for readable, step-by-step analysis
+
+### **Key Benefits:**
+
+- **Uniform data structures** using data frames/tibbles
+
+- **Reproducible analysis** with version control emphasis
+
+- **Clean naming conventions** (lowercase_with_underscores)
+
+- **Active community** support and best practices
+
+- **Functional pipelines** that transform data through logical steps
+
+### Core Functions
+
+| Function | Utility | Package |
+|----------------------------|--------------------------|------------------|
+| `%>%` | “Pipe” (pass data from one function to the next) | magrittr |
+| `mutate()` | Create, transform, and redefine columns | dplyr |
+| `select()` | Keep, remove, select, or rename columns | dplyr |
+| `rename()` | Rename columns | dplyr |
+| `clean_names()` | Standardize column-name syntax | janitor |
+| `as.character()`, `as.numeric()`, `as.Date()`, *etc.* | Convert the class of a column | base R |
+| `across()` | Transform multiple columns at once | dplyr |
+| *tidyselect* helpers | Use logic to select columns | tidyselect |
+| `filter()` | Keep certain rows | dplyr |
+| `distinct()` | De-duplicate rows | dplyr |
+| `rowwise()` | Perform operations within each row | dplyr |
+| `add_row()` | Add rows manually | tibble |
+| `arrange()` | Sort rows | dplyr |
+| `recode()` | Recode values in a column | dplyr |
+| `case_when()` | Recode values with complex logical criteria | dplyr |
+| `replace_na()`, `na_if()`, `coalesce()` | Handle missing values | tidyr |
+| `age_categories()`, `cut()` | Create categorical groups from a numeric column | epikit / base R |
+| `match_df()` | Recode/clean values using a data dictionary | matchmaker |
+| `which()` | Apply logical criteria; return indices | base R |
+
+## Let's start with the metadata file 'raw_metadata'
+
+### First, Inspect the Data
+
+#### Inspecting data helps identify potential problems before analysis and plan your data cleaning strategy by verifying:
+
+- Data imported correctly
+
+- Variable types are appropriate
+
+- Value formatting is consistent
+
+- Missing value patterns
+
+- Duplicate records
+
+- Data set structure and dimensions
+
+- **If column names are clean (concise, no spaces, no blanks, no dots, no caps)**
 
 Physically look at the data you just imported:
 
@@ -124,18 +255,16 @@ Use `head()` to see the first 6 rows, column names, and data types:
 head(raw_metadata)
 ```
 
-Use `str()` to see the structure, data types, dimensions, and how data
-are organized:
+Use `str()` to see the structure, data types, dimensions, and how data are organized:
 
 ```{webr-r}
 str(raw_metadata)
 ```
 
-::: {.callout-tip}
+::: callout-tip
 ## EXTRA: Count unique values in a column
-We can find the unique values within a variable and their counts using
-`count()` — similar to the `unique()` and `table()` exercises from the
-Data Structures section:
+
+We can find the unique values within a variable and their counts using `count()` — similar to the `unique()` and `table()` exercises from the Data Structures section:
 
 ```{webr-r}
 raw_metadata %>% count(genotype)
@@ -144,51 +273,50 @@ raw_metadata %>% count(genotype)
 
 ### What Changes Do We Need to Make?
 
-1. Fix column names
-2. Rename `characteristic` to `condition`
-3. Clean up values under `condition`
-4. Clean up values under `genotype`
-5. Combine `condition` and `genotype` into a new column `geno_cond`
-6. Keep columns in this order: `sample_id`, `genotype`, `condition`,
-   `geno_cond`
-7. Make values under `sample_id` lowercase
+1.  Fix column names
+2.  Rename `characteristic` to `condition`
+3.  Clean up values under `condition`
+4.  Clean up values under `genotype`
+5.  Combine `condition` and `genotype` into a new column `geno_cond`
+6.  Keep columns in this order: `sample_id`, `genotype`, `condition`, `geno_cond`
+7.  Make values under `sample_id` lowercase
 
-::: {.callout-tip}
+::: callout-tip
 ## Working with the pipe `%>%`
-Each step below builds on the previous one using the pipe operator
-`%>%`. You can run the code up to any `%>%` to inspect the result at
-that point — this is a great way to debug and understand how the data
-changes at each step.
+
+Each step below builds on the previous one using the pipe operator `%>%`. You can run the code up to any `%>%` to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.
 :::
 
-### Step 1: Fix All Column Names
+### Next, clean the meta data file
 
-`clean_names()` standardizes all column names to lowercase with
-underscores:
+#### Step 1: Fix All Column Names
+
+`clean_names()` standardizes all column names to lowercase with underscores:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names()
 ```
 
-### Step 2: Rename Columns
+#### Step 2: Rename Columns
 
-Rename column `x1` to `sample_id` and `characteristics` to
-`condition`:
+Rename column `x1` to `sample_id` and `characteristics` to `condition`:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
   rename(sample_id = x1, condition = characteristics)
 ```
 
-### Step 3: Recode Values in `condition`
+#### Step 3: Recode Values in `condition`
 
 - If the value includes `"homecage"` → change to `"normal"`
-- If the value includes `"sleep deprivation"` → change to
-  `"sleep_deprived"`
+- If the value includes `"sleep deprivation"` → change to `"sleep_deprived"`
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
   rename(sample_id = x1, condition = characteristics) %>%
@@ -200,19 +328,19 @@ clean_meta_data <- raw_metadata %>%
     ))
 ```
 
-::: {.callout-note}
+::: callout-note
 ## Base R inside the Tidyverse
-Notice that `grepl()` is a base R function — you can use base R freely
-within Tidyverse pipelines. This is the same function used in the Data
-Structures section with `ifelse()`.
+
+Notice that `grepl()` is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with `ifelse()`.
 :::
 
-### Step 4: Recode Values in `genotype`
+#### Step 4: Recode Values in `genotype`
 
 - If the value includes `"WT"` → change to `"WT"`
 - If the value includes `"shank3"` → change to `"shank3"`
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
   rename(sample_id = x1, condition = characteristics) %>%
@@ -230,11 +358,12 @@ clean_meta_data <- raw_metadata %>%
     ))
 ```
 
-### Step 5: Create `geno_cond` Column
+#### Step 5: Create `geno_cond` Column
 
 Combine `genotype` and `condition` into a new variable:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
   rename(sample_id = x1, condition = characteristics) %>%
@@ -253,11 +382,12 @@ clean_meta_data <- raw_metadata %>%
   mutate(geno_cond = paste0(genotype, condition))
 ```
 
-### Step 6: Select and Reorder Columns
+#### Step 6: Select and Reorder Columns
 
 Keep only the columns we need in the correct order:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
   rename(sample_id = x1, condition = characteristics) %>%
@@ -277,12 +407,12 @@ clean_meta_data <- raw_metadata %>%
   select(sample_id, genotype, condition, geno_cond)
 ```
 
-### Step 7: Lowercase `sample_id`
+#### Step 7: Lowercase `sample_id`
 
-Make `sample_id` values lowercase — this will be important for
-harmonizing with the raw counts data in the next section:
+Make `sample_id` values lowercase — this will be important for harmonizing with the raw counts data in the next section:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
   rename(sample_id = x1, condition = characteristics) %>%
@@ -303,11 +433,11 @@ clean_meta_data <- raw_metadata %>%
   mutate(sample_id = str_to_lower(sample_id))
 ```
 
----
+------------------------------------------------------------------------
 
-## Cleaning the Raw Counts Data
+## Now, let's move on to the 'raw_data' file
 
-### Inspect the Data
+### First, Inspect the Data
 
 ```{webr-r}
 view(raw_data)
@@ -328,28 +458,28 @@ str(raw_data)
 - Column 3 (`gene symbol`) has a space in its name
 - All columns beginning with `GSM` are uppercase
 
-::: {.callout-tip}
+::: callout-tip
 ## EXTRA: Search for NA values
-Use `filter()`, `if_any()`, and `everything()` with `is.na()` to search
-all rows and columns for missing values:
+
+Use `filter()`, `if_any()`, and `everything()` with `is.na()` to search all rows and columns for missing values:
 
 ```{webr-r}
+#library(tidyverse), library(dplyr)
 raw_data %>%
   filter(if_any(everything(), is.na))
 ```
 
-The NA value identified here will be addressed in the cleaning steps
-below.
+The NA value identified here will be addressed in the cleaning steps below.
 :::
 
-### Cleaning Steps
+### Next, we will clean the 'raw_data' file
 
 #### `clean_names()`
 
-Gives columns 1 and 2 auto-generated labels, replaces spaces in column
-names with underscores, and converts all uppercase letters to lowercase:
+Gives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names()
 ```
@@ -359,6 +489,7 @@ clean_data <- raw_data %>%
 Change the auto-generated name for column 2 (`x2`) to `gene_id`:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
   rename(gene_id = x2)
@@ -369,6 +500,7 @@ clean_data <- raw_data %>%
 Replace the NA value under `gsm3119015` with `0`:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
   rename(gene_id = x2) %>%
@@ -376,21 +508,18 @@ clean_data <- raw_data %>%
   # drop_na() %>%  # alternative: drop all rows with at least one NA
 ```
 
-::: {.callout-important}
+::: callout-important
 ## A note on handling missing values
-Replacing NA with `0` is used here for demonstration purposes. In
-practice, the right approach depends on your data and analysis —
-options include removing rows, leaving the NA, or calculating an
-imputed value. Always think carefully before replacing missing data.
+
+Replacing NA with `0` is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.
 :::
 
 #### `mutate()` — Create a Combined Gene ID Column
 
-Create a new variable that combines `gene_id` and `gene_symbol`
-separated by `|`. Notice that `paste()` from base R works seamlessly
-inside a Tidyverse pipeline:
+Create a new variable that combines `gene_id` and `gene_symbol` separated by `|`. Notice that `paste()` from base R works seamlessly inside a Tidyverse pipeline:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
   rename(gene_id = x2) %>%
@@ -400,11 +529,10 @@ clean_data <- raw_data %>%
 
 #### `select()`
 
-Make `gene_id_symbol` the first column, keep everything else in the
-same order using `everything()`, and remove `x1`, `gene_symbol`, and
-`gene_id` using the `-` operator:
+Make `gene_id_symbol` the first column, keep everything else in the same order using `everything()`, and remove `x1`, `gene_symbol`, and `gene_id` using the `-` operator:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
   rename(gene_id = x2) %>%
@@ -413,20 +541,18 @@ clean_data <- raw_data %>%
   select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)
 ```
 
----
+------------------------------------------------------------------------
 
 ## EXTRA: Harmonizing the Two Data Frames
 
-These extra steps align the structure of `clean_data` with
-`clean_meta_data` so they are ready for downstream analysis such as
-differential gene expression.
+These extra steps align the structure of `clean_data` with `clean_meta_data` so they are ready for downstream analysis such as differential gene expression.
 
 ### Extra 1: Set Row IDs
 
-Use `column_to_rownames()` from the `tibble` package to convert the
-first column from a data variable into row identifiers:
+Use `column_to_rownames()` from the `tibble` package to convert the first column from a data variable into row identifiers:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr), library(tibble)
 clean_data <- raw_data %>%
   clean_names() %>%
   rename(gene_id = x2) %>%
@@ -438,10 +564,10 @@ clean_data <- raw_data %>%
 
 ### Extra 2: Reorder Columns to Match Metadata
 
-Reorder the columns in `clean_data` to match the order of `sample_id`
-values in `clean_meta_data`:
+Reorder the columns in `clean_data` to match the order of `sample_id` values in `clean_meta_data`:
 
 ```{webr-r}
+# library(janitor), library(tidyverse), library(dplyr), library(tibble)
 clean_data <- raw_data %>%
   clean_names() %>%
   rename(gene_id = x2) %>%
@@ -454,61 +580,47 @@ clean_data <- raw_data %>%
 
 ### Extra 3: Verify Harmonization
 
-Run a quick check to confirm that the column names in `clean_data` and
-the `sample_id` values in `clean_meta_data` match exactly:
+Run a quick check to confirm that the column names in `clean_data` and the `sample_id` values in `clean_meta_data` match exactly:
 
 ```{webr-r}
 setequal(clean_meta_data$sample_id, colnames(clean_data))
 ```
 
----
+------------------------------------------------------------------------
 
 ## Save Cleaned Data
 
-Save `clean_data` and `clean_meta_data` locally using `here()`:
+Save `clean_data` and `clean_meta_data` locally using `here()` and 'export()\`:
 
-```r
+``` r
 # Saves with row labels (use read.csv to reload with row labels intact)
-write.csv(clean_data, here("processed_data", "clean_data_label.csv"))
-
-# Saves without row labels (standard clean CSV)
-write_csv(clean_data, here("processed_data", "clean_data.csv"))
-
-# Save clean metadata
-write_csv(clean_meta_data, here("processed_data", "clean_meta_data.csv"))
+export(clean_data, here("processed_data", "clean_data_label.csv"))
 ```
 
-::: {.callout-note}
-## `write_csv()` vs `write.csv()`
+``` r
+# Saves without row labels (standard clean CSV)
+export(clean_data, here("processed_data", "clean_data.csv"))
+```
 
-| Function | Row labels | Package |
-|---|---|---|
-| `write_csv()` | Not included | Tidyverse (`readr`) |
-| `write.csv()` | Included | Base R |
+``` r
+# Save clean metadata
+export(clean_meta_data, here("processed_data", "clean_meta_data.csv"))
+```
 
-Use `write.csv()` when you need to preserve row labels (as in
-`clean_data_label.csv`). Use `write_csv()` for standard clean output.
+------------------------------------------------------------------------
 
-These blocks are static and cannot be run in the browser — they write
-to your local file system and must be run in your Positron session.
-:::
-
----
-
-::: {.callout-note}
+::: callout-note
 ## Can You...?
-- ✓ Use `pacman::p_load()` to load multiple packages reproducibly?
-- ✓ Explain what `here()` does and why it improves reproducibility?
-- ✓ Describe at least two differences between `read_csv()` and
-  `read.csv()`?
-- ✓ Explain what a tibble is and how it differs from a data frame?
-- ✓ Use `%>%` to chain multiple data cleaning steps together?
-- ✓ Use `clean_names()` to standardize column names automatically?
-- ✓ Use `rename()`, `mutate()`, and `case_when()` to recode values?
-- ✓ Use `select()` and `everything()` to reorder and drop columns?
-- ✓ Replace NA values using `replace_na()`?
-- ✓ Explain what data harmonization means and verify it with
-  `setequal()`?
-- ✓ Choose between `write_csv()` and `write.csv()` based on whether
-  you need row labels?
+
+- [x] Use rio::import() and rio::export() to read and write diverse file formats without manually switching packages?
+- [x] Explain what `here()` does and why it improves reproducibility?
+- [x] Describe at least two differences between `read_csv()` and `read.csv()`?
+- [x] Explain what a tibble is and how it differs from a data frame?
+- [x] Use `%>%` to chain multiple data cleaning steps together?
+- [x] Use `clean_names()` to standardize column names automatically?
+- [x] Use `rename()`, `mutate()`, and `case_when()` to recode values?
+- [x] Use `select()` and `everything()` to reorder and drop columns?
+- [x] Replace NA values using `replace_na()`?
+- [x] Explain what data harmonization means and verify it with `setequal()`?
+- [x] Choose between `write_csv()` and `write.csv()` based on whether you need row labels?
 :::
