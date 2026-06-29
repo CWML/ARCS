@@ -71,7 +71,9 @@ website:
             - text: "DESeq2"
               href: workshops/arcs_04/07-deseq2.qmd 
             - text: "Apptainer"
-              href: workshops/arcs_04/08-apptainer.qmd 
+              href: workshops/arcs_04/08-apptainer.qmd
+            - text: "Build Your Own Container"
+              href: workshops/arcs_04/09-build-your-own.qmd
 
   page-footer:
     left: "ARCS Workshop Series"

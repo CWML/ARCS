@@ -1,0 +1,228 @@
+---
+title: |
+      Introduction to \
+      Programming in R Part 4:\
+      Containerization with Apptainer
+author: Advancing Reproducibility with Computational Skills
+format:
+  revealjs:
+      theme: [moon]
+      incremental: true
+      scrollable: true
+      transition: slide
+      chalkboard: true
+      view-distance: 15
+      mobile-view-distance: 10
+      footer: "Advancing Reproducibility with Computational Skills"
+editor: visual
+---
+
+## Where we are
+
+- **Part 1–2:** writing R, managing projects, structuring data
+- **Part 3:** the tidyverse + Git — your *code* is now reproducible
+- **Part 4, Hour 1:** a real DESeq2 differential-expression pipeline
+- **Part 4, Hour 2 (now):** make the *environment* reproducible too
+
+::: notes
+This hour is the capstone. They have working code under version control.
+The missing piece for true reproducibility is the environment that code
+runs in. That's what containers give us.
+:::
+
+## The problem: "it works on my machine"
+
+- Your analysis runs perfectly... on *your* laptop
+- A collaborator runs the same code and it breaks
+- Different R version, different package version, different OS
+- Reproducible research can't depend on whose computer it is
+
+::: notes
+Ask the room: who has hit this? Almost everyone has. Tie it back to any
+install friction they felt in Parts 1–3.
+:::
+
+## What is a container?
+
+A single file that packages your **entire computing environment**:
+
+- the R installation
+- every package, at a pinned version
+- the system libraries underneath
+
+> Run that file anywhere → get *exactly* that environment.
+
+::: notes
+Emphasis on "entire" and "pinned." This is more than `renv` — it's the
+whole stack down to system libraries. Contrast with just sharing a script.
+:::
+
+## Why Apptainer (not Docker)?
+
+- Built for **research** and **HPC**
+- Runs as *you*, not as root — works on shared clusters
+- One portable image file: `analysis.sif`
+- The image is the artifact you publish alongside your paper
+
+::: notes
+Don't teach Docker by accident. If asked: Docker is great for web services;
+Apptainer is the norm in research computing because of the security model on
+shared HPC. Same core idea, different conventions.
+:::
+
+## The catch — and the lesson {.center}
+
+### Apptainer only runs on **Linux**
+
+There is no Mac or Windows version.
+
+::: notes
+Pause here. Let it land as a "problem" before you flip it on the next slide.
+:::
+
+## ...which is exactly the point
+
+The host OS **should not** constrain what runs inside.\
+But you still need a Linux kernel *somewhere*:
+
+- On a Mac/Windows laptop → a **Codespace** (today)
+- On a cluster → the **HPC login node**
+- On a Linux laptop → it's just there
+
+::: notes
+This single reframe converts the biggest perceived obstacle into the core
+mental model. Once you're past the kernel boundary, the container behaves
+identically everywhere. Do NOT apologize for the OS switch — name it and use
+it.
+:::
+
+## Host vs. container
+
+| | Host | Container |
+|---|---|---|
+| What | Whatever's installed locally | Fixed, pinned image |
+| Controlled by | Each user | The definition file |
+| Reproducible | By hand, fragile | Yes, by design |
+| Use for | Exploration | Sharing / publishing / HPC |
+
+::: notes
+Hour 1 was the host (Positron on their laptop). Hour 2 is the container.
+Same analysis, both ways — the comparison is the teaching moment.
+:::
+
+## Today's workflow
+
+1. **Launch** a Codespace (everyone → identical Linux)
+2. **Verify** Apptainer + the pre-built image are present
+3. **Run** the DESeq2 pipeline *from* the container
+4. **Read** the definition file that built it
+5. **Modify** a parameter → re-run → see the result change
+6. **Connect** it back to Git
+
+::: notes
+We pull a pre-built image rather than building live — building compiles
+Bioconductor and takes far too long for a live session. Building from
+scratch is the self-paced follow-up.
+:::
+
+## Demo: launch + verify {.center}
+
+```bash
+apptainer --version
+ls -lh ~/deseq2.sif
+apptainer exec ~/deseq2.sif R --version
+```
+
+::: notes
+Live demo cue. Key talking point: there is NO R on this Codespace — R lives
+inside the .sif. `apptainer exec` runs a command inside that environment.
+Push the Codespace link in chat now so account issues surface early.
+:::
+
+## Demo: run the pipeline {.center}
+
+```bash
+cd workshops/arcs_04/_materials
+apptainer exec ~/deseq2.sif Rscript pipeline.R
+ls outputs/
+```
+
+::: notes
+Same analysis as Hour 1, now on Linux inside a pinned environment, on a
+machine that isn't theirs — and the result matches. Open a plot from the
+file explorer so the payoff is visual.
+:::
+
+## Demo: read the definition {.center}
+
+`_materials/container/deseq2.def`
+
+```default
+From: bioconductor/bioconductor_docker:RELEASE_3_19
+%post         # install DESeq2, ggplot2 (build time)
+%runscript    # default action when you `run` the image
+%test         # sanity check at end of build
+```
+
+::: notes
+The whole environment is one readable text file living next to the code.
+Walk each section briefly. Note: changing this file means rebuilding, which
+is slow — that's why it's read-only for us today.
+:::
+
+## Demo: change and re-run {.center}
+
+In `pipeline.R`:
+
+```r
+PADJ <- 0.05   →   PADJ <- 0.01
+```
+
+```bash
+apptainer exec ~/deseq2.sif Rscript pipeline.R
+```
+
+- Significant-gene count changes
+- Same image, same data, a controlled change
+
+::: notes
+Reproducible ≠ frozen. It means *controlled*. This is the "modify and
+observe" moment that earns the Analyze/Create objective without a live
+build.
+:::
+
+## It all travels together
+
+In the repo, side by side:
+
+- `pipeline.R` — the **code**
+- `deseq2.def` — the **environment**
+- the published image — `ghcr.io/cwml/deseq2`
+
+> Clone → open Codespace (or HPC) → `apptainer pull` → run → it reproduces.
+
+::: notes
+This completes the Part 3 Git story. Code was already versioned; now the
+environment is captured too — as a diffable text file and a pullable image.
+This is the goal of the whole series, made concrete.
+:::
+
+## Recap
+
+- Containers fix "works on my machine"
+- Apptainer is Linux-only → use a Codespace / HPC as the kernel
+- You **ran** and **modified** a real pipeline from a container
+- Code + environment + data now travel together
+
+## Where to go next
+
+- Self-paced guide: **build your own** container
+  - install a Linux substrate locally
+  - read `deseq2.def` line by line
+  - build, publish to a registry, automate with CI
+- Adapt the pattern to **your own** analysis
+
+::: notes
+The live session is for the concept landing. The async guide is for
+completeness — authoring containers, not just using them.
+:::
