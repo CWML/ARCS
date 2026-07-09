@@ -163,127 +163,127 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
-    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-can-happen",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-can-happen",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What can happen",
     "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
-    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#integrated-documentation-strategy",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#integrated-documentation-strategy",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Integrated Documentation Strategy",
     "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
-    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#automate-filenaming",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#automate-filenaming",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Automate Filenaming",
     "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
-    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-summary",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-summary",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Summary",
     "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
-    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-filter",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-filter",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Filter",
     "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
-    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-group",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-group",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Group",
     "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
-    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#from-static-documentation-to-living-documents",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#from-static-documentation-to-living-documents",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "From Static Documentation to Living Documents",
     "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
-    "href": "workshops/arcs_02/04-slides.html#literate-programming",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#literate-programming",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#literate-programming",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Literate Programming",
     "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
-    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-we-just-did",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-we-just-did",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What we just did",
     "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
-    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "This works in Quarto Presentations!",
-    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── ARCS_Part2b_Slides.qmd\n└── ARCS_Part2b_Slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
-    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "When it’s time to write up what you did:",
     "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
-    "href": "workshops/arcs_02/04-slides.html#static-limitations",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#static-limitations",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#static-limitations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Static Limitations",
     "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
-    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#dynamic-possibility",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#dynamic-possibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Dynamic Possibility",
     "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
-    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#building-reproducible-documents",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#building-reproducible-documents",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Building Reproducible Documents",
     "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
-    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#reproducibility-in-phases",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#reproducibility-in-phases",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Reproducibility in Phases",
     "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
-    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#evaluating-reproducibility",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#evaluating-reproducibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Evaluating Reproducibility",
     "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
-    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#extending-reproducibility",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#extending-reproducibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Extending Reproducibility",
     "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
   },
   {
-    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
-    "href": "workshops/arcs_02/04-slides.html#why-arcs",
+    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#why-arcs",
+    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#why-arcs",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Why ARCS",
     "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
@@ -413,7 +413,43 @@
     "href": "workshops/arcs_03/05-tidyverse.html",
     "title": "Tidyverse",
     "section": "",
-    "text": "NoteBy the end of this section, you should be able to…\n\n\n\n\nUse pacman::p_load() to install and load multiple packages in a reproducible way\nUse the here package to build file paths relative to your project root\nExplain the difference between read_csv() and read.csv(), and what a tibble is\nInspect a data frame using view(), head(), and str()\nUse the pipe operator %&gt;% to chain multiple data cleaning steps together\nClean column names automatically using clean_names()\nRename, recode, and create new columns using rename(), mutate(), and case_when()\nCombine two columns into a new variable using paste0()\nSelect and reorder columns using select() and everything()\nHandle missing values using replace_na()\nHarmonize two data frames so their columns and row identifiers align\nSave cleaned data frames to .csv files using write_csv() and write.csv()",
+    "text": "In this session we will cover data importing and exporting using the rio package along with cleaning and validation with Tidyverse.\n\n\n\n\n\n\nNoteBy the end of this section, you should be able to…\n\n\n\n\nUse the here package to build file paths relative to your project root\nUse rio::import() and rio::export() to streamline reading and writing diverse file formats\nExplain the difference between read_csv() and read.csv(), and what a tibble is\nInspect a data frame using view(), head(), and str()\nUse the pipe operator %&gt;% to chain multiple data cleaning steps together\nClean column names automatically using clean_names()\nRename, recode, and create new columns using rename(), mutate(), and case_when()\nCombine two columns into a new variable using paste0()\nSelect and reorder columns using select() and everything()\nHandle missing values using replace_na()\nHarmonize two data frames so their columns and row identifiers align",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#overview",
+    "href": "workshops/arcs_03/05-tidyverse.html#overview",
+    "title": "Tidyverse",
+    "section": "",
+    "text": "In this session we will cover data importing and exporting using the rio package along with cleaning and validation with Tidyverse.\n\n\n\n\n\n\nNoteBy the end of this section, you should be able to…\n\n\n\n\nUse the here package to build file paths relative to your project root\nUse rio::import() and rio::export() to streamline reading and writing diverse file formats\nExplain the difference between read_csv() and read.csv(), and what a tibble is\nInspect a data frame using view(), head(), and str()\nUse the pipe operator %&gt;% to chain multiple data cleaning steps together\nClean column names automatically using clean_names()\nRename, recode, and create new columns using rename(), mutate(), and case_when()\nCombine two columns into a new variable using paste0()\nSelect and reorder columns using select() and everything()\nHandle missing values using replace_na()\nHarmonize two data frames so their columns and row identifiers align",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#what-are-r-packages",
+    "href": "workshops/arcs_03/05-tidyverse.html#what-are-r-packages",
+    "title": "Tidyverse",
+    "section": "What are R Packages",
+    "text": "What are R Packages\n\nPackages are collections of functions and data that extend the functionality of the base R programming language.\nThey are used to perform specialized tasks, from creating graphs to running complex statistical models.\nPackages are a core reason for R’s popularity, as they are created and shared by a global community of users.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#installing-packages",
+    "href": "workshops/arcs_03/05-tidyverse.html#installing-packages",
+    "title": "Tidyverse",
+    "section": "Installing packages",
+    "text": "Installing packages\nYou can easily install (most of) packages using the install.packages() function directly in R. For example:\nOne at a time:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nMultiple at once:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "ARCS 3",
@@ -425,7 +461,7 @@
     "href": "workshops/arcs_03/05-tidyverse.html#load-packages",
     "title": "Tidyverse",
     "section": "Load Packages",
-    "text": "Load Packages\nThe pacman package helps ensure your script is reproducible — it automatically installs and loads the packages needed to run your code, even on someone else’s computer. You can add to the list as more packages are needed.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Load Packages\nAfter installing any package or after you restart R, you need to load them into your R session using the library() function. For example:\nOne at a time:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nMultiple at once:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "ARCS 3",
@@ -433,11 +469,11 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_03/05-tidyverse.html#importing-data-with-here-and-readr",
-    "href": "workshops/arcs_03/05-tidyverse.html#importing-data-with-here-and-readr",
+    "objectID": "workshops/arcs_03/05-tidyverse.html#importing-data-into-r-using-rio-and-here",
+    "href": "workshops/arcs_03/05-tidyverse.html#importing-data-into-r-using-rio-and-here",
     "title": "Tidyverse",
-    "section": "Importing Data with here() and readr",
-    "text": "Importing Data with here() and readr\nThe here package improves reproducibility and sharing by creating file paths relative to your R project’s root directory, eliminating the need for hard-coded absolute paths — as long as your script file is saved in the same folder as your R project.\n\nConfirm Your Working Directory\nRun this to make sure you are currently in the correct R project:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteIf you are not in the correct project\n\n\n\nYou can set the project root manually — replace the path with your actual folder location:\n# set_here(\"path/to/your/desired/folder\")\n\n\n\n\nImport the Data Files\n# Import the raw counts data\nraw_data &lt;- read_csv(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data_3.csv\"))\n\n# Import the metadata\nraw_metadata &lt;- read_csv(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\n\n\n\n\n\n\nNoteread_csv() vs read.csv()\n\n\n\nThis section uses read_csv() from the Tidyverse rather than read.csv() from base R. Key differences:\n\n\n\nFeature\nread_csv()\nread.csv()\n\n\n\n\nColumn types\nExplicit (col_double, etc.)\nInferred\n\n\nSpeed\nFaster on large files\nSlower\n\n\nOutput\nTibble\nData frame\n\n\nColumn names\nPreserved as-is\nMay be altered\n\n\nRow labels\nNot used\nSupported\n\n\n\nA tibble is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like str().",
+    "section": "Importing data into R using Rio() and Here()",
+    "text": "Importing data into R using Rio() and Here()",
     "crumbs": [
       "Home",
       "ARCS 3",
@@ -445,11 +481,11 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_03/05-tidyverse.html#cleaning-the-metadata",
-    "href": "workshops/arcs_03/05-tidyverse.html#cleaning-the-metadata",
+    "objectID": "workshops/arcs_03/05-tidyverse.html#quick-background",
+    "href": "workshops/arcs_03/05-tidyverse.html#quick-background",
     "title": "Tidyverse",
-    "section": "Cleaning the Metadata",
-    "text": "Cleaning the Metadata\n\nInspect the Data\nPhysically look at the data you just imported:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse head() to see the first 6 rows, column names, and data types:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse str() to see the structure, data types, dimensions, and how data are organized:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipEXTRA: Count unique values in a column\n\n\n\nWe can find the unique values within a variable and their counts using count() — similar to the unique() and table() exercises from the Data Structures section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nWhat Changes Do We Need to Make?\n\nFix column names\nRename characteristic to condition\nClean up values under condition\nClean up values under genotype\nCombine condition and genotype into a new column geno_cond\nKeep columns in this order: sample_id, genotype, condition, geno_cond\nMake values under sample_id lowercase\n\n\n\n\n\n\n\nTipWorking with the pipe %&gt;%\n\n\n\nEach step below builds on the previous one using the pipe operator %&gt;%. You can run the code up to any %&gt;% to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.\n\n\n\n\nStep 1: Fix All Column Names\nclean_names() standardizes all column names to lowercase with underscores:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 2: Rename Columns\nRename column x1 to sample_id and characteristics to condition:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 3: Recode Values in condition\n\nIf the value includes \"homecage\" → change to \"normal\"\nIf the value includes \"sleep deprivation\" → change to \"sleep_deprived\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteBase R inside the Tidyverse\n\n\n\nNotice that grepl() is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with ifelse().\n\n\n\n\nStep 4: Recode Values in genotype\n\nIf the value includes \"WT\" → change to \"WT\"\nIf the value includes \"shank3\" → change to \"shank3\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 5: Create geno_cond Column\nCombine genotype and condition into a new variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 6: Select and Reorder Columns\nKeep only the columns we need in the correct order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 7: Lowercase sample_id\nMake sample_id values lowercase — this will be important for harmonizing with the raw counts data in the next section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "Quick background",
+    "text": "Quick background\n\nBase R (no packages)\n\nThis is the original, old school way of reading .csv, .txt, and .dat files and returns a data frame in the R environment using the function read.csv, read.table, etc.\nCumbersome - it requires additional manual coding specifications based on the file type; it can be slow for large datasets; and can lead to unexpected behaviors with certain column types (i.e. converting character columns into factors)\n\n\n\nreadr package\n\nModern alternative to Base R and requires less configuration while being faster, cleaner, and provides less coding headaches (its does not convert character columns into factors) and uses the function read_csv, read_tsv, etc.\nReturns a tibble, a modern data frame with features that make it print nicely, displays on a screen better, does not change variables names, and does not use row labels. The output when inspecting the data set using str() are nicer looking and more informative\n\n\n\n\n\n\n\nNoteread_csv() vs read.csv()\n\n\n\nThis section uses read_csv() from the Tidyverse rather than read.csv() from base R. Key differences:\n\n\n\nFeature\nread_csv()\nread.csv()\n\n\n\n\nColumn types\nExplicit (col_double, etc.)\nInferred\n\n\nSpeed\nFaster on large files\nSlower\n\n\nOutput\nTibble\nData frame\n\n\nColumn names\nPreserved as-is\nMay be altered\n\n\nRow labels\nNot used\nSupported\n\n\n\nA tibble is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like str().\n\n\n\n\nhaven package\n\nThe haven package is the dedicated tool for reading proprietary formats like SPSS (.sav), SAS (.xpt & .sas7bdat), and Stata (.dta), and is a key part of the Tidyverse ecosystem.\n\n\n\nopenxlsx package\n\nThe openxlsx package is the dedicated tool for reading and writing data from Excel files (.xlsx) without needing external dependencies like Java. It is widely used for working with multi-sheet workbooks, applying styles, and handling complex Excel features, offering functions like read.xlsx() for import.",
     "crumbs": [
       "Home",
       "ARCS 3",
@@ -457,11 +493,47 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_03/05-tidyverse.html#cleaning-the-raw-counts-data",
-    "href": "workshops/arcs_03/05-tidyverse.html#cleaning-the-raw-counts-data",
+    "objectID": "workshops/arcs_03/05-tidyverse.html#why-use-the-rio-and-here-packages-instead-of-base-r",
+    "href": "workshops/arcs_03/05-tidyverse.html#why-use-the-rio-and-here-packages-instead-of-base-r",
     "title": "Tidyverse",
-    "section": "Cleaning the Raw Counts Data",
-    "text": "Cleaning the Raw Counts Data\n\nInspect the Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nWhat Issues Did You Find?\n\nColumn 1 has no label and contains row numbers inserted in error\nColumn 2 has no label\nColumn 3 (gene symbol) has a space in its name\nAll columns beginning with GSM are uppercase\n\n\n\n\n\n\n\nTipEXTRA: Search for NA values\n\n\n\nUse filter(), if_any(), and everything() with is.na() to search all rows and columns for missing values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe NA value identified here will be addressed in the cleaning steps below.\n\n\n\n\nCleaning Steps\n\nclean_names()\nGives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nrename()\nChange the auto-generated name for column 2 (x2) to gene_id:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nmutate() — Handle the NA Value\nReplace the NA value under gsm3119015 with 0:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nImportantA note on handling missing values\n\n\n\nReplacing NA with 0 is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.\n\n\n\n\nmutate() — Create a Combined Gene ID Column\nCreate a new variable that combines gene_id and gene_symbol separated by |. Notice that paste() from base R works seamlessly inside a Tidyverse pipeline:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nselect()\nMake gene_id_symbol the first column, keep everything else in the same order using everything(), and remove x1, gene_symbol, and gene_id using the - operator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "Why use the rio and here packages instead of base R?",
+    "text": "Why use the rio and here packages instead of base R?\n\nrio package\n\nIs highly useful because it provides a single, universal function for importing virtually any data file format.\nThe import() function automatically detects the file type based on the file extension (e.g., .csv, .xlsx, .RData, .rds, .xpt, .sas7bdat, .dta, .sav, .json,.txt, .dat) and uses the appropriate specialized package (readr,haven, and openxlsx) to import it.\n\n\n\nhere package\n\nThe package here and its function here() make it easy to tell R where to find and to save your files - in essence, it builds file paths.\nUsing here() works with you R Project to eliminate path problems -&gt; Relative paths = good for sharing; Absolute paths = Bad for sharing\n\nBad: \"/Users/mwegener/Desktop/maybe_here/data.csv\"\nGood: here(\"raw_data\", \"data.csv\")\n\nThis is useful when the R project may be shared or accessed by multiple people/computers\n\n\n\nConfirm Your Working Directory\nRun this to make sure you are currently in the correct R project:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteIf you are not in the correct project\n\n\n\nYou can set the project root manually — replace the path with your actual folder location:\n# set_here(\"path/to/your/desired/folder\")\n\n\n\n\nImport the Data Files\nImport the raw counts data\n# library(rio), library(here)\nraw_data &lt;- import(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data_3.csv\"))\nImport the metadata\n# library(rio), library(here)\nraw_metadata &lt;- import(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#data-cleaning-and-validation-using-the-tidyverse",
+    "href": "workshops/arcs_03/05-tidyverse.html#data-cleaning-and-validation-using-the-tidyverse",
+    "title": "Tidyverse",
+    "section": "Data cleaning and validation using the Tidyverse",
+    "text": "Data cleaning and validation using the Tidyverse\nThe tidyverse is a collection of R packages designed around shared principles for efficient, readable data analysis. Install all packages at once with install.packages(\"tidyverse\") and load with library(tidyverse).\n\nCore Philosophy:\n\nTidy data structure: Each variable = column, each observation = row, each value = cell\nConsistent syntax: Predictable function behavior across all packages\nHuman-centered design: Intuitive functions that reduce learning curve\nPipe workflows: Use %&gt;% (|&gt;) to chain operations for readable, step-by-step analysis\n\n\n\nKey Benefits:\n\nUniform data structures using data frames/tibbles\nReproducible analysis with version control emphasis\nClean naming conventions (lowercase_with_underscores)\nActive community support and best practices\nFunctional pipelines that transform data through logical steps\n\n\n\nCore Functions\n\n\n\n\n\n\n\n\nFunction\nUtility\nPackage\n\n\n\n\n%&gt;%\n“Pipe” (pass data from one function to the next)\nmagrittr\n\n\nmutate()\nCreate, transform, and redefine columns\ndplyr\n\n\nselect()\nKeep, remove, select, or rename columns\ndplyr\n\n\nrename()\nRename columns\ndplyr\n\n\nclean_names()\nStandardize column-name syntax\njanitor\n\n\nas.character(), as.numeric(), as.Date(), etc.\nConvert the class of a column\nbase R\n\n\nacross()\nTransform multiple columns at once\ndplyr\n\n\ntidyselect helpers\nUse logic to select columns\ntidyselect\n\n\nfilter()\nKeep certain rows\ndplyr\n\n\ndistinct()\nDe-duplicate rows\ndplyr\n\n\nrowwise()\nPerform operations within each row\ndplyr\n\n\nadd_row()\nAdd rows manually\ntibble\n\n\narrange()\nSort rows\ndplyr\n\n\nrecode()\nRecode values in a column\ndplyr\n\n\ncase_when()\nRecode values with complex logical criteria\ndplyr\n\n\nreplace_na(), na_if(), coalesce()\nHandle missing values\ntidyr\n\n\nage_categories(), cut()\nCreate categorical groups from a numeric column\nepikit / base R\n\n\nmatch_df()\nRecode/clean values using a data dictionary\nmatchmaker\n\n\nwhich()\nApply logical criteria; return indices\nbase R",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#lets-start-with-the-metadata-file-raw_metadata",
+    "href": "workshops/arcs_03/05-tidyverse.html#lets-start-with-the-metadata-file-raw_metadata",
+    "title": "Tidyverse",
+    "section": "Let’s start with the metadata file ‘raw_metadata’",
+    "text": "Let’s start with the metadata file ‘raw_metadata’\n\nFirst, Inspect the Data\n\nInspecting data helps identify potential problems before analysis and plan your data cleaning strategy by verifying:\n\nData imported correctly\nVariable types are appropriate\nValue formatting is consistent\nMissing value patterns\nDuplicate records\nData set structure and dimensions\nIf column names are clean (concise, no spaces, no blanks, no dots, no caps)\n\nPhysically look at the data you just imported:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse head() to see the first 6 rows, column names, and data types:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse str() to see the structure, data types, dimensions, and how data are organized:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTipEXTRA: Count unique values in a column\n\n\n\nWe can find the unique values within a variable and their counts using count() — similar to the unique() and table() exercises from the Data Structures section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\nWhat Changes Do We Need to Make?\n\nFix column names\nRename characteristic to condition\nClean up values under condition\nClean up values under genotype\nCombine condition and genotype into a new column geno_cond\nKeep columns in this order: sample_id, genotype, condition, geno_cond\nMake values under sample_id lowercase\n\n\n\n\n\n\n\nTipWorking with the pipe %&gt;%\n\n\n\nEach step below builds on the previous one using the pipe operator %&gt;%. You can run the code up to any %&gt;% to inspect the result at that point — this is a great way to debug and understand how the data changes at each step.\n\n\n\n\nNext, clean the meta data file\n\nStep 1: Fix All Column Names\nclean_names() standardizes all column names to lowercase with underscores:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 2: Rename Columns\nRename column x1 to sample_id and characteristics to condition:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 3: Recode Values in condition\n\nIf the value includes \"homecage\" → change to \"normal\"\nIf the value includes \"sleep deprivation\" → change to \"sleep_deprived\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNoteBase R inside the Tidyverse\n\n\n\nNotice that grepl() is a base R function — you can use base R freely within Tidyverse pipelines. This is the same function used in the Data Structures section with ifelse().\n\n\n\n\nStep 4: Recode Values in genotype\n\nIf the value includes \"WT\" → change to \"WT\"\nIf the value includes \"shank3\" → change to \"shank3\"\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 5: Create geno_cond Column\nCombine genotype and condition into a new variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 6: Select and Reorder Columns\nKeep only the columns we need in the correct order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nStep 7: Lowercase sample_id\nMake sample_id values lowercase — this will be important for harmonizing with the raw counts data in the next section:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "ARCS 3",
+      "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "workshops/arcs_03/05-tidyverse.html#now-lets-move-on-to-the-raw_data-file",
+    "href": "workshops/arcs_03/05-tidyverse.html#now-lets-move-on-to-the-raw_data-file",
+    "title": "Tidyverse",
+    "section": "Now, let’s move on to the ‘raw_data’ file",
+    "text": "Now, let’s move on to the ‘raw_data’ file\n\nFirst, Inspect the Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nWhat Issues Did You Find?\n\nColumn 1 has no label and contains row numbers inserted in error\nColumn 2 has no label\nColumn 3 (gene symbol) has a space in its name\nAll columns beginning with GSM are uppercase\n\n\n\n\n\n\n\nTipEXTRA: Search for NA values\n\n\n\nUse filter(), if_any(), and everything() with is.na() to search all rows and columns for missing values:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe NA value identified here will be addressed in the cleaning steps below.\n\n\n\n\nNext, we will clean the ‘raw_data’ file\n\nclean_names()\nGives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nrename()\nChange the auto-generated name for column 2 (x2) to gene_id:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nmutate() — Handle the NA Value\nReplace the NA value under gsm3119015 with 0:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nImportantA note on handling missing values\n\n\n\nReplacing NA with 0 is used here for demonstration purposes. In practice, the right approach depends on your data and analysis — options include removing rows, leaving the NA, or calculating an imputed value. Always think carefully before replacing missing data.\n\n\n\n\nmutate() — Create a Combined Gene ID Column\nCreate a new variable that combines gene_id and gene_symbol separated by |. Notice that paste() from base R works seamlessly inside a Tidyverse pipeline:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nselect()\nMake gene_id_symbol the first column, keep everything else in the same order using everything(), and remove x1, gene_symbol, and gene_id using the - operator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "ARCS 3",
@@ -485,7 +557,7 @@
     "href": "workshops/arcs_03/05-tidyverse.html#save-cleaned-data",
     "title": "Tidyverse",
     "section": "Save Cleaned Data",
-    "text": "Save Cleaned Data\nSave clean_data and clean_meta_data locally using here():\n# Saves with row labels (use read.csv to reload with row labels intact)\nwrite.csv(clean_data, here(\"processed_data\", \"clean_data_label.csv\"))\n\n# Saves without row labels (standard clean CSV)\nwrite_csv(clean_data, here(\"processed_data\", \"clean_data.csv\"))\n\n# Save clean metadata\nwrite_csv(clean_meta_data, here(\"processed_data\", \"clean_meta_data.csv\"))\n\n\n\n\n\n\nNotewrite_csv() vs write.csv()\n\n\n\n\n\n\nFunction\nRow labels\nPackage\n\n\n\n\nwrite_csv()\nNot included\nTidyverse (readr)\n\n\nwrite.csv()\nIncluded\nBase R\n\n\n\nUse write.csv() when you need to preserve row labels (as in clean_data_label.csv). Use write_csv() for standard clean output.\nThese blocks are static and cannot be run in the browser — they write to your local file system and must be run in your Positron session.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Use pacman::p_load() to load multiple packages reproducibly?\n✓ Explain what here() does and why it improves reproducibility?\n✓ Describe at least two differences between read_csv() and read.csv()?\n✓ Explain what a tibble is and how it differs from a data frame?\n✓ Use %&gt;% to chain multiple data cleaning steps together?\n✓ Use clean_names() to standardize column names automatically?\n✓ Use rename(), mutate(), and case_when() to recode values?\n✓ Use select() and everything() to reorder and drop columns?\n✓ Replace NA values using replace_na()?\n✓ Explain what data harmonization means and verify it with setequal()?\n✓ Choose between write_csv() and write.csv() based on whether you need row labels?",
+    "text": "Save Cleaned Data\nSave clean_data and clean_meta_data locally using here() and ’export()`:\n# Saves with row labels (use read.csv to reload with row labels intact)\nexport(clean_data, here(\"processed_data\", \"clean_data_label.csv\"))\n# Saves without row labels (standard clean CSV)\nexport(clean_data, here(\"processed_data\", \"clean_data.csv\"))\n# Save clean metadata\nexport(clean_meta_data, here(\"processed_data\", \"clean_meta_data.csv\"))\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\nUse rio::import() and rio::export() to read and write diverse file formats without manually switching packages?\nExplain what here() does and why it improves reproducibility?\nDescribe at least two differences between read_csv() and read.csv()?\nExplain what a tibble is and how it differs from a data frame?\nUse %&gt;% to chain multiple data cleaning steps together?\nUse clean_names() to standardize column names automatically?\nUse rename(), mutate(), and case_when() to recode values?\nUse select() and everything() to reorder and drop columns?\nReplace NA values using replace_na()?\nExplain what data harmonization means and verify it with setequal()?\nChoose between write_csv() and write.csv() based on whether you need row labels?",
     "crumbs": [
       "Home",
       "ARCS 3",

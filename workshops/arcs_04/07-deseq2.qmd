@@ -1,0 +1,9 @@
+---
+title: "DESeq2"
+sidebar: arcs04
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
