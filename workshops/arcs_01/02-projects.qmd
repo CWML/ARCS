@@ -128,23 +128,29 @@ Title of Dataset:
 
 Author/Principal Investigator Information
 
-Name: ORCID: Institution: Address: Email:
-
-Date of data collection: provide single date, range, or approximate date; suggested format YYYY-MM-DD)
-
-Geographic location of data collection: provide latitude, longitude, or city/region, State, Country
+Name: 
+ORCID: 
+Institution: 
+Address: 
+Email:
 
 SHARING/ACCESS INFORMATION
+
+This data was retrieved through the Geo RNA-seq Experiments 
+Interactive Navigator GREIN web platform, which interfaces 
+with the NIH Gene Expression Omnibus (GEO) repository. 
+Link to dataset: https://www.ilincs.org/apps/grein/?gse=GSE113754 
 
 DATA & FILE OVERVIEW
 
 File List:
 
-This README template is a simplified version of Cornell's Readme Template for Data: 
+This README template is a simplified version of the Cornell
+Readme Template for Data: 
 https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230 
 ```
 
-5. Optional: in your README.txt file, write a short description next to these folders: 
+5. In your README.txt file, write a short description next to these folders: 
 - `raw_data (original data goes here)` 
 - `processed data (clean data goes here)` 
 - `scripts (code to for analyses goes here)` 
@@ -169,7 +175,6 @@ This script creates the metadata file needed for further analysis, using the sam
 ```r
 # Metadata Cleaning for Analysis
 # This script creates the metadata file that we need for further analysis
-
 library(dplyr)
 library(stringr)
 
