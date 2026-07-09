@@ -298,7 +298,7 @@ AS POTENTIAL HARM
 
 ## Extending Reproducibility
 
-![](images/FAIR_CARE.png)
+![](../../images/FAIR_CARE.png)
 
 <https://www.gida-global.org/care>
 

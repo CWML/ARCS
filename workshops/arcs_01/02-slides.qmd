@@ -20,7 +20,7 @@ editor: visual
 
 ## True Story: Data Management Gone Awry
 
-![](images/Pasted%20image%2020250805151439.png)
+![](../../images/Pasted%20image%2020250805151439.png)
 
 ::: notes
 Here's an example of what can happen when you don't make data management decisions.
@@ -30,7 +30,7 @@ This screenshot is from a publication from a Yale School of Medicine lab. It was
 
 ## True Story: Data Management Gone Awry
 
-![](images/clipboard-1706816145.png)
+![](../../images/clipboard-1706816145.png)
 
 ::: notes
 These are microscopy images from a mouse's ear. We can see how it could be possible to get them mixed up by mistake.
@@ -68,27 +68,27 @@ Where in the computational process did the mix up happen?
 
 ## Pick a repository
 
-![](grab1.png)
+![](../../grab1.png)
 
 ## Pick a dataset
 
-![](grab2.png)
+![](../../grab2.png)
 
 ## Download raw data
 
-![](grab4.png)
+![](../../grab4.png)
 
 ## Download metadata
 
-![](grab3.png)
+![](../../grab3.png)
 
 ## Metadata we downloaded
 
-![](metadata1.png)
+![](../../metadata1.png)
 
 ## Metadata we want
 
-![](metadata2.png)
+![](../../metadata2.png)
 
 ## Why do this in R?
 
@@ -102,7 +102,7 @@ Any ideas?
 
 ## When we do it in R...
 
-![](code_metadata.png)
+![](../../code_metadata.png)
 
 ## Data Processing {.smaller}
 
@@ -167,7 +167,7 @@ Excel is looping behind a friendly interface, which means that:
 
 :::: notes
 ::: notes
-The big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproduciblity.
+The big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproducibility.
 :::
 ::::
 
