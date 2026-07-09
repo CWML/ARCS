@@ -106,9 +106,11 @@ getwd()
 
 2. In the console, enter: 
 ```r
+install.packages("fs")
+library(fs)
 fs::dir_tree()
 ```
-This calls the dir_tree function from the `fs` package - you should see an output that shows you all your project files and their relationships
+This installs the `fs` package, loads it from the installation, and calls its `dir_tree` function - you should see an output that shows you all your project files and their relationships.
 
 3. To write this output to a file, enter this command in the console: 
 ```r
