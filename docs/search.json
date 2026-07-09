@@ -861,7 +861,7 @@
     "href": "workshops/arcs_01/02-slides.html#computational-performance",
     "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
     "section": "Computational Performance",
-    "text": "Computational Performance\n\n\n\nDataset\n20 rows\n1,000 rows\n100,000 rows\n1,000,000 rows +\n\n\n\n\nExcel\nfast\nslowing\ncrashing\ncannot open\n\n\nR\nfast\nfast\nfast\nfast\n\n\n\n\nPractical implications\nExcel is looping behind a friendly interface, which means that:\nExcel hits walls at:\n\n~50,000 rows (becomes very slow)\n~1 million rows (Excel’s row limit)\nComplex nested formulas (exponential slowdown)\n\nR scales to:\n\nMillions of rows routinely\nBillions of rows with proper techniques\nComplex operations remain fast\n\n\n\n\nThe big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproduciblity."
+    "text": "Computational Performance\n\n\n\nDataset\n20 rows\n1,000 rows\n100,000 rows\n1,000,000 rows +\n\n\n\n\nExcel\nfast\nslowing\ncrashing\ncannot open\n\n\nR\nfast\nfast\nfast\nfast\n\n\n\n\nPractical implications\nExcel is looping behind a friendly interface, which means that:\nExcel hits walls at:\n\n~50,000 rows (becomes very slow)\n~1 million rows (Excel’s row limit)\nComplex nested formulas (exponential slowdown)\n\nR scales to:\n\nMillions of rows routinely\nBillions of rows with proper techniques\nComplex operations remain fast\n\n\n\n\nThe big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproducibility."
   },
   {
     "objectID": "workshops/arcs_01/02-slides.html#rs-flexibility-creates-new-responsibilities",
