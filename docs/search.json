@@ -230,7 +230,7 @@
     "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "This works in Quarto Presentations!",
-    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── ARCS_Part2b_Slides.qmd\n└── ARCS_Part2b_Slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── ARCS_Part2b_Slides.qmd\n└── ARCS_Part2b_Slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
   },
   {
     "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
@@ -875,7 +875,7 @@
     "href": "workshops/arcs_01/02-slides.html#meet-r-where-its-at",
     "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
     "section": "Meet R where it’s at",
-    "text": "Meet R where it’s at\n\nR Projects - Keep your files organized\nREADME - Document what you do\nFilenaming Conventions - Name your files consistently\nWorkflow automation - Use code to handle repetitive tasks\nLook beyond R - Use complimentary tools"
+    "text": "Meet R where it’s at\n\nR Projects - Keep your files organized\nREADME - Document what you do\nFile Naming Conventions - Name your files consistently\nWorkflow automation - Use code to handle repetitive tasks\nLook beyond R - Use complimentary tools"
   },
   {
     "objectID": "workshops/arcs_01/02-slides.html#what-are-r-projects",
@@ -953,5 +953,19 @@
     "title": "ARCS",
     "section": "",
     "text": "Date\nTime\nLesson\n\n\n\n\nThursday, July 10\n9:30–10:30 AM\nFundamentals of R\n\n\nThursday, July 10\n10:30–11:30 AM\nProject Management\n\n\nThursday, July 17\n9:30–10:30 AM\nData Structures\n\n\nThursday, July 17\n10:30–11:30 AM\nReports\n\n\nThursday, July 24\n9:30–10:30 AM\nTidyverse\n\n\nThursday, July 24\n10:30–11:30 AM\nGit & Version Control\n\n\nThursday, July 31\n9:30–10:30 AM\nDESeq2\n\n\nThursday, July 31\n10:30–11:30 AM\nApptainer\n\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#file-naming-conventions",
+    "href": "workshops/arcs_01/02-slides.html#file-naming-conventions",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "File Naming Conventions",
+    "text": "File Naming Conventions\n\nNo spaces (use underscore or en dash)\nStart with dates using International Organization for Standardization (ISO)\n\nYYYYMMDDHHMMSS\n\nUse descriptive names\n\n\nLet’s talk about something that seems simple but will save you hours of frustration: naming your files well.\nFirst rule: no spaces in file names. Spaces are often special characters in programming languages that have a specific assigned use behind the scenes. Or, they may keep your computer from understanding that words belong together. Use underscores or dashes instead - both work fine, just pick one and stick with it.\nFor dates, I want you to learn the ISO standard: YYYY-MM-DD. So October 2, 2025 becomes 20251002. Why? Because when your computer sorts files alphabetically, they’ll automatically sort in chronological order too. The American date format won’t do this.\nBe descriptive with your names. In six months when you’re looking through your files, ‘data.csv’ tells you nothing, but ‘participant_demographics.csv’ immediately tells you what’s inside.\nThe key is consistency. Whatever naming pattern you choose, use it for everything in your project. Your future self will thank you when you can find files instantly instead of opening each one to see what’s inside.”"
+  },
+  {
+    "objectID": "workshops/arcs_01/02-slides.html#file-naming-conventions-1",
+    "href": "workshops/arcs_01/02-slides.html#file-naming-conventions-1",
+    "title": "Introduction to\nProgramming in R Part 1:\nProject Management",
+    "section": "File Naming Conventions",
+    "text": "File Naming Conventions\n❌ Bad Examples:\n\ndata analysis.R (spaces)\ndata.csv (not descriptive)\nfinal_FINAL_really_final.R (version chaos)\n\n✅ Good Examples:\n\n2024-03-15_survey_analysis.R\nparticipant_demographics_clean.csv\nREADME.md"
   }
 ]
