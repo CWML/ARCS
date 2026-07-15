@@ -3,7 +3,7 @@ title: |
       Introduction to \ 
       Programming in R Part 2:\
       Reports
-author: Levi Dolan, Data Librarian for the Health Sciences
+author: Levi Dolan
 format: 
   #pptx:
   revealjs:

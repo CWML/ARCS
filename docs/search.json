@@ -163,127 +163,127 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-can-happen",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-can-happen",
+    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What can happen",
     "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#integrated-documentation-strategy",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#integrated-documentation-strategy",
+    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Integrated Documentation Strategy",
     "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#automate-filenaming",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#automate-filenaming",
+    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Automate Filenaming",
     "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-summary",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-summary",
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Summary",
     "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-filter",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-filter",
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Filter",
     "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-group",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-group",
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Group",
     "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#from-static-documentation-to-living-documents",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#from-static-documentation-to-living-documents",
+    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "From Static Documentation to Living Documents",
     "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#literate-programming",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#literate-programming",
+    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
+    "href": "workshops/arcs_02/04-slides.html#literate-programming",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Literate Programming",
     "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-we-just-did",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-we-just-did",
+    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What we just did",
     "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
+    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "This works in Quarto Presentations!",
-    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── ARCS_Part2b_Slides.qmd\n└── ARCS_Part2b_Slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
+    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "When it’s time to write up what you did:",
     "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#static-limitations",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#static-limitations",
+    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
+    "href": "workshops/arcs_02/04-slides.html#static-limitations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Static Limitations",
     "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#dynamic-possibility",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#dynamic-possibility",
+    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Dynamic Possibility",
     "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#building-reproducible-documents",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#building-reproducible-documents",
+    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Building Reproducible Documents",
     "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#reproducibility-in-phases",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#reproducibility-in-phases",
+    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Reproducibility in Phases",
     "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#evaluating-reproducibility",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#evaluating-reproducibility",
+    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Evaluating Reproducibility",
     "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#extending-reproducibility",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#extending-reproducibility",
+    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Extending Reproducibility",
     "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#why-arcs",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#why-arcs",
+    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
+    "href": "workshops/arcs_02/04-slides.html#why-arcs",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Why ARCS",
     "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
