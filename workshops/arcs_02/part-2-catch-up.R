@@ -223,7 +223,7 @@ library(readr)
 # files are in your raw_data/ folder before running these lines.
 
 # 1. Raw counts at the gene level:
-rawc <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data_3.csv")
+rawc <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data.csv")
 
 # 2. Sample metadata — information about the sequenced samples:
 info <- read.csv("raw_data/GSE113754_filtered_metadata.csv")
@@ -353,8 +353,8 @@ colnames(rawc)
 info_clean$sample_id
 
 # Step 1: Build a gene_id by merging the gene ID and gene symbol columns
-# (columns 2 and 3 of rawc), separated by "|":
-gene_id <- paste(rawc[, 2], rawc[, 3], sep = "|")
+# (columns 1 and 2 of rawc), separated by "|":
+gene_id <- paste(rawc[, 1], rawc[, 2], sep = "|")
 
 # Step 2: Keep only the columns that match info_clean$sample_id, and set
 # gene_id as the row names so it is not treated as a data column:
@@ -367,6 +367,7 @@ rawc_clean <- data.frame(
 # ---- C10. Save the Cleaned Tables -----------------------------------------
 # Write the cleaned metadata and counts to your processed_data/ folder.
 # (write.csv() writes to your local file system.)
+dir.create("processed_data", showWarnings = FALSE)   # create folder if absent
 write.csv(info_clean, "processed_data/Shank3_metadata_clean.csv")
 write.csv(rawc_clean, "processed_data/Shank3_rawCounts_clean.csv")
 
