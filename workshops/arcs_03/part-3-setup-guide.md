@@ -71,15 +71,17 @@ Get these from your workshop coordinator (they'll be in the same place as the re
 
 ------------------------------------------------------------------------
 
-## 5. Run the Catch-Up Script
+## 5. Run the Catch-Up Script (Optional)
 
-The **`part-3-catch-up.R`** script in this folder covers everything from Sessions 1–2 — R fundamentals, project setup with `renv`, and importing/cleaning/harmonizing the workshop data — so you arrive at Session 3 on equal footing.
+The **`part-3-catch-up.R`** script in this folder covers everything from Sessions 1–2 — R fundamentals, project setup with `renv`, and importing/cleaning/harmonizing the workshop data using base R.
+
+**You do not need to run this for tomorrow's session.** In Session 3 we'll do this same data import and cleaning work together, live, using the Tidyverse instead of base R — so you don't need `processed_data/` populated ahead of time. Only work through this script on your own time if you'd like to see how the same steps look in base R for comparison.
+
+If you do want to run it:
 
 1.  Copy `part-3-catch-up.R` into your **scripts/** folder.
 2.  Open it in Positron.
 3.  Work through it top to bottom, running one line or block at a time (`Cmd/Ctrl + Enter`) and reading the comments as you go.
-
-By the end, you'll have cleaned data saved in `processed_data/` and a fully reproducible project environment.
 
 ------------------------------------------------------------------------
 
@@ -111,7 +113,7 @@ You should now have:
 
 - [x] R, Positron, Quarto, and GitHub Desktop installed
 - [x] A **demo_project** folder with `raw_data/`, `processed_data/`, `scripts/`, and `outputs/`
-- [x] The workshop data in `raw_data/` and cleaned versions in `processed_data/`
+- [x] The workshop data in `raw_data/`
 - [x] A git repository tracking your project (confirmed via `git status`)
 
 See you in **05-tidyverse**!
