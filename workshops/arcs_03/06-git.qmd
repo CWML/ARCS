@@ -344,7 +344,6 @@ You'll use the **remote-first / clone** workflow when you collaborate on someone
 
 The following material goes beyond the core session. Work through it on
 your own — each appendix is self-contained.
----
 
 ## Appendix A: Collaboration with Fork & Pull Requests
 
