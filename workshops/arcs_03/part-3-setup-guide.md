@@ -25,6 +25,8 @@ quarto --version
 
 If you see a version number, you're set.
 
+> **Already have all of this installed?** If you've got the software but haven't created a project yet, skip ahead to **Step 2**.
+
 ------------------------------------------------------------------------
 
 ## 2. Create Your Project
