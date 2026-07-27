@@ -4,8 +4,9 @@ The Apptainer hour (Hour 2) of Part 4. Goal: every learner, on any OS, runs
 the *same* DESeq2 analysis from Hour 1 inside a container on a Codespace, and
 leaves understanding why that makes research reproducible.
 
-The teaching frame, the design rationale, and the "traps to avoid" live in
-`../claudeclassplanning.md`. This guide is the operational runbook.
+This guide is the operational runbook: what to build ahead of time, what to
+verify on the day, and what to do when something breaks. For the file map and
+how the pieces fit together, see [`README.md`](README.md).
 
 ---
 
