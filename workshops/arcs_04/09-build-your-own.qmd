@@ -11,8 +11,10 @@ sidebar: arcs04
 - **Read** an Apptainer definition file (`.def`) section by section and explain
   what each part does
 - **Build** a container image from a definition file with `apptainer build`
-- **Publish** that image to a registry (GHCR) and version it alongside your code
-- **Automate** rebuilds with a GitHub Actions workflow
+- **Explain** what a container registry is, why images are versioned, and what
+  your options are for sharing one — well enough to research the specifics
+- **Recognize** the risk of a published image drifting from its definition, and
+  the manual and automated ways to prevent it
 - **Adapt** the whole pattern to your *own* analysis
 :::
 
@@ -242,114 +244,110 @@ If `outputs/` fills with results, your image is good to ship.
 
 ---
 
-## Step 4 — Publish to a registry
+## Step 4 — Sharing your image: the concept
 
-A registry is where your image *lives* so others (and HPC, and CI) can pull it.
-We use the **GitHub Container Registry (GHCR)** because it sits right next to
-your code.
+Steps 0–3 are the part you can do today. What follows is a **concept
+orientation**, not a walkthrough — enough vocabulary to know what exists and
+what to search for when you need it.
 
-### 4a. Log in
+Once you have a working `.sif`, the question becomes: how does anyone *else*
+get it? Image files are large — often several gigabytes — so they don't belong
+in a Git repository. They live somewhere else, and your repo points at them.
 
-Create a GitHub **Personal Access Token (classic)** with the `write:packages`
-scope, then:
+**A registry** is a server that stores and serves container images, the way
+CRAN serves R packages. You upload ("push") an image once; collaborators, an
+HPC cluster, or an automated job download ("pull") it by name. The common
+choices are the **GitHub Container Registry (GHCR)**, which sits next to your
+code, **Docker Hub**, **Quay.io**, and the Apptainer-native **Sylabs Cloud
+Library**. Pushing requires an account and an access token with permission to
+write packages; images are private by default, so there's a visibility setting
+to flip if you want people to pull without logging in.
 
-```bash
-echo "$GHCR_PAT" | apptainer registry login -u YOUR_USERNAME --password-stdin oras://ghcr.io
-```
-
-### 4b. Push — with a real version tag
-
-```bash
-# Tag with a VERSION, not just :latest
-apptainer push deseq2.sif oras://ghcr.io/cwml/deseq2:1.0
-apptainer push deseq2.sif oras://ghcr.io/cwml/deseq2:latest
-```
-
-::: {.callout-tip}
-## Version the image alongside the code
-Give the image a real version tag (`:1.0`) and bump it when the `.def` changes —
-don't rely on `:latest` alone. The goal: a paper or a colleague can ask for
-`deseq2:1.0` and get *exactly* the environment your results came from. Treat the
-image version like a Git tag for your environment.
+::: {.callout-important}
+## You'd publish to *your* namespace, not ours
+The workshop image lives at `ghcr.io/cwml/deseq2` — you can pull from it, but
+you can't push to it. Publishing means creating your own registry namespace
+under your GitHub account or your lab's organization. That's an account setup
+task, not a container task, which is why it isn't a step you can follow along
+with here.
 :::
 
-### 4c. Make it pullable
+**Version tags** are the idea worth carrying away even if you never push
+anything. A registry name ends in a tag — `:1.0`, `:latest`. Give an image a
+real version and bump it whenever the `.def` changes, rather than
+overwriting `:latest` forever. The payoff: a methods section can cite the exact
+environment a result came from, and a colleague asking for that version gets
+precisely what you ran. Treat the image tag as a Git tag for your environment.
 
-On github.com → your org/user → **Packages** → `deseq2` → **Package settings** →
-**Change visibility → Public**, so anyone can pull without logging in:
+**Two lighter-weight alternatives** are worth knowing about. You can attach a
+`.sif` to a **GitHub Release** — no registry account, works well for a single
+occasional artifact. Or deposit the image in **Zenodo**, which mints a **DOI**
+you can cite in a paper and guarantees long-term archival. For published
+research, the Zenodo route is often the more appropriate one.
 
-```bash
-apptainer pull oras://ghcr.io/cwml/deseq2:1.0
-```
-
-Your code, your `.def`, and a pullable image now form one reproducible artifact —
-the complete version of the Git story from Part 3.
+::: {.callout-tip collapse="true"}
+## What to search for
+- `apptainer push`, `apptainer pull`, `apptainer registry login` — the three
+  commands involved
+- **ORAS** — the protocol Apptainer uses to store `.sif` files in OCI
+  registries; you'll see `oras://` prefixes in registry addresses
+- **GHCR authentication**, **personal access token**, `write:packages` scope,
+  **package visibility** — the GitHub account-side setup
+- **Sylabs Cloud Library** — the registry built specifically for Apptainer/Singularity
+- **Zenodo DOI software archiving** — for citable, permanent deposits
+:::
 
 ---
 
-## Step 5 — Automate rebuilds with CI
+## Step 5 — Keeping the image in sync: the concept
 
-Right now the image only updates when you remember to rebuild and push. Let's
-make GitHub do it automatically whenever the definition changes — so the
-published image can never drift from the `.def` in your repo.
+Here's the failure mode that eventually bites everyone: you edit the `.def`,
+commit it, and forget to rebuild. Now the recipe in your repo and the published
+image describe different environments — and there's nothing to warn you. The
+image people are actually using no longer matches the definition people are
+actually reading. That's a reproducibility bug that looks like nothing at all.
 
-Create `.github/workflows/build-image.yml`:
+**The low-tech answer is discipline**, and it's genuinely sufficient for most
+projects: whenever you change the `.def`, rebuild, bump the version tag, and
+note the current image version in your README. Because the change is a Git
+commit, you have a record of when the environment changed and why.
 
-```yaml
-name: Build & push DESeq2 image
-
-on:
-  push:
-    branches: [main]
-    paths:
-      - "workshops/arcs_04/_materials/container/deseq2.def"   # rebuild only when the recipe changes
-  workflow_dispatch: {}                                       # ...or run it by hand
-
-permissions:
-  contents: read
-  packages: write              # needed to push to GHCR
-
-jobs:
-  build:
-    runs-on: ubuntu-latest     # a full VM — user namespaces work, no privileged needed
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Apptainer
-        uses: eWaterCycle/setup-apptainer@v2
-        with:
-          apptainer-version: 1.3.6
-
-      - name: Build image
-        working-directory: workshops/arcs_04/_materials/container
-        run: apptainer build deseq2.sif deseq2.def
-
-      - name: Log in to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | apptainer registry login -u ${{ github.actor }} --password-stdin oras://ghcr.io
-
-      - name: Push image
-        working-directory: workshops/arcs_04/_materials/container
-        run: apptainer push deseq2.sif oras://ghcr.io/${{ github.repository_owner }}/deseq2:latest
-```
+**The automated answer is continuous integration (CI)** — a service that
+watches your repository and runs jobs when something changes. Configured for
+this purpose, it rebuilds and republishes the image automatically whenever the
+`.def` file is modified, so the published image cannot drift from the
+definition. On GitHub this is **GitHub Actions**: a YAML file in
+`.github/workflows/` describing what to run and what should trigger it. Notably,
+CI runners are full virtual machines rather than nested containers, so the
+privileged-mode problem from Step 0 doesn't arise there.
 
 ::: {.callout-note}
-## Why this works without `--privileged`
-GitHub-hosted runners (`ubuntu-latest`) are full virtual machines, not nested
-containers, so user namespaces are available and Apptainer builds normally. The
-nested-container restriction you hit in a Codespace doesn't apply here. The
-built-in `GITHUB_TOKEN` already has permission to push to your repo's packages —
-no PAT needed in CI.
+## This one is genuinely a later topic
+CI is a substantial subject of its own — worth learning, but not a prerequisite
+for containerizing your research. Manual rebuilds with honest version tags get
+you the reproducibility benefit. Come back to automation when rebuilding by hand
+starts to feel like the thing you keep forgetting.
+
+This repository does have such a workflow, at
+`.github/workflows/build-image.yml`, if you want to see a real one.
 :::
 
-This closes the loop: change the environment definition → commit → CI rebuilds
-and republishes the image. The environment is now as version-controlled and
-automated as your code.
+::: {.callout-tip collapse="true"}
+## What to search for
+- **GitHub Actions workflow syntax** — the structure of the YAML file
+- **workflow triggers**, **path filters** — running a job only when specific
+  files change
+- `setup-apptainer` **GitHub Action** — installs Apptainer on a runner
+- `GITHUB_TOKEN`, **workflow permissions** — how a job authenticates to push a
+  package without a personal token
+- **continuous integration** generally — the concept is not container-specific
+:::
 
 ---
 
 ## Step 6 — Adapt the pattern to your own analysis
 
-This is the real goal. To containerize *your* work, repeat the same five moves:
+This is the real goal. To containerize *your* work, repeat the same moves:
 
 1. **List your dependencies.** What language/version, and which packages? For R,
    skim your `library()` / `pacman::p_load()` calls. Split them into
@@ -361,7 +359,10 @@ This is the real goal. To containerize *your* work, repeat the same five moves:
    the `%runscript` pointing at your entry script and the `%test` checking your
    key package loads.
 4. **Build and test** (Steps 2–3) until your pipeline runs inside the image.
-5. **Publish and automate** (Steps 4–5) so the image travels with your code.
+5. **Share it when you need to** (Steps 4–5). A local `.sif` plus a committed
+   `.def` is already reproducible for you and anyone who can rebuild. Reach for
+   a registry when collaborators, a cluster, or a publication need the exact
+   image.
 
 ::: {.callout-tip}
 Keep the `.def`, your pipeline script, and a small example dataset together in
@@ -378,8 +379,10 @@ Linux host, including HPC.
   persistent local setup.
 - The `.def` file is a readable recipe; each section has one job.
 - `apptainer build` turns the recipe into a single `.sif` image (slow, once).
-- A **registry** (GHCR) + a **version tag** makes the image a shareable,
-  reproducible artifact.
-- **CI** keeps the published image in lockstep with the definition.
+- Images are too large for Git — a **registry**, a **GitHub Release**, or a
+  **Zenodo deposit** is how one gets shared. A real **version tag** is what
+  makes it citable.
+- A published image can silently **drift** from its definition. Rebuild and
+  bump the version whenever the `.def` changes; automate it with **CI** later.
 - The same pattern containerizes *any* analysis — which is the whole point of
   the ARCS series.

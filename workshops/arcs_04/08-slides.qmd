@@ -41,12 +41,56 @@ A single file that packages your **entire computing environment**:
 
 > Run that file anywhere → get *exactly* that environment.
 
+## More than pinning packages
+
+- `renv` pins your **R packages** — good instinct, one layer up
+- But it still assumes R is installed, at a compatible version,
+  on an OS with the right system libraries
+- A container ships **all of it**
+
+> `renv` is the shopping list. The container is the groceries.
+
+## Not a virtual machine
+
+|          | Virtual machine        | Container            |
+|----------|------------------------|----------------------|
+| Simulates| A whole computer + kernel | Nothing — shares the host kernel |
+| Size     | Gigabytes of overhead  | Just your software   |
+| Start-up | Boots like a machine   | Seconds, like a command |
+
+> Containers *borrow* the Linux kernel — they don't simulate one.\
+> That's why Apptainer needs Linux.
+
+## Four words to keep straight
+
+| Term | What it is |
+|------|------------|
+| **Container** | The idea: software packaged with all it needs |
+| **Image** `.sif` | The file on disk — one shareable artifact |
+| **Apptainer** | The program that builds and runs images |
+| **Definition** `.def` | The text recipe for an image |
+
+> Write a **`.def`** → Apptainer **builds** an **image** → Apptainer **runs** it.\
+> Today: only the last step.
+
+## So what is Apptainer?
+
+- Free, **open-source** software that builds and runs containers
+- A command-line program: `exec`, `run`, `pull`, `build`
+- Built at **Lawrence Berkeley National Lab** for shared clusters
+- Its answer to "hundreds of untrusted users": the container runs **as you**
+
+::: {.fragment}
+Formerly called **Singularity** — many clusters still use that command.
+:::
+
 ## Why Apptainer (not Docker)?
 
 - Built for **research** and **HPC**
 - Runs as *you*, not as root — works on shared clusters
 - One portable image file: `analysis.sif`
 - The image is the artifact you publish alongside your paper
+- Can still *read* Docker images — ours starts from one
 
 ## The catch — and the lesson {.center}
 
@@ -97,6 +141,16 @@ apptainer exec ~/deseq2.sif Rscript pipeline.R
 ls outputs/
 ```
 
+## What's in the image — and what isn't
+
+- **Inside:** R, DESeq2, ggplot2, system libraries — the *software*
+- **Outside:** `pipeline.R`, `data/`, `outputs/` — *your* files
+
+> The environment is frozen and shared.\
+> Your files stay yours — edit them with normal tools.
+
+That's why Step 5 works without rebuilding anything.
+
 ## Demo: read the definition {.center}
 
 `_materials/container/deseq2.def`
@@ -145,5 +199,5 @@ In the repo, side by side:
 - Self-paced guide: **build your own** container
   - install a Linux substrate locally
   - read `deseq2.def` line by line
-  - build, publish to a registry, automate with CI
+  - build your own image from that definition
 - Adapt the pattern to **your own** analysis

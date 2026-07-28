@@ -94,7 +94,7 @@ definition. (Covered in the async build-your-own guide.)
 
 | Time | Segment | What you do |
 |---|---|---|
-| 0:00–0:12 | **Why containers** | Slides 1–7. Land the "works on my machine" pain, then the Linux-only reframe (the OS limit *is* the lesson). |
+| 0:00–0:12 | **Why containers + what Apptainer is** | Slides 1–11. Land the "works on my machine" pain, establish the vocabulary (container / image / Apptainer / `.def`), then the Linux-only reframe (the OS limit *is* the lesson). |
 | 0:12–0:20 | **Everyone launches a Codespace** | Walk them through Code → Codespaces → Create. Budget buffer — first launches always hit snags. Wait for `Setup complete.` |
 | 0:20–0:28 | **Verify** | `apptainer --version`, `ls ~/deseq2.sif`, `apptainer exec ~/deseq2.sif R --version`. Hammer the point: *no R on this Codespace — R is in the image.* |
 | 0:28–0:42 | **Run the pipeline** | `cd workshops/arcs_04/_materials` → `apptainer exec ~/deseq2.sif Rscript pipeline.R` → inspect `outputs/`. Open a plot. Same result as Hour 1, now on Linux. |

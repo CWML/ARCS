@@ -7,6 +7,8 @@ sidebar: arcs04
 ## By the end of this section, you should be able to...
 - **Describe** how containerization solves reproducibility problems that
   come from software and operating-system differences
+- **Define** the core vocabulary — container, image (`.sif`), Apptainer, and
+  definition file (`.def`) — and explain how the four relate
 - **Differentiate** a *host* environment from a *containerized* environment,
   and say when each is appropriate
 - **Execute** a multi-step DESeq2 pipeline *from inside* a container, on a
@@ -62,8 +64,76 @@ installation, every package at a pinned version, the system libraries
 underneath — into a single file. Anyone who runs that file gets exactly the
 environment you built, regardless of what their own computer looks like.
 
-We use **[Apptainer](https://apptainer.org/)**, a container system designed
-for research and high-performance computing (HPC).
+The key word is *entire*. You may already pin your R packages with something
+like `renv` — that's the same instinct, one layer up. But a package lockfile
+still assumes R itself is installed, at a compatible version, on an operating
+system that has the right system libraries for those packages to compile
+against. A container removes those assumptions by shipping all of it. Think of
+`renv` as a shopping list and a container as the delivered groceries.
+
+::: {.callout-note collapse="true"}
+## Is a container a virtual machine?
+No — and the difference is why containers are practical.
+
+A **virtual machine** simulates an entire computer, including its own
+operating-system kernel. That's heavy: gigabytes of overhead, slow to start.
+
+A **container** shares the host's Linux kernel and packages only the layers
+above it — the software, libraries, and files. That's why an image starts in
+seconds and why `apptainer exec` feels like running a normal command rather
+than booting a machine.
+
+It's also why Apptainer needs Linux specifically: it isn't simulating a Linux
+kernel, it's *borrowing* the one already running.
+:::
+
+---
+
+## The words you'll hear today
+
+Four terms get used constantly and they're easy to blur together:
+
+| Term | What it is |
+|---|---|
+| **Container** | The general idea: software packaged with everything it needs to run |
+| **Image** (`.sif`) | The actual file on disk — one self-contained artifact you can copy, share, or archive. `.sif` stands for *Singularity Image Format* |
+| **Apptainer** | The program that *runs* images (and builds them). It's what you type at the command line |
+| **Definition file** (`.def`) | The plain-text recipe describing what goes into an image. Human-readable, lives in your repo, gets version controlled |
+
+The relationship, end to end: you write a **definition file**, Apptainer
+**builds** it into an **image**, and then Apptainer **runs** that image to
+execute your analysis. Today you'll do only the last part — the image is
+already built for you.
+
+---
+
+## So what is Apptainer?
+
+**[Apptainer](https://apptainer.org/)** is free, open-source software that
+builds and runs containers, purpose-built for research computing. You install
+it on a Linux machine; from then on it's a command-line program, and the
+handful of subcommands you'll meet today (`exec`, `run`, `pull`, `build`) are
+most of what anyone uses day to day.
+
+It was created at Lawrence Berkeley National Laboratory to solve a problem
+research computing had and web infrastructure didn't: how do you let hundreds
+of untrusted users run custom software environments on a shared cluster without
+handing any of them administrator rights? Apptainer's answer is that a
+container runs **as you** — with your permissions, your files, your identity —
+rather than as a privileged system user. That single design decision is why
+essentially every academic HPC centre supports it.
+
+::: {.callout-tip collapse="true"}
+## You'll also see the name "Singularity"
+Apptainer was called **Singularity** until 2021, when the project joined the
+Linux Foundation and was renamed. They are the same tool.
+
+This matters practically: papers, tutorials, and Stack Overflow answers from
+before ~2022 all say "Singularity," and many HPC clusters still provide the
+command as `singularity` rather than `apptainer`. If your cluster's docs
+mention Singularity, everything you learn here applies — try `singularity exec`
+in place of `apptainer exec`.
+:::
 
 ::: {.callout-note collapse="true"}
 ## Why Apptainer and not Docker?
@@ -72,10 +142,12 @@ You may have heard of Docker. Same core idea, different conventions:
 - Apptainer is built for **research computing and HPC**
 - It runs as *you*, not as root — which is why shared clusters allow it
 - An image is **one portable file** (`analysis.sif`) you can copy, archive,
-  or publish alongside a paper
+  or publish alongside a paper, rather than a set of layers in a daemon's
+  storage
 
 Docker is excellent for web services; Apptainer is the norm in research
-computing because of that security model on shared systems.
+computing because of that security model on shared systems. Apptainer can also
+*read* Docker images, which is why our definition file starts from one.
 :::
 
 ::: {.callout-important}
@@ -178,6 +250,24 @@ apptainer exec ~/deseq2.sif Rscript pipeline.R
 
 Apptainer automatically makes your current folder available inside the
 container, so the pipeline can read `data/` and write `outputs/`.
+
+::: {.callout-note}
+## What's inside the image, and what isn't
+This is worth being precise about, because it's the piece most people get
+backwards at first.
+
+**Inside the image:** R, DESeq2, ggplot2, and the system libraries they need —
+the *software*. Fixed at build time and identical for everyone.
+
+**Outside the image:** your code (`pipeline.R`), your data (`data/`), and your
+results (`outputs/`) — all ordinary files in your own folder, which Apptainer
+makes visible to the container while it runs.
+
+That's the division of labour. The environment is frozen and shared; your
+files stay yours, editable with normal tools. It's why you can edit
+`pipeline.R` in Step 5 with the plain editor and immediately re-run it — you
+never have to open up or rebuild the image to change your analysis.
+:::
 
 When it finishes you'll see a summary like:
 
@@ -304,6 +394,6 @@ reproduces. That is the goal of the whole ARCS series, made concrete.
 You **used and modified** a container today. The self-paced
 [**Build Your Own Container**](09-build-your-own.qmd) guide covers
 **authoring** one from scratch: installing a Linux substrate locally, reading
-`deseq2.def` line by line, building the image, publishing it to a registry,
-automating rebuilds with CI, and adapting the whole pattern to your own
-analysis.
+`deseq2.def` line by line, building the image, and adapting the whole pattern
+to your own analysis — plus a conceptual tour of how images get shared and
+versioned.
