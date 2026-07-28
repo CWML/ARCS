@@ -25,7 +25,7 @@ website:
           - text: "ARCS 3"
             href: workshops/arcs_03/05-tidyverse.qmd
           - text: "ARCS 4"
-            href: workshops/arcs_04/07-deseq2.qmd
+            href: workshops/arcs_04/07-deseq2_pipeline.qmd
     right:
       - icon: github
         href: https://github.com/CWML/ARCS
@@ -75,7 +75,7 @@ website:
         - section: "ARCS 4"
           contents:
             - text: "DESeq2"
-              href: workshops/arcs_04/07-deseq2.qmd 
+              href: workshops/arcs_04/07-deseq2_pipeline.qmd 
             - text: "Apptainer"
               href: workshops/arcs_04/08-apptainer.qmd
             - text: "Build Your Own Container"
