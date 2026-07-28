@@ -163,127 +163,127 @@
     ]
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-can-happen",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-can-happen",
+    "objectID": "workshops/arcs_02/04-slides.html#what-can-happen",
+    "href": "workshops/arcs_02/04-slides.html#what-can-happen",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What can happen",
     "text": "What can happen\n\nAnalysis decisions made in the moment, not recorded\nMethods written months later from memory\nFile naming is arbitrary\nNo clear link between code, data, and publications\nResult: Irreproducible research, forgotten reasoning1\n\nSandve GK, Nekrutenko A, Taylor J, Hovig E. (2013). Ten simple rules for reproducible computational research. PLoS Comput Biol 9:e1003285."
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#integrated-documentation-strategy",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#integrated-documentation-strategy",
+    "objectID": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
+    "href": "workshops/arcs_02/04-slides.html#integrated-documentation-strategy",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Integrated Documentation Strategy",
     "text": "Integrated Documentation Strategy\n\nAuto-Generated File Names\nSelf-Updating README Files\nCode-Publication Integration"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#automate-filenaming",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#automate-filenaming",
+    "objectID": "workshops/arcs_02/04-slides.html#automate-filenaming",
+    "href": "workshops/arcs_02/04-slides.html#automate-filenaming",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Automate Filenaming",
     "text": "Automate Filenaming\n\n20241205143022 = timestamp\nLD_ProjectARCS = user and project identifiers\nsummary_stats = analysis type\n.xlsx = format\nTOGETHER: 20241205143022_LD_ProjectARCS_summary_stats.xlsx"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-summary",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-summary",
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-summary",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Summary",
     "text": "What the example functions do: Summary\nsummary_result &lt;- run_single_analysis(\"summary\")\n\nCalculates descriptive statistics (mean, median, standard deviation, min, max) for every numeric column in your dataset\nOutput: One row with statistical summaries for each numeric variable\nUseful for: Getting an overview of your data’s central tendencies and spread"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-filter",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-filter",
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-filter",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Filter",
     "text": "What the example functions do: Filter\nfiltered_result &lt;- run_single_analysis(\"filtered\", filter_condition = \"column_name &gt; 50\")\n\nApplies a condition to keep only certain rows of data, then sorts the results. Example: filter_condition = “age &gt; 50” keeps only participants over 50\nOutput: Reduced dataset containing only rows that meet your condition\nUseful for: Subsetting data based on criteria, creating focused datasets"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-group",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-the-example-functions-do-group",
+    "objectID": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
+    "href": "workshops/arcs_02/04-slides.html#what-the-example-functions-do-group",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What the example functions do: Group",
     "text": "What the example functions do: Group\ngrouped_result &lt;- run_single_analysis(\"grouped\", group_by_col = \"category\")\n\nGroups data by categories (as defined by your columns.) and calculates summary statistics within each group\nOutput: Summary statistics broken down by your grouping variable\nUseful for: Comparing groups, identifying patterns across categories"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#from-static-documentation-to-living-documents",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#from-static-documentation-to-living-documents",
+    "objectID": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
+    "href": "workshops/arcs_02/04-slides.html#from-static-documentation-to-living-documents",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "From Static Documentation to Living Documents",
     "text": "From Static Documentation to Living Documents\n\nYou have organized R projects and started good data management habits\nNow let’s start automating documentation\nOur goal is for documents to update themselves as your data changes"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#literate-programming",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#literate-programming",
+    "objectID": "workshops/arcs_02/04-slides.html#literate-programming",
+    "href": "workshops/arcs_02/04-slides.html#literate-programming",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Literate Programming",
     "text": "Literate Programming\nWhat’s this?!\n\nCode + Text + Results presented together rather than separately\nAn iterative approach toward finished projects\nBuilds in flexibility in output formats\n\n\n\n\n\n\nNote\n\n\nThe slides I’m using were made in the tool you’ll learn today!"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-we-just-did",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#what-we-just-did",
+    "objectID": "workshops/arcs_02/04-slides.html#what-we-just-did",
+    "href": "workshops/arcs_02/04-slides.html#what-we-just-did",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "What we just did",
     "text": "What we just did\n\nStarted with a traditional README - a static project description\nCreated an automated file inventory - a dynamic record that can grow with your project"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#this-works-in-quarto-presentations",
+    "objectID": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
+    "href": "workshops/arcs_02/04-slides.html#this-works-in-quarto-presentations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "This works in Quarto Presentations!",
-    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── ARCS_Part2b_Slides.qmd\n└── ARCS_Part2b_Slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
+    "text": "This works in Quarto Presentations!\n.\n├── 03-structures.html\n├── 03-structures.qmd\n├── 04-reports.qmd\n├── 04-slides.qmd\n└── 04-slides.rmarkdown\n\nDEMO: I can add to my comment “outputs” comment “and Quarto doc” and render and it immediately appears in my slides. Rendering also automatically saves the .qmd file."
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#when-its-time-to-write-up-what-you-did",
+    "objectID": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
+    "href": "workshops/arcs_02/04-slides.html#when-its-time-to-write-up-what-you-did",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "When it’s time to write up what you did:",
     "text": "When it’s time to write up what you did:\nStatic script:\n# analysis.R\ndata &lt;- read.csv(\"data.csv\")\nsummary(data)\nmean_x &lt;- mean(data$x)\n# Output: 42.5\nStatic document:\n“Scholarly_Article_About_My_Research.docx”\nMethods: We loaded the dataset and calculated summary statistics.\nResults: The mean of variable X was 42.5."
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#static-limitations",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#static-limitations",
+    "objectID": "workshops/arcs_02/04-slides.html#static-limitations",
+    "href": "workshops/arcs_02/04-slides.html#static-limitations",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Static Limitations",
     "text": "Static Limitations\n\nIf data changes → Report is wrong\nIf analysis changes → Must remember to update\nNo direct link to how reports were generated"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#dynamic-possibility",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#dynamic-possibility",
+    "objectID": "workshops/arcs_02/04-slides.html#dynamic-possibility",
+    "href": "workshops/arcs_02/04-slides.html#dynamic-possibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Dynamic Possibility",
     "text": "Dynamic Possibility\nQuarto Document: “Scholarly_Article_About_My_Research”\nMethods: We loaded the dataset with #| eval: false {r} nrow(data) observations. These are summary stastics:#| eval: false {r} data &lt;- read.csv(\"data.csv\") summary(data).\nResults: The mean of variable x was #| eval: false {r} mean_x &lt;- mean(data$x).\n\nData/analysis changes → Report updates automatically\nComplete transparency of methods"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#building-reproducible-documents",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#building-reproducible-documents",
+    "objectID": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
+    "href": "workshops/arcs_02/04-slides.html#building-reproducible-documents",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Building Reproducible Documents",
     "text": "Building Reproducible Documents\n\n\nWhat we just built:\n\nA dynamic document\nEmbedded executable code chunks\nEmbedded plot\nIntroduced template outputs\n\n\n\n\nWhy it matters:\n\nDirectly connects your data and your document\nBuilds transparency into your findings\nMinimizes typo risk\nGives you flexibility in final output formats"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#reproducibility-in-phases",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#reproducibility-in-phases",
+    "objectID": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
+    "href": "workshops/arcs_02/04-slides.html#reproducibility-in-phases",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Reproducibility in Phases",
     "text": "Reproducibility in Phases\n\n\nCREATING\nPHASE\n\nIterative data management\nTimestamped files\nTesting and dead ends\nExploratory analysis\n\n\n\n\n───►\n\nSHARING PHASE\n\nArticulating your process\nDynamic documents\nData necessary to validate and replicate findings\nPreserving data in repositories"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#evaluating-reproducibility",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#evaluating-reproducibility",
+    "objectID": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#evaluating-reproducibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Evaluating Reproducibility",
     "text": "Evaluating Reproducibility\n\n\nAS ETHICAL PRACTICE\n\nAccountability in research\nTransparency serves scientific rigor\nLevels the scientific playing field\nReliable translation to clinical practice\n\n\n\n\nAS POTENTIAL HARM\n\nData re-identification\nInformed consent for secondary use of data\nIntensification of extractive research\nData access prioritized over data quality"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#extending-reproducibility",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#extending-reproducibility",
+    "objectID": "workshops/arcs_02/04-slides.html#extending-reproducibility",
+    "href": "workshops/arcs_02/04-slides.html#extending-reproducibility",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Extending Reproducibility",
     "text": "Extending Reproducibility\n\nhttps://www.gida-global.org/care"
   },
   {
-    "objectID": "workshops/arcs_02/ARCS_Part2b_Slides.html#why-arcs",
-    "href": "workshops/arcs_02/ARCS_Part2b_Slides.html#why-arcs",
+    "objectID": "workshops/arcs_02/04-slides.html#why-arcs",
+    "href": "workshops/arcs_02/04-slides.html#why-arcs",
     "title": "Introduction to\nProgramming in R Part 2:\nReports",
     "section": "Why ARCS",
     "text": "Why ARCS\n\nLearn computational skills while establishing best practices\nThink about the future as you are forming habits\nDocument and automate iteratively\nGive your work collaborative potential\n…so reproducibility becomes how you work, not someone else’s checklist."
@@ -713,7 +713,7 @@
     "href": "workshops/arcs_02/04-reports.html#convert-readme.txt-to-a-quarto-document",
     "title": "Reports",
     "section": "Convert README.txt to a Quarto Document",
-    "text": "Convert README.txt to a Quarto Document\n\nNavigate to your README.txt file in your ARCS project folder (PC: Windows Explorer; Mac: Finder)\nRight click on the file and select Rename\nChange the file extension from .txt to .qmd (Mac: type .qmd after README)\nAccept the file extension change and save the file\nGo back to Positron and open your README.qmd file\nAdd triple backticks ( ``` ) before and after your README’s file structure tree to format it as a code block\nIn Positron, click the Render button to render your document\nA browser window should open and display your README.qmd file as HTML\n\n\n\n\n\n\n\nNoteWhat is localhost?\n\n\n\nNotice that the browser window’s address starts with localhost followed by a port number. This means your computer is serving your .qmd file locally to itself — the file is not on the internet, it is being previewed from your own machine.",
+    "text": "Convert README.txt to a Quarto Document\n\nNavigate to your README.txt file in your ARCS project folder (PC: Windows Explorer; Mac: Finder)\nRight click on the file and select Rename\nChange the file extension from .txt to .qmd. You should see the icon next to the file name change.\nCheck to see if required packages are installed by running this block of code in the console:\n\nif (!require(\"knitr\")) install.packages(\"knitr\")\nif (!require(\"rmarkdown\")) install.packages(\"rmarkdown\")\nif (!require(\"yaml\")) install.packages(\"yaml\")\nif (!require(\"dplyr\")) install.packages(\"dplyr\")\nif (!require(\"stringr\")) install.packages(\"stringr\")\n\nCheck if Quarto is installed in your environment by going to your terminal and entering\n\nquarto --version\nIf you get a version number, that means it’s installed! If not, install from here: https://quarto.org/docs/get-started/\n\nCreate a new file in your project root directory called _quarto.yml. Open it, then paste the lines below and save:\n\nproject:\n  type: default\nThis gives Quarto a point of reference in your project.\n\nGo to your README.qmd file and add triple backticks ( ``` ) before and after your README’s file structure tree to format it as a code block\nIn your terminal, enter\n\nquarto render\n\nIn your terminal, enter\n\nquarto preview readme.qmd\nA browser window should open and display your README.qmd file as HTML\n\n\n\n\n\n\nNoteWhat is localhost?\n\n\n\nNotice that the browser window’s address starts with localhost followed by a port number. This means your computer is serving your .qmd file locally to itself — the file is not on the internet, it is being previewed from your own machine.",
     "crumbs": [
       "Home",
       "ARCS 2",
@@ -725,7 +725,7 @@
     "href": "workshops/arcs_02/04-reports.html#automate-readme.qmd-updates",
     "title": "Reports",
     "section": "Automate README.qmd Updates",
-    "text": "Automate README.qmd Updates\nInstead of manually updating your README every time your project structure changes, we can write an R code chunk that generates the file tree automatically each time you render.\n\nCheck whether you have the fs package installed:\n\nlibrary(fs)\nIf you get an error, install it first:\ninstall.packages(\"fs\")\n\nCopy the script below:\n\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\n# Get the actual structure\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\n# Define comments for specific files/folders\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\n# Add comments to matching lines\nfor(item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for(name in names(comments)) {\n    if(grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\n# Print the result\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNoteWhat this script does\n\n\n\n\ndir_tree() generates a visual tree of your project folder up to 2 levels deep\ncapture.output() stores that tree as a character vector\nThe comments list defines annotations to add next to specific folders or files\nThe for loop finds matching lines and appends the annotations\ncat() prints the result as a formatted code block in your rendered document\n\n\n\n\nPaste this script into your README.qmd file in between the triple backticks where your file tree currently appears\nNext to the opening triple backticks, add {r} to make it an R code chunk — it should look like this: ```{r}\nSave your README.qmd file\nClick the Render button in Positron\nGo back to your browser window to see the result\nMake any changes you would like to the comments &lt;- list() section and re-render to see them reflected",
+    "text": "Automate README.qmd Updates\nInstead of manually updating your README every time your project structure changes, we can write an R code chunk that generates the file tree automatically each time you render.\n\nCheck whether you have the fs package installed:\n\nlibrary(fs)\nIf you get an error, install it first:\ninstall.packages(\"fs\")\n\nCopy the script below:\n\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\n# Get the actual structure\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\n# Define comments for specific files/folders\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\n# Add comments to matching lines\nfor(item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for(name in names(comments)) {\n    if(grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\n# Print the result\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNoteWhat this script does\n\n\n\n\ndir_tree() generates a visual tree of your project folder up to 2 levels deep\ncapture.output() stores that tree as a character vector\nThe comments list defines annotations to add next to specific folders or files\nThe for loop finds matching lines and appends the annotations\ncat() prints the result as a formatted code block in your rendered document\n\n\n\n\nPaste this script into your README.qmd file in between the triple backticks where your file tree currently appears (it’s ok to paste over the directory tree)\nNext to the opening triple backticks, add {r} to make it an R code chunk — it should look like this: ```{r}\nSave your README.qmd file\nIn your terminal, enter quarto render then quarto preview readme.qmd\nGo back to your browser window to see the result. Make any changes you would like to the comments &lt;- list() section and re-render to see them reflected",
     "crumbs": [
       "Home",
       "ARCS 2",
@@ -737,7 +737,7 @@
     "href": "workshops/arcs_02/04-reports.html#create-a-quarto-document-for-publishing",
     "title": "Reports",
     "section": "Create a Quarto Document for Publishing",
-    "text": "Create a Quarto Document for Publishing\nIn this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.\n\nSetup\n\nCheck whether you have the following packages installed:\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(scales)\nIf any are missing, install them in your console:\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\ninstall.packages(\"scales\")\n\n\n\n\n\n\nTipChecking installed packages in Positron\n\n\n\nYou can also check in the Extensions pane by searching for the package name.\n\n\n\n\nInstall the PLOS Template\n\nIn your Terminal tab, run the following commands one at a time:\n\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\n\n\n\n\n\n\nNoteWhat this does\n\n\n\nThis installs a Quarto extension that formats your document to match PLOS journal submission requirements — including layout, fonts, and figure formatting. This is the same approach used for many other journal templates available through quarto-journals.\n\n\n\n\nGene Variability Analysis\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Gene Variability Analysis. Start your code block with ```{r} and close it with ```.\n\n\n\n\n\n\n\nNoteAbout the #| lines\n\n\n\nThese are chunk options — they tell Quarto how to handle the output when this code runs inside a .qmd file. message: false suppresses package loading messages, and warning: false suppresses warnings.\n\n\n#| message: false\n#| warning: false\n\n# Prepare data - rename the first column and use both ID columns\ngene_data_long &lt;- gene_data %&gt;%\n  rename(ensembl_id = `...1`) %&gt;%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %&gt;%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\n# Calculate variance for each gene across all samples\ngene_variability &lt;- gene_data_long %&gt;%\n  group_by(gene_symbol, ensembl_id) %&gt;%\n  summarise(\n    mean_expression        = mean(expression, na.rm = TRUE),\n    variance               = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\n# Identify top 15 most variable genes\ntop_genes &lt;- gene_variability %&gt;%\n  arrange(desc(variance)) %&gt;%\n  slice_head(n = 15)\n\n# Display summary statistics\ncat(\"Total genes analyzed:\", nrow(gene_variability), \"\\n\")\ncat(\"Mean variance across all genes:\",\n    round(mean(gene_variability$variance, na.rm = TRUE), 2), \"\\n\")\ncat(\"Most variable gene:\", top_genes$gene_symbol[1],\n    \"with variance =\", round(top_genes$variance[1], 2), \"\\n\")\n\n# Show the top 10 most variable genes\ncat(\"\\nTop 10 most variable genes:\\n\")\nprint(top_genes %&gt;%\n        select(gene_symbol, variance) %&gt;%\n        slice_head(n = 10) %&gt;%\n        mutate(variance = round(variance, 2)))\n\n\nData Visualization\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Data Visualization. Start your code block with ```{r} and close it with ```.\n\n#| fig-cap: \"Expression heatmap showing scaled expression levels of the\n#|   15 most variable genes across all samples. Blue indicates\n#|   below-average expression, white indicates average expression,\n#|   and red indicates above-average expression for each gene.\"\n#| fig-width: 10\n#| fig-height: 6\n\n# Prepare heatmap data\nheatmap_data &lt;- gene_data_long %&gt;%\n  filter(gene_symbol %in% top_genes$gene_symbol) %&gt;%\n  left_join(top_genes %&gt;% select(gene_symbol, variance),\n            by = \"gene_symbol\") %&gt;%\n  group_by(gene_symbol) %&gt;%\n  mutate(scaled_expr = scale(expression)[, 1]) %&gt;%\n  ungroup()\n\n# Create heatmap visualization\nexpression_heatmap &lt;- heatmap_data %&gt;%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low   = \"blue\",\n    mid   = \"white\",\n    high  = \"red\",\n    name  = \"Scaled\\nExpression\",\n    limits = c(-3, 3),\n    oob   = scales::squish\n  ) +\n  labs(\n    title    = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x        = \"Sample ID\",\n    y        = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x  = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y  = element_text(size = 10, face = \"italic\"),\n    plot.title   = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    legend.position = \"right\",\n    panel.grid   = element_blank()\n  )\n\nprint(expression_heatmap)\n\n# Save high-resolution figure\nggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n       plot   = expression_heatmap,\n       width  = 10,\n       height = 6,\n       dpi    = 300)\n\nRender your publication.qmd document to see your PLOS-formatted article\n\n\n\n\n\n\n\nTipSaving your figure\n\n\n\nNotice the ggsave() call at the end of the visualization block. This saves a high-resolution .png to your outputs/ folder with a timestamp in the filename — the same automated file naming pattern introduced in the Project Management section.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\n✓ Convert a .txt file to a .qmd file and render it to HTML?\n✓ Explain what localhost means when previewing a rendered document?\n✓ Add an R code chunk to a .qmd file with correct syntax?\n✓ Use dir_tree() and capture.output() to auto-generate a project tree in your README?\n✓ Modify the comments list and re-render to see updated annotations?\n✓ Install and apply a Quarto journal template from the terminal?\n✓ Explain what the gene variability analysis is doing at a high level?\n✓ Render a publication-quality heatmap and save it to your outputs/ folder?",
+    "text": "Create a Quarto Document for Publishing\nIn this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.\n\nSetup\n\nCheck whether you have the following packages installed:\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(scales)\nIf any are missing, install them in your console:\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\ninstall.packages(\"scales\")\n\n\n\n\n\n\nTipChecking installed packages in Positron\n\n\n\nYou can also check in the Extensions pane by searching for the package name.\n\n\n\n\nInstall the PLOS Template\n\nIn your Terminal tab, run the following commands one at a time:\n\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\n\n\n\n\n\n\nNoteWhat this does\n\n\n\nThis installs a Quarto extension that formats your document to match PLOS journal submission requirements — including layout, fonts, and figure formatting. This is the same approach used for many other journal templates available through quarto-journals.\n\n\n\n\nGene Variability Analysis\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Gene Variability Analysis. Start your code block with ```{r} and close it with ```.\n\n\n\n\n\n\n\nNoteAbout the #| lines\n\n\n\nThese are chunk options — they tell Quarto how to handle the output when this code runs inside a .qmd file. message: false suppresses package loading messages, and warning: false suppresses warnings.\n\n\n#| message: false\n#| warning: false\n\n# Prepare data - rename the first column and use both ID columns\ngene_data_long &lt;- gene_data %&gt;%\n  rename(ensembl_id = `...1`) %&gt;%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %&gt;%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\n# Calculate variance for each gene across all samples\ngene_variability &lt;- gene_data_long %&gt;%\n  group_by(gene_symbol, ensembl_id) %&gt;%\n  summarise(\n    mean_expression        = mean(expression, na.rm = TRUE),\n    variance               = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\n# Identify top 15 most variable genes\ntop_genes &lt;- gene_variability %&gt;%\n  arrange(desc(variance)) %&gt;%\n  slice_head(n = 15)\n\n# Display summary statistics\ncat(\"Total genes analyzed:\", nrow(gene_variability), \"\\n\")\ncat(\"Mean variance across all genes:\",\n    round(mean(gene_variability$variance, na.rm = TRUE), 2), \"\\n\")\ncat(\"Most variable gene:\", top_genes$gene_symbol[1],\n    \"with variance =\", round(top_genes$variance[1], 2), \"\\n\")\n\n# Show the top 10 most variable genes\ncat(\"\\nTop 10 most variable genes:\\n\")\nprint(top_genes %&gt;%\n        select(gene_symbol, variance) %&gt;%\n        slice_head(n = 10) %&gt;%\n        mutate(variance = round(variance, 2)))\n\n\nData Visualization\n\nCopy the code below and paste it into your publication.qmd file underneath the heading ## Data Visualization. Start your code block with ```{r} and close it with ```.\n\n#| fig-cap: \"Expression heatmap showing scaled expression levels of the\n#|   15 most variable genes across all samples. Blue indicates\n#|   below-average expression, white indicates average expression,\n#|   and red indicates above-average expression for each gene.\"\n#| fig-width: 10\n#| fig-height: 6\n\n# Prepare heatmap data\nheatmap_data &lt;- gene_data_long %&gt;%\n  filter(gene_symbol %in% top_genes$gene_symbol) %&gt;%\n  left_join(top_genes %&gt;% select(gene_symbol, variance),\n            by = \"gene_symbol\") %&gt;%\n  group_by(gene_symbol) %&gt;%\n  mutate(scaled_expr = scale(expression)[, 1]) %&gt;%\n  ungroup()\n\n# Create heatmap visualization\nexpression_heatmap &lt;- heatmap_data %&gt;%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low   = \"blue\",\n    mid   = \"white\",\n    high  = \"red\",\n    name  = \"Scaled\\nExpression\",\n    limits = c(-3, 3),\n    oob   = scales::squish\n  ) +\n  labs(\n    title    = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x        = \"Sample ID\",\n    y        = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x  = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y  = element_text(size = 10, face = \"italic\"),\n    plot.title   = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    legend.position = \"right\",\n    panel.grid   = element_blank()\n  )\n\nprint(expression_heatmap)\n\n# Save high-resolution figure\nggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n       plot   = expression_heatmap,\n       width  = 10,\n       height = 6,\n       dpi    = 300)\n\nRender your publication.qmd document to see your PLOS-formatted article\n\n\n\n\n\n\n\nTipSaving your figure\n\n\n\nNotice the ggsave() call at the end of the visualization block. This saves a high-resolution .png to your outputs/ folder with a timestamp in the filename — the same automated file naming pattern introduced in the Project Management section.\n\n\n\n\n\n\n\n\n\nNoteCan You…?\n\n\n\n\nConvert a .txt file to a .qmd file and render it to HTML?\nExplain what localhost means when previewing a rendered document?\nAdd an R code chunk to a .qmd file with correct syntax?\nUse dir_tree() and capture.output() to auto-generate a project tree in your README?\nModify the comments list and re-render to see updated annotations?\nInstall and apply a Quarto journal template from the terminal?\nExplain what the gene variability analysis is doing at a high level?\nRender a publication-quality heatmap and save it to your outputs/ folder?",
     "crumbs": [
       "Home",
       "ARCS 2",
