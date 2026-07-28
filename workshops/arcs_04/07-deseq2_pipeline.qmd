@@ -1,0 +1,457 @@
+---
+title: "Finding Differentially Expressed Genes with DESeq2"
+subtitle: "Workshop: Shank3 vs WT Genotype Comparison"
+author: "Sofia Fertuzinhos, PhD"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    code-fold: false
+    code-tools: true
+    theme: flatly
+    highlight-style: github
+    self-contained: true
+execute:
+  warning: false
+  message: false
+---
+
+# 🧬 Introduction
+
+In this workshop we will use **DESeq2** to identify differentially expressed genes between two genotypes: **Shank3** and **Wild Type (WT)** mice.
+
+We will work through a complete RNA-seq analysis pipeline:
+
+1.  Load and inspect the data\
+2.  Set up the DESeq2 object\
+3.  Run the analysis\
+4.  Perform quality control\
+5.  Extract and interpret results\
+6.  Export tables and plots
+
+## Project Structure
+
+This script assumes the following R project structure:
+
+```{plaintext}
+ShankProject/
+├── renv/
+├── renv.lock                 ← locked package versions (tracked by Git)
+├── .Rprofile                 ← auto-activates 
+├── processed_data
+│   └── Shank3_metadata_parsed.csv              renv
+├── raw_data/
+    ├── GSE113754_GeneLevel_Raw_data.csv
+│   └── GSE113754_filtered_metadata.csv
+├── scripts/
+│   ├── 00_setup.R            ← ✅ installation script (run ONCE)
+│   └── 01_DESeq2_script.qmd
+├── outputs/
+└── README.md
+```
+
+## Environment & Reproducibility
+
+This project uses **renv** for package management and is version-controlled with **Git/GitHub**.
+
+```{r}
+### To restore the exact package environment on a new machine:
+renv::restore()
+
+### To snapshot new packages you install:
+renv::snapshot()
+```
+
+# Part 1 — Setup
+
+## 1.1 Load Required Packages
+
+```{r}
+library(here)
+library(DESeq2)
+library(ggplot2)
+library(dplyr) 
+library(pheatmap) 
+library(RColorBrewer) 
+```
+
+## 1.2 Define File Paths
+
+Why use here::here()? Using here() makes your paths relative to the project root, so the script works on any machine regardless of where the project folder is saved. This is especially important when sharing code via GitHub.
+
+Input paths
+
+```{r}
+path_counts <- here("processed_data", "rawCounts_Shank3_clean.csv") 
+path_metadata <- here("processed_data", "metadata_Shank3_clean.csv")
+```
+
+Output paths
+
+```{r}
+path_tables <- here("tables") 
+path_images <- here("images")  
+```
+
+# 📂 Part 2 — Load & Inspect the Data
+
+## 2.1 Load Raw Counts
+
+```{r}
+rawc <- read.csv(path_counts, header = TRUE, row.names = 1)
+```
+
+Quick inspection
+
+```{r}
+cat("Dimensions: ", nrow(rawc), "genes x", ncol(rawc), "samples\n") 
+head(rawc[ , 1:5]) # show first 5 samples only 2.2 Load Sample Metadata 
+```
+
+## 2.2 Load Metadata
+
+```{r}
+info <- read.csv(path_metadata, header = TRUE, stringsAsFactors = TRUE)
+```
+
+Quick inspection
+
+```{r}
+print(info)
+```
+
+Check: Do columns in rawc match rows in info? The column names of the counts matrix must match the row names (or sample identifiers) in the metadata, in the same order. This is a very common source of errors. :::
+
+Important: Verify sample names match between counts and metadata
+
+```{r}
+all(colnames(rawc) == info$sample_id)
+
+# Should return TRUE — if FALSE, reorder before proceeding 2.3 Subset to Genotype Comparison Only
+```
+
+# ✂️ Part 3 - Subset dataset to a simple two-group comparison
+
+Why subset? The full dataset contains samples from two conditions (normal and sleep-deprived) and two genotypes (WT and Shank3).
+
+For this workshop we focus on a simple two-group comparison: Shank3 vs WT, using only the normal condition samples. This keeps the design formula simple and the results easier to interpret. :::
+
+### 3.1 - Keep only samples from the normal (baseline) condition
+
+```{r}
+info_sub <- info %>% filter(Condition == "_normal")
+```
+
+### 3.2 - Subset counts to matching samples
+
+```{r}
+rawc_sub <- rawc[ , info_sub$sample_id]
+```
+
+### 3.3 - Drop unused factor levels after subsetting
+
+```{r}
+info_sub_genotype < − droplevels(info_sub$genotype)
+```
+
+### 3.4 - Set WT as the reference level (baseline for comparison)
+
+```{r}
+info_sub_genotype <− relevel(info_sub_genotype, ref = "WT")
+```
+
+### 3.5 Confirm subset dimensions
+
+```{r}
+cat("Subsetted dataset:", nrow(rawc_sub), "genes x", ncol(rawc_sub), "samples\n")
+print(info_sub)
+```
+
+# 🏗️ Part 4 — Build the DESeq2 Object
+
+### 4.1 Create DESeqDataSet
+
+```{r}
+dds <- DESeqDataSetFromMatrix( countData = rawc_sub, # genes x samples count matrix 
+                               colData = info_sub, # sample metadata 
+                               design = ~ genotype # simple two-group design
+                               )
+```
+
+Understanding the design formula:
+
+genotype tells DESeq2 to model gene expression as a function of genotype.
+
+With WT set as the reference, all results will be expressed as: Shank3 relative to WT
+
+Log2 fold change \> 0 → higher in Shank3 Log2 fold change \< 0 → lower in Shank3 (higher in WT)
+
+### 4.2 Pre-filter Low-Count Genes plaintext
+
+Keep genes with at least 10 counts in at least 3 samples (adjust thresholds based on your smallest group size)
+
+```{r}
+keep <- rowSums(counts(dds) >= 10) >= 3 
+dds <- dds[keep, ]
+
+cat("Genes remaining after filtering:", nrow(dds), "\n") 
+```
+
+# 🔬 Part 5 — Run DESeq2
+
+```{r}
+dds <- DESeq(dds)
+```
+
+What does DESeq() do? Three steps happen automatically:
+
+Size factor estimation — normalizes for differences in sequencing depth Dispersion estimation — models count variability across samples Model fitting — fits a negative binomial GLM and tests each gene
+
+# 📊 Part 6 — Quality Control
+
+### 6.1 Transform Counts for Visualization
+
+vst = Variance Stabilizing Transformation
+
+Faster than rlog() for larger datasets; both are suitable for QC
+
+```{r}
+vsd <- vst(dds, blind = TRUE)
+```
+
+blind = TRUE vs blind = FALSE
+
+blind = TRUE — transformation ignores the design (used for QC/exploration) blind = FALSE — uses the design (used for downstream visualization of results)
+
+### 6.2 PCA Plot 
+
+What to look for in the PCA Samples should cluster by genotype along PC1 (the axis of greatest variation) Any outlier samples should be investigated before proceeding If genotype is not the dominant source of variation, review your metadata
+
+```{r}
+pca_data <- plotPCA(vsd, intgroup = "genotype", returnData = TRUE) 
+
+pct_var <- round(100 \* attr(pca_data, "percentVar"))
+
+pca_plot <- ggplot(pca_data, aes(x = PC1, y = PC2, color = genotype, label = name)) + 
+            geom_point(size = 4, alpha = 0.8) + 
+            geom_text(vjust = -0.8, size = 3) + 
+            scale_color_manual(values = c("WT" = "#2196F3", "Shank3" = "#F44336")) + 
+            labs( title = "PCA: Shank3 vs WT (normal condition)", x = paste0("PC1: ", pct_var\[1\], "% variance"), y = paste0("PC2: ", pct_var\[2\], "% variance") ) + 
+            theme_classic(base_size = 13) + 
+            theme(legend.position = "right")
+
+pca_plot
+
+# Save
+ggsave(filename = file.path(path_images, "PCA_Shank3vsWT.png"), plot = pca_plot, width = 7, height = 5, dpi = 300)
+```
+
+### 6.3 Sample Distance Heatmap 
+
+```{r}
+samp_dists <- dist(t(assay(vsd))) 
+samp_mat <- as.matrix(samp_dists)
+
+### Use sample names + genotype as labels
+
+rownames(samp_mat) <- colnames(samp_mat) <- paste(colData(vsd)genotype , colData(vsd)sample_id, sep = " \| ")
+
+colors <- colorRampPalette(rev(brewer.pal(9, "Blues")))(255)
+
+pheatmap(samp_mat, col = colors, 
+                   clustering_distance_rows = samp_dists, 
+                   clustering_distance_cols = samp_dists, 
+                   main = "Sample-to-Sample Distances", fontsize = 10, 
+                   filename = file.path(path_images, "SampleDistances_Shank3vsWT.png")) 
+```
+
+# 📈 Part 7 — Extract & Interpret Results 
+
+### 7.1 Check Available Coefficients plaintext #\| label: results-names
+
+```{r}
+resultsNames(dds) 
+# Expected output: 
+# [1] "Intercept" 
+# [2] "genotype_Shank3_vs_WT" 
+```
+
+### 7.2 Extract Results: Shank3 vs WT plaintext 
+```{r}
+#| label: extract-results
+
+res <- results(dds, name = "genotype_Shank3_vs_WT", alpha = 0.05) # sets the FDR threshold for independent filtering
+
+summary(res)
+```
+
+::: {.callout-note}
+Understanding the results columns Column Meaning baseMean Average normalized count across all samples log2FoldChange Log2 ratio of Shank3 / WT lfcSE Standard error of the log2 fold change stat Wald test statistic pvalue Raw p-value padj Adjusted p-value (FDR) — use this for significance testing 
+::: 
+
+### 7.3 Shrink Fold Changes (Recommended) 
+
+```{r}
+#| label: lfc-shrink
+
+# lfcShrink improves fold change estimates for genes with low counts
+# This is recommended for ranking and visualization — NOT for hypothesis testing
+
+res_shrunk <- lfcShrink(dds, coef = "genotype_Shank3_vs_WT", type = "apeglm")
+
+summary(res_shrunk)
+```
+
+::: {.callout-tip}
+Why shrink fold changes? Genes with low counts can have artificially extreme fold changes due to high variability. lfcShrink() pulls these estimates towards zero, making volcano plots and ranked gene lists more reliable.
+
+Use res_shrunk for visualization. 
+Use res for hypothesis testing. 
+:::
+
+### 7.4 MA Plot 
+```{r}
+# | label: ma-plot 
+# | fig-width: 7
+# | fig-height: 5 
+# | fig-cap: "MA plot showing log2 fold change (Shank3/WT) versus mean expression. Significant genes (padj \< 0.05) are highlighted in blue."
+
+# Save to file and display
+
+png(file.path(path_images, "MAplot_Shank3vsWT.png"), width = 700, height = 500, res = 120) 
+
+plotMA(res_shrunk, ylim = c(-5, 5), 
+                    main = "MA Plot: Shank3 vs WT", 
+                    alpha = 0.05, 
+                    colSig = "#F44336", 
+                    colNonSig = "grey60") 
+
+dev.off()
+
+# Display inline
+
+plotMA(res_shrunk, ylim = c(-5, 5), 
+                    main = "MA Plot: Shank3 vs WT", 
+                    alpha = 0.05, 
+                    colSig = "#F44336", 
+                    colNonSig = "grey60") 
+```
+
+### 7.5 Volcano Plot 
+```{r} 
+# | label: volcano-plot 
+# | fig-width: 8 
+# | fig-height: 6 
+# | fig-cap: "Volcano plot of Shank3 vs WT. Red = significantly upregulated in Shank3; Blue = significantly downregulated."
+
+# Prepare data frame for plotting
+
+res_df <- as.data.frame(res_shrunk) %\>%
+   tibble::rownames_to_column("gene") %\>% 
+   filter(!is.na(padj)) %\>% 
+   mutate( significance = case_when( padj < 0.05 & log2FoldChange > 1 ~ "Up in Shank3", padj < 0.05 & log2FoldChange < -1 ~ "Down in Shank3", TRUE ~ "Not significant" ) 
+)
+
+# Count DEGs
+
+deg_counts <- table(res_df$significance) print(deg_counts)
+
+# Plot
+
+volcano_plot <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) + 
+                              geom_point(alpha = 0.5, size = 1.5) + 
+                              scale_color_manual(values = c("Up in Shank3" = "#F44336", "Down in Shank3" = "#2196F3", "Not significant" = "grey70")) +
+                              geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "grey40") + 
+                              geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey40") + 
+                              labs( title = "Volcano Plot: Shank3 vs WT", subtitle = paste0("Up: ", deg_counts\["Up in Shank3"\], " | Down: ", deg_counts\["Down in Shank3"]), x = "Log2 Fold Change (Shank3 / WT)", y = "-Log10 Adjusted P-value", color = NULL ) + 
+                              theme_classic(base_size = 13) + 
+                              theme(legend.position = "top"
+)
+
+volcano_plot
+
+ggsave(file.path(path_images, "Volcano_Shank3vsWT.png"), plot = volcano_plot, width = 8, height = 6, dpi = 300) 
+```
+
+### 7.6 Top Gene Counts Plot 
+```{r} 
+# | label: top-gene-plot 
+# | fig-width: 6 
+# | fig-height: 4 
+# | fig-cap: "Normalized counts for the most significantly differentially expressed gene."
+
+# Identify top gene (lowest padj)
+
+top_gene <- rownames(res)[which.min(res$padj)] cat("Most significant gene:", top_gene, "\n")
+
+# Plot
+
+plotCounts(dds, gene = top_gene, 
+                intgroup = "genotype", pch = 19, 
+                col = c("#2196F3", "#F44336"), 
+                main = paste("Normalized Counts:", top_gene)) 
+```
+
+# 💾 Part 8 — Export Results 
+
+### 8.1 Filter Significant DEGs 
+```{r}
+# | label: filter-degs
+
+# All results (sorted by adjusted p-value)
+
+res_all <- as.data.frame(res_shrunk) %>% tibble::rownames_to_column("gene") %>% arrange(padj)
+
+# Significant DEGs only (padj < 0.05, |LFC| > 1)
+
+res_sig <- res_all %>% filter(padj < 0.05, abs(log2FoldChange) > 1)
+
+cat("Total DEGs (padj < 0.05, |LFC| > 1):", nrow(res_sig), "\n") head(res_sig) 
+```
+
+### 8.2 Save Results Tables 
+
+``` {r}
+# | label: save-tables
+
+# Full results table
+
+write.csv(res_all, file = file.path(path_tables, "DESeq2_Shank3vsWT_allGenes.csv"), row.names = FALSE)
+
+# Significant DEGs only
+
+write.csv(res_sig, file = file.path(path_tables, "DESeq2_Shank3vsWT_sigDEGs.csv"), row.names = FALSE)
+
+# Normalised counts
+
+norm_counts \<- counts(dds, normalized = TRUE) write.csv(norm_counts, file = file.path(path_processed, "normCounts_Shank3vsWT.csv"), row.names = TRUE)
+
+cat("✅ Tables saved to /tables and /processed_data\n") 🔁 Part 8 — Reproducibility Session Information plaintext #\| label: session-info #\| code-fold: true
+
+sessionInfo() ::: {.callout-tip}
+
+Saving your renv snapshot After the workshop, lock your package versions so results are reproducible:
+
+r renv::snapshot() Commit the updated renv.lock to GitHub:
+
+bash git add renv.lock git commit -m "update renv snapshot after workshop" git push :::
+
+📚 Summary Step What we did Load data Read counts matrix and sample metadata Subset Kept only normal-condition samples for a clean 2-group comparison Pre-filter Removed genes with very low counts DESeq2 Ran normalization, dispersion estimation and Wald test QC PCA and sample distance heatmap Results Extracted Shank3 vs WT comparison with LFC shrinkage Visualize MA plot, volcano plot, top gene counts Export Saved tables to /tables, plots to /images, counts to /processed_data ::: {.callout-note}
+
+Next steps (beyond this workshop) Gene Ontology (GO) enrichment analysis with clusterProfiler Heatmap of top DEGs with pheatmap More complex designs: adding condition, interaction terms Pathway analysis with fgsea ::: plaintext
+
+------------------------------------------------------------------------
+
+## Key Design Decisions Explained
+
+| Decision | Rationale |
+|------------------------------------|------------------------------------|
+| **Subset to normal condition only** | Removes the second variable entirely, giving students a clean `~ genotype` design with no interaction confusion |
+| **`here::here()` for paths** | Works across machines when the project is cloned from GitHub — no manual `setwd()` needed |
+| **`vst()` instead of `rlog()`** | Faster and appropriate for datasets of typical workshop size; noted as swappable |
+| **`lfcShrink()` added** | Modern best practice; script clearly separates its use for visualization vs hypothesis testing |
+| **Volcano plot added** | More intuitive for students than an MA plot as a first visualization |
+| **`row.names = FALSE` in `write.csv()`** | Gene names are moved to a proper column via `rownames_to_column()`, avoiding an unnamed first column |
+| **Callout boxes** | Quarto callouts (`note`, `tip`, `important`) break up dense methodology into digestible chunks for live teaching |
