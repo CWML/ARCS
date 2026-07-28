@@ -5,8 +5,9 @@ the *same* DESeq2 analysis from Hour 1 inside a container on a Codespace, and
 leaves understanding why that makes research reproducible.
 
 This guide is the operational runbook: what to build ahead of time, what to
-verify on the day, and what to do when something breaks. For the file map and
-how the pieces fit together, see [`README.md`](README.md).
+verify on the day, and what to do when something breaks. For slide-by-slide
+delivery notes, see [`TEACHING_NOTES.md`](TEACHING_NOTES.md). For the file map
+and how the pieces fit together, see [`README.md`](README.md).
 
 ---
 

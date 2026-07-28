@@ -14,6 +14,7 @@ is rendered into the website.
 _materials/
 ├── README.md              # this file
 ├── INSTRUCTOR_GUIDE.md    # run-of-show + prep/day-of checklists
+├── TEACHING_NOTES.md      # slide-by-slide delivery notes for 08-slides.qmd
 ├── pipeline.R             # the DESeq2 pipeline (scaffold — see contract below)
 ├── container/
 │   └── deseq2.def         # Apptainer definition for the analysis environment
@@ -40,7 +41,7 @@ The `.qmd` is canonical — edit it first, then mirror the change.
 | `../07-deseq2.qmd` | **Hour 1** — DESeq2 on the host, in Positron. |
 | `../08-apptainer.qmd` | **Hour 2** — the Apptainer walkthrough. Website + Positron. |
 | `../08-apptainer_codespaces.md` | Hour 2, VS Code / Codespaces version. **This is what students follow in class.** |
-| `../08-slides.qmd` | Reveal.js slides for Hour 2. Contains `::: notes` speaker notes — press `S` in presentation mode. |
+| `../08-slides.qmd` | Reveal.js slides for Hour 2. Student-facing only — delivery notes live in [`TEACHING_NOTES.md`](TEACHING_NOTES.md). |
 | `../09-build-your-own.qmd` | Appendix: self-paced guide to *authoring* a container. Website + Positron. |
 | `../09-build-your-own_codespaces.md` | Same appendix, VS Code / Codespaces version. |
 
@@ -55,6 +56,7 @@ skip the folder. Students run these files; they don't read them start to finish.
 | File | Role |
 |---|---|
 | `INSTRUCTOR_GUIDE.md` | The runbook: one-time prep (build → smoke test → push to GHCR → make the package public) and day-of checks. Read before delivery, not during. |
+| `TEACHING_NOTES.md` | Slide-by-slide delivery notes for `../08-slides.qmd`: what to emphasize, where to pause, what to cut if short on time. Keep open while presenting. |
 | `README.md` | This file — orientation and the pipeline I/O contract. |
 | `pipeline.R` | The analysis. Parameters block at the top (`PADJ`, `CONTRAST`) is what the live demo edits. |
 | `container/deseq2.def` | The environment definition. Students *read* it in Step 4; nobody builds it in class. |
@@ -79,7 +81,8 @@ to forget and most damaging to miss: make the GHCR package **public**.
 Students pull with no login, so if it's private every Codespace fails during
 setup. Then open a fresh Codespace and verify end to end.
 
-**In class** — present `../08-slides.qmd`. Students open a Codespace from the
+**In class** — present `../08-slides.qmd` with
+[`TEACHING_NOTES.md`](TEACHING_NOTES.md) open alongside it. Students open a Codespace from the
 repo and follow
 [`../08-apptainer_codespaces.md`](../08-apptainer_codespaces.md) in preview
 mode while you drive the same steps on the projector. The one live edit is

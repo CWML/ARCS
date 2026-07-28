@@ -20,6 +20,37 @@
 
 ---
 
+## Where we are in the series
+
+- **Parts 1–2** — writing R, managing projects, structuring data
+- **Part 3** — the tidyverse and Git: your *code* is now reproducible
+- **Part 4, Hour 1** — a real DESeq2 differential-expression pipeline
+- **Part 4, Hour 2 (this section)** — make the *environment* reproducible too
+
+You already have working analysis code under version control. The piece
+that's still missing is the environment that code runs *in*. That's what
+containers give you, and it's the last part of the reproducibility story
+this series has been building toward.
+
+---
+
+## Today's workflow
+
+Six steps, in order:
+
+1. **Launch** a Codespace — everyone gets an identical Linux machine
+2. **Verify** that Apptainer and the pre-built image are in place
+3. **Run** the DESeq2 pipeline *from* the container
+4. **Read** the definition file that built the image
+5. **Modify** a parameter, re-run, and watch the result change
+6. **Connect** it all back to Git
+
+We *use* a pre-built image rather than building one from scratch — building
+compiles Bioconductor and takes far longer than a session allows. Authoring
+your own image is the self-paced follow-up guide.
+
+---
+
 ## Why containers?
 
 In Parts 1–3 you may have hit a familiar wall: code that runs on one
@@ -34,6 +65,21 @@ environment you built, regardless of what their own computer looks like.
 
 We use **[Apptainer](https://apptainer.org/)**, a container system designed
 for research and high-performance computing (HPC).
+
+<details>
+<summary><strong>Why Apptainer and not Docker?</strong></summary>
+
+You may have heard of Docker. Same core idea, different conventions:
+
+- Apptainer is built for **research computing and HPC**
+- It runs as *you*, not as root — which is why shared clusters allow it
+- An image is **one portable file** (`analysis.sif`) you can copy, archive,
+  or publish alongside a paper
+
+Docker is excellent for web services; Apptainer is the norm in research
+computing because of that security model on shared systems.
+
+</details>
 
 > **❗ The OS limitation *is* the lesson**
 >
@@ -245,6 +291,15 @@ controlled. Now the *environment it runs in* is captured too — as a text
 file you can diff, and as a published image anyone can pull. Clone the repo,
 open a Codespace (or use HPC), `apptainer pull`, and run. The analysis
 reproduces. That is the goal of the whole ARCS series, made concrete.
+
+---
+
+## Recap
+
+- Containers fix "it works on my machine" by shipping the whole environment
+- Apptainer runs only on Linux — so a Codespace or HPC supplies the kernel
+- You **ran** and **modified** a real analysis pipeline from a container
+- Code, environment, and data now travel together as one artifact
 
 ---
 
