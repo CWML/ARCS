@@ -403,7 +403,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"if (!require(\"pacman\")) install.packages(\"pacman\")\n\npacman::p_load(\n  tidyverse,\n  magrittr,\n  here,\n  readr,\n  janitor\n)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"here()","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_metadata)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_metadata)","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_metadata)","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_metadata %>% count(genotype)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names()","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics)","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)        ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    ))","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    ))","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition))","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond)","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_data)","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_data)","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_data)","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_data %>%\n  filter(if_any(everything(), is.na))","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names()","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2)","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0))\n  # drop_na() %>%  # alternative: drop all rows with at least one NA","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\"))","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1]) %>%\n  select(all_of(clean_meta_data$sample_id))","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"setequal(clean_meta_data$sample_id, colnames(clean_data))","id":25,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"install.packages(\"tidyverse\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"install.packages(c(\"tidyverse\", \"magrittr\", \"here\", \"readr\", \"janitor\"))","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(tidyverse)\nlibrary(magrittr)\nlibrary(here)\nlibrary(readr)\nlibrary(janitor)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(c(\"tidyverse\", \"magrittr\", \"here\", \"readr\", \"janitor\"))","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(here)\nhere()","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_metadata)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_metadata)","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_metadata)","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_metadata %>% count(genotype)","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names()","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics)","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)        ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    ))","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    ))","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition))","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond)","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_data)","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_data)","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_data)","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#library(tidyverse), library(dplyr)\nraw_data %>%\n  filter(if_any(everything(), is.na))","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names()","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2)","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0))\n  # drop_na() %>%  # alternative: drop all rows with at least one NA","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\"))","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)","id":25,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr), library(tibble)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])","id":26,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-26","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr), library(tibble)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1]) %>%\n  select(all_of(clean_meta_data$sample_id))","id":27,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-27","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"setequal(clean_meta_data$sample_id, colnames(clean_data))","id":28,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-28","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1774,29 +1774,42 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link active" data-scroll-target="#load-packages">Load Packages</a></li>
-  <li><a href="#importing-data-with-here-and-readr" id="toc-importing-data-with-here-and-readr" class="nav-link" data-scroll-target="#importing-data-with-here-and-readr">Importing Data with <code>here()</code> and <code>readr</code></a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#what-are-r-packages" id="toc-what-are-r-packages" class="nav-link" data-scroll-target="#what-are-r-packages">What are R Packages</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load Packages</a></li>
+  <li><a href="#importing-data-into-r-using-rio-and-here" id="toc-importing-data-into-r-using-rio-and-here" class="nav-link" data-scroll-target="#importing-data-into-r-using-rio-and-here">Importing data into R using Rio() and Here()</a></li>
+  <li><a href="#quick-background" id="toc-quick-background" class="nav-link" data-scroll-target="#quick-background">Quick background</a>
   <ul class="collapse">
+  <li><a href="#base-r-no-packages" id="toc-base-r-no-packages" class="nav-link" data-scroll-target="#base-r-no-packages">Base R (no packages)</a></li>
+  <li><a href="#readr-package" id="toc-readr-package" class="nav-link" data-scroll-target="#readr-package">readr package</a></li>
+  <li><a href="#haven-package" id="toc-haven-package" class="nav-link" data-scroll-target="#haven-package">haven package</a></li>
+  <li><a href="#openxlsx-package" id="toc-openxlsx-package" class="nav-link" data-scroll-target="#openxlsx-package">openxlsx package</a></li>
+  </ul></li>
+  <li><a href="#why-use-the-rio-and-here-packages-instead-of-base-r" id="toc-why-use-the-rio-and-here-packages-instead-of-base-r" class="nav-link" data-scroll-target="#why-use-the-rio-and-here-packages-instead-of-base-r">Why use the <code>rio</code> and <code>here</code> packages instead of base R?</a>
+  <ul class="collapse">
+  <li><a href="#rio-package" id="toc-rio-package" class="nav-link" data-scroll-target="#rio-package">rio package</a></li>
+  <li><a href="#here-package" id="toc-here-package" class="nav-link" data-scroll-target="#here-package">here package</a></li>
   <li><a href="#confirm-your-working-directory" id="toc-confirm-your-working-directory" class="nav-link" data-scroll-target="#confirm-your-working-directory">Confirm Your Working Directory</a></li>
   <li><a href="#import-the-data-files" id="toc-import-the-data-files" class="nav-link" data-scroll-target="#import-the-data-files">Import the Data Files</a></li>
   </ul></li>
-  <li><a href="#cleaning-the-metadata" id="toc-cleaning-the-metadata" class="nav-link" data-scroll-target="#cleaning-the-metadata">Cleaning the Metadata</a>
+  <li><a href="#data-cleaning-and-validation-using-the-tidyverse" id="toc-data-cleaning-and-validation-using-the-tidyverse" class="nav-link" data-scroll-target="#data-cleaning-and-validation-using-the-tidyverse">Data cleaning and validation using the Tidyverse</a>
   <ul class="collapse">
-  <li><a href="#inspect-the-data" id="toc-inspect-the-data" class="nav-link" data-scroll-target="#inspect-the-data">Inspect the Data</a></li>
-  <li><a href="#what-changes-do-we-need-to-make" id="toc-what-changes-do-we-need-to-make" class="nav-link" data-scroll-target="#what-changes-do-we-need-to-make">What Changes Do We Need to Make?</a></li>
-  <li><a href="#step-1-fix-all-column-names" id="toc-step-1-fix-all-column-names" class="nav-link" data-scroll-target="#step-1-fix-all-column-names">Step 1: Fix All Column Names</a></li>
-  <li><a href="#step-2-rename-columns" id="toc-step-2-rename-columns" class="nav-link" data-scroll-target="#step-2-rename-columns">Step 2: Rename Columns</a></li>
-  <li><a href="#step-3-recode-values-in-condition" id="toc-step-3-recode-values-in-condition" class="nav-link" data-scroll-target="#step-3-recode-values-in-condition">Step 3: Recode Values in <code>condition</code></a></li>
-  <li><a href="#step-4-recode-values-in-genotype" id="toc-step-4-recode-values-in-genotype" class="nav-link" data-scroll-target="#step-4-recode-values-in-genotype">Step 4: Recode Values in <code>genotype</code></a></li>
-  <li><a href="#step-5-create-geno_cond-column" id="toc-step-5-create-geno_cond-column" class="nav-link" data-scroll-target="#step-5-create-geno_cond-column">Step 5: Create <code>geno_cond</code> Column</a></li>
-  <li><a href="#step-6-select-and-reorder-columns" id="toc-step-6-select-and-reorder-columns" class="nav-link" data-scroll-target="#step-6-select-and-reorder-columns">Step 6: Select and Reorder Columns</a></li>
-  <li><a href="#step-7-lowercase-sample_id" id="toc-step-7-lowercase-sample_id" class="nav-link" data-scroll-target="#step-7-lowercase-sample_id">Step 7: Lowercase <code>sample_id</code></a></li>
+  <li><a href="#core-philosophy" id="toc-core-philosophy" class="nav-link" data-scroll-target="#core-philosophy"><strong>Core Philosophy:</strong></a></li>
+  <li><a href="#key-benefits" id="toc-key-benefits" class="nav-link" data-scroll-target="#key-benefits"><strong>Key Benefits:</strong></a></li>
+  <li><a href="#core-functions" id="toc-core-functions" class="nav-link" data-scroll-target="#core-functions">Core Functions</a></li>
   </ul></li>
-  <li><a href="#cleaning-the-raw-counts-data" id="toc-cleaning-the-raw-counts-data" class="nav-link" data-scroll-target="#cleaning-the-raw-counts-data">Cleaning the Raw Counts Data</a>
+  <li><a href="#lets-start-with-the-metadata-file-raw_metadata" id="toc-lets-start-with-the-metadata-file-raw_metadata" class="nav-link" data-scroll-target="#lets-start-with-the-metadata-file-raw_metadata">Let’s start with the metadata file ‘raw_metadata’</a>
   <ul class="collapse">
-  <li><a href="#inspect-the-data-1" id="toc-inspect-the-data-1" class="nav-link" data-scroll-target="#inspect-the-data-1">Inspect the Data</a></li>
+  <li><a href="#first-inspect-the-data" id="toc-first-inspect-the-data" class="nav-link" data-scroll-target="#first-inspect-the-data">First, Inspect the Data</a></li>
+  <li><a href="#what-changes-do-we-need-to-make" id="toc-what-changes-do-we-need-to-make" class="nav-link" data-scroll-target="#what-changes-do-we-need-to-make">What Changes Do We Need to Make?</a></li>
+  <li><a href="#next-clean-the-meta-data-file" id="toc-next-clean-the-meta-data-file" class="nav-link" data-scroll-target="#next-clean-the-meta-data-file">Next, clean the meta data file</a></li>
+  </ul></li>
+  <li><a href="#now-lets-move-on-to-the-raw_data-file" id="toc-now-lets-move-on-to-the-raw_data-file" class="nav-link" data-scroll-target="#now-lets-move-on-to-the-raw_data-file">Now, let’s move on to the ‘raw_data’ file</a>
+  <ul class="collapse">
+  <li><a href="#first-inspect-the-data-1" id="toc-first-inspect-the-data-1" class="nav-link" data-scroll-target="#first-inspect-the-data-1">First, Inspect the Data</a></li>
   <li><a href="#what-issues-did-you-find" id="toc-what-issues-did-you-find" class="nav-link" data-scroll-target="#what-issues-did-you-find">What Issues Did You Find?</a></li>
-  <li><a href="#cleaning-steps" id="toc-cleaning-steps" class="nav-link" data-scroll-target="#cleaning-steps">Cleaning Steps</a></li>
+  <li><a href="#next-we-will-clean-the-raw_data-file" id="toc-next-we-will-clean-the-raw_data-file" class="nav-link" data-scroll-target="#next-we-will-clean-the-raw_data-file">Next, we will clean the ‘raw_data’ file</a></li>
   </ul></li>
   <li><a href="#extra-harmonizing-the-two-data-frames" id="toc-extra-harmonizing-the-two-data-frames" class="nav-link" data-scroll-target="#extra-harmonizing-the-two-data-frames">EXTRA: Harmonizing the Two Data Frames</a>
   <ul class="collapse">
@@ -2114,6 +2127,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>In this session we will cover data importing and exporting using the <code>rio</code> package along with cleaning and validation with Tidyverse.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2125,8 +2141,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Use <code>pacman::p_load()</code> to install and load multiple packages in a reproducible way</li>
 <li>Use the <code>here</code> package to build file paths relative to your project root</li>
+<li>Use rio::import() and rio::export() to streamline reading and writing diverse file formats</li>
 <li>Explain the difference between <code>read_csv()</code> and <code>read.csv()</code>, and what a tibble is</li>
 <li>Inspect a data frame using <code>view()</code>, <code>head()</code>, and <code>str()</code></li>
 <li>Use the pipe operator <code>%&gt;%</code> to chain multiple data cleaning steps together</li>
@@ -2136,48 +2152,58 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>Select and reorder columns using <code>select()</code> and <code>everything()</code></li>
 <li>Handle missing values using <code>replace_na()</code></li>
 <li>Harmonize two data frames so their columns and row identifiers align</li>
-<li>Save cleaned data frames to <code>.csv</code> files using <code>write_csv()</code> and <code>write.csv()</code></li>
 </ul>
 </div>
 </div>
 <hr>
+</section>
+<section id="what-are-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-r-packages">What are R Packages</h2>
+<ul>
+<li><p>Packages are collections of functions and data that extend the functionality of the base R programming language.</p></li>
+<li><p>They are used to perform specialized tasks, from creating graphs to running complex statistical models.</p></li>
+<li><p>Packages are a core reason for R’s popularity, as they are created and shared by a global community of users.</p></li>
+</ul>
+</section>
+<section id="installing-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-packages">Installing packages</h2>
+<p>You can easily install (most of) packages using the install.packages() function directly in R. For example:</p>
+<p>One at a time:</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Multiple at once:</p>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
 <section id="load-packages" class="level2">
 <h2 class="anchored" data-anchor-id="load-packages">Load Packages</h2>
-<p>The <code>pacman</code> package helps ensure your script is <strong>reproducible</strong> — it automatically <strong>installs and loads</strong> the packages needed to run your code, even on someone else’s computer. You can add to the list as more packages are needed.</p>
-<div id="qwebr-insertion-location-1"></div>
+<p>After installing any package or after you restart R, you need to load them into your R session using the&nbsp;<code>library()</code>&nbsp;function. For example:</p>
+<p>One at a time:</p>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Multiple at once:</p>
+<div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
-<section id="importing-data-with-here-and-readr" class="level2">
-<h2 class="anchored" data-anchor-id="importing-data-with-here-and-readr">Importing Data with <code>here()</code> and <code>readr</code></h2>
-<p>The <code>here</code> package improves reproducibility and sharing by creating file paths relative to your <strong>R project’s root directory</strong>, eliminating the need for hard-coded absolute paths — as long as your script file is saved in the same folder as your R project.</p>
-<section id="confirm-your-working-directory" class="level3">
-<h3 class="anchored" data-anchor-id="confirm-your-working-directory">Confirm Your Working Directory</h3>
-<p>Run this to make sure you are currently in the correct R project:</p>
-<div id="qwebr-insertion-location-2"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>If you are not in the correct project
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can set the project root manually — replace the path with your actual folder location:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set_here("path/to/your/desired/folder")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<section id="importing-data-into-r-using-rio-and-here" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data-into-r-using-rio-and-here">Importing data into R using Rio() and Here()</h2>
 </section>
-<section id="import-the-data-files" class="level3">
-<h3 class="anchored" data-anchor-id="import-the-data-files">Import the Data Files</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the raw counts data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data_3.csv"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the metadata</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="quick-background" class="level2">
+<h2 class="anchored" data-anchor-id="quick-background">Quick background</h2>
+<section id="base-r-no-packages" class="level3">
+<h3 class="anchored" data-anchor-id="base-r-no-packages">Base R (no packages)</h3>
+<ul>
+<li><p>This is the original, old school way of reading <code>.csv</code>, <code>.txt</code>, and <code>.dat</code> files and returns a data frame in the R environment using the function read.<em>csv,</em> read.<em>table</em>, etc.</p></li>
+<li><p>Cumbersome - it requires additional manual coding specifications based on the file type; it can be slow for large datasets; and can lead to unexpected behaviors with certain column types (i.e.&nbsp;converting character columns into factors)</p></li>
+</ul>
+</section>
+<section id="readr-package" class="level3">
+<h3 class="anchored" data-anchor-id="readr-package">readr package</h3>
+<ul>
+<li><p>Modern alternative to <em>Base R</em> and requires less configuration while being faster, cleaner, and provides less coding headaches (its does not convert character columns into factors) and uses the function read_<em>csv,</em> read_<em>tsv,</em> etc.</p></li>
+<li><p>Returns a <em>tibble,</em> a modern data frame with features that make it print nicely, displays on a screen better, does not change variables names, and does not use row labels. The output when inspecting the data set using <em>str()</em> are nicer looking and more informative</p></li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2228,21 +2254,232 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>A <strong>tibble</strong> is a modern data frame that prints more cleanly, displays better on screen, and produces more informative output from functions like <code>str()</code>.</p>
 </div>
 </div>
+</section>
+<section id="haven-package" class="level3">
+<h3 class="anchored" data-anchor-id="haven-package">haven package</h3>
+<ul>
+<li>The&nbsp;<strong><code>haven</code></strong>&nbsp;package is the dedicated tool for reading proprietary formats like SPSS (<code>.sav</code>), SAS (<code>.xpt</code> &amp; <code>.sas7bdat</code>), and Stata (<code>.dta</code>), and is a key part of the Tidyverse ecosystem.</li>
+</ul>
+</section>
+<section id="openxlsx-package" class="level3">
+<h3 class="anchored" data-anchor-id="openxlsx-package">openxlsx package</h3>
+<ul>
+<li>The&nbsp;<strong><code>openxlsx</code></strong>&nbsp;package is the dedicated tool for reading and writing data from&nbsp;<strong>Excel files</strong>&nbsp;(<code>.xlsx</code>) without needing external dependencies like Java. It is widely used for working with multi-sheet workbooks, applying styles, and handling complex Excel features, offering functions like&nbsp;<code>read.xlsx()</code>&nbsp;for import.&nbsp;</li>
+</ul>
+</section>
+</section>
+<section id="why-use-the-rio-and-here-packages-instead-of-base-r" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-the-rio-and-here-packages-instead-of-base-r">Why use the <code>rio</code> and <code>here</code> packages instead of base R?</h2>
+<section id="rio-package" class="level3">
+<h3 class="anchored" data-anchor-id="rio-package">rio package</h3>
+<ul>
+<li><p>Is highly useful because it provides a single,&nbsp;<strong>universal function</strong>&nbsp;for importing virtually any data file format.</p></li>
+<li><p>The&nbsp;<code>import()</code>&nbsp;function automatically&nbsp;<strong>detects the file type</strong>&nbsp;based on the file extension (e.g., <code>.csv</code>, <code>.xlsx</code>, <code>.RData</code>, <code>.rds</code>, <code>.xpt</code>, <code>.sas7bdat</code>, <code>.dta</code>, <code>.sav</code>, <code>.json,.txt</code>, <code>.dat</code>) and uses the appropriate specialized package (<code>readr</code>,<code>haven</code>, and <code>openxlsx</code>) to import it.</p></li>
+</ul>
+</section>
+<section id="here-package" class="level3">
+<h3 class="anchored" data-anchor-id="here-package">here package</h3>
+<ul>
+<li><p>The package <strong>here</strong> and its function <code>here()</code> make it easy to tell R where to find and to save your files - in essence, it builds file paths.</p></li>
+<li><p>Using <strong>here()</strong> works with you <strong>R Project</strong> to eliminate path problems -&gt; Relative paths = good for sharing; Absolute paths = Bad for sharing</p>
+<ul>
+<li><p><strong>Bad:</strong>&nbsp;<code>"/Users/mwegener/Desktop/maybe_here/data.csv"</code></p></li>
+<li><p><strong>Good:</strong>&nbsp;<code>here("raw_data", "data.csv")</code></p></li>
+</ul></li>
+<li><p>This is useful when the R project may be shared or accessed by multiple people/computers</p></li>
+</ul>
+</section>
+<section id="confirm-your-working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="confirm-your-working-directory">Confirm Your Working Directory</h3>
+<p>Run this to make sure you are currently in the correct R project:</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>If you are not in the correct project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can set the project root manually — replace the path with your actual folder location:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set_here("path/to/your/desired/folder")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="import-the-data-files" class="level3">
+<h3 class="anchored" data-anchor-id="import-the-data-files">Import the Data Files</h3>
+<p>Import the raw counts data</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(rio), library(here)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data_3.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Import the metadata</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(rio), library(here)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
-<section id="cleaning-the-metadata" class="level2">
-<h2 class="anchored" data-anchor-id="cleaning-the-metadata">Cleaning the Metadata</h2>
-<section id="inspect-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="inspect-the-data">Inspect the Data</h3>
+<section id="data-cleaning-and-validation-using-the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-validation-using-the-tidyverse">Data cleaning and validation using the Tidyverse</h2>
+<p>The&nbsp;<strong>tidyverse</strong>&nbsp;is a collection of R packages designed around shared principles for efficient, readable data analysis. Install all packages at once with&nbsp;<code>install.packages("tidyverse")</code>&nbsp;and load with&nbsp;<code>library(tidyverse)</code>.</p>
+<section id="core-philosophy" class="level3">
+<h3 class="anchored" data-anchor-id="core-philosophy"><strong>Core Philosophy:</strong></h3>
+<ul>
+<li><p><strong>Tidy data structure</strong>: Each variable = column, each observation = row, each value = cell</p></li>
+<li><p><strong>Consistent syntax</strong>: Predictable function behavior across all packages</p></li>
+<li><p><strong>Human-centered design</strong>: Intuitive functions that reduce learning curve</p></li>
+<li><p><strong>Pipe workflows</strong>: Use&nbsp;<code>%&gt;%</code> (<code>|&gt;</code>) to chain operations for readable, step-by-step analysis</p></li>
+</ul>
+</section>
+<section id="key-benefits" class="level3">
+<h3 class="anchored" data-anchor-id="key-benefits"><strong>Key Benefits:</strong></h3>
+<ul>
+<li><p><strong>Uniform data structures</strong>&nbsp;using data frames/tibbles</p></li>
+<li><p><strong>Reproducible analysis</strong>&nbsp;with version control emphasis</p></li>
+<li><p><strong>Clean naming conventions</strong>&nbsp;(lowercase_with_underscores)</p></li>
+<li><p><strong>Active community</strong>&nbsp;support and best practices</p></li>
+<li><p><strong>Functional pipelines</strong>&nbsp;that transform data through logical steps</p></li>
+</ul>
+</section>
+<section id="core-functions" class="level3">
+<h3 class="anchored" data-anchor-id="core-functions">Core Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 36%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Utility</th>
+<th>Package</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%&gt;%</code></td>
+<td>“Pipe” (pass data from one function to the next)</td>
+<td>magrittr</td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td>Create, transform, and redefine columns</td>
+<td>dplyr</td>
+</tr>
+<tr class="odd">
+<td><code>select()</code></td>
+<td>Keep, remove, select, or rename columns</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td><code>rename()</code></td>
+<td>Rename columns</td>
+<td>dplyr</td>
+</tr>
+<tr class="odd">
+<td><code>clean_names()</code></td>
+<td>Standardize column-name syntax</td>
+<td>janitor</td>
+</tr>
+<tr class="even">
+<td><code>as.character()</code>,&nbsp;<code>as.numeric()</code>,&nbsp;<code>as.Date()</code>,&nbsp;<em>etc.</em></td>
+<td>Convert the class of a column</td>
+<td>base R</td>
+</tr>
+<tr class="odd">
+<td><code>across()</code></td>
+<td>Transform multiple columns at once</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td><em>tidyselect</em>&nbsp;helpers</td>
+<td>Use logic to select columns</td>
+<td>tidyselect</td>
+</tr>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td>Keep certain rows</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td><code>distinct()</code></td>
+<td>De-duplicate rows</td>
+<td>dplyr</td>
+</tr>
+<tr class="odd">
+<td><code>rowwise()</code></td>
+<td>Perform operations within each row</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td><code>add_row()</code></td>
+<td>Add rows manually</td>
+<td>tibble</td>
+</tr>
+<tr class="odd">
+<td><code>arrange()</code></td>
+<td>Sort rows</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td><code>recode()</code></td>
+<td>Recode values in a column</td>
+<td>dplyr</td>
+</tr>
+<tr class="odd">
+<td><code>case_when()</code></td>
+<td>Recode values with complex logical criteria</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td><code>replace_na()</code>,&nbsp;<code>na_if()</code>,&nbsp;<code>coalesce()</code></td>
+<td>Handle missing values</td>
+<td>tidyr</td>
+</tr>
+<tr class="odd">
+<td><code>age_categories()</code>,&nbsp;<code>cut()</code></td>
+<td>Create categorical groups from a numeric column</td>
+<td>epikit / base R</td>
+</tr>
+<tr class="even">
+<td><code>match_df()</code></td>
+<td>Recode/clean values using a data dictionary</td>
+<td>matchmaker</td>
+</tr>
+<tr class="odd">
+<td><code>which()</code></td>
+<td>Apply logical criteria; return indices</td>
+<td>base R</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="lets-start-with-the-metadata-file-raw_metadata" class="level2">
+<h2 class="anchored" data-anchor-id="lets-start-with-the-metadata-file-raw_metadata">Let’s start with the metadata file ‘raw_metadata’</h2>
+<section id="first-inspect-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="first-inspect-the-data">First, Inspect the Data</h3>
+<section id="inspecting-data-helps-identify-potential-problems-before-analysis-and-plan-your-data-cleaning-strategy-by-verifying" class="level4">
+<h4 class="anchored" data-anchor-id="inspecting-data-helps-identify-potential-problems-before-analysis-and-plan-your-data-cleaning-strategy-by-verifying">Inspecting data helps identify potential problems before analysis and plan your data cleaning strategy by verifying:</h4>
+<ul>
+<li><p>Data imported correctly</p></li>
+<li><p>Variable types are appropriate</p></li>
+<li><p>Value formatting is consistent</p></li>
+<li><p>Missing value patterns</p></li>
+<li><p>Duplicate records</p></li>
+<li><p>Data set structure and dimensions</p></li>
+<li><p><strong>If column names are clean (concise, no spaces, no blanks, no dots, no caps)</strong></p></li>
+</ul>
 <p>Physically look at the data you just imported:</p>
-<div id="qwebr-insertion-location-3"></div>
+<div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Use <code>head()</code> to see the first 6 rows, column names, and data types:</p>
-<div id="qwebr-insertion-location-4"></div>
+<div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Use <code>str()</code> to see the structure, data types, dimensions, and how data are organized:</p>
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2255,10 +2492,11 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <p>We can find the unique values within a variable and their counts using <code>count()</code> — similar to the <code>unique()</code> and <code>table()</code> exercises from the Data Structures section:</p>
-<div id="qwebr-insertion-location-6"></div>
+<div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
+</section>
 </section>
 <section id="what-changes-do-we-need-to-make" class="level3">
 <h3 class="anchored" data-anchor-id="what-changes-do-we-need-to-make">What Changes Do We Need to Make?</h3>
@@ -2285,25 +2523,27 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </section>
-<section id="step-1-fix-all-column-names" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-fix-all-column-names">Step 1: Fix All Column Names</h3>
+<section id="next-clean-the-meta-data-file" class="level3">
+<h3 class="anchored" data-anchor-id="next-clean-the-meta-data-file">Next, clean the meta data file</h3>
+<section id="step-1-fix-all-column-names" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-fix-all-column-names">Step 1: Fix All Column Names</h4>
 <p><code>clean_names()</code> standardizes all column names to lowercase with underscores:</p>
-<div id="qwebr-insertion-location-7"></div>
+<div id="qwebr-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="step-2-rename-columns" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-rename-columns">Step 2: Rename Columns</h3>
+<section id="step-2-rename-columns" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-rename-columns">Step 2: Rename Columns</h4>
 <p>Rename column <code>x1</code> to <code>sample_id</code> and <code>characteristics</code> to <code>condition</code>:</p>
-<div id="qwebr-insertion-location-8"></div>
+<div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="step-3-recode-values-in-condition" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-recode-values-in-condition">Step 3: Recode Values in <code>condition</code></h3>
+<section id="step-3-recode-values-in-condition" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-recode-values-in-condition">Step 3: Recode Values in <code>condition</code></h4>
 <ul>
 <li>If the value includes <code>"homecage"</code> → change to <code>"normal"</code></li>
 <li>If the value includes <code>"sleep deprivation"</code> → change to <code>"sleep_deprived"</code></li>
 </ul>
-<div id="qwebr-insertion-location-9"></div>
+<div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2319,44 +2559,45 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </section>
-<section id="step-4-recode-values-in-genotype" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-recode-values-in-genotype">Step 4: Recode Values in <code>genotype</code></h3>
+<section id="step-4-recode-values-in-genotype" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-recode-values-in-genotype">Step 4: Recode Values in <code>genotype</code></h4>
 <ul>
 <li>If the value includes <code>"WT"</code> → change to <code>"WT"</code></li>
 <li>If the value includes <code>"shank3"</code> → change to <code>"shank3"</code></li>
 </ul>
-<div id="qwebr-insertion-location-10"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="step-5-create-geno_cond-column" class="level3">
-<h3 class="anchored" data-anchor-id="step-5-create-geno_cond-column">Step 5: Create <code>geno_cond</code> Column</h3>
-<p>Combine <code>genotype</code> and <code>condition</code> into a new variable:</p>
-<div id="qwebr-insertion-location-11"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="step-6-select-and-reorder-columns" class="level3">
-<h3 class="anchored" data-anchor-id="step-6-select-and-reorder-columns">Step 6: Select and Reorder Columns</h3>
-<p>Keep only the columns we need in the correct order:</p>
-<div id="qwebr-insertion-location-12"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="step-7-lowercase-sample_id" class="level3">
-<h3 class="anchored" data-anchor-id="step-7-lowercase-sample_id">Step 7: Lowercase <code>sample_id</code></h3>
-<p>Make <code>sample_id</code> values lowercase — this will be important for harmonizing with the raw counts data in the next section:</p>
 <div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="step-5-create-geno_cond-column" class="level4">
+<h4 class="anchored" data-anchor-id="step-5-create-geno_cond-column">Step 5: Create <code>geno_cond</code> Column</h4>
+<p>Combine <code>genotype</code> and <code>condition</code> into a new variable:</p>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="step-6-select-and-reorder-columns" class="level4">
+<h4 class="anchored" data-anchor-id="step-6-select-and-reorder-columns">Step 6: Select and Reorder Columns</h4>
+<p>Keep only the columns we need in the correct order:</p>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="step-7-lowercase-sample_id" class="level4">
+<h4 class="anchored" data-anchor-id="step-7-lowercase-sample_id">Step 7: Lowercase <code>sample_id</code></h4>
+<p>Make <code>sample_id</code> values lowercase — this will be important for harmonizing with the raw counts data in the next section:</p>
+<div id="qwebr-insertion-location-16"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
 </section>
-<section id="cleaning-the-raw-counts-data" class="level2">
-<h2 class="anchored" data-anchor-id="cleaning-the-raw-counts-data">Cleaning the Raw Counts Data</h2>
-<section id="inspect-the-data-1" class="level3">
-<h3 class="anchored" data-anchor-id="inspect-the-data-1">Inspect the Data</h3>
-<div id="qwebr-insertion-location-14"></div>
+</section>
+<section id="now-lets-move-on-to-the-raw_data-file" class="level2">
+<h2 class="anchored" data-anchor-id="now-lets-move-on-to-the-raw_data-file">Now, let’s move on to the ‘raw_data’ file</h2>
+<section id="first-inspect-the-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="first-inspect-the-data-1">First, Inspect the Data</h3>
+<div id="qwebr-insertion-location-17"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-15"></div>
+<div id="qwebr-insertion-location-18"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-16"></div>
+<div id="qwebr-insertion-location-19"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="what-issues-did-you-find" class="level3">
@@ -2378,30 +2619,30 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <p>Use <code>filter()</code>, <code>if_any()</code>, and <code>everything()</code> with <code>is.na()</code> to search all rows and columns for missing values:</p>
-<div id="qwebr-insertion-location-17"></div>
+<div id="qwebr-insertion-location-20"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>The NA value identified here will be addressed in the cleaning steps below.</p>
 </div>
 </div>
 </section>
-<section id="cleaning-steps" class="level3">
-<h3 class="anchored" data-anchor-id="cleaning-steps">Cleaning Steps</h3>
+<section id="next-we-will-clean-the-raw_data-file" class="level3">
+<h3 class="anchored" data-anchor-id="next-we-will-clean-the-raw_data-file">Next, we will clean the ‘raw_data’ file</h3>
 <section id="clean_names" class="level4">
 <h4 class="anchored" data-anchor-id="clean_names"><code>clean_names()</code></h4>
 <p>Gives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:</p>
-<div id="qwebr-insertion-location-18"></div>
+<div id="qwebr-insertion-location-21"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="rename" class="level4">
 <h4 class="anchored" data-anchor-id="rename"><code>rename()</code></h4>
 <p>Change the auto-generated name for column 2 (<code>x2</code>) to <code>gene_id</code>:</p>
-<div id="qwebr-insertion-location-19"></div>
+<div id="qwebr-insertion-location-22"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="mutate-handle-the-na-value" class="level4">
 <h4 class="anchored" data-anchor-id="mutate-handle-the-na-value"><code>mutate()</code> — Handle the NA Value</h4>
 <p>Replace the NA value under <code>gsm3119015</code> with <code>0</code>:</p>
-<div id="qwebr-insertion-location-20"></div>
+<div id="qwebr-insertion-location-23"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2420,13 +2661,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="mutate-create-a-combined-gene-id-column" class="level4">
 <h4 class="anchored" data-anchor-id="mutate-create-a-combined-gene-id-column"><code>mutate()</code> — Create a Combined Gene ID Column</h4>
 <p>Create a new variable that combines <code>gene_id</code> and <code>gene_symbol</code> separated by <code>|</code>. Notice that <code>paste()</code> from base R works seamlessly inside a Tidyverse pipeline:</p>
-<div id="qwebr-insertion-location-21"></div>
+<div id="qwebr-insertion-location-24"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="select" class="level4">
 <h4 class="anchored" data-anchor-id="select"><code>select()</code></h4>
 <p>Make <code>gene_id_symbol</code> the first column, keep everything else in the same order using <code>everything()</code>, and remove <code>x1</code>, <code>gene_symbol</code>, and <code>gene_id</code> using the <code>-</code> operator:</p>
-<div id="qwebr-insertion-location-22"></div>
+<div id="qwebr-insertion-location-25"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
@@ -2438,69 +2679,32 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="extra-1-set-row-ids" class="level3">
 <h3 class="anchored" data-anchor-id="extra-1-set-row-ids">Extra 1: Set Row IDs</h3>
 <p>Use <code>column_to_rownames()</code> from the <code>tibble</code> package to convert the first column from a data variable into row identifiers:</p>
-<div id="qwebr-insertion-location-23"></div>
+<div id="qwebr-insertion-location-26"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="extra-2-reorder-columns-to-match-metadata" class="level3">
 <h3 class="anchored" data-anchor-id="extra-2-reorder-columns-to-match-metadata">Extra 2: Reorder Columns to Match Metadata</h3>
 <p>Reorder the columns in <code>clean_data</code> to match the order of <code>sample_id</code> values in <code>clean_meta_data</code>:</p>
-<div id="qwebr-insertion-location-24"></div>
+<div id="qwebr-insertion-location-27"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="extra-3-verify-harmonization" class="level3">
 <h3 class="anchored" data-anchor-id="extra-3-verify-harmonization">Extra 3: Verify Harmonization</h3>
 <p>Run a quick check to confirm that the column names in <code>clean_data</code> and the <code>sample_id</code> values in <code>clean_meta_data</code> match exactly:</p>
-<div id="qwebr-insertion-location-25"></div>
+<div id="qwebr-insertion-location-28"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
 </section>
 <section id="save-cleaned-data" class="level2">
 <h2 class="anchored" data-anchor-id="save-cleaned-data">Save Cleaned Data</h2>
-<p>Save <code>clean_data</code> and <code>clean_meta_data</code> locally using <code>here()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves with row labels (use read.csv to reload with row labels intact)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(clean_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_data_label.csv"</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves without row labels (standard clean CSV)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_data.csv"</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save clean metadata</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_meta_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_meta_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><code>write_csv()</code> vs <code>write.csv()</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Row labels</th>
-<th>Package</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>write_csv()</code></td>
-<td>Not included</td>
-<td>Tidyverse (<code>readr</code>)</td>
-</tr>
-<tr class="even">
-<td><code>write.csv()</code></td>
-<td>Included</td>
-<td>Base R</td>
-</tr>
-</tbody>
-</table>
-<p>Use <code>write.csv()</code> when you need to preserve row labels (as in <code>clean_data_label.csv</code>). Use <code>write_csv()</code> for standard clean output.</p>
-<p>These blocks are static and cannot be run in the browser — they write to your local file system and must be run in your Positron session.</p>
-</div>
-</div>
+<p>Save <code>clean_data</code> and <code>clean_meta_data</code> locally using <code>here()</code> and ’export()`:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves with row labels (use read.csv to reload with row labels intact)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(clean_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_data_label.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves without row labels (standard clean CSV)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(clean_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save clean metadata</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(clean_meta_data, <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"clean_meta_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2512,18 +2716,18 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>✓ Use <code>pacman::p_load()</code> to load multiple packages reproducibly?</li>
-<li>✓ Explain what <code>here()</code> does and why it improves reproducibility?</li>
-<li>✓ Describe at least two differences between <code>read_csv()</code> and <code>read.csv()</code>?</li>
-<li>✓ Explain what a tibble is and how it differs from a data frame?</li>
-<li>✓ Use <code>%&gt;%</code> to chain multiple data cleaning steps together?</li>
-<li>✓ Use <code>clean_names()</code> to standardize column names automatically?</li>
-<li>✓ Use <code>rename()</code>, <code>mutate()</code>, and <code>case_when()</code> to recode values?</li>
-<li>✓ Use <code>select()</code> and <code>everything()</code> to reorder and drop columns?</li>
-<li>✓ Replace NA values using <code>replace_na()</code>?</li>
-<li>✓ Explain what data harmonization means and verify it with <code>setequal()</code>?</li>
-<li>✓ Choose between <code>write_csv()</code> and <code>write.csv()</code> based on whether you need row labels?</li>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Use rio::import() and rio::export() to read and write diverse file formats without manually switching packages?</label></li>
+<li><label><input type="checkbox" checked="">Explain what <code>here()</code> does and why it improves reproducibility?</label></li>
+<li><label><input type="checkbox" checked="">Describe at least two differences between&nbsp;<code>read_csv()</code>&nbsp;and&nbsp;<code>read.csv()</code>?</label></li>
+<li><label><input type="checkbox" checked="">Explain what a tibble is and how it differs from a data frame?</label></li>
+<li><label><input type="checkbox" checked="">Use <code>%&gt;%</code> to chain multiple data cleaning steps together?</label></li>
+<li><label><input type="checkbox" checked="">Use <code>clean_names()</code> to standardize column names automatically?</label></li>
+<li><label><input type="checkbox" checked="">Use <code>rename()</code>, <code>mutate()</code>, and <code>case_when()</code> to recode values?</label></li>
+<li><label><input type="checkbox" checked="">Use <code>select()</code> and <code>everything()</code> to reorder and drop columns?</label></li>
+<li><label><input type="checkbox" checked="">Replace NA values using <code>replace_na()</code>?</label></li>
+<li><label><input type="checkbox" checked="">Explain what data harmonization means and verify it with <code>setequal()</code>?</label></li>
+<li><label><input type="checkbox" checked="">Choose between <code>write_csv()</code> and <code>write.csv()</code> based on whether you need row labels?</label></li>
 </ul>
 </div>
 </div>

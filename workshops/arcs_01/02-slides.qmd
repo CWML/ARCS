@@ -20,7 +20,7 @@ editor: visual
 
 ## True Story: Data Management Gone Awry
 
-![](images/Pasted%20image%2020250805151439.png)
+![](../../images/Pasted%20image%2020250805151439.png)
 
 ::: notes
 Here's an example of what can happen when you don't make data management decisions.
@@ -30,7 +30,7 @@ This screenshot is from a publication from a Yale School of Medicine lab. It was
 
 ## True Story: Data Management Gone Awry
 
-![](images/clipboard-1706816145.png)
+![](../../images/clipboard-1706816145.png)
 
 ::: notes
 These are microscopy images from a mouse's ear. We can see how it could be possible to get them mixed up by mistake.
@@ -68,27 +68,27 @@ Where in the computational process did the mix up happen?
 
 ## Pick a repository
 
-![](grab1.png)
+![](../../images/grab1.png)
 
 ## Pick a dataset
 
-![](grab2.png)
+![](../../images/grab2.png)
 
 ## Download raw data
 
-![](grab4.png)
+![](../../images/grab4.png)
 
 ## Download metadata
 
-![](grab3.png)
+![](../../images/grab3.png)
 
 ## Metadata we downloaded
 
-![](metadata1.png)
+![](../../images/metadata1.png)
 
 ## Metadata we want
 
-![](metadata2.png)
+![](../../images/metadata2.png)
 
 ## Why do this in R?
 
@@ -98,11 +98,11 @@ Any ideas?
 
 ## If we did it in Excel...
 
-{{< video ARCS_1.mp4 >}}
+{{< video ../../video/ARCS_1.mp4 >}}
 
 ## When we do it in R...
 
-![](code_metadata.png)
+![](../../images/code_metadata.png)
 
 ## Data Processing {.smaller}
 
@@ -167,7 +167,7 @@ Excel is looping behind a friendly interface, which means that:
 
 :::: notes
 ::: notes
-The big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproduciblity.
+The big picture: Compared to Excel, these advantages can be a part of your workflow with R: scalability, self-documentation, automation, reproducibility.
 :::
 ::::
 
@@ -187,7 +187,7 @@ The big picture: Compared to Excel, these advantages can be a part of your workf
 
 -   README - Document what you do
 
--   Filenaming Conventions - Name your files consistently
+-   File Naming Conventions - Name your files consistently
 
 -   Workflow automation - Use code to handle repetitive tasks
 
@@ -320,7 +320,7 @@ Six months from now, when you've forgotten the details, this combination of clea
 This isn't just good practice - it's what separates amateur data analysis from trustworthy research, and what protects you as a researcher when funders, publishers, and peers ask you to show your work.
 :::
 
-## Filenaming Conventions
+## File Naming Conventions
 
 -   No spaces (use underscore or en dash)
 
@@ -342,7 +342,7 @@ Be descriptive with your names. In six months when you're looking through your f
 The key is consistency. Whatever naming pattern you choose, use it for everything in your project. Your future self will thank you when you can find files instantly instead of opening each one to see what's inside."
 :::
 
-## Filenaming Conventions
+## File Naming Conventions
 
 **❌ Bad Examples:**
 

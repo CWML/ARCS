@@ -6,91 +6,115 @@ filters:
 webr:
   cell-options:
     reset-button: true
-
 ---
 
-::: {.callout-note}
+::: callout-note
 ## By the end of this section, you should be able to...
-- Convert a plain text file into a Quarto document (`.qmd`)
-- Render a `.qmd` file to HTML and understand what "localhost" means
-- Embed R code chunks into a Quarto document with correct syntax
-- Use `fs::dir_tree()` to automatically generate and annotate a project
-  structure in your README
-- Re-render a document to reflect updated content
-- Create a Quarto document using a journal template (PLOS)
-- Run a gene variability analysis and interpret summary statistics
-- Generate and save a publication-quality expression heatmap
+
+-   Convert a plain text file into a Quarto document (`.qmd`)
+-   Render a `.qmd` file to HTML and understand what "localhost" means
+-   Embed R code chunks into a Quarto document with correct syntax
+-   Use `fs::dir_tree()` to automatically generate and annotate a project structure in your README
+-   Re-render a document to reflect updated content
+-   Create a Quarto document using a journal template (PLOS)
+-   Run a gene variability analysis and interpret summary statistics
+-   Generate and save a publication-quality expression heatmap
 :::
 
----
+------------------------------------------------------------------------
 
 ## Slides
 
 [Open slides fullscreen](04-slides.html){target="_blank"}
 
-<iframe src="04-slides.html" width="100%" height="500px" style="border:none;"></iframe>
+<iframe src="04-slides.html" width="100%" height="500px" style="border:none;">
+
+</iframe>
 
 ## Why Reports?
 
-Quarto documents let you combine code, results, and narrative text in a
-single file that can be rendered to HTML, PDF, or Word. This means your
-analysis and its documentation live together — when your code changes, your
-report updates automatically. This is a core reproducibility practice.
+Quarto documents let you combine code, results, and narrative text in a single file that can be rendered to HTML, PDF, or Word. This means your analysis and its documentation live together — when your code changes, your report updates automatically. This is a core reproducibility practice.
 
----
+------------------------------------------------------------------------
 
 ## Convert README.txt to a Quarto Document
 
-1. Navigate to your `README.txt` file in your ARCS project folder
-   (PC: Windows Explorer; Mac: Finder)
+1.  Navigate to your `README.txt` file in your ARCS project folder (PC: Windows Explorer; Mac: Finder)
 
-2. Right click on the file and select **Rename**
+2.  Right click on the file and select **Rename**
 
-3. Change the file extension from `.txt` to `.qmd`
-   (Mac: type `.qmd` after `README`)
+3.  Change the file extension from `.txt` to `.qmd`. You should see the icon next to the file name change.
 
-4. Accept the file extension change and save the file
+4.  Check to see if required packages are installed by running this block of code in the console:
 
-5. Go back to Positron and open your `README.qmd` file
+```         
+if (!require("knitr")) install.packages("knitr")
+if (!require("rmarkdown")) install.packages("rmarkdown")
+if (!require("yaml")) install.packages("yaml")
+if (!require("dplyr")) install.packages("dplyr")
+if (!require("stringr")) install.packages("stringr")
+```
 
-6. Add triple backticks ( ` ``` ` ) before and after your README's file
-   structure tree to format it as a code block
+5.  Check if Quarto is installed in your environment by going to your terminal and entering
 
-7. In Positron, click the **Render** button to render your document
+```         
+quarto --version
+```
 
-8. A browser window should open and display your `README.qmd` file as HTML
+If you get a version number, that means it's installed! If not, install from here: https://quarto.org/docs/get-started/
 
-::: {.callout-note}
+6.  Create a new file in your project root directory called `_quarto.yml`. Open it, then paste the lines below and save:
+
+```         
+project:
+  type: default
+```
+
+This gives Quarto a point of reference in your project.
+
+7.  Go to your README.qmd file and add triple backticks ( ```` ``` ```` ) before and after your README's file structure tree to format it as a code block
+
+8.  In your terminal, enter
+
+```         
+quarto render
+```
+
+9.  In your terminal, enter
+
+```         
+quarto preview readme.qmd
+```
+
+A browser window should open and display your `README.qmd` file as HTML
+
+::: callout-note
 ## What is localhost?
-Notice that the browser window's address starts with `localhost` followed
-by a port number. This means your computer is serving your `.qmd` file
-locally to itself — the file is not on the internet, it is being previewed
-from your own machine.
+
+Notice that the browser window's address starts with `localhost` followed by a port number. This means your computer is serving your `.qmd` file locally to itself — the file is not on the internet, it is being previewed from your own machine.
 :::
 
----
+------------------------------------------------------------------------
 
 ## Automate README.qmd Updates
 
-Instead of manually updating your README every time your project structure
-changes, we can write an R code chunk that generates the file tree
-automatically each time you render.
+Instead of manually updating your README every time your project structure changes, we can write an R code chunk that generates the file tree automatically each time you render.
 
-1. Check whether you have the `fs` package installed:
+1.  Check whether you have the `fs` package installed:
 
-```r
+``` r
 library(fs)
 ```
 
 If you get an error, install it first:
 
-```r
+``` r
 install.packages("fs")
 ```
 
-2. Copy the script below:
+2.  Copy the script below:
 
-```r
+``` r
 #| echo: false
 #| message: false
 #| results: asis
@@ -126,46 +150,37 @@ cat(paste(tree_output, collapse = "\n"))
 cat("\n```\n")
 ```
 
-::: {.callout-note}
+::: callout-note
 ## What this script does
-- `dir_tree()` generates a visual tree of your project folder up to
-  2 levels deep
-- `capture.output()` stores that tree as a character vector
-- The `comments` list defines annotations to add next to specific
-  folders or files
-- The `for` loop finds matching lines and appends the annotations
-- `cat()` prints the result as a formatted code block in your rendered
-  document
+
+-   `dir_tree()` generates a visual tree of your project folder up to 2 levels deep
+-   `capture.output()` stores that tree as a character vector
+-   The `comments` list defines annotations to add next to specific folders or files
+-   The `for` loop finds matching lines and appends the annotations
+-   `cat()` prints the result as a formatted code block in your rendered document
 :::
 
-3. Paste this script into your `README.qmd` file in between the triple
-   backticks where your file tree currently appears
+3.  Paste this script into your `README.qmd` file in between the triple backticks where your file tree currently appears (it's ok to paste over the directory tree)
 
-4. Next to the opening triple backticks, add `{r}` to make it an R code
-   chunk — it should look like this: ` ```{r} `
+4.  Next to the opening triple backticks, add `{r}` to make it an R code chunk — it should look like this: ```` ```{r} ````
 
-5. Save your `README.qmd` file
+5.  Save your `README.qmd` file
 
-6. Click the **Render** button in Positron
+6.  In your terminal, enter `quarto render` then `quarto preview readme.qmd`
 
-7. Go back to your browser window to see the result
+7.  Go back to your browser window to see the result. Make any changes you would like to the `comments <- list()` section and re-render to see them reflected
 
-8. Make any changes you would like to the `comments <- list()` section
-   and re-render to see them reflected
-
----
+------------------------------------------------------------------------
 
 ## Create a Quarto Document for Publishing
 
-In this exercise you will create a publication-quality document using a
-PLOS journal template, run a gene variability analysis, and generate a
-heatmap figure.
+In this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.
 
 ### Setup
 
-1. Check whether you have the following packages installed:
+1.  Check whether you have the following packages installed:
 
-```r
+``` r
 library(tidyverse)
 library(readxl)
 library(scales)
@@ -173,52 +188,47 @@ library(scales)
 
 If any are missing, install them in your console:
 
-```r
+``` r
 install.packages("tidyverse")
 install.packages("readxl")
 install.packages("scales")
 ```
 
-::: {.callout-tip}
+::: callout-tip
 ## Checking installed packages in Positron
-You can also check in the **Extensions** pane by searching for the
-package name.
+
+You can also check in the **Extensions** pane by searching for the package name.
 :::
 
 ### Install the PLOS Template
 
-2. In your **Terminal** tab, run the following commands one at a time:
+2.  In your **Terminal** tab, run the following commands one at a time:
 
-```bash
+``` bash
 quarto add quarto-journals/plos
 ```
 
-```bash
+``` bash
 quarto use template quarto-journals/plos
 ```
 
-::: {.callout-note}
+::: callout-note
 ## What this does
-This installs a Quarto extension that formats your document to match
-PLOS journal submission requirements — including layout, fonts, and
-figure formatting. This is the same approach used for many other journal
-templates available through `quarto-journals`.
+
+This installs a Quarto extension that formats your document to match PLOS journal submission requirements — including layout, fonts, and figure formatting. This is the same approach used for many other journal templates available through `quarto-journals`.
 :::
 
 ### Gene Variability Analysis
 
-3. Copy the code below and paste it into your `publication.qmd` file
-   underneath the heading `## Gene Variability Analysis`.
-   Start your code block with ` ```{r} ` and close it with ` ``` `.
+3.  Copy the code below and paste it into your `publication.qmd` file underneath the heading `## Gene Variability Analysis`. Start your code block with ```` ```{r} ```` and close it with ```` ``` ````.
 
-::: {.callout-note}
+::: callout-note
 ## About the `#|` lines
-These are chunk options — they tell Quarto how to handle the output
-when this code runs inside a `.qmd` file. `message: false` suppresses
-package loading messages, and `warning: false` suppresses warnings.
+
+These are chunk options — they tell Quarto how to handle the output when this code runs inside a `.qmd` file. `message: false` suppresses package loading messages, and `warning: false` suppresses warnings.
 :::
 
-```r
+``` r
 #| message: false
 #| warning: false
 
@@ -262,11 +272,9 @@ print(top_genes %>%
 
 ### Data Visualization
 
-4. Copy the code below and paste it into your `publication.qmd` file
-   underneath the heading `## Data Visualization`.
-   Start your code block with ` ```{r} ` and close it with ` ``` `.
+4.  Copy the code below and paste it into your `publication.qmd` file underneath the heading `## Data Visualization`. Start your code block with ```` ```{r} ```` and close it with ```` ``` ````.
 
-```r
+``` r
 #| fig-cap: "Expression heatmap showing scaled expression levels of the
 #|   15 most variable genes across all samples. Blue indicates
 #|   below-average expression, white indicates average expression,
@@ -323,29 +331,25 @@ ggsave(paste0("outputs/", timestamp, "_expression_heatmap.png"),
        dpi    = 300)
 ```
 
-5. Render your `publication.qmd` document to see your PLOS-formatted
-   article
+5.  Render your `publication.qmd` document to see your PLOS-formatted article
 
-::: {.callout-tip}
+::: callout-tip
 ## Saving your figure
-Notice the `ggsave()` call at the end of the visualization block. This
-saves a high-resolution `.png` to your `outputs/` folder with a
-timestamp in the filename — the same automated file naming pattern
-introduced in the Project Management section.
+
+Notice the `ggsave()` call at the end of the visualization block. This saves a high-resolution `.png` to your `outputs/` folder with a timestamp in the filename — the same automated file naming pattern introduced in the Project Management section.
 :::
 
----
+------------------------------------------------------------------------
 
-::: {.callout-note}
+::: callout-note
 ## Can You...?
-- ✓ Convert a `.txt` file to a `.qmd` file and render it to HTML?
-- ✓ Explain what `localhost` means when previewing a rendered document?
-- ✓ Add an R code chunk to a `.qmd` file with correct syntax?
-- ✓ Use `dir_tree()` and `capture.output()` to auto-generate a project
-  tree in your README?
-- ✓ Modify the `comments` list and re-render to see updated annotations?
-- ✓ Install and apply a Quarto journal template from the terminal?
-- ✓ Explain what the gene variability analysis is doing at a high level?
-- ✓ Render a publication-quality heatmap and save it to your `outputs/`
-  folder?
+
+-   [x] Convert a `.txt` file to a `.qmd` file and render it to HTML?
+-   [x] Explain what `localhost` means when previewing a rendered document?
+-   [x] Add an R code chunk to a `.qmd` file with correct syntax?
+-   [x] Use `dir_tree()` and `capture.output()` to auto-generate a project tree in your README?
+-   [x] Modify the `comments` list and re-render to see updated annotations?
+-   [x] Install and apply a Quarto journal template from the terminal?
+-   [x] Explain what the gene variability analysis is doing at a high level?
+-   [x] Render a publication-quality heatmap and save it to your `outputs/` folder?
 :::

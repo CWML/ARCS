@@ -44,13 +44,13 @@ You can easily install (most of) packages using the install.packages() function 
 
 One at a time:
 
-```{webr-r}
+```{r}
 install.packages("tidyverse")
 ```
 
 Multiple at once:
 
-```{webr-r}
+```{r}
 install.packages(c("tidyverse", "magrittr", "here", "readr", "janitor"))
 ```
 
@@ -60,7 +60,7 @@ After installing any package or after you restart R, you need to load them into 
 
 One at a time:
 
-```{webr-r}
+```{r}
 library(tidyverse)
 library(magrittr)
 library(here)
@@ -135,7 +135,7 @@ A **tibble** is a modern data frame that prints more cleanly, displays better on
 
 Run this to make sure you are currently in the correct R project:
 
-```{webr-r}
+```{r}
 # library(here)
 here()
 ```
@@ -154,15 +154,16 @@ You can set the project root manually — replace the path with your actual fold
 
 Import the raw counts data
 
-``` r
+```{r}
 # library(rio), library(here)
-raw_data <- import(here("raw_data", "GSE113754_GeneLevel_Raw_data.csv"))
+raw_data <- import(here("raw_data", "GSE113754_GeneLevel_Raw_data.csv"), header = TRUE)
 ```
 
 Import the metadata
-``` r
+
+```{r}
 # library(rio), library(here)
-raw_metadata <- import(here("raw_data", "GSE113754_filtered_metadata.csv"))
+raw_metadata <- import(here("raw_data", "GSE113754_filtered_metadata.csv"), header = TRUE)
 ```
 
 ------------------------------------------------------------------------
@@ -239,19 +240,19 @@ The **tidyverse** is a collection of R packages designed around shared princip
 
 Physically look at the data you just imported:
 
-```{webr-r}
+```{r}
 view(raw_metadata)
 ```
 
 Use `head()` to see the first 6 rows, column names, and data types:
 
-```{webr-r}
+```{r}
 head(raw_metadata)
 ```
 
 Use `str()` to see the structure, data types, dimensions, and how data are organized:
 
-```{webr-r}
+```{r}
 str(raw_metadata)
 ```
 
@@ -260,7 +261,7 @@ str(raw_metadata)
 
 We can find the unique values within a variable and their counts using `count()` — similar to the `unique()` and `table()` exercises from the Data Structures section:
 
-```{webr-r}
+```{r}
 raw_metadata %>% count(genotype)
 ```
 :::
@@ -287,7 +288,7 @@ Each step below builds on the previous one using the pipe operator `%>%`. You ca
 
 `clean_names()` standardizes all column names to lowercase with underscores:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names()
@@ -295,13 +296,13 @@ clean_meta_data <- raw_metadata %>%
 
 #### Step 2: Rename Columns
 
-Rename column `v1` to `sample_id` and `characteristics` to `condition`:
+Rename column `V1` to `sample_id` and `characteristics` to `condition`:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
-  rename(sample_id = v1, condition = characteristics)
+  rename(sample_id = V1, condition = characteristics)
 ```
 
 #### Step 3: Recode Values in `condition`
@@ -309,7 +310,7 @@ clean_meta_data <- raw_metadata %>%
 - If the value includes `"homecage"` → change to `"normal"`
 - If the value includes `"sleep deprivation"` → change to `"sleep_deprived"`
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
@@ -333,7 +334,7 @@ Notice that `grepl()` is a base R function — you can use base R freely within 
 - If the value includes `"WT"` → change to `"WT"`
 - If the value includes `"shank3"` → change to `"shank3"`
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
@@ -356,7 +357,7 @@ clean_meta_data <- raw_metadata %>%
 
 Combine `genotype` and `condition` into a new variable:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
@@ -380,7 +381,7 @@ clean_meta_data <- raw_metadata %>%
 
 Keep only the columns we need in the correct order:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
@@ -405,7 +406,7 @@ clean_meta_data <- raw_metadata %>%
 
 Make `sample_id` values lowercase — this will be important for harmonizing with the raw counts data in the next section:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_meta_data <- raw_metadata %>%
   clean_names() %>%
@@ -433,15 +434,15 @@ clean_meta_data <- raw_metadata %>%
 
 ### First, Inspect the Data
 
-```{webr-r}
+```{r}
 view(raw_data)
 ```
 
-```{webr-r}
+```{r}
 head(raw_data)
 ```
 
-```{webr-r}
+```{r}
 str(raw_data)
 ```
 
@@ -457,7 +458,7 @@ str(raw_data)
 
 Use `filter()`, `if_any()`, and `everything()` with `is.na()` to search all rows and columns for missing values:
 
-```{webr-r}
+```{r}
 #library(tidyverse), library(dplyr)
 raw_data %>%
   filter(if_any(everything(), is.na))
@@ -472,7 +473,7 @@ The NA value identified here will be addressed in the cleaning steps below.
 
 Gives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names()
@@ -482,7 +483,7 @@ clean_data <- raw_data %>%
 
 Change the auto-generated name for column 2 (`v1`) to `gene_id`:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
@@ -493,7 +494,7 @@ clean_data <- raw_data %>%
 
 Replace the NA value under `gsm3119015` with `0`:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
@@ -512,7 +513,7 @@ Replacing NA with `0` is used here for demonstration purposes. In practice, the 
 
 Create a new variable that combines `gene_id` and `gene_symbol` separated by `|`. Notice that `paste()` from base R works seamlessly inside a Tidyverse pipeline:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
@@ -525,7 +526,7 @@ clean_data <- raw_data %>%
 
 Make `gene_id_symbol` the first column, keep everything else in the same order using `everything()`, and remove `v1`, `gene_symbol`, and `gene_id` using the `-` operator:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr)
 clean_data <- raw_data %>%
   clean_names() %>%
@@ -545,7 +546,7 @@ These extra steps align the structure of `clean_data` with `clean_meta_data` so 
 
 Use `column_to_rownames()` from the `tibble` package to convert the first column from a data variable into row identifiers:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr), library(tibble)
 clean_data <- raw_data %>%
   clean_names() %>%
@@ -560,7 +561,7 @@ clean_data <- raw_data %>%
 
 Reorder the columns in `clean_data` to match the order of `sample_id` values in `clean_meta_data`:
 
-```{webr-r}
+```{r}
 # library(janitor), library(tidyverse), library(dplyr), library(tibble)
 clean_data <- raw_data %>%
   clean_names() %>%
@@ -576,7 +577,7 @@ clean_data <- raw_data %>%
 
 Run a quick check to confirm that the column names in `clean_data` and the `sample_id` values in `clean_meta_data` match exactly:
 
-```{webr-r}
+```{r}
 setequal(clean_meta_data$sample_id, colnames(clean_data))
 ```
 
@@ -586,17 +587,17 @@ setequal(clean_meta_data$sample_id, colnames(clean_data))
 
 Save `clean_data` and `clean_meta_data` locally using `here()` and 'export()\`:
 
-``` r
+```{r}
 # Saves with row labels (use read.csv to reload with row labels intact)
 export(clean_data, here("processed_data", "clean_data_label.csv"))
 ```
 
-``` r
+```{r}
 # Saves without row labels (standard clean CSV)
 export(clean_data, here("processed_data", "clean_data.csv"))
 ```
 
-``` r
+```{r}
 # Save clean metadata
 export(clean_meta_data, here("processed_data", "clean_meta_data.csv"))
 ```
