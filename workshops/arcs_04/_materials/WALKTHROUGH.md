@@ -250,8 +250,8 @@ reproduces. That is the goal of the whole ARCS series, made concrete.
 ## Where to go next
 
 You **used and modified** a container today. The self-paced
-**Build Your Own Container** guide (`workshops/arcs_04/09-build-your-own.qmd`)
-covers **authoring** one from scratch: installing a Linux substrate locally,
-reading `deseq2.def` line by line, building the image, publishing it to a
-registry, automating rebuilds with CI, and adapting the whole pattern to your
-own analysis.
+[**Build Your Own Container**](BUILD-YOUR-OWN.md) guide — also on the website
+as `../09-build-your-own.qmd` — covers **authoring** one from scratch:
+installing a Linux substrate locally, reading `deseq2.def` line by line,
+building the image, publishing it to a registry, automating rebuilds with CI,
+and adapting the whole pattern to your own analysis.

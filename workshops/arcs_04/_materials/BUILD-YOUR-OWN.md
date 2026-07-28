@@ -1,0 +1,381 @@
+# Build Your Own Container
+
+**Self-paced follow-up to the Apptainer workshop**
+
+> This is the Markdown twin of the website page
+> (`workshops/arcs_04/09-build-your-own.qmd`). Same content, readable from
+> inside a Codespace or any editor.
+> **Right-click this file → _Open Preview_** for rendered text.
+
+### By the end of this guide, you should be able to...
+
+- Set up a **Linux environment** to build containers on a Mac, Windows, or
+  Linux machine, and choose the right one for your situation
+- **Read** an Apptainer definition file (`.def`) section by section and explain
+  what each part does
+- **Build** a container image from a definition file with `apptainer build`
+- **Publish** that image to a registry (GHCR) and version it alongside your code
+- **Automate** rebuilds with a GitHub Actions workflow
+- **Adapt** the whole pattern to your *own* analysis
+
+In the workshop you *used and modified* a pre-built container. This guide is
+about *authoring* one. It's self-paced — work through it at your own speed, and
+come back to it when you're ready to containerize your own research.
+
+> **❗ You need Linux to build a container**
+>
+> Apptainer is Linux-only, so building an image requires a Linux environment.
+> Step 0 below sets one up. Everything after Step 0 is run *inside* that Linux
+> environment.
+
+---
+
+## Step 0 — Get a Linux environment
+
+You have four honest options, from least to most commitment. Pick based on how
+often you'll do this and how much you want a persistent local setup.
+
+| Option | Best for | Install cost | Persists? |
+|---|---|---|---|
+| **GitHub Codespaces** | Trying this out; occasional builds | None (browser) | No — ephemeral |
+| **Lima** (macOS) | Mac users who build regularly | Moderate | Yes |
+| **WSL2** (Windows) | Windows users who build regularly | Moderate | Yes |
+| **Native Linux** | You already run Linux | None | Yes |
+
+### Option A — GitHub Codespaces (easiest start)
+
+This is the same environment you used in the workshop, and it can build images
+too, not just run them. Open a Codespace on a repo whose `.devcontainer` is
+privileged (the workshop repo already is — see the note below), then jump to
+Step 1.
+
+<details>
+<summary><strong>Why the Codespace must be "privileged"</strong></summary>
+
+Apptainer creates **Linux user namespaces** to run and build containers. A
+Codespace is itself a container, and nested user namespaces are blocked unless
+the container runs privileged. The workshop repo's
+`.devcontainer/devcontainer.json` sets `"runArgs": ["--privileged"]` for exactly
+this reason. If you build your own Codespace config, you need that line or
+`apptainer` will fail with *"Failed to create user namespace."*
+
+</details>
+
+**Tradeoff:** zero install, but the environment is ephemeral — anything not
+committed or pushed disappears when the Codespace is deleted.
+
+### Option B — Lima (macOS)
+
+[Lima](https://lima-vm.io/) runs a real Linux VM on your Mac. Because it's a
+genuine VM (not a nested container), user namespaces work natively — no
+privileged tricks needed.
+
+```bash
+brew install lima
+limactl start                 # launches an Ubuntu VM (accept the defaults)
+limactl shell default         # drop into the Linux VM
+# ...now you're on Linux. Install Apptainer (Step 1) inside here.
+```
+
+**Tradeoff:** a few GB of disk and a VM to maintain, but a fast, persistent
+local Linux you fully control.
+
+### Option C — WSL2 (Windows)
+
+[WSL2](https://learn.microsoft.com/windows/wsl/install) gives Windows a real
+Linux kernel. User namespaces work, so Apptainer runs normally.
+
+```powershell
+wsl --install -d Ubuntu       # in PowerShell; reboot if prompted
+```
+
+Then open the **Ubuntu** terminal and continue with Step 1 inside it.
+
+**Tradeoff:** moderate one-time setup, then a persistent Ubuntu integrated with
+Windows.
+
+### Option D — Native Linux
+
+Nothing to set up — go straight to Step 1.
+
+### Install Apptainer (all options except Codespaces, which has it already)
+
+```bash
+# Debian/Ubuntu (Lima, WSL2, or native Ubuntu)
+APPTAINER_VERSION=1.3.6
+cd /tmp
+wget https://github.com/apptainer/apptainer/releases/download/v${APPTAINER_VERSION}/apptainer_${APPTAINER_VERSION}_amd64.deb
+sudo apt-get update && sudo apt-get install -y ./apptainer_${APPTAINER_VERSION}_amd64.deb
+apptainer --version
+```
+
+> **📝 Note**
+> We pin a specific version (`1.3.6`) on purpose — pinning is the same
+> reproducibility habit you'll apply to the image itself below. The non-`suid`
+> package shown here runs rootless via user namespaces, which is what you want on
+> a personal machine.
+
+---
+
+## Step 1 — Read the definition file, line by line
+
+A definition file is the **recipe** for your environment. Here is the workshop's
+[`container/deseq2.def`](container/deseq2.def), with every section explained.
+
+```
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:RELEASE_3_19
+```
+
+**`Bootstrap` / `From`** — where the build *starts*. `Bootstrap: docker` means
+"pull a starting image from a Docker/OCI registry." `From:` names that image.
+
+Why `bioconductor/bioconductor_docker:RELEASE_3_19`? Because it already contains
+R, `BiocManager`, and — crucially — the system libraries needed to compile
+Bioconductor packages. Starting from a bare Ubuntu would mean installing all of
+that by hand. **Why the `RELEASE_3_19` tag?** A Bioconductor release pins a
+specific R version *and* a specific set of package versions. Pinning the tag is
+what makes the build reproducible: `:latest` would silently change underneath
+you.
+
+```
+%labels
+    Author       ARCS Workshop ...
+    Description  DESeq2 ...
+    Version      1.0
+```
+
+**`%labels`** — metadata baked into the image. Readable later with
+`apptainer inspect deseq2.sif`. Good place to record a version.
+
+```
+%help
+    Reproducible R environment for the ARCS Part 4 DESeq2 pipeline...
+```
+
+**`%help`** — free text shown by `apptainer run-help deseq2.sif`. Document how
+to run the image so the next person (often future-you) doesn't have to guess.
+
+```
+%post
+    R -e 'BiocManager::install(c("DESeq2"), update = FALSE, ask = FALSE)'
+    R -e 'install.packages(c("ggplot2"), repos = "https://cloud.r-project.org")'
+    R -e 'library(DESeq2); library(ggplot2)'
+```
+
+**`%post`** — commands run **once, at build time**, inside the image. This is
+where you install everything your analysis needs. It's the **slow** step
+(Bioconductor compiles), which is exactly why you build *once* and reuse the
+result. Note the two package worlds: Bioconductor packages go through
+`BiocManager::install()`; CRAN packages through `install.packages()`. The final
+`library(...)` line makes the build **fail loudly** if anything didn't install,
+rather than shipping a broken image.
+
+```
+%environment
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+```
+
+**`%environment`** — variables set every time the container *runs* (not at build
+time). Locale settings here keep R's text handling consistent across hosts.
+
+```
+%runscript
+    exec Rscript pipeline.R "$@"
+```
+
+**`%runscript`** — the default action of `apptainer run deseq2.sif`. Here it runs
+the pipeline in the current directory. (`apptainer exec ... Rscript pipeline.R`
+does the same thing explicitly; `run` just bakes in the default.)
+
+```
+%test
+    R -e 'stopifnot(requireNamespace("DESeq2", quietly = TRUE)); cat("DESeq2 OK\n")'
+```
+
+**`%test`** — runs automatically at the **end of the build** to sanity-check the
+image. If DESeq2 didn't install, the build fails here instead of in front of your
+collaborators.
+
+---
+
+## Step 2 — Build the image
+
+From the folder containing the `.def` file:
+
+```bash
+cd workshops/arcs_04/_materials/container
+apptainer build deseq2.sif deseq2.def
+```
+
+> **⚠️ This is slow — that's normal**
+>
+> Building this image compiles DESeq2 and its dependencies. Expect **several
+> minutes to ~20+ minutes** depending on your machine and network. You'll see
+> pages of compiler output scroll by. That long compile is precisely why we never
+> build live in class and instead distribute the finished `.sif`.
+
+When it finishes you'll see your `%test` print `DESeq2 OK` and a `deseq2.sif`
+file appear. Common hiccups:
+
+- **Out of disk space** — the build cache plus the base image can need several
+  GB. Free space, or run `apptainer cache clean`.
+- **Network flake during package install** — re-run the build; it's the
+  `%post` downloads failing, not your `.def`.
+- **"Failed to create user namespace"** — you're in a nested container that
+  isn't privileged (see Step 0).
+
+---
+
+## Step 3 — Test it locally
+
+Before publishing, confirm the image actually runs your analysis:
+
+```bash
+cd ..                                   # back to _materials/
+apptainer exec container/deseq2.sif R --version
+apptainer exec container/deseq2.sif Rscript pipeline.R
+ls outputs/
+```
+
+If `outputs/` fills with results, your image is good to ship.
+
+---
+
+## Step 4 — Publish to a registry
+
+A registry is where your image *lives* so others (and HPC, and CI) can pull it.
+We use the **GitHub Container Registry (GHCR)** because it sits right next to
+your code.
+
+### 4a. Log in
+
+Create a GitHub **Personal Access Token (classic)** with the `write:packages`
+scope, then:
+
+```bash
+echo "$GHCR_PAT" | apptainer registry login -u YOUR_USERNAME --password-stdin oras://ghcr.io
+```
+
+### 4b. Push — with a real version tag
+
+```bash
+# Tag with a VERSION, not just :latest
+apptainer push deseq2.sif oras://ghcr.io/cwml/deseq2:1.0
+apptainer push deseq2.sif oras://ghcr.io/cwml/deseq2:latest
+```
+
+> **💡 Version the image alongside the code**
+> Give the image a real version tag (`:1.0`) and bump it when the `.def` changes —
+> don't rely on `:latest` alone. The goal: a paper or a colleague can ask for
+> `deseq2:1.0` and get *exactly* the environment your results came from. Treat the
+> image version like a Git tag for your environment.
+
+### 4c. Make it pullable
+
+On github.com → your org/user → **Packages** → `deseq2` → **Package settings** →
+**Change visibility → Public**, so anyone can pull without logging in:
+
+```bash
+apptainer pull oras://ghcr.io/cwml/deseq2:1.0
+```
+
+Your code, your `.def`, and a pullable image now form one reproducible artifact —
+the complete version of the Git story from Part 3.
+
+---
+
+## Step 5 — Automate rebuilds with CI
+
+Right now the image only updates when you remember to rebuild and push. Let's
+make GitHub do it automatically whenever the definition changes — so the
+published image can never drift from the `.def` in your repo.
+
+Create `.github/workflows/build-image.yml`:
+
+```yaml
+name: Build & push DESeq2 image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "workshops/arcs_04/_materials/container/deseq2.def"   # rebuild only when the recipe changes
+  workflow_dispatch: {}                                       # ...or run it by hand
+
+permissions:
+  contents: read
+  packages: write              # needed to push to GHCR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest     # a full VM — user namespaces work, no privileged needed
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Apptainer
+        uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.3.6
+
+      - name: Build image
+        working-directory: workshops/arcs_04/_materials/container
+        run: apptainer build deseq2.sif deseq2.def
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | apptainer registry login -u ${{ github.actor }} --password-stdin oras://ghcr.io
+
+      - name: Push image
+        working-directory: workshops/arcs_04/_materials/container
+        run: apptainer push deseq2.sif oras://ghcr.io/${{ github.repository_owner }}/deseq2:latest
+```
+
+> **📝 Why this works without `--privileged`**
+> GitHub-hosted runners (`ubuntu-latest`) are full virtual machines, not nested
+> containers, so user namespaces are available and Apptainer builds normally. The
+> nested-container restriction you hit in a Codespace doesn't apply here. The
+> built-in `GITHUB_TOKEN` already has permission to push to your repo's packages —
+> no PAT needed in CI.
+
+This closes the loop: change the environment definition → commit → CI rebuilds
+and republishes the image. The environment is now as version-controlled and
+automated as your code.
+
+---
+
+## Step 6 — Adapt the pattern to your own analysis
+
+This is the real goal. To containerize *your* work, repeat the same five moves:
+
+1. **List your dependencies.** What language/version, and which packages? For R,
+   skim your `library()` / `pacman::p_load()` calls. Split them into
+   CRAN vs. Bioconductor (or pip vs. conda for Python).
+2. **Pick a base image.** Match the heavy lifting to your stack: a Bioconductor
+   image for Bioc work, `rocker/r-ver:4.4.1` for plain R, `python:3.12-slim` for
+   Python. Pin the tag.
+3. **Write the `.def`.** Copy `deseq2.def` and edit the `%post` installs. Keep
+   the `%runscript` pointing at your entry script and the `%test` checking your
+   key package loads.
+4. **Build and test** (Steps 2–3) until your pipeline runs inside the image.
+5. **Publish and automate** (Steps 4–5) so the image travels with your code.
+
+> **💡 Tip**
+> Keep the `.def`, your pipeline script, and a small example dataset together in
+> the repo — exactly like `_materials/`. That folder *is* your reproducible
+> project: someone can clone it, pull the image, and reproduce your results on any
+> Linux host, including HPC.
+
+---
+
+## Recap
+
+- Building needs Linux — **Codespaces** to start, **Lima**/**WSL2** for a
+  persistent local setup.
+- The `.def` file is a readable recipe; each section has one job.
+- `apptainer build` turns the recipe into a single `.sif` image (slow, once).
+- A **registry** (GHCR) + a **version tag** makes the image a shareable,
+  reproducible artifact.
+- **CI** keeps the published image in lockstep with the definition.
+- The same pattern containerizes *any* analysis — which is the whole point of
+  the ARCS series.

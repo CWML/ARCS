@@ -14,6 +14,7 @@ is rendered into the website.
 _materials/
 ├── README.md              # this file
 ├── WALKTHROUGH.md         # the participant walkthrough — follow this in class
+├── BUILD-YOUR-OWN.md      # self-paced follow-up guide (authoring a container)
 ├── INSTRUCTOR_GUIDE.md    # run-of-show + prep/day-of checklists
 ├── pipeline.R             # the DESeq2 pipeline (scaffold — see contract below)
 ├── container/
@@ -48,6 +49,7 @@ skip the folder.
 | File | Role |
 |---|---|
 | `WALKTHROUGH.md` | Markdown twin of `../08-apptainer.qmd`, for reading inside the Codespace. Right-click → **Open Preview** for rendered text. |
+| `BUILD-YOUR-OWN.md` | Markdown twin of `../09-build-your-own.qmd` — the self-paced *authoring* guide. Same preview trick. |
 | `INSTRUCTOR_GUIDE.md` | The runbook: one-time prep (build → smoke test → push to GHCR → make the package public) and day-of checks. Read before delivery, not during. |
 | `README.md` | This file — orientation and the pipeline I/O contract. |
 | `pipeline.R` | The analysis. Parameters block at the top (`PADJ`, `CONTRAST`) is what the live demo edits. |
@@ -79,7 +81,9 @@ drive the same steps on the projector. The one live edit is
 `PADJ 0.05 → 0.01` in `pipeline.R`; re-run and watch the significant-gene
 count drop.
 
-**After class** — point people at `../09-build-your-own.qmd`.
+**After class** — point people at `../09-build-your-own.qmd` on the website, or
+[`BUILD-YOUR-OWN.md`](BUILD-YOUR-OWN.md) if they'd rather work from the repo.
+Both are the same guide; the `.qmd` is canonical.
 
 ## Run it (inside a Codespace / on Linux)
 
