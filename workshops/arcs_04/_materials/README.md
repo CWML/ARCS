@@ -13,8 +13,6 @@ is rendered into the website.
 ```
 _materials/
 ├── README.md              # this file
-├── WALKTHROUGH.md         # the participant walkthrough — follow this in class
-├── BUILD-YOUR-OWN.md      # self-paced follow-up guide (authoring a container)
 ├── INSTRUCTOR_GUIDE.md    # run-of-show + prep/day-of checklists
 ├── pipeline.R             # the DESeq2 pipeline (scaffold — see contract below)
 ├── container/
@@ -30,26 +28,32 @@ _materials/
 Part 4 spans three groups of files: the pages students read, the materials
 they run, and the infrastructure that makes the Codespace work.
 
-### Website pages
+### Student-facing pages (`workshops/arcs_04/`)
 
-Rendered by Quarto; listed in the `arcs04` sidebar in `_quarto.yml`.
+Every page a student reads during class lives one level up, in two formats:
+`.qmd` renders to the website and previews in **Positron**; `*_codespaces.md`
+is plain Markdown that previews in **VS Code / Codespaces** without Quarto.
+The `.qmd` is canonical — edit it first, then mirror the change.
 
 | File | Role |
 |---|---|
 | `../07-deseq2.qmd` | **Hour 1** — DESeq2 on the host, in Positron. |
-| `../08-apptainer.qmd` | **Hour 2** — the Apptainer walkthrough. Canonical version, what students see on the website. |
+| `../08-apptainer.qmd` | **Hour 2** — the Apptainer walkthrough. Website + Positron. |
+| `../08-apptainer_codespaces.md` | Hour 2, VS Code / Codespaces version. **This is what students follow in class.** |
 | `../08-slides.qmd` | Reveal.js slides for Hour 2. Contains `::: notes` speaker notes — press `S` in presentation mode. |
-| `../09-build-your-own.qmd` | Self-paced follow-up on *authoring* a container. Homework, not class time. |
+| `../09-build-your-own.qmd` | Appendix: self-paced guide to *authoring* a container. Website + Positron. |
+| `../09-build-your-own_codespaces.md` | Same appendix, VS Code / Codespaces version. |
+
+Only the `.qmd` files render — `_quarto.yml` has a `render:` list that skips
+the `*_codespaces.md` twins so they don't publish as duplicate pages.
 
 ### Teaching materials (this folder)
 
 Nothing here renders into the website — the leading underscore makes Quarto
-skip the folder.
+skip the folder. Students run these files; they don't read them start to finish.
 
 | File | Role |
 |---|---|
-| `WALKTHROUGH.md` | Markdown twin of `../08-apptainer.qmd`, for reading inside the Codespace. Right-click → **Open Preview** for rendered text. |
-| `BUILD-YOUR-OWN.md` | Markdown twin of `../09-build-your-own.qmd` — the self-paced *authoring* guide. Same preview trick. |
 | `INSTRUCTOR_GUIDE.md` | The runbook: one-time prep (build → smoke test → push to GHCR → make the package public) and day-of checks. Read before delivery, not during. |
 | `README.md` | This file — orientation and the pipeline I/O contract. |
 | `pipeline.R` | The analysis. Parameters block at the top (`PADJ`, `CONTRAST`) is what the live demo edits. |
@@ -76,14 +80,15 @@ Students pull with no login, so if it's private every Codespace fails during
 setup. Then open a fresh Codespace and verify end to end.
 
 **In class** — present `../08-slides.qmd`. Students open a Codespace from the
-repo and follow [`WALKTHROUGH.md`](WALKTHROUGH.md) in preview mode while you
-drive the same steps on the projector. The one live edit is
+repo and follow
+[`../08-apptainer_codespaces.md`](../08-apptainer_codespaces.md) in preview
+mode while you drive the same steps on the projector. The one live edit is
 `PADJ 0.05 → 0.01` in `pipeline.R`; re-run and watch the significant-gene
 count drop.
 
-**After class** — point people at `../09-build-your-own.qmd` on the website, or
-[`BUILD-YOUR-OWN.md`](BUILD-YOUR-OWN.md) if they'd rather work from the repo.
-Both are the same guide; the `.qmd` is canonical.
+**After class** — point people at
+[`../09-build-your-own_codespaces.md`](../09-build-your-own_codespaces.md) in
+the repo, or `../09-build-your-own.qmd` on the website. Same guide, two formats.
 
 ## Run it (inside a Codespace / on Linux)
 

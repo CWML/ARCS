@@ -1,6 +1,12 @@
 project:
   type: website
   output-dir: docs
+  # Render only .qmd sources. The *_codespaces.md guides are plain-Markdown
+  # twins meant to be previewed inside VS Code / Codespaces — rendering them
+  # would publish duplicate pages of content the .qmd files already cover.
+  render:
+    - "**/*.qmd"
+    - "!workshops/arcs_04/*_codespaces.md"
 
 website:
   title: "Advancing Reproducibility with Computational Skills"

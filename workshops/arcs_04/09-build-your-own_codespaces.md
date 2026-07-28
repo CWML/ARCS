@@ -2,10 +2,10 @@
 
 **Self-paced follow-up to the Apptainer workshop**
 
-> This is the Markdown twin of the website page
-> (`workshops/arcs_04/09-build-your-own.qmd`). Same content, readable from
-> inside a Codespace or any editor.
-> **Right-click this file → _Open Preview_** for rendered text.
+> **Read this version in VS Code / Codespaces.** It's the same content as
+> `09-build-your-own.qmd` (the Positron and website version), in plain Markdown
+> so it previews without Quarto.
+> **Right-click this file → _Open Preview_**, or press `Cmd/Ctrl + Shift + V`.
 
 ### By the end of this guide, you should be able to...
 
@@ -120,7 +120,8 @@ apptainer --version
 ## Step 1 — Read the definition file, line by line
 
 A definition file is the **recipe** for your environment. Here is the workshop's
-[`container/deseq2.def`](container/deseq2.def), with every section explained.
+[`_materials/container/deseq2.def`](_materials/container/deseq2.def), with every
+section explained.
 
 ```
 Bootstrap: docker

@@ -1,9 +1,9 @@
 # Apptainer — in-Codespace walkthrough
 
-> This is the Markdown twin of the website page
-> (`workshops/arcs_04/08-apptainer.qmd`). Same content, readable from inside
-> the Codespace so you don't have to switch back to Positron or the browser.
-> **Right-click this file → _Open Preview_** for rendered text.
+> **Read this version in VS Code / Codespaces.** It's the same content as
+> `08-apptainer.qmd` (the Positron and website version), in plain Markdown so
+> it previews without Quarto.
+> **Right-click this file → _Open Preview_**, or press `Cmd/Ctrl + Shift + V`.
 
 ### By the end of this section, you should be able to...
 
@@ -125,7 +125,7 @@ runs a command *inside* the container's environment.
 ## Step 3 — Run the DESeq2 pipeline from the container
 
 The pipeline code and a subset of the Shank3 dataset live in the repo under
-`workshops/arcs_04/_materials/` — the folder this file is in. Move there and
+`workshops/arcs_04/_materials/` — the folder next to this one. Move there and
 run the pipeline inside the container:
 
 ```bash
@@ -168,7 +168,7 @@ ls outputs/
 ## Step 4 — Look inside the definition file
 
 The image didn't appear from nowhere. It was built from a **definition
-file**, [`container/deseq2.def`](container/deseq2.def). Open it. Each
+file**, [`_materials/container/deseq2.def`](_materials/container/deseq2.def). Open it. Each
 section has a job:
 
 ```
@@ -202,7 +202,8 @@ self-paced guide.
 Reproducible doesn't mean frozen — it means *controlled*. Let's change the
 analysis and watch the result change, with the same image.
 
-Open [`pipeline.R`](pipeline.R) and find the parameters block at the top:
+Open [`_materials/pipeline.R`](_materials/pipeline.R) and find the parameters
+block at the top:
 
 ```r
 PADJ     <- 0.05      # adjusted p-value cutoff
@@ -250,8 +251,8 @@ reproduces. That is the goal of the whole ARCS series, made concrete.
 ## Where to go next
 
 You **used and modified** a container today. The self-paced
-[**Build Your Own Container**](BUILD-YOUR-OWN.md) guide — also on the website
-as `../09-build-your-own.qmd` — covers **authoring** one from scratch:
+[**Build Your Own Container**](09-build-your-own_codespaces.md) guide — the
+same content as `09-build-your-own.qmd` — covers **authoring** one from scratch:
 installing a Linux substrate locally, reading `deseq2.def` line by line,
 building the image, publishing it to a registry, automating rebuilds with CI,
 and adapting the whole pattern to your own analysis.
