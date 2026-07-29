@@ -126,6 +126,12 @@ Same analysis as Hour 1, now on Linux inside a pinned environment, on a
 machine that isn't theirs — and the result matches. **Open a plot** from the
 file explorer so the payoff is visual.
 
+The match is the whole argument, so make it explicit: `scripts/pipeline.R` is
+Hour 1's analysis verbatim — normal-condition samples only, `~ genotype` with
+WT as reference, padj < 0.05 and |LFC| > 1. If anyone wrote down their
+significant-gene count in Hour 1, ask them to compare. That's the moment the
+abstract claim becomes evidence.
+
 ### What's in the image — and what isn't
 
 Most people get this backwards at first: they assume their data and code went
@@ -143,6 +149,12 @@ each section briefly. Note: changing this file means rebuilding, which is slow
 
 Reproducible ≠ frozen. It means *controlled*. This is the "modify and observe"
 moment that earns the Analyze/Create objective without a live build.
+
+`PADJ 0.05 → 0.01` is the primary lever. If it lands flat — a small drop is
+less dramatic than you'd like — the stronger backup is
+`CONDITION <- "sleep_deprived"`, which re-runs the identical comparison on the
+other half of the data and regenerates every plot. Same image, same code, a
+genuinely different question.
 
 ### It all travels together
 
@@ -163,7 +175,7 @@ Cut in this order:
 
 1. The `%environment` / `%test` detail on the definition-file slide — the
    section headings alone carry the point
-2. The second "try another" change (`CONTRAST`) — the `PADJ` change alone
+2. The second "try another" change (`CONDITION`) — the `PADJ` change alone
    delivers the modify-and-observe objective
 3. The Berkeley Lab origin story — keep "runs as you," drop the history
 4. The virtual-machine table as a one-line spoken contrast ("it doesn't

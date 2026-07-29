@@ -182,11 +182,11 @@ time). Locale settings here keep R's text handling consistent across hosts.
 
 ```default
 %runscript
-    exec Rscript pipeline.R "$@"
+    exec Rscript scripts/pipeline.R "$@"
 ```
 
 **`%runscript`** — the default action of `apptainer run deseq2.sif`. Here it runs
-the pipeline in the current directory. (`apptainer exec ... Rscript pipeline.R`
+the pipeline in the current directory. (`apptainer exec ... Rscript scripts/pipeline.R`
 does the same thing explicitly; `run` just bakes in the default.)
 
 ```default
@@ -236,7 +236,7 @@ Before publishing, confirm the image actually runs your analysis:
 ```bash
 cd ..                                   # back to _materials/
 apptainer exec container/deseq2.sif R --version
-apptainer exec container/deseq2.sif Rscript pipeline.R
+apptainer exec container/deseq2.sif Rscript scripts/pipeline.R
 ls outputs/
 ```
 

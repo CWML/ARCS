@@ -9,7 +9,7 @@
 #   apptainer build deseq2.sif deseq2.def
 #
 # In class students never build it; they pull the pre-built .sif and run:
-#   apptainer exec ~/deseq2.sif Rscript pipeline.R
+#   apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 # =====================================================================
 
 Bootstrap: docker
@@ -18,24 +18,33 @@ From: bioconductor/bioconductor_docker:RELEASE_3_19
 %labels
     Author       ARCS Workshop (Advancing Reproducibility with Computational Skills)
     Description  DESeq2 differential-expression environment for ARCS Part 4
-    Version      1.0
+    Version      2.0
 
 %help
-    Reproducible R environment for the ARCS Part 4 DESeq2 pipeline.
+    Reproducible R environment for the ARCS Part 4 DESeq2 pipeline —
+    the same Shank3 vs WT analysis taught in Hour 1.
 
     Run the pipeline from workshops/arcs_04/_materials:
-        apptainer exec deseq2.sif Rscript pipeline.R
+        apptainer exec deseq2.sif Rscript scripts/pipeline.R
     Or use the built-in runscript (same thing):
         apptainer run deseq2.sif
+
+    Contains: DESeq2, apeglm, ggplot2, dplyr, tibble, pheatmap, RColorBrewer
 
 %post
     # ---- Install the analysis packages INTO the image -----------------
     # This is the slow step (Bioconductor compiles) and is exactly why we
     # build the image ONCE, ahead of time, instead of in a live session.
-    R -e 'BiocManager::install(c("DESeq2"), update = FALSE, ask = FALSE)'
-    R -e 'install.packages(c("ggplot2"), repos = "https://cloud.r-project.org")'
-    # Fail the build early if anything failed to install.
-    R -e 'library(DESeq2); library(ggplot2)'
+    #
+    # Bioconductor packages. apeglm backs lfcShrink() in the pipeline.
+    R -e 'BiocManager::install(c("DESeq2", "apeglm"), update = FALSE, ask = FALSE)'
+
+    # CRAN packages: plotting, data wrangling, and the QC heatmap.
+    R -e 'install.packages(c("ggplot2", "dplyr", "tibble", "pheatmap", "RColorBrewer"), repos = "https://cloud.r-project.org")'
+
+    # Fail the build early and loudly if anything did not install, rather
+    # than shipping an image that breaks in front of a room of learners.
+    R -e 'lapply(c("DESeq2","apeglm","ggplot2","dplyr","tibble","pheatmap","RColorBrewer"), function(p) library(p, character.only = TRUE))'
 
 %environment
     # Settings applied to every shell INSIDE the container at run time.
@@ -43,10 +52,15 @@ From: bioconductor/bioconductor_docker:RELEASE_3_19
     export LANG=C.UTF-8
 
 %runscript
-    # What `apptainer run deseq2.sif` does: run the pipeline in the
-    # current working directory (Apptainer auto-mounts it).
-    exec Rscript pipeline.R "$@"
+    # What `apptainer run deseq2.sif` does: run the pipeline relative to
+    # the current working directory (Apptainer auto-mounts it).
+    exec Rscript scripts/pipeline.R "$@"
 
 %test
     # Runs at the END of `apptainer build` to confirm the image is sane.
-    R -e 'stopifnot(requireNamespace("DESeq2", quietly = TRUE)); cat("DESeq2 OK\n")'
+    # Checks every package the pipeline actually loads, so a partial
+    # install is caught here rather than mid-workshop.
+    R -e 'pkgs <- c("DESeq2","apeglm","ggplot2","dplyr","tibble","pheatmap","RColorBrewer"); \
+          missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]; \
+          if (length(missing)) stop("MISSING: ", paste(missing, collapse=", ")); \
+          cat("All packages OK\n")'

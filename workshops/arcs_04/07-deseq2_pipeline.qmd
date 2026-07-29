@@ -84,15 +84,21 @@ Why use here::here()? Using here() makes your paths relative to the project root
 Input paths
 
 ```{r}
-path_counts <- here("processed_data", "rawCounts_Shank3_clean.csv") 
-path_metadata <- here("processed_data", "metadata_Shank3_clean.csv")
+path_counts <- here("processed_data", "Shank3_rawCounts_clean.csv")
+path_metadata <- here("processed_data", "Shank3_metadata_clean.csv")
 ```
 
 Output paths
 
 ```{r}
-path_tables <- here("tables") 
-path_images <- here("images")  
+path_tables <- here("tables")
+path_images <- here("images")
+path_processed <- here("processed_data")
+
+# Create the output folders if they don't exist yet, so the write steps
+# in Part 8 can't fail on a fresh clone.
+dir.create(path_tables, showWarnings = FALSE, recursive = TRUE)
+dir.create(path_images, showWarnings = FALSE, recursive = TRUE)
 ```
 
 # 📂 Part 2 — Load & Inspect the Data
@@ -141,7 +147,7 @@ For this workshop we focus on a simple two-group comparison: Shank3 vs WT, using
 ### 3.1 - Keep only samples from the normal (baseline) condition
 
 ```{r}
-info_sub <- info %>% filter(Condition == "_normal")
+info_sub <- info %>% filter(condition == "normal")
 ```
 
 ### 3.2 - Subset counts to matching samples
@@ -153,13 +159,13 @@ rawc_sub <- rawc[ , info_sub$sample_id]
 ### 3.3 - Drop unused factor levels after subsetting
 
 ```{r}
-info_sub_genotype < − droplevels(info_sub$genotype)
+info_sub$genotype <- droplevels(info_sub$genotype)
 ```
 
 ### 3.4 - Set WT as the reference level (baseline for comparison)
 
 ```{r}
-info_sub_genotype <− relevel(info_sub_genotype, ref = "WT")
+info_sub$genotype <- relevel(info_sub$genotype, ref = "WT")
 ```
 
 ### 3.5 Confirm subset dimensions
@@ -232,13 +238,13 @@ What to look for in the PCA Samples should cluster by genotype along PC1 (the ax
 ```{r}
 pca_data <- plotPCA(vsd, intgroup = "genotype", returnData = TRUE) 
 
-pct_var <- round(100 \* attr(pca_data, "percentVar"))
+pct_var <- round(100 * attr(pca_data, "percentVar"))
 
 pca_plot <- ggplot(pca_data, aes(x = PC1, y = PC2, color = genotype, label = name)) + 
             geom_point(size = 4, alpha = 0.8) + 
             geom_text(vjust = -0.8, size = 3) + 
             scale_color_manual(values = c("WT" = "#2196F3", "Shank3" = "#F44336")) + 
-            labs( title = "PCA: Shank3 vs WT (normal condition)", x = paste0("PC1: ", pct_var\[1\], "% variance"), y = paste0("PC2: ", pct_var\[2\], "% variance") ) + 
+            labs( title = "PCA: Shank3 vs WT (normal condition)", x = paste0("PC1: ", pct_var[1], "% variance"), y = paste0("PC2: ", pct_var[2], "% variance") ) + 
             theme_classic(base_size = 13) + 
             theme(legend.position = "right")
 
@@ -256,7 +262,7 @@ samp_mat <- as.matrix(samp_dists)
 
 ### Use sample names + genotype as labels
 
-rownames(samp_mat) <- colnames(samp_mat) <- paste(colData(vsd)genotype , colData(vsd)sample_id, sep = " \| ")
+rownames(samp_mat) <- colnames(samp_mat) <- paste(colData(vsd)$genotype, colData(vsd)$sample_id, sep = " | ")
 
 colors <- colorRampPalette(rev(brewer.pal(9, "Blues")))(255)
 
@@ -348,15 +354,16 @@ plotMA(res_shrunk, ylim = c(-5, 5),
 
 # Prepare data frame for plotting
 
-res_df <- as.data.frame(res_shrunk) %\>%
-   tibble::rownames_to_column("gene") %\>% 
-   filter(!is.na(padj)) %\>% 
+res_df <- as.data.frame(res_shrunk) %>%
+   tibble::rownames_to_column("gene") %>% 
+   filter(!is.na(padj)) %>% 
    mutate( significance = case_when( padj < 0.05 & log2FoldChange > 1 ~ "Up in Shank3", padj < 0.05 & log2FoldChange < -1 ~ "Down in Shank3", TRUE ~ "Not significant" ) 
 )
 
 # Count DEGs
 
-deg_counts <- table(res_df$significance) print(deg_counts)
+deg_counts <- table(res_df$significance)
+print(deg_counts)
 
 # Plot
 
@@ -365,7 +372,7 @@ volcano_plot <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color =
                               scale_color_manual(values = c("Up in Shank3" = "#F44336", "Down in Shank3" = "#2196F3", "Not significant" = "grey70")) +
                               geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "grey40") + 
                               geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey40") + 
-                              labs( title = "Volcano Plot: Shank3 vs WT", subtitle = paste0("Up: ", deg_counts\["Up in Shank3"\], " | Down: ", deg_counts\["Down in Shank3"]), x = "Log2 Fold Change (Shank3 / WT)", y = "-Log10 Adjusted P-value", color = NULL ) + 
+                              labs( title = "Volcano Plot: Shank3 vs WT", subtitle = paste0("Up: ", deg_counts["Up in Shank3"], " | Down: ", deg_counts["Down in Shank3"]), x = "Log2 Fold Change (Shank3 / WT)", y = "-Log10 Adjusted P-value", color = NULL ) + 
                               theme_classic(base_size = 13) + 
                               theme(legend.position = "top"
 )
@@ -384,7 +391,8 @@ ggsave(file.path(path_images, "Volcano_Shank3vsWT.png"), plot = volcano_plot, wi
 
 # Identify top gene (lowest padj)
 
-top_gene <- rownames(res)[which.min(res$padj)] cat("Most significant gene:", top_gene, "\n")
+top_gene <- rownames(res)[which.min(res$padj)]
+cat("Most significant gene:", top_gene, "\n")
 
 # Plot
 
@@ -408,7 +416,8 @@ res_all <- as.data.frame(res_shrunk) %>% tibble::rownames_to_column("gene") %>% 
 
 res_sig <- res_all %>% filter(padj < 0.05, abs(log2FoldChange) > 1)
 
-cat("Total DEGs (padj < 0.05, |LFC| > 1):", nrow(res_sig), "\n") head(res_sig) 
+cat("Total DEGs (padj < 0.05, |LFC| > 1):", nrow(res_sig), "\n")
+head(res_sig)
 ```
 
 ### 8.2 Save Results Tables 
@@ -426,7 +435,8 @@ write.csv(res_sig, file = file.path(path_tables, "DESeq2_Shank3vsWT_sigDEGs.csv"
 
 # Normalised counts
 
-norm_counts \<- counts(dds, normalized = TRUE) write.csv(norm_counts, file = file.path(path_processed, "normCounts_Shank3vsWT.csv"), row.names = TRUE)
+norm_counts <- counts(dds, normalized = TRUE)
+write.csv(norm_counts, file = file.path(path_processed, "normCounts_Shank3vsWT.csv"), row.names = TRUE)
 
 cat("✅ Tables saved to /tables and /processed_data\n") 🔁 Part 8 — Reproducibility Session Information plaintext #\| label: session-info #\| code-fold: true
 
