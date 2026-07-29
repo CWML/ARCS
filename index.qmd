@@ -1,0 +1,22 @@
+---
+title: "ARCS"
+---
+
+## July 2026 ARCS 2.0 Workshop Schedule 
+
+| Date | Time | Lesson |
+|------|------|--------|
+| Thursday, July 10 | 9:30–10:30 AM | [Fundamentals of R](workshops/arcs_01/01-fundamentals.qmd) |
+| Thursday, July 10 | 10:30–11:30 AM | [Project Management](workshops/arcs_01/02-projects.qmd) |
+| Thursday, July 17 | 9:30–10:30 AM | [Data Structures](workshops/arcs_02/03-structures.qmd) |
+| Thursday, July 17 | 10:30–11:30 AM | [Reports](workshops/arcs_02/04-reports.qmd) |
+| Thursday, July 24 | 9:30–10:30 AM | [Tidyverse](workshops/arcs_03/05-tidyverse.qmd) |
+| Thursday, July 24 | 10:30–11:30 AM | [Git & Version Control](workshops/arcs_03/06-git.qmd) |
+| Thursday, July 31 | 9:30–10:30 AM | [DESeq2](workshops/arcs_04/07-deseq2.qmd) |
+| Thursday, July 31 | 10:30–11:30 AM | [Apptainer](workshops/arcs_04/08-apptainer.qmd) |
+
+
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

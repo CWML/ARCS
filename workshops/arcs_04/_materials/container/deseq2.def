@@ -1,0 +1,52 @@
+# =====================================================================
+# ARCS Part 4 — DESeq2 pipeline environment (Apptainer definition file)
+#
+# This file DEFINES a reproducible computing environment. Building it
+# produces a single-file image (deseq2.sif) that runs the analysis
+# identically on any Linux host — laptop, Codespace, or HPC.
+#
+# Build (on any Linux box, ONCE, ahead of class — it is slow):
+#   apptainer build deseq2.sif deseq2.def
+#
+# In class students never build it; they pull the pre-built .sif and run:
+#   apptainer exec ~/deseq2.sif Rscript pipeline.R
+# =====================================================================
+
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:RELEASE_3_19
+
+%labels
+    Author       ARCS Workshop (Advancing Reproducibility with Computational Skills)
+    Description  DESeq2 differential-expression environment for ARCS Part 4
+    Version      1.0
+
+%help
+    Reproducible R environment for the ARCS Part 4 DESeq2 pipeline.
+
+    Run the pipeline from workshops/arcs_04/_materials:
+        apptainer exec deseq2.sif Rscript pipeline.R
+    Or use the built-in runscript (same thing):
+        apptainer run deseq2.sif
+
+%post
+    # ---- Install the analysis packages INTO the image -----------------
+    # This is the slow step (Bioconductor compiles) and is exactly why we
+    # build the image ONCE, ahead of time, instead of in a live session.
+    R -e 'BiocManager::install(c("DESeq2"), update = FALSE, ask = FALSE)'
+    R -e 'install.packages(c("ggplot2"), repos = "https://cloud.r-project.org")'
+    # Fail the build early if anything failed to install.
+    R -e 'library(DESeq2); library(ggplot2)'
+
+%environment
+    # Settings applied to every shell INSIDE the container at run time.
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+
+%runscript
+    # What `apptainer run deseq2.sif` does: run the pipeline in the
+    # current working directory (Apptainer auto-mounts it).
+    exec Rscript pipeline.R "$@"
+
+%test
+    # Runs at the END of `apptainer build` to confirm the image is sane.
+    R -e 'stopifnot(requireNamespace("DESeq2", quietly = TRUE)); cat("DESeq2 OK\n")'

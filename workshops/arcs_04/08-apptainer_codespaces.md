@@ -1,10 +1,12 @@
----
-title: "Apptainer"
-sidebar: arcs04
----
+# Apptainer — in-Codespace walkthrough
 
-::: {.callout-note}
-## By the end of this section, you should be able to...
+> **Read this version in VS Code / Codespaces.** It's the same content as
+> `08-apptainer.qmd` (the Positron and website version), in plain Markdown so
+> it previews without Quarto.
+> **Right-click this file → _Open Preview_**, or press `Cmd/Ctrl + Shift + V`.
+
+### By the end of this section, you should be able to...
+
 - **Describe** how containerization solves reproducibility problems that
   come from software and operating-system differences
 - **Define** the core vocabulary — container, image (`.sif`), Apptainer, and
@@ -17,7 +19,6 @@ sidebar: arcs04
   containerized analysis produce a new, reproducible result
 - Connect the container to the Git workflow from Part 3: code, environment
   definition, and pipeline travel together as one reproducible artifact
-:::
 
 ---
 
@@ -71,8 +72,9 @@ system that has the right system libraries for those packages to compile
 against. A container removes those assumptions by shipping all of it. Think of
 `renv` as a shopping list and a container as the delivered groceries.
 
-::: {.callout-note collapse="true"}
-## Is a container a virtual machine?
+<details>
+<summary><strong>Is a container a virtual machine?</strong></summary>
+
 No — and the difference is why containers are practical.
 
 A **virtual machine** simulates an entire computer, including its own
@@ -85,7 +87,8 @@ than booting a machine.
 
 It's also why Apptainer needs Linux specifically: it isn't simulating a Linux
 kernel, it's *borrowing* the one already running.
-:::
+
+</details>
 
 ---
 
@@ -123,8 +126,9 @@ container runs **as you** — with your permissions, your files, your identity �
 rather than as a privileged system user. That single design decision is why
 essentially every academic HPC centre supports it.
 
-::: {.callout-tip collapse="true"}
-## You'll also see the name "Singularity"
+<details>
+<summary><strong>You'll also see the name "Singularity"</strong></summary>
+
 Apptainer was called **Singularity** until 2021, when the project joined the
 Linux Foundation and was renamed. They are the same tool.
 
@@ -133,10 +137,12 @@ before ~2022 all say "Singularity," and many HPC clusters still provide the
 command as `singularity` rather than `apptainer`. If your cluster's docs
 mention Singularity, everything you learn here applies — try `singularity exec`
 in place of `apptainer exec`.
-:::
 
-::: {.callout-note collapse="true"}
-## Why Apptainer and not Docker?
+</details>
+
+<details>
+<summary><strong>Why Apptainer and not Docker?</strong></summary>
+
 You may have heard of Docker. Same core idea, different conventions:
 
 - Apptainer is built for **research computing and HPC**
@@ -148,25 +154,25 @@ You may have heard of Docker. Same core idea, different conventions:
 Docker is excellent for web services; Apptainer is the norm in research
 computing because of that security model on shared systems. Apptainer can also
 *read* Docker images, which is why our definition file starts from one.
-:::
 
-::: {.callout-important}
-## The OS limitation *is* the lesson
-Apptainer only runs on **Linux**. There is no Mac or Windows version.
+</details>
 
-That sounds like a problem — but it's actually the whole point. The reason
-containers exist is that **the host operating system should not constrain
-what runs inside**. To use a container you still need a Linux kernel
-*somewhere*:
-
-- On a Mac or Windows laptop, that "somewhere" is the **GitHub Codespace**
-  we're about to open.
-- On a research cluster, it's the **HPC login node**.
-- On a Linux laptop, it's just there.
-
-Once you cross into that Linux environment, the container behaves
-identically everywhere. That's reproducibility you can hand to a colleague.
-:::
+> **❗ The OS limitation *is* the lesson**
+>
+> Apptainer only runs on **Linux**. There is no Mac or Windows version.
+>
+> That sounds like a problem — but it's actually the whole point. The reason
+> containers exist is that **the host operating system should not constrain
+> what runs inside**. To use a container you still need a Linux kernel
+> *somewhere*:
+>
+> - On a Mac or Windows laptop, that "somewhere" is the **GitHub Codespace**
+>   you're reading this in.
+> - On a research cluster, it's the **HPC login node**.
+> - On a Linux laptop, it's just there.
+>
+> Once you cross into that Linux environment, the container behaves
+> identically everywhere. That's reproducibility you can hand to a colleague.
 
 ---
 
@@ -198,20 +204,21 @@ from our workshop repository gives everyone — Mac, Windows, or Linux — the
    and downloads our pre-built DESeq2 image — you'll see progress in the
    terminal.
 
-::: {.callout-tip}
-When the terminal shows `Setup complete.`, you're ready. This takes a
-couple of minutes the first time; that's the environment being assembled
-*for* you so you don't have to.
-:::
+> **💡 Tip**
+> When the terminal shows `Setup complete.`, you're ready. This takes a
+> couple of minutes the first time; that's the environment being assembled
+> *for* you so you don't have to.
 
-::: {.callout-note collapse="true"}
-## What just happened? (the `.devcontainer`)
+<details>
+<summary><strong>What just happened? (the <code>.devcontainer</code>)</strong></summary>
+
 The repository contains a `.devcontainer/` folder that tells Codespaces how
 to set itself up. Its `setup.sh` script installed Apptainer and ran
 `apptainer pull` to download our pre-built image to `~/deseq2.sif`. You
 didn't install anything — the recipe is in the repo, so it's the same for
 everyone.
-:::
+
+</details>
 
 ---
 
@@ -240,8 +247,8 @@ runs a command *inside* the container's environment.
 ## Step 3 — Run the DESeq2 pipeline from the container
 
 The pipeline code and a subset of the Shank3 dataset live in the repo under
-`workshops/arcs_04/_materials/`. Move there and run the pipeline inside the
-container:
+`workshops/arcs_04/_materials/` — the folder next to this one. Move there and
+run the pipeline inside the container:
 
 ```bash
 cd workshops/arcs_04/_materials
@@ -251,23 +258,22 @@ apptainer exec ~/deseq2.sif Rscript pipeline.R
 Apptainer automatically makes your current folder available inside the
 container, so the pipeline can read `data/` and write `outputs/`.
 
-::: {.callout-note}
-## What's inside the image, and what isn't
-This is worth being precise about, because it's the piece most people get
-backwards at first.
-
-**Inside the image:** R, DESeq2, ggplot2, and the system libraries they need —
-the *software*. Fixed at build time and identical for everyone.
-
-**Outside the image:** your code (`pipeline.R`), your data (`data/`), and your
-results (`outputs/`) — all ordinary files in your own folder, which Apptainer
-makes visible to the container while it runs.
-
-That's the division of labour. The environment is frozen and shared; your
-files stay yours, editable with normal tools. It's why you can edit
-`pipeline.R` in Step 5 with the plain editor and immediately re-run it — you
-never have to open up or rebuild the image to change your analysis.
-:::
+> **📝 What's inside the image, and what isn't**
+>
+> This is worth being precise about, because it's the piece most people get
+> backwards at first.
+>
+> **Inside the image:** R, DESeq2, ggplot2, and the system libraries they need —
+> the *software*. Fixed at build time and identical for everyone.
+>
+> **Outside the image:** your code (`pipeline.R`), your data (`data/`), and your
+> results (`outputs/`) — all ordinary files in your own folder, which Apptainer
+> makes visible to the container while it runs.
+>
+> That's the division of labour. The environment is frozen and shared; your
+> files stay yours, editable with normal tools. It's why you can edit
+> `pipeline.R` in Step 5 with the plain editor and immediately re-run it — you
+> never have to open up or rebuild the image to change your analysis.
 
 When it finishes you'll see a summary like:
 
@@ -291,20 +297,20 @@ ls outputs/
 - `significant_genes.csv` — the differentially expressed genes
 - `pca_plot.png`, `volcano_plot.png` — open these from the file explorer
 
-::: {.callout-note}
-This is the same analysis you ran in Hour 1 — but it just ran on **Linux**,
-inside a pinned environment, on a machine that isn't yours, and gave the
-same result. That's the payoff.
-:::
+> **📝 Note**
+> This is the same analysis you ran in Hour 1 — but it just ran on **Linux**,
+> inside a pinned environment, on a machine that isn't yours, and gave the
+> same result. That's the payoff.
 
 ---
 
 ## Step 4 — Look inside the definition file
 
 The image didn't appear from nowhere. It was built from a **definition
-file**, `_materials/container/deseq2.def`. Open it. Each section has a job:
+file**, [`_materials/container/deseq2.def`](_materials/container/deseq2.def). Open it. Each
+section has a job:
 
-```default
+```
 Bootstrap: docker
 From: bioconductor/bioconductor_docker:RELEASE_3_19   # the starting point
 
@@ -318,13 +324,15 @@ The whole reproducible environment is described by this one readable text
 file. Because it lives in the repo next to your code, anyone can see —
 and rebuild — exactly what your analysis ran inside.
 
-::: {.callout-tip collapse="true"}
-## Why don't we rebuild it live?
+<details>
+<summary><strong>Why don't we rebuild it live?</strong></summary>
+
 Building the image compiles DESeq2 and its dependencies, which takes many
 minutes. So we build it **once**, ahead of time, and everyone *uses* the
 result. Building your own image from scratch is covered in the follow-up
 self-paced guide.
-:::
+
+</details>
 
 ---
 
@@ -333,7 +341,8 @@ self-paced guide.
 Reproducible doesn't mean frozen — it means *controlled*. Let's change the
 analysis and watch the result change, with the same image.
 
-Open `pipeline.R` and find the parameters block at the top:
+Open [`_materials/pipeline.R`](_materials/pipeline.R) and find the parameters
+block at the top:
 
 ```r
 PADJ     <- 0.05      # adjusted p-value cutoff
@@ -355,11 +364,9 @@ The **Significant genes** count changes — a stricter cutoff keeps fewer
 genes. Same environment, same data, a deliberate change to the question.
 That's a controlled, reproducible experiment.
 
-::: {.callout-tip}
-Try another: change `CONTRAST <- c("genotype", "Shank3", "WT")` to compare
-conditions instead — `c("condition", "sleep_deprived", "normal")` — and
-re-run.
-:::
+> **💡 Try another**
+> Change `CONTRAST <- c("genotype", "Shank3", "WT")` to compare conditions
+> instead — `c("condition", "sleep_deprived", "normal")` — and re-run.
 
 ---
 
@@ -392,8 +399,8 @@ reproduces. That is the goal of the whole ARCS series, made concrete.
 ## Where to go next
 
 You **used and modified** a container today. The self-paced
-[**Build Your Own Container**](09-build-your-own.qmd) guide covers
-**authoring** one from scratch: installing a Linux substrate locally, reading
-`deseq2.def` line by line, building the image, and adapting the whole pattern
-to your own analysis — plus a conceptual tour of how images get shared and
-versioned.
+[**Build Your Own Container**](09-build-your-own_codespaces.md) guide — the
+same content as `09-build-your-own.qmd` — covers **authoring** one from scratch:
+installing a Linux substrate locally, reading `deseq2.def` line by line,
+building the image, and adapting the whole pattern to your own analysis — plus
+a conceptual tour of how images get shared and versioned.

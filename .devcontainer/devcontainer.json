@@ -1,0 +1,22 @@
+{
+  // ARCS Part 4 — Codespace for the Apptainer hour.
+  "name": "ARCS Part 4 — Apptainer",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    // Used only by the optional GitHub Release delivery fallback (gh release download).
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  // REQUIRED. Apptainer runs containers via Linux user namespaces. A Codespace
+  // dev container is itself a container, and nested user namespaces are blocked
+  // unless the container is privileged. Without this flag, `apptainer exec` fails
+  // with "Failed to create user namespace". See _materials/INSTRUCTOR_GUIDE.md.
+  "runArgs": ["--privileged"],
+  "remoteEnv": {
+    "DESEQ2_IMAGE": "oras://ghcr.io/cwml/deseq2:latest"
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb"
+  }
+}

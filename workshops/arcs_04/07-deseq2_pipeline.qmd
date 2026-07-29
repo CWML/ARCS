@@ -329,7 +329,7 @@ Use res_shrunk for visualization. Use res for hypothesis testing.
 # | label: ma-plot 
 # | fig-width: 7
 # | fig-height: 5 
-# | fig-cap: "MA plot showing log2 fold change (Shank3/WT) versus mean expression. Significant genes (padj \< 0.05) are highlighted in blue."
+# | fig-cap: "MA plot showing log2 fold change (Shank3/WT) versus mean expression. Significant genes (padj < 0.05) are highlighted in blue."
 
 # Save to file and display
 

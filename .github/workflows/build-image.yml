@@ -1,0 +1,65 @@
+# =====================================================================
+# Rebuild & republish the DESeq2 Apptainer image.
+#
+# INSTRUCTOR/MAINTENANCE ONLY — students never trigger this. It keeps the
+# published image (ghcr.io/<owner>/deseq2:latest) in sync with the definition
+# file so the image can't drift from the recipe. The class itself does NOT
+# depend on it: students just `apptainer pull` the already-published image.
+#
+# Prerequisites (one-time, see _materials/INSTRUCTOR_GUIDE.md):
+#   - You have pushed the image manually once, so the GHCR package exists.
+#   - The package is linked to this repo with write access (GHCR → package →
+#     settings) so the built-in GITHUB_TOKEN can push. No PAT/secret needed.
+#
+# This is the production-hardened version of the teaching snippet in
+# workshops/arcs_04/09-build-your-own.qmd (Step 5).
+# =====================================================================
+name: Build & push DESeq2 image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "workshops/arcs_04/_materials/container/deseq2.def"   # rebuild only when the recipe changes
+  workflow_dispatch: {}                                       # ...or run it by hand
+
+# Don't run overlapping builds; cancel an in-progress one if a newer push lands.
+concurrency:
+  group: build-deseq2-image
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write              # needed to push to GHCR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest     # a full VM — user namespaces work, no --privileged needed
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free up disk space
+        # The Bioconductor base image + compile is large; clear unused toolchains
+        # so the build doesn't run the runner out of disk.
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Install Apptainer
+        uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.3.6
+
+      - name: Build image
+        working-directory: workshops/arcs_04/_materials/container
+        run: apptainer build deseq2.sif deseq2.def
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | apptainer registry login -u "${{ github.actor }}" --password-stdin oras://ghcr.io
+
+      - name: Push image
+        working-directory: workshops/arcs_04/_materials/container
+        run: |
+          # GHCR namespaces must be lowercase (e.g. CWML -> cwml).
+          OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
+          apptainer push deseq2.sif "oras://ghcr.io/${OWNER_LC}/deseq2:latest"

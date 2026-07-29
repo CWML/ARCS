@@ -1,0 +1,203 @@
+---
+title: |
+      Introduction to \
+      Programming in R Part 4:\
+      Containerization with Apptainer
+author: Advancing Reproducibility with Computational Skills
+format:
+  revealjs:
+      theme: [moon]
+      incremental: true
+      scrollable: true
+      transition: slide
+      chalkboard: true
+      view-distance: 15
+      mobile-view-distance: 10
+      footer: "Advancing Reproducibility with Computational Skills"
+editor: visual
+---
+
+## Where we are
+
+- **Part 1–2:** writing R, managing projects, structuring data
+- **Part 3:** the tidyverse + Git — your *code* is now reproducible
+- **Part 4, Hour 1:** a real DESeq2 differential-expression pipeline
+- **Part 4, Hour 2 (now):** make the *environment* reproducible too
+
+## The problem: "it works on my machine"
+
+- Your analysis runs perfectly... on *your* laptop
+- A collaborator runs the same code and it breaks
+- Different R version, different package version, different OS
+- Reproducible research can't depend on whose computer it is
+
+## What is a container?
+
+A single file that packages your **entire computing environment**:
+
+- the R installation
+- every package, at a pinned version
+- the system libraries underneath
+
+> Run that file anywhere → get *exactly* that environment.
+
+## More than pinning packages
+
+- `renv` pins your **R packages** — good instinct, one layer up
+- But it still assumes R is installed, at a compatible version,
+  on an OS with the right system libraries
+- A container ships **all of it**
+
+> `renv` is the shopping list. The container is the groceries.
+
+## Not a virtual machine
+
+|          | Virtual machine        | Container            |
+|----------|------------------------|----------------------|
+| Simulates| A whole computer + kernel | Nothing — shares the host kernel |
+| Size     | Gigabytes of overhead  | Just your software   |
+| Start-up | Boots like a machine   | Seconds, like a command |
+
+> Containers *borrow* the Linux kernel — they don't simulate one.\
+> That's why Apptainer needs Linux.
+
+## Four words to keep straight
+
+| Term | What it is |
+|------|------------|
+| **Container** | The idea: software packaged with all it needs |
+| **Image** `.sif` | The file on disk — one shareable artifact |
+| **Apptainer** | The program that builds and runs images |
+| **Definition** `.def` | The text recipe for an image |
+
+> Write a **`.def`** → Apptainer **builds** an **image** → Apptainer **runs** it.\
+> Today: only the last step.
+
+## So what is Apptainer?
+
+- Free, **open-source** software that builds and runs containers
+- A command-line program: `exec`, `run`, `pull`, `build`
+- Built at **Lawrence Berkeley National Lab** for shared clusters
+- Its answer to "hundreds of untrusted users": the container runs **as you**
+
+::: {.fragment}
+Formerly called **Singularity** — many clusters still use that command.
+:::
+
+## Why Apptainer (not Docker)?
+
+- Built for **research** and **HPC**
+- Runs as *you*, not as root — works on shared clusters
+- One portable image file: `analysis.sif`
+- The image is the artifact you publish alongside your paper
+- Can still *read* Docker images — ours starts from one
+
+## The catch — and the lesson {.center}
+
+### Apptainer only runs on **Linux**
+
+There is no Mac or Windows version.
+
+## ...which is exactly the point
+
+The host OS **should not** constrain what runs inside.\
+But you still need a Linux kernel *somewhere*:
+
+- On a Mac/Windows laptop → a **Codespace** (today)
+- On a cluster → the **HPC login node**
+- On a Linux laptop → it's just there
+
+## Host vs. container
+
+|               | Host                         | Container                  |
+|---------------|------------------------------|----------------------------|
+| What          | Whatever's installed locally | Fixed, pinned image        |
+| Controlled by | Each user                    | The definition file        |
+| Reproducible  | By hand, fragile             | Yes, by design             |
+| Use for       | Exploration                  | Sharing / publishing / HPC |
+
+## Today's workflow
+
+1.  **Launch** a Codespace (everyone → identical Linux)
+2.  **Verify** Apptainer + the pre-built image are present
+3.  **Run** the DESeq2 pipeline *from* the container
+4.  **Read** the definition file that built it
+5.  **Modify** a parameter → re-run → see the result change
+6.  **Connect** it back to Git
+
+## Demo: launch + verify {.center}
+
+``` bash
+apptainer --version
+ls -lh ~/deseq2.sif
+apptainer exec ~/deseq2.sif R --version
+```
+
+## Demo: run the pipeline {.center}
+
+``` bash
+cd workshops/arcs_04/_materials
+apptainer exec ~/deseq2.sif Rscript pipeline.R
+ls outputs/
+```
+
+## What's in the image — and what isn't
+
+- **Inside:** R, DESeq2, ggplot2, system libraries — the *software*
+- **Outside:** `pipeline.R`, `data/`, `outputs/` — *your* files
+
+> The environment is frozen and shared.\
+> Your files stay yours — edit them with normal tools.
+
+That's why Step 5 works without rebuilding anything.
+
+## Demo: read the definition {.center}
+
+`_materials/container/deseq2.def`
+
+``` default
+From: bioconductor/bioconductor_docker:RELEASE_3_19
+%post         # install DESeq2, ggplot2 (build time)
+%runscript    # default action when you `run` the image
+%test         # sanity check at end of build
+```
+
+## Demo: change and re-run {.center}
+
+In `pipeline.R`:
+
+``` r
+PADJ <- 0.05   →   PADJ <- 0.01
+```
+
+``` bash
+apptainer exec ~/deseq2.sif Rscript pipeline.R
+```
+
+- Significant-gene count changes
+- Same image, same data, a controlled change
+
+## It all travels together
+
+In the repo, side by side:
+
+- `pipeline.R` — the **code**
+- `deseq2.def` — the **environment**
+- the published image — `ghcr.io/cwml/deseq2`
+
+> Clone → open Codespace (or HPC) → `apptainer pull` → run → it reproduces.
+
+## Recap
+
+- Containers fix "works on my machine"
+- Apptainer is Linux-only → use a Codespace / HPC as the kernel
+- You **ran** and **modified** a real pipeline from a container
+- Code + environment + data now travel together
+
+## Where to go next
+
+- Self-paced guide: **build your own** container
+  - install a Linux substrate locally
+  - read `deseq2.def` line by line
+  - build your own image from that definition
+- Adapt the pattern to **your own** analysis
