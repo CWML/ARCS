@@ -23,7 +23,9 @@ _materials/
 │   └── pipeline.R                     # the Hour 1 DESeq2 analysis, as a script
 ├── container/
 │   └── deseq2.def                     # Apptainer definition for the environment
-└── outputs/                           # results land here when the pipeline runs
+└── outputs/
+    ├── figures/                    # plots land here
+    └── tables/                     # CSVs land here
 ```
 
 This is deliberately the same layout taught in Parts 1–2 and used in the
@@ -114,6 +116,7 @@ the repo, or `../09-build-your-own.qmd` on the website. Same guide, two formats.
 ```bash
 cd workshops/arcs_04/_materials
 apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
+ls outputs/tables/ outputs/figures/
 ```
 
 ## What the pipeline does
@@ -142,14 +145,14 @@ samples) → `DESeq()` → VST + QC plots → `lfcShrink()` (apeglm) → export.
 
 | File | Contents |
 |---|---|
-| `deseq2_results.csv` | Full shrunken results table, sorted by adjusted p-value |
-| `significant_genes.csv` | Genes passing the `PADJ` / `LFC` cutoffs |
-| `normalized_counts.csv` | Size-factor-normalized counts |
-| `pca_plot.png` | PCA of variance-stabilized counts, coloured by genotype |
-| `sample_distances.png` | Sample-to-sample distance heatmap |
-| `ma_plot.png` | MA plot of the shrunken fold changes |
-| `volcano_plot.png` | Volcano plot of the contrast |
-| `top_gene_counts.png` | Normalized counts for the single most significant gene |
+| `tables/deseq2_results.csv` | Full shrunken results table, sorted by adjusted p-value |
+| `tables/significant_genes.csv` | Genes passing the `PADJ` / `LFC` cutoffs |
+| `tables/normalized_counts.csv` | Size-factor-normalized counts |
+| `figures/pca_plot.png` | PCA of variance-stabilized counts, coloured by genotype |
+| `figures/sample_distances.png` | Sample-to-sample distance heatmap |
+| `figures/ma_plot.png` | MA plot of the shrunken fold changes |
+| `figures/volcano_plot.png` | Volcano plot of the contrast |
+| `figures/top_gene_counts.png` | Normalized counts for the single most significant gene |
 
 A console summary prints the **number of significant genes** — that's the
 value the live "change a parameter and re-run" demo watches.

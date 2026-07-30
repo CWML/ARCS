@@ -283,28 +283,31 @@ Contrast : genotype  Shank3 vs WT
 Design   : ~ genotype   (condition == 'normal' only)
 Cutoffs  : padj < 0.05   |log2FC| > 1
 Significant genes: <N>  (of <M> tested)
-Outputs written to: outputs/
+Outputs written to: outputs/figures/ and outputs/tables/
 ========================================================
 ```
 
 Look at what it produced:
 
 ```bash
-ls outputs/
+ls outputs/tables/ outputs/figures/
 ```
 
-**Tables**
+`outputs/tables/`
 
 - `deseq2_results.csv` — every gene tested, sorted by adjusted p-value
 - `significant_genes.csv` — the differentially expressed genes
 - `normalized_counts.csv` — size-factor-normalized counts
 
-**Plots** — open these from the file explorer
+`outputs/figures/` — open these from the file explorer
 
 - `pca_plot.png` — samples in PC space, coloured by genotype
 - `sample_distances.png` — sample-to-sample distance heatmap
 - `ma_plot.png`, `volcano_plot.png` — the differential-expression results
 - `top_gene_counts.png` — normalized counts for the single strongest hit
+
+This is the same `outputs/figures/` + `outputs/tables/` split Hour 1 uses, so
+you can compare the two runs file for file.
 
 > **📝 Note**
 > This is the same analysis you ran in Hour 1 — but it just ran on **Linux**,

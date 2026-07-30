@@ -237,7 +237,7 @@ Before publishing, confirm the image actually runs your analysis:
 cd ..                                   # back to _materials/
 apptainer exec container/deseq2.sif R --version
 apptainer exec container/deseq2.sif Rscript scripts/pipeline.R
-ls outputs/
+ls outputs/tables/ outputs/figures/
 ```
 
 If `outputs/` fills with results, your image is good to ship.

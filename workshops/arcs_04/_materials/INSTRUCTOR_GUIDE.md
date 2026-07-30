@@ -30,7 +30,7 @@ the end and prints `DESeq2 OK` on success.
 
 ```bash
 apptainer exec deseq2.sif Rscript scripts/pipeline.R
-ls outputs/      # expect 3 CSVs + 5 PNGs and a non-zero gene count
+ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 5 PNGs, non-zero gene count
 ```
 
 ### 3. Publish the image to GHCR (CWML namespace)
@@ -115,7 +115,7 @@ apptainer exec ~/deseq2.sif R --version
 # run
 cd workshops/arcs_04/_materials
 apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
-ls outputs/
+ls outputs/tables/ outputs/figures/
 
 # change a parameter (edit pipeline.R: PADJ <- 0.01) then re-run
 apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
@@ -129,7 +129,7 @@ Contrast : genotype  Shank3 vs WT
 Design   : ~ genotype   (condition == 'normal' only)
 Cutoffs  : padj < 0.05   |log2FC| > 1
 Significant genes: <N>  (of <M> tested)
-Outputs written to: outputs/
+Outputs written to: outputs/figures/ and outputs/tables/
 ========================================================
 ```
 

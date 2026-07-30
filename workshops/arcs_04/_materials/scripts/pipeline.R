@@ -31,7 +31,11 @@ REFERENCE <- "WT"      # baseline level — results read as <other> relative to 
 # run with `Rscript` from a known folder does not need it.
 COUNTS_CSV <- file.path("processed_data", "Shank3_rawCounts_clean.csv")
 META_CSV   <- file.path("processed_data", "Shank3_metadata_clean.csv")
-OUT_DIR    <- "outputs"
+
+# Hour 1 splits its outputs the same way, so the two hours produce identical
+# folder structures and a student can compare them file for file.
+FIG_DIR    <- file.path("outputs", "figures")
+TAB_DIR    <- file.path("outputs", "tables")
 
 suppressPackageStartupMessages({
   library(DESeq2)
@@ -42,7 +46,7 @@ suppressPackageStartupMessages({
   library(RColorBrewer)
 })
 
-dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
+for (d in c(FIG_DIR, TAB_DIR)) dir.create(d, showWarnings = FALSE, recursive = TRUE)
 
 # =====================================================================
 # Part 1 — Load and inspect the data
@@ -108,7 +112,7 @@ pca_plot <- ggplot(pca_data,
        y = paste0("PC2: ", pct_var[2], "% variance")) +
   theme_classic(base_size = 13)
 
-ggsave(file.path(OUT_DIR, "pca_plot.png"),
+ggsave(file.path(FIG_DIR, "pca_plot.png"),
        pca_plot, width = 7, height = 5, dpi = 150)
 
 # ---- Sample-to-sample distances ----
@@ -123,7 +127,7 @@ pheatmap(samp_mat,
          clustering_distance_cols = samp_dists,
          main     = "Sample-to-Sample Distances",
          fontsize = 10,
-         filename = file.path(OUT_DIR, "sample_distances.png"))
+         filename = file.path(FIG_DIR, "sample_distances.png"))
 
 # =====================================================================
 # Part 5 — Extract and shrink results
@@ -138,7 +142,7 @@ res        <- results(dds, name = coef_name, alpha = PADJ)
 res_shrunk <- lfcShrink(dds, coef = coef_name, type = "apeglm")
 
 # ---- MA plot ----
-png(file.path(OUT_DIR, "ma_plot.png"), width = 700, height = 500, res = 120)
+png(file.path(FIG_DIR, "ma_plot.png"), width = 700, height = 500, res = 120)
 plotMA(res_shrunk, ylim = c(-5, 5), main = "MA Plot: Shank3 vs WT",
        alpha = PADJ, colSig = "#F44336", colNonSig = "grey60")
 invisible(dev.off())
@@ -170,7 +174,7 @@ volcano_plot <- ggplot(res_df,
   theme_classic(base_size = 13) +
   theme(legend.position = "top")
 
-ggsave(file.path(OUT_DIR, "volcano_plot.png"),
+ggsave(file.path(FIG_DIR, "volcano_plot.png"),
        volcano_plot, width = 8, height = 6, dpi = 150)
 
 # ---- Counts for the single most significant gene ----
@@ -178,7 +182,7 @@ if (any(!is.na(res$padj))) {
   top_gene <- rownames(res)[which.min(res$padj)]
   cat(sprintf("Most significant gene: %s\n", top_gene))
 
-  png(file.path(OUT_DIR, "top_gene_counts.png"),
+  png(file.path(FIG_DIR, "top_gene_counts.png"),
       width = 600, height = 400, res = 120)
   plotCounts(dds, gene = top_gene, intgroup = "genotype", pch = 19,
              main = paste("Normalized Counts:", top_gene))
@@ -195,11 +199,11 @@ res_all <- as.data.frame(res_shrunk) %>%
 res_sig <- res_all %>%
   filter(!is.na(padj), padj < PADJ, abs(log2FoldChange) > LFC)
 
-write.csv(res_all, file.path(OUT_DIR, "deseq2_results.csv"), row.names = FALSE)
-write.csv(res_sig, file.path(OUT_DIR, "significant_genes.csv"), row.names = FALSE)
+write.csv(res_all, file.path(TAB_DIR, "deseq2_results.csv"), row.names = FALSE)
+write.csv(res_sig, file.path(TAB_DIR, "significant_genes.csv"), row.names = FALSE)
 
 write.csv(counts(dds, normalized = TRUE),
-          file.path(OUT_DIR, "normalized_counts.csv"), row.names = TRUE)
+          file.path(TAB_DIR, "normalized_counts.csv"), row.names = TRUE)
 
 # =====================================================================
 # Summary — the number the live demo watches
@@ -211,5 +215,5 @@ cat(sprintf("Design   : ~ genotype   (condition == '%s' only)\n", CONDITION))
 cat(sprintf("Cutoffs  : padj < %g   |log2FC| > %g\n", PADJ, LFC))
 cat(sprintf("Significant genes: %d  (of %d tested)\n",
             nrow(res_sig), sum(!is.na(res$padj))))
-cat("Outputs written to: outputs/\n")
+cat("Outputs written to: outputs/figures/ and outputs/tables/\n")
 cat("========================================================\n\n")

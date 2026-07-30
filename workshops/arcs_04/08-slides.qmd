@@ -138,7 +138,7 @@ apptainer exec ~/deseq2.sif R --version
 ``` bash
 cd workshops/arcs_04/_materials
 apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
-ls outputs/
+ls outputs/tables/ outputs/figures/
 ```
 
 ## What's in the image — and what isn't
