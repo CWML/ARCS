@@ -303,6 +303,10 @@ ls outputs/tables/ outputs/figures/
 This is the same `outputs/figures/` + `outputs/tables/` split Hour 1 uses, so
 you can compare the two runs file for file.
 
+Each filename also ends in a **Run ID** — a timestamp like
+`PCA_Shank3vsWT_20260730-144530.png`. Re-running never overwrites earlier
+results, which is what lets you compare runs in Step 5.
+
 ::: {.callout-note}
 This is the same analysis you ran in Hour 1 — but it just ran on **Linux**,
 inside a pinned environment, on a machine that isn't yours, and gave the
@@ -368,6 +372,18 @@ apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 The **Significant genes** count changes — a stricter cutoff keeps fewer
 genes. Same environment, same data, a deliberate change to the question.
 That's a controlled, reproducible experiment.
+
+Your earlier results are still there. Every filename carries a **Run ID**
+timestamp, so this run sat alongside the first one rather than overwriting
+it:
+
+```bash
+ls outputs/figures/
+```
+
+Open the two `Volcano_*` files side by side and compare them directly. Being
+able to put two runs next to each other is what makes a change *evidence*
+rather than just a new number.
 
 ::: {.callout-tip}
 Try another: set `CONDITION <- "sleep_deprived"` to run the identical

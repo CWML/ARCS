@@ -32,6 +32,23 @@ REFERENCE <- "WT"      # baseline level — results read as Shank3 relative to W
 # figures match Hour 1 exactly.
 PADJ_PLOT <- 0.1
 
+# ---- Run tagging ----------------------------------------------------
+# Every output gets this suffix, so re-running never overwrites an earlier
+# run. That is what makes Step 5 work: change PADJ, re-run, and compare the
+# new volcano against the previous one side by side instead of losing it.
+#
+# Set RUN_ID <- "" to write the bare filenames Hour 1 produces, which is
+# what you want when checking that the two hours agree.
+RUN_ID <- format(Sys.time(), "%Y%m%d-%H%M%S")
+
+# Insert RUN_ID before the file extension: "x.png" -> "x_20260730-144530.png"
+tag <- function(filename) {
+  if (!nzchar(RUN_ID)) return(filename)
+  ext  <- tools::file_ext(filename)
+  stem <- tools::file_path_sans_ext(filename)
+  sprintf("%s_%s.%s", stem, RUN_ID, ext)
+}
+
 # ---- Paths ----------------------------------------------------------
 path_counts   <- file.path("processed_data", "Shank3_rawCounts_clean.csv")
 path_metadata <- file.path("processed_data", "Shank3_metadata_clean.csv")
@@ -116,7 +133,7 @@ pca_plot <- ggplot(pca_data, aes(x = PC1, y = PC2, color = genotype, label = nam
   theme_classic(base_size = 13) +
   theme(legend.position = "right")
 
-ggsave(filename = file.path(path_figures, "PCA_Shank3vsWT.png"),
+ggsave(filename = file.path(path_figures, tag("PCA_Shank3vsWT.png")),
        plot = pca_plot, width = 7, height = 5, dpi = 300)
 
 # ---- 6.3 Sample distance heatmap ----
@@ -132,7 +149,7 @@ pheatmap(samp_mat, col = colors,
          clustering_distance_rows = samp_dists,
          clustering_distance_cols = samp_dists,
          main = "Sample-to-Sample Distances", fontsize = 10,
-         filename = file.path(path_figures, "SampleDistances_Shank3vsWT.png"))
+         filename = file.path(path_figures, tag("SampleDistances_Shank3vsWT.png")))
 
 # =====================================================================
 # Part 7 — Extract & interpret results
@@ -148,7 +165,7 @@ res        <- results(dds, name = coef_name, alpha = PADJ)
 res_shrunk <- lfcShrink(dds, coef = coef_name, type = "apeglm")
 
 # ---- 7.4 MA plot ----
-png(file.path(path_figures, "MAplot_Shank3vsWT.png"),
+png(file.path(path_figures, tag("MAplot_Shank3vsWT.png")),
     width = 700, height = 500, res = 120)
 plotMA(res_shrunk, ylim = c(-5, 5),
        main      = "MA Plot: Shank3 vs WT",
@@ -192,7 +209,7 @@ volcano_plot <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj),
   theme_classic(base_size = 13) +
   theme(legend.position = "top")
 
-ggsave(file.path(path_figures, "Volcano_Shank3vsWT.png"),
+ggsave(file.path(path_figures, tag("Volcano_Shank3vsWT.png")),
        plot = volcano_plot, width = 8, height = 6, dpi = 300)
 
 # =====================================================================
@@ -206,13 +223,13 @@ res_sig <- res_all %>% filter(padj < PADJ, abs(log2FoldChange) > LFC)
 
 cat("Total DEGs (padj <", PADJ, ", |LFC| >", LFC, "):", nrow(res_sig), "\n")
 
-write.csv(res_all, file = file.path(path_tables, "DESeq2_Shank3vsWT_allGenes.csv"),
+write.csv(res_all, file = file.path(path_tables, tag("DESeq2_Shank3vsWT_allGenes.csv")),
           row.names = FALSE)
-write.csv(res_sig, file = file.path(path_tables, "DESeq2_Shank3vsWT_sigDEGs.csv"),
+write.csv(res_sig, file = file.path(path_tables, tag("DESeq2_Shank3vsWT_sigDEGs.csv")),
           row.names = FALSE)
 
 norm_counts <- counts(dds, normalized = TRUE)
-write.csv(norm_counts, file = file.path(path_tables, "normCounts_Shank3vsWT.csv"),
+write.csv(norm_counts, file = file.path(path_tables, tag("normCounts_Shank3vsWT.csv")),
           row.names = TRUE)
 
 # =====================================================================
@@ -225,6 +242,9 @@ cat(sprintf("Design   : ~ genotype   (condition == '%s' only)\n", CONDITION))
 cat(sprintf("Cutoffs  : padj < %g   |log2FC| > %g\n", PADJ, LFC))
 cat(sprintf("Significant genes: %d  (of %d tested)\n",
             nrow(res_sig), sum(!is.na(res$padj))))
+if (nzchar(RUN_ID)) {
+  cat(sprintf("Run ID   : %s   (appended to every output filename)\n", RUN_ID))
+}
 cat("Tables  -> outputs/tables/\n")
 cat("Figures -> outputs/figures/\n")
 cat("========================================================\n\n")

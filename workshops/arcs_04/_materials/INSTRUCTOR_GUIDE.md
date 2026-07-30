@@ -30,7 +30,7 @@ the end and prints `DESeq2 OK` on success.
 
 ```bash
 apptainer exec deseq2.sif Rscript scripts/pipeline.R
-ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 4 PNGs, non-zero gene count
+ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 4 PNGs (timestamped), non-zero gene count
 ```
 
 ### 3. Publish the image to GHCR (CWML namespace)
@@ -110,7 +110,7 @@ definition. (Covered in the async build-your-own guide.)
 | 0:20–0:28 | **Verify** | `apptainer --version`, `ls ~/deseq2.sif`, `apptainer exec ~/deseq2.sif R --version`. Hammer the point: *no R on this Codespace — R is in the image.* |
 | 0:28–0:42 | **Run the pipeline** | `cd workshops/arcs_04/_materials` → `apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R` → inspect `outputs/`. Open a plot. Same result as Hour 1, now on Linux. |
 | 0:42–0:50 | **Read the `.def`** | Open `container/deseq2.def`, walk the sections. Note: editing it means rebuilding (slow) → that's the async path. |
-| 0:50–0:57 | **Change & re-run** | Edit `PADJ` in `scripts/pipeline.R` (0.05 → 0.01), re-exec, watch the significant-gene count drop. Controlled, reproducible change. Backup lever if that lands flat: `CONDITION <- "sleep_deprived"`. |
+| 0:50–0:57 | **Change & re-run** | Edit `PADJ` in `scripts/pipeline.R` (0.05 → 0.01), re-exec, watch the significant-gene count drop. Outputs are Run-ID timestamped, so open both volcano plots side by side — the visual before/after lands harder than the number. Backup lever: `CONDITION <- "sleep_deprived"`. |
 | 0:57–1:00 | **Tie to Git + wrap** | Code + `.def` + published image travel together; this completes the Part 3 story. Point to the async build-your-own guide. |
 
 ---

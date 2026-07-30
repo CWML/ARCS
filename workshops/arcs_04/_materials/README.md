@@ -158,7 +158,11 @@ figures match Hour 1.
 | `figures/MAplot_Shank3vsWT.png` | MA plot of the shrunken fold changes |
 | `figures/Volcano_Shank3vsWT.png` | Volcano plot of the contrast |
 
-Filenames match Hour 1 exactly, so the two runs can be compared file for file.
+Filenames match Hour 1's, with a **Run ID** timestamp appended before the
+extension (`PCA_Shank3vsWT_20260730-144530.png`) so a re-run never overwrites
+an earlier one — that is what makes the Step 5 before/after comparison
+possible. Set `RUN_ID <- ""` at the top of the script to write the bare Hour 1
+filenames instead, which is what you want when checking the two hours agree.
 
 A console summary prints the **number of significant genes** — that's the
 value the live "change a parameter and re-run" demo watches.
