@@ -324,7 +324,7 @@ section has a job:
 
 ```
 Bootstrap: docker
-From: bioconductor/bioconductor_docker:RELEASE_3_19   # the starting point
+From: bioconductor/bioconductor_docker:RELEASE_3_23   # the starting point
 
 %post          # commands run ONCE at build time — installs DESeq2, ggplot2
 %environment   # variables set every time the container runs

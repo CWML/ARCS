@@ -52,6 +52,7 @@ suppressPackageStartupMessages({
   library(tibble)
   library(pheatmap)
   library(RColorBrewer)
+  library(apeglm)      # reached by lfcShrink(type = "apeglm"), not called directly
 })
 
 # =====================================================================

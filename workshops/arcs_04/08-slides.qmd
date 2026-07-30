@@ -156,7 +156,7 @@ That's why Step 5 works without rebuilding anything.
 `_materials/container/deseq2.def`
 
 ``` default
-From: bioconductor/bioconductor_docker:RELEASE_3_19
+From: bioconductor/bioconductor_docker:RELEASE_3_23
 %post         # install DESeq2, apeglm, ggplot2, ... (build time)
 %runscript    # default action when you `run` the image
 %test         # sanity check at end of build

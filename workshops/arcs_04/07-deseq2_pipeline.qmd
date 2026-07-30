@@ -73,10 +73,21 @@ renv::snapshot()
 library(here)
 library(DESeq2)
 library(ggplot2)
-library(dplyr) 
-library(pheatmap) 
-library(RColorBrewer) 
+library(dplyr)
+library(tibble)
+library(pheatmap)
+library(RColorBrewer)
+library(apeglm)     # used by lfcShrink() in Part 7
 ```
+
+::: callout-note
+`apeglm` is loaded here even though we never call it directly — `lfcShrink()`
+reaches it via `type = "apeglm"`. Because that's a string, `renv` cannot see
+the dependency when it scans your code, so without this `library()` call
+`renv::snapshot()` leaves `apeglm` out of the lockfile and Part 7 fails for
+anyone who restores from it. Same reasoning for `tibble`, used as
+`tibble::rownames_to_column()`.
+:::
 
 ## 1.2 Define File Paths
 
