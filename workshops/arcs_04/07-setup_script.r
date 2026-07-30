@@ -27,65 +27,68 @@ if (!requireNamespace("renv", quietly = TRUE)) {
 # instead of reinstalling from scratch.
 
 if (file.exists("renv.lock")) {
-  
+
   message("📦 renv.lock found — restoring packages from lockfile...")
   renv::restore()                    # reproduces exact environment
-  
+
 } else {
-  
+
   message("🆕 No renv.lock found — initialising fresh environment...")
   renv::init(bare = TRUE)            # bare = TRUE: does not auto-snapshot yet
 
-  # ----------------------------------------------------------- #
-  # STEP 3 — Install CRAN packages                              #
-  # ----------------------------------------------------------- #
-  cran_packages <- c(
-    "here",
-    "ggplot2",
-    "dplyr",
-    "tibble",
-    "pheatmap",
-    "RColorBrewer"
-  )
-  
-  installed <- rownames(installed.packages())
-  to_install <- cran_packages[!cran_packages %in% installed]
-  
-  if (length(to_install) > 0) {
-    message("Installing CRAN packages: ", paste(to_install, collapse = ", "))
-    install.packages(to_install)
-  } else {
-    message("✅ All CRAN packages already installed.")
-  }
-  
-  # ----------------------------------------------------------- #
-  # STEP 4 — Install Bioconductor packages                      #
-  # ----------------------------------------------------------- #
-  if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
-  }
-  
-  bioc_packages <- c(
-    "DESeq2",
-    "apeglm"          # required for lfcShrink(type = "apeglm")
-  )
-  
-  bioc_installed <- bioc_packages[!bioc_packages %in% installed]
-  
-  if (length(bioc_installed) > 0) {
-    message("Installing Bioconductor packages: ", paste(bioc_installed, collapse = ", "))
-    BiocManager::install(bioc_installed, ask = FALSE, update = FALSE)
-  } else {
-    message("✅ All Bioconductor packages already installed.")
-  }
-  
-  # ----------------------------------------------------------- #
-  # STEP 5 — Snapshot the environment into renv.lock            #
-  # ----------------------------------------------------------- #
-  message("📸 Snapshotting environment to renv.lock...")
-  renv::snapshot()
-  
 }
+
+# ------------------------------------------------------------- #
+# STEP 3 — Install CRAN packages                                 #
+# ------------------------------------------------------------- #
+# Runs regardless of whether renv.lock pre-existed, since the
+# lockfile may be stale/incomplete (e.g. missing workshop packages).
+cran_packages <- c(
+  "here",
+  "ggplot2",
+  "dplyr",
+  "tibble",
+  "pheatmap",
+  "RColorBrewer"
+)
+
+installed <- rownames(installed.packages())
+to_install <- cran_packages[!cran_packages %in% installed]
+
+if (length(to_install) > 0) {
+  message("Installing CRAN packages: ", paste(to_install, collapse = ", "))
+  install.packages(to_install)
+} else {
+  message("✅ All CRAN packages already installed.")
+}
+
+# ------------------------------------------------------------- #
+# STEP 4 — Install Bioconductor packages                         #
+# ------------------------------------------------------------- #
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")
+}
+
+bioc_packages <- c(
+  "DESeq2",
+  "apeglm"          # required for lfcShrink(type = "apeglm")
+)
+
+installed <- rownames(installed.packages())
+bioc_installed <- bioc_packages[!bioc_packages %in% installed]
+
+if (length(bioc_installed) > 0) {
+  message("Installing Bioconductor packages: ", paste(bioc_installed, collapse = ", "))
+  BiocManager::install(bioc_installed, ask = FALSE, update = FALSE)
+} else {
+  message("✅ All Bioconductor packages already installed.")
+}
+
+# ------------------------------------------------------------- #
+# STEP 5 — Snapshot the environment into renv.lock                #
+# ------------------------------------------------------------- #
+message("📸 Snapshotting environment to renv.lock...")
+renv::snapshot()
 
 # ------------------------------------------------------------- #
 # STEP 6 — Verify all packages load correctly                   #
