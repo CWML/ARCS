@@ -70,7 +70,9 @@ if (file.exists("renv.lock")) {
     "apeglm"          # required for lfcShrink(type = "apeglm")
   )
   
-  bioc_installed <- bioc_packages[!bioc_packages %in% installed]
+  bioc_installed <- bioc_packages[
+    !bioc_packages %in% installed.packages()[, "Package"]
+  ]
   
   if (length(bioc_installed) > 0) {
     message("Installing Bioconductor packages: ", paste(bioc_installed, collapse = ", "))
