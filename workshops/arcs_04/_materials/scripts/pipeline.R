@@ -20,8 +20,13 @@
 # =====================================================================
 
 # ---- Tunable parameters ---------------------------------------------
-# The levers for the LIVE demo. Defaults match the lesson exactly; edit
-# PADJ, re-run, and watch the significant-gene count change.
+# The levers for the LIVE demo. Defaults match the lesson exactly.
+#
+# LFC is the lever that moves: at these defaults only 3 genes clear
+# |LFC| > 1, and all 3 already have padj < 0.01, so tightening PADJ alone
+# changes nothing. Setting LFC <- 0 keeps every statistically significant
+# gene regardless of effect size: 3 -> 16. From there PADJ bites too
+# (0.05 -> 0.01 gives 16 -> 9).
 PADJ      <- 0.05      # FDR cutoff for results() and the exported DEG table
 LFC       <- 1         # |log2 fold change| cutoff for the exported DEG table
 CONDITION <- "normal"  # condition to keep; "sleep_deprived" also works
@@ -30,12 +35,16 @@ REFERENCE <- "WT"      # baseline level — results read as Shank3 relative to W
 # Plot-only threshold. The lesson colours the MA and volcano plots at
 # padj < 0.1 while exporting tables at padj < 0.05; kept as-is so the
 # figures match Hour 1 exactly.
+#
+# Consequence worth knowing: point COLOUR in the volcano and MA plots is
+# driven by this, not by PADJ/LFC. Changing the demo levers moves the gene
+# count and the exported table, not the colouring.
 PADJ_PLOT <- 0.1
 
 # ---- Run tagging ----------------------------------------------------
 # Every output gets this suffix, so re-running never overwrites an earlier
-# run. That is what makes Step 5 work: change PADJ, re-run, and compare the
-# new volcano against the previous one side by side instead of losing it.
+# run. That is what makes Step 5 work: change LFC, re-run, and compare the
+# new significant-gene table against the previous one instead of losing it.
 #
 # Set RUN_ID <- "" to write the bare filenames Hour 1 produces, which is
 # what you want when checking that the two hours agree.
@@ -196,8 +205,11 @@ volcano_plot <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj),
     "Down in Shank3"  = "#2196F3",
     "Not significant" = "grey70"
   )) +
-  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "grey40") +
-  geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey40") +
+  # Hour 1 hardcodes these at +/-1 and 0.05, which are exactly the default
+  # LFC and PADJ — so at defaults this is identical, but the guide lines now
+  # track the cutoffs when you change them.
+  geom_vline(xintercept = c(-LFC, LFC), linetype = "dashed", color = "grey40") +
+  geom_hline(yintercept = -log10(PADJ), linetype = "dashed", color = "grey40") +
   labs(
     title    = "Volcano Plot: Shank3 vs WT",
     subtitle = paste0("Up: ",    deg_counts["Up in Shank3"],

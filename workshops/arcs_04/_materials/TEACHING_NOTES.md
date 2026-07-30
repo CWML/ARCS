@@ -150,11 +150,23 @@ each section briefly. Note: changing this file means rebuilding, which is slow
 Reproducible ≠ frozen. It means *controlled*. This is the "modify and observe"
 moment that earns the Analyze/Create objective without a live build.
 
-`PADJ 0.05 → 0.01` is the primary lever. If it lands flat — a small drop is
-less dramatic than you'd like — the stronger backup is
-`CONDITION <- "sleep_deprived"`, which re-runs the identical comparison on the
-other half of the data and regenerates every plot. Same image, same code, a
-genuinely different question.
+`LFC 1 → 0` is the lever: **3 → 16** significant genes. Do not use `PADJ`
+for this — at the defaults only 3 genes clear `|LFC| > 1` and all 3 already
+have `padj < 0.01`, so tightening PADJ changes nothing and the demo falls
+flat. (That is measured, not assumed; the table is in `INSTRUCTOR_GUIDE.md`.)
+
+The concept underneath is worth naming out loud: `PADJ` is *statistical*
+significance, `LFC` is *biological* significance, and dropping the effect-size
+bar keeps genes that are reliably different but only slightly so. Neither is
+the "right" threshold.
+
+Point at the count in the summary block, then at the two timestamped
+`sigDEGs` tables — 3 rows and 16 rows, both preserved. Do **not** promise the
+volcano will look different: its colouring comes from Hour 1's fixed
+`padj < 0.1`, so it will not visibly change. Only the dashed guide lines move.
+
+If you have time, the follow-up is `PADJ 0.05 → 0.01` for 16 → 9, which now
+works because the effect-size filter is off.
 
 ### It all travels together
 

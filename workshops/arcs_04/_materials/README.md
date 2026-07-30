@@ -104,8 +104,9 @@ setup. Then open a fresh Codespace and verify end to end.
 repo and follow
 [`../08-apptainer_codespaces.md`](../08-apptainer_codespaces.md) in preview
 mode while you drive the same steps on the projector. The one live edit is
-`PADJ 0.05 → 0.01` in `scripts/pipeline.R`; re-run and watch the
-significant-gene count drop.
+`LFC 1 → 0` in `scripts/pipeline.R`; re-run and watch the significant-gene
+count go 3 → 16. (`PADJ` alone does not move at the defaults — see the
+"Known quirks" section of `INSTRUCTOR_GUIDE.md`.)
 
 **After class** — point people at
 [`../09-build-your-own_codespaces.md`](../09-build-your-own_codespaces.md) in

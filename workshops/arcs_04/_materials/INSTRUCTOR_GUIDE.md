@@ -110,7 +110,7 @@ definition. (Covered in the async build-your-own guide.)
 | 0:20–0:28 | **Verify** | `apptainer --version`, `ls ~/deseq2.sif`, `apptainer exec ~/deseq2.sif R --version`. Hammer the point: *no R on this Codespace — R is in the image.* |
 | 0:28–0:42 | **Run the pipeline** | `cd workshops/arcs_04/_materials` → `apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R` → inspect `outputs/`. Open a plot. Same result as Hour 1, now on Linux. |
 | 0:42–0:50 | **Read the `.def`** | Open `container/deseq2.def`, walk the sections. Note: editing it means rebuilding (slow) → that's the async path. |
-| 0:50–0:57 | **Change & re-run** | Edit `PADJ` in `scripts/pipeline.R` (0.05 → 0.01), re-exec, watch the significant-gene count drop. Outputs are Run-ID timestamped, so open both volcano plots side by side — the visual before/after lands harder than the number. Backup lever: `CONDITION <- "sleep_deprived"`. |
+| 0:50–0:57 | **Change & re-run** | Edit `LFC` in `scripts/pipeline.R` (1 → 0), re-exec: **3 → 16** significant genes. Outputs are Run-ID timestamped so both `sigDEGs` tables survive — compare them. Follow-up if time: `PADJ` 0.05 → 0.01 gives 16 → 9. Backup lever: `CONDITION <- "sleep_deprived"`. |
 | 0:57–1:00 | **Tie to Git + wrap** | Code + `.def` + published image travel together; this completes the Part 3 story. Point to the async build-your-own guide. |
 
 ---
@@ -146,6 +146,30 @@ Figures -> outputs/figures/
 ```
 
 ---
+
+## Known quirks
+
+**`PADJ` alone does nothing at the defaults.** Only 3 genes clear
+`|LFC| > 1`, and all 3 already have `padj < 0.01`, so tightening PADJ from
+0.05 changes no counts. That is why the demo edits `LFC` instead. Measured
+on the workshop data:
+
+| | padj<0.001 | padj<0.01 | padj<0.05 | padj<0.1 |
+|---|---|---|---|---|
+| `|LFC| > 0`   | 7 | 9 | 16 | 23 |
+| `|LFC| > 0.5` | 5 | 5 | 6  | 8  |
+| `|LFC| > 1`   | 3 | 3 | 3  | 4  |
+
+**Figures do not respond to `PADJ` / `LFC`.** Hour 1 colours the volcano and
+MA plots at a fixed `padj < 0.1`, `LFC > 0` (kept here as `PADJ_PLOT` for
+exact parity), so only the gene count and the exported table move. The
+volcano's dashed guide lines *do* track `LFC` and `PADJ`. Worth raising with
+Sofia whether the 0.05/0.1 split in Hour 1 is deliberate — if it is unified
+there, unify it here too.
+
+**apeglm prints `line search routine failed` warnings.** Benign: the
+optimizer falls back to a more robust method for a few genes. Not a data or
+environment problem.
 
 ## Recovery plans
 

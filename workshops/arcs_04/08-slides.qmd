@@ -167,15 +167,17 @@ From: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1
 In `scripts/pipeline.R`:
 
 ``` r
-PADJ <- 0.05   →   PADJ <- 0.01
+LFC <- 1   →   LFC <- 0
 ```
 
 ``` bash
 apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 ```
 
-- Significant-gene count changes
+- Significant genes: **3 → 16**
+- Statistical vs. biological significance
 - Same image, same data, a controlled change
+- Run IDs keep both tables — nothing overwritten
 
 ## It all travels together
 

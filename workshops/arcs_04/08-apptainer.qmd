@@ -357,10 +357,12 @@ LFC       <- 1         # |log2 fold change| cutoff
 CONDITION <- "normal"  # which condition to keep
 ```
 
-Make the cutoff stricter:
+Right now a gene must clear **both** bars: statistically significant *and*
+at least a two-fold change (`|log2FC| > 1`). Drop the effect-size bar and
+keep every statistically significant gene:
 
 ```r
-PADJ      <- 0.01
+LFC       <- 0
 ```
 
 Save, and re-run exactly as before:
@@ -369,21 +371,34 @@ Save, and re-run exactly as before:
 apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 ```
 
-The **Significant genes** count changes — a stricter cutoff keeps fewer
-genes. Same environment, same data, a deliberate change to the question.
-That's a controlled, reproducible experiment.
+The **Significant genes** count jumps from **3 to 16**. Same environment,
+same data, same code — you asked a different question and got a different
+answer. That's a controlled, reproducible experiment.
 
-Your earlier results are still there. Every filename carries a **Run ID**
-timestamp, so this run sat alongside the first one rather than overwriting
-it:
+Your first run is still there. Every filename carries a **Run ID** timestamp,
+so this run sat alongside it rather than overwriting it:
 
 ```bash
-ls outputs/figures/
+ls outputs/tables/
+wc -l outputs/tables/DESeq2_Shank3vsWT_sigDEGs_*.csv
 ```
 
-Open the two `Volcano_*` files side by side and compare them directly. Being
-able to put two runs next to each other is what makes a change *evidence*
-rather than just a new number.
+Two tables, both kept — 4 and 17 lines, which is a header row plus 3 genes
+and a header row plus 16. Being able to put two runs next
+to each other is what turns a change into *evidence* rather than just a new
+number.
+
+::: {.callout-note}
+## What you just changed
+`PADJ` is about **statistical** significance — how confident we are the
+difference is real. `LFC` is about **biological** significance — how large
+the difference is. Setting `LFC <- 0` keeps genes that are reliably
+different but only slightly so. Neither bar is the "right" one; which you
+use depends on the question you're asking.
+:::
+
+Now that the effect-size filter is off, `PADJ` has room to bite too — try
+`PADJ <- 0.01` and re-run for **16 → 9**.
 
 ::: {.callout-tip}
 Try another: set `CONDITION <- "sleep_deprived"` to run the identical
