@@ -50,7 +50,11 @@ From: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1
     R -e 'BiocManager::install(c("DESeq2", "apeglm"), update = FALSE, ask = FALSE)'
 
     # CRAN packages: plotting, data wrangling, and the QC heatmap.
-    R -e 'install.packages(c("ggplot2", "dplyr", "tibble", "pheatmap", "RColorBrewer"), repos = "https://cloud.r-project.org")'
+    # No repos= override: the base image already points at a Linux binary
+    # repository, so these install as prebuilt binaries. Forcing
+    # cloud.r-project.org would drop back to source and recompile dplyr and
+    # tibble for no benefit.
+    R -e 'install.packages(c("ggplot2", "dplyr", "tibble", "pheatmap", "RColorBrewer"))'
 
     # Fail the build early and loudly if anything did not install, rather
     # than shipping an image that breaks in front of a room of learners.
@@ -70,7 +74,6 @@ From: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1
     # Runs at the END of `apptainer build` to confirm the image is sane.
     # Checks every package the pipeline actually loads, so a partial
     # install is caught here rather than mid-workshop.
-    R -e 'pkgs <- c("DESeq2","apeglm","ggplot2","dplyr","tibble","pheatmap","RColorBrewer"); \
-          missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]; \
-          if (length(missing)) stop("MISSING: ", paste(missing, collapse=", ")); \
-          cat("All packages OK\n")'
+    # Kept on one line: a backslash inside single quotes is NOT a shell line
+    # continuation, so it reaches R verbatim and fails to parse.
+    R --no-save -q -e 'pkgs <- c("DESeq2","apeglm","ggplot2","dplyr","tibble","pheatmap","RColorBrewer"); missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]; if (length(missing)) stop("MISSING: ", paste(missing, collapse = ", ")); cat("All packages OK\n")'
