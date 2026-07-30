@@ -42,10 +42,21 @@ echo "$GHCR_PAT" | apptainer registry login -u <your-username> --password-stdin 
 apptainer push deseq2.sif oras://ghcr.io/cwml/cwml_arcs_4_deseq2:latest
 ```
 
-Then on github.com → **CWML** org → **Packages** → `deseq2` → **Package
-settings** → **Change visibility → Public**. (Students pull a *public*
-package with no login.) This requires the CWML org to allow public packages;
-if you're not an org admin, get one to approve it once.
+Then on github.com → **CWML** org → **Packages** → `cwml_arcs_4_deseq2` →
+**Package settings** → **Change visibility → Public**. (Students pull a
+*public* package with no login.) This requires the CWML org to allow public
+packages; if you're not an org admin, get one to approve it once.
+
+We publish **`:latest` only** — it is the tag `.devcontainer/devcontainer.json`
+pulls, so it is the one that matters for delivery. To tell which recipe built
+the image currently published, read the label rather than the tag:
+
+```bash
+apptainer inspect ~/deseq2.sif        # shows Version from %labels
+```
+
+Bump `Version` in `container/deseq2.def` whenever you change the recipe, so
+that check stays meaningful.
 
 > **Delivery swap:** if GHCR is blocked, attach the `.sif` to a GitHub
 > Release instead (`gh release create part4-v1 deseq2.sif`) and follow the
