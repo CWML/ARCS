@@ -2,7 +2,7 @@
 # Rebuild & republish the DESeq2 Apptainer image.
 #
 # INSTRUCTOR/MAINTENANCE ONLY — students never trigger this. It keeps the
-# published image (ghcr.io/<owner>/deseq2:latest) in sync with the definition
+# published image (ghcr.io/<owner>/cwml_arcs_4_deseq2:latest) in sync with the definition
 # file so the image can't drift from the recipe. The class itself does NOT
 # depend on it: students just `apptainer pull` the already-published image.
 #
@@ -62,4 +62,4 @@ jobs:
         run: |
           # GHCR namespaces must be lowercase (e.g. CWML -> cwml).
           OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
-          apptainer push deseq2.sif "oras://ghcr.io/${OWNER_LC}/deseq2:latest"
+          apptainer push deseq2.sif "oras://ghcr.io/${OWNER_LC}/cwml_arcs_4_deseq2:latest"

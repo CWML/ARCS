@@ -33,7 +33,7 @@ apptainer --version
 #   gh release download part4-v1 --repo CWML/ARCS \
 #       --pattern deseq2.sif --output "$HOME/deseq2.sif"
 # ---------------------------------------------------------------------
-IMAGE="${DESEQ2_IMAGE:-oras://ghcr.io/cwml/deseq2:latest}"
+IMAGE="${DESEQ2_IMAGE:-oras://ghcr.io/cwml/cwml_arcs_4_deseq2:latest}"
 echo "==> Pulling DESeq2 image from ${IMAGE} ..."
 apptainer pull --force "$HOME/deseq2.sif" "$IMAGE"
 

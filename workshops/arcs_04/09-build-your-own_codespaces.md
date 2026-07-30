@@ -271,7 +271,7 @@ to flip if you want people to pull without logging in.
 
 > **❗ You'd publish to *your* namespace, not ours**
 >
-> The workshop image lives at `ghcr.io/cwml/deseq2` — you can pull from it, but
+> The workshop image lives at `ghcr.io/cwml/cwml_arcs_4_deseq2` — you can pull from it, but
 > you can't push to it. Publishing means creating your own registry namespace
 > under your GitHub account or your lab's organization. That's an account setup
 > task, not a container task, which is why it isn't a step you can follow along

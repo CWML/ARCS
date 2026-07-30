@@ -392,7 +392,7 @@ Look at what's in the repository now:
 - `scripts/pipeline.R` — the **analysis code**
 - `container/deseq2.def` — the **environment definition**
 - `processed_data/` — the **data**
-- the pre-built image, published to a **registry** (`ghcr.io/cwml/deseq2`)
+- the pre-built image, published to a **registry** (`ghcr.io/cwml/cwml_arcs_4_deseq2`)
 
 This is the Part 3 Git story completed. Your code was already version
 controlled. Now the *environment it runs in* is captured too — as a text

@@ -183,7 +183,7 @@ In the repo, side by side:
 
 - `scripts/pipeline.R` — the **code**
 - `deseq2.def` — the **environment**
-- the published image — `ghcr.io/cwml/deseq2`
+- the published image — `ghcr.io/cwml/cwml_arcs_4_deseq2`
 
 > Clone → open Codespace (or HPC) → `apptainer pull` → run → it reproduces.
 

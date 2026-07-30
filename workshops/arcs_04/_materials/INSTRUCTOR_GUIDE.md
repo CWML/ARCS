@@ -39,7 +39,7 @@ ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 4 PNGs, non-zero gene co
 # Personal access token (classic) with write:packages scope:
 echo "$GHCR_PAT" | apptainer registry login -u <your-username> --password-stdin oras://ghcr.io
 
-apptainer push deseq2.sif oras://ghcr.io/cwml/deseq2:latest
+apptainer push deseq2.sif oras://ghcr.io/cwml/cwml_arcs_4_deseq2:latest
 ```
 
 Then on github.com → **CWML** org → **Packages** → `deseq2` → **Package
@@ -143,6 +143,6 @@ Figures -> outputs/figures/
 | `apptainer exec` → "Failed to create user namespace" | Dev container isn't privileged. Ensure `"runArgs": ["--privileged"]` in `devcontainer.json`, then *Codespaces: Rebuild Container*. (Caught in prep step 4.) |
 | Learner's Codespace won't build | Hand them the **backup shared Codespace** link; move on, debug theirs after. |
 | `apptainer: command not found` | `postCreateCommand` didn't finish — re-run `bash .devcontainer/setup.sh`. |
-| `~/deseq2.sif` missing | Pull failed (package not public / wrong tag). Re-run `apptainer pull --force ~/deseq2.sif oras://ghcr.io/cwml/deseq2:latest`. |
+| `~/deseq2.sif` missing | Pull failed (package not public / wrong tag). Re-run `apptainer pull --force ~/deseq2.sif oras://ghcr.io/cwml/cwml_arcs_4_deseq2:latest`. |
 | Pipeline can't find `processed_data/` | They're not in `_materials/` — `cd workshops/arcs_04/_materials` first. Paths in the script are relative to that folder. |
 | Pull is slow / rate-limited | Use the backup Codespace, or fall back to the Release-asset delivery. |

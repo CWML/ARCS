@@ -12,7 +12,7 @@
   // with "Failed to create user namespace". See _materials/INSTRUCTOR_GUIDE.md.
   "runArgs": ["--privileged"],
   "remoteEnv": {
-    "DESEQ2_IMAGE": "oras://ghcr.io/cwml/deseq2:latest"
+    "DESEQ2_IMAGE": "oras://ghcr.io/cwml/cwml_arcs_4_deseq2:latest"
   },
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "hostRequirements": {
