@@ -41,13 +41,14 @@ ShankProject/
 ├── renv.lock                 ← locked package versions (tracked by Git)
 ├── .Rprofile                 ← auto-activates 
 ├── processed_data/
-│   └── Shank3_metadata_parsed.csv              renv
+│   └── Shank3_metadata_clean.csv
+│   └── Shank3_rawCounts_clean.csv
 ├── raw_data/
     ├── GSE113754_GeneLevel_Raw_data.csv
 │   └── GSE113754_filtered_metadata.csv
 ├── scripts/
-│   ├── 00_setup.R            ← ✅ installation script (run ONCE)
-│   └── 01_DESeq2_script.qmd
+│   ├── 07_DESeq2_pipeline.qmd          
+│   └── 07_setup_script.r     ← ✅ installation script (run ONCE)
 ├── outputs/
 └── README.md
 ```
@@ -83,8 +84,6 @@ Why use here::here()? Using here() makes your paths relative to the project root
 ```{r}
 # | label: define-paths
 
-library(here)
-
 # Input paths
 path_counts <- here("processed_data", "Shank3_rawCounts_clean.csv")
 path_metadata <- here("processed_data", "Shank3_metadata_clean.csv")
@@ -109,26 +108,26 @@ cat("✅ Created:", dir, "\\n")
 ## 2.1 Load Raw Counts
 
 ```{r}
-counts <- read.csv(path_counts, header = TRUE, row.names = 1)
+clean_counts <- read.csv(path_counts, header = TRUE, row.names = 1)
 ```
 
 Quick inspection
 
 ```{r}
-cat("Dimensions: ", nrow(counts), "genes x", ncol(counts), "samples\n") 
+cat("Dimensions: ", nrow(clean_counts), "genes x", ncol(clean_counts), "samples\n") 
 head(counts[ , 1:5]) # show first 5 samples only 2.2 Load Sample Metadata 
 ```
 
 ## 2.2 Load Metadata
 
 ```{r}
-info <- read.csv(path_metadata, header = TRUE, stringsAsFactors = TRUE)
+clean_info <- read.csv(path_metadata, header = TRUE, stringsAsFactors = TRUE)
 ```
 
 Quick inspection
 
 ```{r}
-print(info)
+print(clean_info)
 ```
 
 Check: Do columns in rawc match rows in info? The column names of the counts matrix must match the row names (or sample identifiers) in the metadata, in the same order. This is a very common source of errors. :::
@@ -136,7 +135,7 @@ Check: Do columns in rawc match rows in info? The column names of the counts mat
 Important: Verify sample names match between counts and metadata
 
 ```{r}
-all(colnames(counts) == info$sample_id)
+all(colnames(clean_counts) == clean_info$sample_id)
 
 # Should return TRUE — if FALSE, reorder before proceeding 2.3 Subset to Genotype Comparison Only
 ```
@@ -150,19 +149,19 @@ For this workshop we focus on a simple two-group comparison: Shank3 vs WT, using
 ### 3.1 - Keep only samples from the normal (baseline) condition
 
 ```{r}
-info_sub <- info %>% filter(condition == "normal")
+info_sub <- clean_info %>% filter(condition == "normal")
 ```
 
 ### 3.2 - Subset counts to matching samples
 
 ```{r}
-counts_sub <- counts[ , info_sub$sample_id]
+counts_sub <- clean_counts[ , info_sub$sample_id]
 ```
 
 ### 3.3 - Drop unused factor levels after subsetting
 
 ```{r}
-info_sub_genotype <- droplevels(info_sub$genotype)
+info_sub$genotype <- droplevels(info_sub$genotype)
 ```
 
 ### 3.4 - Set WT as the reference level (baseline for comparison)
@@ -259,7 +258,7 @@ ggsave(filename = file.path(path_figures, "PCA_Shank3vsWT.png"), plot = pca_plot
 ### 6.3 Sample Distance Heatmap
 
 ```{r}
-ssamp_dists <- dist(t(assay(vsd))) 
+samp_dists <- dist(t(assay(vsd))) 
 samp_mat <- as.matrix(samp_dists)
 
 rownames(samp_mat) <- colnames(samp_mat) <- paste(colData(vsd)$genotype, colData(vsd)$sample_id, sep = " | ")
