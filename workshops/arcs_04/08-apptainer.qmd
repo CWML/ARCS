@@ -245,11 +245,11 @@ container:
 
 ```bash
 cd workshops/arcs_04/_materials
-apptainer exec ~/deseq2.sif Rscript pipeline.R
+apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 ```
 
 Apptainer automatically makes your current folder available inside the
-container, so the pipeline can read `data/` and write `outputs/`.
+container, so the pipeline can read `processed_data/` and write `outputs/`.
 
 ::: {.callout-note}
 ## What's inside the image, and what isn't
@@ -259,13 +259,13 @@ backwards at first.
 **Inside the image:** R, DESeq2, ggplot2, and the system libraries they need —
 the *software*. Fixed at build time and identical for everyone.
 
-**Outside the image:** your code (`pipeline.R`), your data (`data/`), and your
+**Outside the image:** your code (`scripts/pipeline.R`), your data (`processed_data/`), and your
 results (`outputs/`) — all ordinary files in your own folder, which Apptainer
 makes visible to the container while it runs.
 
 That's the division of labour. The environment is frozen and shared; your
 files stay yours, editable with normal tools. It's why you can edit
-`pipeline.R` in Step 5 with the plain editor and immediately re-run it — you
+`scripts/pipeline.R` in Step 5 with the plain editor and immediately re-run it — you
 never have to open up or rebuild the image to change your analysis.
 :::
 
@@ -274,22 +274,34 @@ When it finishes you'll see a summary like:
 ```
 ========================================================
 Contrast : genotype  Shank3 vs WT
-Design   : ~ condition + genotype
-Cutoffs  : padj < 0.05   |log2FC| >= 0
+Design   : ~ genotype   (condition == 'normal' only)
+Cutoffs  : padj < 0.05   |log2FC| > 1
 Significant genes: <N>  (of <M> tested)
-Outputs written to: outputs/
+Outputs written to: outputs/figures/ and outputs/tables/
 ========================================================
 ```
 
 Look at what it produced:
 
 ```bash
-ls outputs/
+ls outputs/tables/ outputs/figures/
 ```
 
-- `deseq2_results.csv` — every gene tested
+`outputs/tables/`
+
+- `deseq2_results.csv` — every gene tested, sorted by adjusted p-value
 - `significant_genes.csv` — the differentially expressed genes
-- `pca_plot.png`, `volcano_plot.png` — open these from the file explorer
+- `normalized_counts.csv` — size-factor-normalized counts
+
+`outputs/figures/` — open these from the file explorer
+
+- `pca_plot.png` — samples in PC space, coloured by genotype
+- `sample_distances.png` — sample-to-sample distance heatmap
+- `ma_plot.png`, `volcano_plot.png` — the differential-expression results
+- `top_gene_counts.png` — normalized counts for the single strongest hit
+
+This is the same `outputs/figures/` + `outputs/tables/` split Hour 1 uses, so
+you can compare the two runs file for file.
 
 ::: {.callout-note}
 This is the same analysis you ran in Hour 1 — but it just ran on **Linux**,
@@ -333,22 +345,24 @@ self-paced guide.
 Reproducible doesn't mean frozen — it means *controlled*. Let's change the
 analysis and watch the result change, with the same image.
 
-Open `pipeline.R` and find the parameters block at the top:
+Open `scripts/pipeline.R` and find the parameters block at the top:
 
 ```r
-PADJ     <- 0.05      # adjusted p-value cutoff
+PADJ      <- 0.05      # adjusted p-value (FDR) cutoff
+LFC       <- 1         # |log2 fold change| cutoff
+CONDITION <- "normal"  # which condition to keep
 ```
 
 Make the cutoff stricter:
 
 ```r
-PADJ     <- 0.01
+PADJ      <- 0.01
 ```
 
 Save, and re-run exactly as before:
 
 ```bash
-apptainer exec ~/deseq2.sif Rscript pipeline.R
+apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 ```
 
 The **Significant genes** count changes — a stricter cutoff keeps fewer
@@ -356,9 +370,9 @@ genes. Same environment, same data, a deliberate change to the question.
 That's a controlled, reproducible experiment.
 
 ::: {.callout-tip}
-Try another: change `CONTRAST <- c("genotype", "Shank3", "WT")` to compare
-conditions instead — `c("condition", "sleep_deprived", "normal")` — and
-re-run.
+Try another: set `CONDITION <- "sleep_deprived"` to run the identical
+Shank3-vs-WT comparison in the other condition, and re-run. Every plot and
+table regenerates for the new subset.
 :::
 
 ---
@@ -367,9 +381,9 @@ re-run.
 
 Look at what's in the repository now:
 
-- `pipeline.R` — the **analysis code**
+- `scripts/pipeline.R` — the **analysis code**
 - `container/deseq2.def` — the **environment definition**
-- `data/` — the **data** (or a pointer to it)
+- `processed_data/` — the **data**
 - the pre-built image, published to a **registry** (`ghcr.io/cwml/deseq2`)
 
 This is the Part 3 Git story completed. Your code was already version

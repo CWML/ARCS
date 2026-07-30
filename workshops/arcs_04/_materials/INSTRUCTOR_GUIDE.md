@@ -29,8 +29,8 @@ the end and prints `DESeq2 OK` on success.
 ### 2. Smoke-test the pipeline against the image
 
 ```bash
-apptainer exec deseq2.sif Rscript pipeline.R
-ls outputs/      # expect the two CSVs + two PNGs and a non-zero gene count
+apptainer exec deseq2.sif Rscript scripts/pipeline.R
+ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 5 PNGs, non-zero gene count
 ```
 
 ### 3. Publish the image to GHCR (CWML namespace)
@@ -58,7 +58,7 @@ Open a **new** Codespace on `CWML/ARCS`, wait for `Setup complete.`, then:
 ```bash
 apptainer exec ~/deseq2.sif R --version          # works → image pulled OK
 cd workshops/arcs_04/_materials
-apptainer exec ~/deseq2.sif Rscript pipeline.R   # works → end to end OK
+apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R   # works → end to end OK
 ```
 
 If `apptainer pull` fails: the package isn't public, or `DESEQ2_IMAGE` in
@@ -97,9 +97,9 @@ definition. (Covered in the async build-your-own guide.)
 | 0:00–0:12 | **Why containers + what Apptainer is** | Slides 1–11. Land the "works on my machine" pain, establish the vocabulary (container / image / Apptainer / `.def`), then the Linux-only reframe (the OS limit *is* the lesson). |
 | 0:12–0:20 | **Everyone launches a Codespace** | Walk them through Code → Codespaces → Create. Budget buffer — first launches always hit snags. Wait for `Setup complete.` |
 | 0:20–0:28 | **Verify** | `apptainer --version`, `ls ~/deseq2.sif`, `apptainer exec ~/deseq2.sif R --version`. Hammer the point: *no R on this Codespace — R is in the image.* |
-| 0:28–0:42 | **Run the pipeline** | `cd workshops/arcs_04/_materials` → `apptainer exec ~/deseq2.sif Rscript pipeline.R` → inspect `outputs/`. Open a plot. Same result as Hour 1, now on Linux. |
+| 0:28–0:42 | **Run the pipeline** | `cd workshops/arcs_04/_materials` → `apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R` → inspect `outputs/`. Open a plot. Same result as Hour 1, now on Linux. |
 | 0:42–0:50 | **Read the `.def`** | Open `container/deseq2.def`, walk the sections. Note: editing it means rebuilding (slow) → that's the async path. |
-| 0:50–0:57 | **Change & re-run** | Edit `PADJ` in `pipeline.R` (0.05 → 0.01), re-exec, watch the significant-gene count drop. Controlled, reproducible change. |
+| 0:50–0:57 | **Change & re-run** | Edit `PADJ` in `scripts/pipeline.R` (0.05 → 0.01), re-exec, watch the significant-gene count drop. Controlled, reproducible change. Backup lever if that lands flat: `CONDITION <- "sleep_deprived"`. |
 | 0:57–1:00 | **Tie to Git + wrap** | Code + `.def` + published image travel together; this completes the Part 3 story. Point to the async build-your-own guide. |
 
 ---
@@ -114,11 +114,11 @@ apptainer exec ~/deseq2.sif R --version
 
 # run
 cd workshops/arcs_04/_materials
-apptainer exec ~/deseq2.sif Rscript pipeline.R
-ls outputs/
+apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
+ls outputs/tables/ outputs/figures/
 
 # change a parameter (edit pipeline.R: PADJ <- 0.01) then re-run
-apptainer exec ~/deseq2.sif Rscript pipeline.R
+apptainer exec ~/deseq2.sif Rscript scripts/pipeline.R
 ```
 
 Expected summary block:
@@ -126,10 +126,10 @@ Expected summary block:
 ```
 ========================================================
 Contrast : genotype  Shank3 vs WT
-Design   : ~ condition + genotype
-Cutoffs  : padj < 0.05   |log2FC| >= 0
+Design   : ~ genotype   (condition == 'normal' only)
+Cutoffs  : padj < 0.05   |log2FC| > 1
 Significant genes: <N>  (of <M> tested)
-Outputs written to: outputs/
+Outputs written to: outputs/figures/ and outputs/tables/
 ========================================================
 ```
 
@@ -143,5 +143,5 @@ Outputs written to: outputs/
 | Learner's Codespace won't build | Hand them the **backup shared Codespace** link; move on, debug theirs after. |
 | `apptainer: command not found` | `postCreateCommand` didn't finish — re-run `bash .devcontainer/setup.sh`. |
 | `~/deseq2.sif` missing | Pull failed (package not public / wrong tag). Re-run `apptainer pull --force ~/deseq2.sif oras://ghcr.io/cwml/deseq2:latest`. |
-| Pipeline can't find `data/` | They're not in `_materials/` — `cd workshops/arcs_04/_materials` first. |
+| Pipeline can't find `processed_data/` | They're not in `_materials/` — `cd workshops/arcs_04/_materials` first. Paths in the script are relative to that folder. |
 | Pull is slow / rate-limited | Use the backup Codespace, or fall back to the Release-asset delivery. |
