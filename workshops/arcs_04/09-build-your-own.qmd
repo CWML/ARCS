@@ -124,19 +124,23 @@ A definition file is the **recipe** for your environment. Here is the workshop's
 
 ```default
 Bootstrap: docker
-From: bioconductor/bioconductor_docker:RELEASE_3_23
+From: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1
 ```
 
 **`Bootstrap` / `From`** — where the build *starts*. `Bootstrap: docker` means
 "pull a starting image from a Docker/OCI registry." `From:` names that image.
 
-Why `bioconductor/bioconductor_docker:RELEASE_3_23`? Because it already contains
+Why `bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1`? Because it already contains
 R, `BiocManager`, and — crucially — the system libraries needed to compile
 Bioconductor packages. Starting from a bare Ubuntu would mean installing all of
-that by hand. **Why the `RELEASE_3_23` tag?** A Bioconductor release pins a
+that by hand. **Why the `RELEASE_3_23-R-4.6.1` tag?** A Bioconductor release pins a
 specific R version *and* a specific set of package versions. Pinning the tag is
 what makes the build reproducible: `:latest` would silently change underneath
 you.
+
+Note the tag names the R patch version too. A bare `RELEASE_3_23` would fix
+the Bioconductor release but let R move if the image were rebuilt — the same
+silent drift, one level down. Pin as much as the registry lets you.
 
 ```default
 %labels

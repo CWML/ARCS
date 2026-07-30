@@ -13,11 +13,17 @@
 # =====================================================================
 
 Bootstrap: docker
-# Pinned to match Hour 1's renv.lock (R 4.6.0, Bioconductor 3.23, DESeq2
-# 1.52). Hour 2's claim is that the container reproduces Hour 1 exactly, so
-# if the lockfile moves to a newer Bioconductor release, move this with it —
+# Pinned to match Hour 1's renv.lock (Bioconductor 3.23, DESeq2 1.52).
+# Hour 2's claim is that the container reproduces Hour 1 exactly, so if the
+# lockfile moves to a newer Bioconductor release, move this with it —
 # otherwise the figures drift apart even when the numbers agree.
-From: bioconductor/bioconductor_docker:RELEASE_3_23
+#
+# The tag pins the R patch version too (4.6.1). The bare RELEASE_3_23 tag
+# would leave R free to change if the image is rebuilt, which is exactly the
+# silent drift the build-your-own guide warns about. Hour 1's lockfile
+# records R 4.6.0; a patch release apart is not expected to move results,
+# but bump the lockfile if you want them strictly identical.
+From: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1
 
 %labels
     Author       ARCS Workshop (Advancing Reproducibility with Computational Skills)
