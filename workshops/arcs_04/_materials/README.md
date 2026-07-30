@@ -134,6 +134,11 @@ comparison with `WT` as the reference level.
 Steps: load and align → subset to one condition → prefilter (≥10 counts in ≥3
 samples) → `DESeq()` → VST + QC plots → `lfcShrink()` (apeglm) → export.
 
+Note the lesson uses two different thresholds: tables are exported at
+`padj < 0.05, |LFC| > 1`, while the MA and volcano plots colour at
+`padj < 0.1`. The script reproduces both (`PADJ` / `PADJ_PLOT`) so the
+figures match Hour 1.
+
 **Inputs** (paths relative to this folder):
 
 | File | Shape |
@@ -145,14 +150,15 @@ samples) → `DESeq()` → VST + QC plots → `lfcShrink()` (apeglm) → export.
 
 | File | Contents |
 |---|---|
-| `tables/deseq2_results.csv` | Full shrunken results table, sorted by adjusted p-value |
-| `tables/significant_genes.csv` | Genes passing the `PADJ` / `LFC` cutoffs |
-| `tables/normalized_counts.csv` | Size-factor-normalized counts |
-| `figures/pca_plot.png` | PCA of variance-stabilized counts, coloured by genotype |
-| `figures/sample_distances.png` | Sample-to-sample distance heatmap |
-| `figures/ma_plot.png` | MA plot of the shrunken fold changes |
-| `figures/volcano_plot.png` | Volcano plot of the contrast |
-| `figures/top_gene_counts.png` | Normalized counts for the single most significant gene |
+| `tables/DESeq2_Shank3vsWT_allGenes.csv` | Full shrunken results table, sorted by adjusted p-value |
+| `tables/DESeq2_Shank3vsWT_sigDEGs.csv` | Genes passing the `PADJ` / `LFC` cutoffs |
+| `tables/normCounts_Shank3vsWT.csv` | Size-factor-normalized counts |
+| `figures/PCA_Shank3vsWT.png` | PCA of variance-stabilized counts, coloured by genotype |
+| `figures/SampleDistances_Shank3vsWT.png` | Sample-to-sample distance heatmap |
+| `figures/MAplot_Shank3vsWT.png` | MA plot of the shrunken fold changes |
+| `figures/Volcano_Shank3vsWT.png` | Volcano plot of the contrast |
+
+Filenames match Hour 1 exactly, so the two runs can be compared file for file.
 
 A console summary prints the **number of significant genes** — that's the
 value the live "change a parameter and re-run" demo watches.

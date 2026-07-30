@@ -30,7 +30,7 @@ the end and prints `DESeq2 OK` on success.
 
 ```bash
 apptainer exec deseq2.sif Rscript scripts/pipeline.R
-ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 5 PNGs, non-zero gene count
+ls outputs/tables/ outputs/figures/   # expect 3 CSVs + 4 PNGs, non-zero gene count
 ```
 
 ### 3. Publish the image to GHCR (CWML namespace)
@@ -129,7 +129,8 @@ Contrast : genotype  Shank3 vs WT
 Design   : ~ genotype   (condition == 'normal' only)
 Cutoffs  : padj < 0.05   |log2FC| > 1
 Significant genes: <N>  (of <M> tested)
-Outputs written to: outputs/figures/ and outputs/tables/
+Tables  -> outputs/tables/
+Figures -> outputs/figures/
 ========================================================
 ```
 
