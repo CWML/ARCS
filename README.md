@@ -1,3 +1,4 @@
+# https://github.com/CWML/ARCS
 # ARCS — Advancing Reproducibility with Computational Skills
 
 A four-part workshop series that teaches R programming and reproducible research
