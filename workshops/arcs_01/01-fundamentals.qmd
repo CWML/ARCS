@@ -1,6 +1,7 @@
 ---
 title: "Fundamentals of R"
 sidebar: arcs01
+engine: knitr
 filters:
   - webr
 webr:
@@ -296,12 +297,12 @@ mx_FamInfo
 ::: {.callout-note}
 ## Can You...?
 
-    ✓ Find your working directory and set it?
-    ✓ Write and run basic arithmetic in R?
-    ✓ Explain what an R object is and create one using <-?
-    ✓ Name at least three rules for naming R objects?
-    ✓ Create a vector using c() and identify its data type?
-    ✓ Explain the difference between a data frame and a matrix?
-    ✓ Combine two vectors into a data frame using data.frame()?
-    ✓ Use cbind() to add a column to an existing data frame? 
+- ✓ Find your working directory and set it?
+- ✓ Write and run basic arithmetic in R?
+- ✓ Explain what an R object is and create one using `<-`?
+- ✓ Name at least three rules for naming R objects?
+- ✓ Create a vector using `c()` and identify its data type?
+- ✓ Explain the difference between a data frame and a matrix?
+- ✓ Combine two vectors into a data frame using `data.frame()`?
+- ✓ Use `cbind()` to add a column to an existing data frame?
 :::

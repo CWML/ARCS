@@ -1,6 +1,7 @@
 ---
 title: "Data Structures in R"
 sidebar: arcs02
+engine: knitr
 filters:
   - webr
 webr:

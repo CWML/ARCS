@@ -4,9 +4,14 @@ project:
   # Render only .qmd sources. The *_codespaces.md guides are plain-Markdown
   # twins meant to be previewed inside VS Code / Codespaces — rendering them
   # would publish duplicate pages of content the .qmd files already cover.
+  # 05-tidyverse_workshop.qmd is an unpublished working draft of the Tidyverse
+  # lesson — it isn't linked from the navbar or any sidebar, and its chunks read
+  # raw_data/ paths that don't exist in this repo. 05-tidyverse.qmd is the
+  # published version.
   render:
     - "**/*.qmd"
     - "!workshops/arcs_04/*_codespaces.md"
+    - "!workshops/arcs_03/05-tidyverse_workshop.qmd"
 
 website:
   title: "Advancing Reproducibility with Computational Skills"
