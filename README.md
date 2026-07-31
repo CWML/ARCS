@@ -25,14 +25,6 @@ Parts 1–3 embed runnable R directly in the page via
 along. Part 4 is the capstone and is documented in detail in
 [`workshops/arcs_04/README.md`](workshops/arcs_04/README.md).
 
-### Catching up
-
-Learners who join late can reach the same state as the rest of the room:
-
-- [`workshops/arcs_02/part-2-catch-up.R`](workshops/arcs_02/part-2-catch-up.R) — Part 1 content, as a runnable annotated script
-- [`workshops/arcs_03/part-3-catch-up.R`](workshops/arcs_03/part-3-catch-up.R) — Parts 1–2
-- [`workshops/arcs_03/part-3-setup-guide.md`](workshops/arcs_03/part-3-setup-guide.md) — software install + project setup checklist
-
 ## Software
 
 R, [Positron](https://positron.posit.co/), Quarto, a GitHub account and
@@ -62,17 +54,4 @@ pipeline and container files ship with the repo without publishing as pages.
 Part 4's student-facing pages also exist as `*_codespaces.md` twins in plain
 Markdown, which preview in VS Code without Quarto; the `.qmd` is canonical.
 
-## Building the site
 
-```bash
-quarto preview        # live preview
-quarto render         # writes to docs/
-```
-
-Package versions are pinned with `renv` — run `renv::restore()` after cloning.
-
-## Credits
-
-Developed for the Advancing Reproducibility with Computational Skills initiative
-at the Yale Medical Library. Lesson and slide authorship is credited in the
-individual `.qmd` files.
