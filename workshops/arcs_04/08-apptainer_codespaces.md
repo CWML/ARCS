@@ -72,8 +72,7 @@ system that has the right system libraries for those packages to compile
 against. A container removes those assumptions by shipping all of it. Think of
 `renv` as a shopping list and a container as the delivered groceries.
 
-<details>
-<summary><strong>Is a container a virtual machine?</strong></summary>
+### Is a container a virtual machine?
 
 No — and the difference is why containers are practical.
 
@@ -87,8 +86,6 @@ than booting a machine.
 
 It's also why Apptainer needs Linux specifically: it isn't simulating a Linux
 kernel, it's *borrowing* the one already running.
-
-</details>
 
 ---
 
@@ -126,8 +123,7 @@ container runs **as you** — with your permissions, your files, your identity �
 rather than as a privileged system user. That single design decision is why
 essentially every academic HPC centre supports it.
 
-<details>
-<summary><strong>You'll also see the name "Singularity"</strong></summary>
+### You'll also see the name "Singularity"
 
 Apptainer was called **Singularity** until 2021, when the project joined the
 Linux Foundation and was renamed. They are the same tool.
@@ -138,10 +134,7 @@ command as `singularity` rather than `apptainer`. If your cluster's docs
 mention Singularity, everything you learn here applies — try `singularity exec`
 in place of `apptainer exec`.
 
-</details>
-
-<details>
-<summary><strong>Why Apptainer and not Docker?</strong></summary>
+### Why Apptainer and not Docker?
 
 You may have heard of Docker. Same core idea, different conventions:
 
@@ -154,8 +147,6 @@ You may have heard of Docker. Same core idea, different conventions:
 Docker is excellent for web services; Apptainer is the norm in research
 computing because of that security model on shared systems. Apptainer can also
 *read* Docker images, which is why our definition file starts from one.
-
-</details>
 
 > **❗ The OS limitation *is* the lesson**
 >

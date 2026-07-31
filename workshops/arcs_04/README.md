@@ -70,7 +70,6 @@ arcs_04/
 ├── 07-setup_script.r                # Hour 1 package setup
 ├── 08-apptainer.qmd                 # Hour 2 lesson — website + Positron
 ├── 08-apptainer_codespaces.md       # Hour 2 lesson — VS Code / Codespaces twin
-├── 08-slides.qmd                    # Hour 2 slides
 ├── 09-build-your-own.qmd            # Self-paced appendix: authoring a container
 ├── 09-build-your-own_codespaces.md  # Same appendix, Codespaces twin
 └── _materials/                      # not rendered — see its own README

@@ -44,31 +44,30 @@ A single file that packages your **entire computing environment**:
 ## More than pinning packages
 
 - `renv` pins your **R packages** — good instinct, one layer up
-- But it still assumes R is installed, at a compatible version,
-  on an OS with the right system libraries
+- But it still assumes R is installed, at a compatible version, on an OS with the right system libraries
 - A container ships **all of it**
 
 > `renv` is the shopping list. The container is the groceries.
 
 ## Not a virtual machine
 
-|          | Virtual machine        | Container            |
-|----------|------------------------|----------------------|
-| Simulates| A whole computer + kernel | Nothing — shares the host kernel |
-| Size     | Gigabytes of overhead  | Just your software   |
-| Start-up | Boots like a machine   | Seconds, like a command |
+|           | Virtual machine           | Container                        |
+|-----------|---------------------------|----------------------------------|
+| Simulates | A whole computer + kernel | Nothing — shares the host kernel |
+| Size      | Gigabytes of overhead     | Just your software               |
+| Start-up  | Boots like a machine      | Seconds, like a command          |
 
 > Containers *borrow* the Linux kernel — they don't simulate one.\
 > That's why Apptainer needs Linux.
 
 ## Four words to keep straight
 
-| Term | What it is |
-|------|------------|
-| **Container** | The idea: software packaged with all it needs |
-| **Image** `.sif` | The file on disk — one shareable artifact |
-| **Apptainer** | The program that builds and runs images |
-| **Definition** `.def` | The text recipe for an image |
+| Term                  | What it is                                    |
+|-----------------------|-----------------------------------------------|
+| **Container**         | The idea: software packaged with all it needs |
+| **Image** `.sif`      | The file on disk — one shareable artifact     |
+| **Apptainer**         | The program that builds and runs images       |
+| **Definition** `.def` | The text recipe for an image                  |
 
 > Write a **`.def`** → Apptainer **builds** an **image** → Apptainer **runs** it.\
 > Today: only the last step.
@@ -80,7 +79,7 @@ A single file that packages your **entire computing environment**:
 - Built at **Lawrence Berkeley National Lab** for shared clusters
 - Its answer to "hundreds of untrusted users": the container runs **as you**
 
-::: {.fragment}
+::: fragment
 Formerly called **Singularity** — many clusters still use that command.
 :::
 

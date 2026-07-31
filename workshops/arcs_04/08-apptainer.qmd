@@ -71,7 +71,7 @@ system that has the right system libraries for those packages to compile
 against. A container removes those assumptions by shipping all of it. Think of
 `renv` as a shopping list and a container as the delivered groceries.
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 ## Is a container a virtual machine?
 No — and the difference is why containers are practical.
 
@@ -123,7 +123,7 @@ container runs **as you** — with your permissions, your files, your identity �
 rather than as a privileged system user. That single design decision is why
 essentially every academic HPC centre supports it.
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip}
 ## You'll also see the name "Singularity"
 Apptainer was called **Singularity** until 2021, when the project joined the
 Linux Foundation and was renamed. They are the same tool.
@@ -135,7 +135,7 @@ mention Singularity, everything you learn here applies — try `singularity exec
 in place of `apptainer exec`.
 :::
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 ## Why Apptainer and not Docker?
 You may have heard of Docker. Same core idea, different conventions:
 
