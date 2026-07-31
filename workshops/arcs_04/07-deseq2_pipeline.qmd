@@ -2,74 +2,73 @@
 title: "Finding Differentially Expressed Genes with DESeq2"
 subtitle: "Workshop: Shank3 vs WT Genotype Comparison"
 author: "Sofia Fertuzinhos, PhD"
-date: today
+sidebar: arcs04
 format:
   html:
-    toc: true
     toc-depth: 3
-    toc-location: left
-    code-fold: false
     code-tools: true
-    theme: flatly
-    highlight-style: github
-    self-contained: true
 execute:
   warning: false
   message: false
+  freeze: auto
 ---
 
-# 🧬 Introduction
+## 🧬 Introduction
 
 In this workshop we will use **DESeq2** to identify differentially expressed genes between two genotypes: **Shank3** and **Wild Type (WT)** mice.
 
 We will work through a complete RNA-seq analysis pipeline:
 
-1.  Load and inspect the data\
-2.  Set up the DESeq2 object\
-3.  Run the analysis\
-4.  Perform quality control\
-5.  Extract and interpret results\
+1.  Load and inspect the data
+2.  Set up the DESeq2 object
+3.  Run the analysis
+4.  Perform quality control
+5.  Extract and interpret results
 6.  Export tables and plots
 
-## Project Structure
+### Project Structure
 
 This script assumes the following R project structure:
 
-```{plaintext}
+```
 ShankProject/
 ├── renv/
 ├── renv.lock                 ← locked package versions (tracked by Git)
-├── .Rprofile                 ← auto-activates 
+├── .Rprofile                 ← auto-activates renv
 ├── processed_data/
-│   └── Shank3_metadata_clean.csv
+│   ├── Shank3_metadata_clean.csv
 │   └── Shank3_rawCounts_clean.csv
 ├── raw_data/
-    ├── GSE113754_GeneLevel_Raw_data.csv
+│   ├── GSE113754_GeneLevel_Raw_data.csv
 │   └── GSE113754_filtered_metadata.csv
 ├── scripts/
-│   ├── 07_DESeq2_pipeline.qmd          
-│   └── 07_setup_script.r     ← ✅ installation script (run ONCE)
+│   ├── 07-deseq2_pipeline.qmd
+│   └── 07-setup_script.r     ← ✅ installation script (run ONCE)
 ├── outputs/
 └── README.md
 ```
 
-## Environment & Reproducibility
+### Environment & Reproducibility
 
 This project uses **renv** for package management and is version-controlled with **Git/GitHub**.
 
 ```{r}
-### To restore the exact package environment on a new machine:
+#| eval: false
+
+# To restore the exact package environment on a new machine:
 renv::restore()
 
-### To snapshot new packages you install:
+# To snapshot new packages you install:
 renv::snapshot()
 ```
 
-# Part 1 — Setup
+## Part 1 — Setup
 
-## 1.1 Load Required Packages
+### 1.1 Load Required Packages
 
 ```{r}
+#| label: load-packages
+
 library(here)
 library(DESeq2)
 library(ggplot2)
@@ -89,230 +88,321 @@ anyone who restores from it. Same reasoning for `tibble`, used as
 `tibble::rownames_to_column()`.
 :::
 
-## 1.2 Define File Paths
+### 1.2 Define File Paths
 
-Why use here::here()? Using here() makes your paths relative to the project root, so the script works on any machine regardless of where the project folder is saved. This is especially important when sharing code via GitHub.
+Why use `here::here()`? Using `here()` makes your paths relative to the project root, so the script works on any machine regardless of where the project folder is saved. This is especially important when sharing code via GitHub.
+
 ```{r}
-# | label: define-paths
+#| label: define-paths
+
+# In your own ShankProject the cleaned data sits at <project root>/processed_data,
+# which is the first branch below. This page is published from the ARCS website
+# repository, where the same two files ship alongside the workshop materials —
+# the fallback keeps the published version reproducible without changing the
+# path you would write in your own project.
+dir_data <- if (dir.exists(here("processed_data"))) {
+  here("processed_data")
+} else {
+  here("workshops", "arcs_04", "_materials", "processed_data")
+}
+
+dir_out <- if (dir.exists(here("processed_data"))) {
+  here("outputs")
+} else {
+  here("workshops", "arcs_04", "_materials", "outputs")
+}
 
 # Input paths
-path_counts <- here("processed_data", "Shank3_rawCounts_clean.csv")
-path_metadata <- here("processed_data", "Shank3_metadata_clean.csv")
+path_counts   <- file.path(dir_data, "Shank3_rawCounts_clean.csv")
+path_metadata <- file.path(dir_data, "Shank3_metadata_clean.csv")
 
 # Output paths
-path_figures <- here("outputs", "figures")
-path_tables <- here("outputs", "tables")
+path_figures <- file.path(dir_out, "figures")
+path_tables  <- file.path(dir_out, "tables")
 
 # Create output folders if they do not exist yet
-dirs_to_create <- c(path_figures, path_tables)
-
-for (dir in dirs_to_create) {
-if (!dir.exists(dir)) {
-dir.create(dir, recursive = TRUE)
-cat("✅ Created:", dir, "\\n")
-}
+for (dir in c(path_figures, path_tables)) {
+  if (!dir.exists(dir)) {
+    dir.create(dir, recursive = TRUE)
+    cat("✅ Created:", dir, "\n")
+  }
 }
 ```
 
-# 📂 Part 2 — Load & Inspect the Data
+## 📂 Part 2 — Load & Inspect the Data
 
-## 2.1 Load Raw Counts
+### 2.1 Load Raw Counts
 
 ```{r}
+#| label: load-counts
+
 clean_counts <- read.csv(path_counts, header = TRUE, row.names = 1)
 ```
 
-Quick inspection
+Quick inspection:
 
 ```{r}
-cat("Dimensions: ", nrow(clean_counts), "genes x", ncol(clean_counts), "samples\n") 
-head(counts[ , 1:5]) # show first 5 samples only 2.2 Load Sample Metadata 
+#| label: inspect-counts
+
+cat("Dimensions: ", nrow(clean_counts), "genes x", ncol(clean_counts), "samples\n")
+head(clean_counts[, 1:5])   # show first 5 samples only
 ```
 
-## 2.2 Load Metadata
+### 2.2 Load Metadata
 
 ```{r}
+#| label: load-metadata
+
 clean_info <- read.csv(path_metadata, header = TRUE, stringsAsFactors = TRUE)
 ```
 
-Quick inspection
+Quick inspection:
 
 ```{r}
+#| label: inspect-metadata
+
 print(clean_info)
 ```
 
-Check: Do columns in rawc match rows in info? The column names of the counts matrix must match the row names (or sample identifiers) in the metadata, in the same order. This is a very common source of errors. :::
+::: callout-important
+## Do the columns in the counts matrix match the rows in the metadata?
 
-Important: Verify sample names match between counts and metadata
+The column names of the counts matrix must match the sample identifiers in the
+metadata, **in the same order**. This is a very common source of errors — check
+it before you build anything downstream.
+:::
 
 ```{r}
+#| label: check-sample-order
+
 all(colnames(clean_counts) == clean_info$sample_id)
 
-# Should return TRUE — if FALSE, reorder before proceeding 2.3 Subset to Genotype Comparison Only
+# Should return TRUE — if FALSE, reorder before proceeding
 ```
 
-# ✂️ Part 3 - Subset dataset to a simple two-group comparison
+## ✂️ Part 3 — Subset to a Simple Two-Group Comparison
 
 Why subset? The full dataset contains samples from two conditions (normal and sleep-deprived) and two genotypes (WT and Shank3).
 
-For this workshop we focus on a simple two-group comparison: Shank3 vs WT, using only the normal condition samples. This keeps the design formula simple and the results easier to interpret. :::
+For this workshop we focus on a simple two-group comparison: **Shank3 vs WT**, using only the *normal* condition samples. This keeps the design formula simple and the results easier to interpret.
 
-### 3.1 - Keep only samples from the normal (baseline) condition
+### 3.1 Keep only samples from the normal (baseline) condition
 
 ```{r}
+#| label: subset-metadata
+
 info_sub <- clean_info %>% filter(condition == "normal")
 ```
 
-### 3.2 - Subset counts to matching samples
+### 3.2 Subset counts to matching samples
 
 ```{r}
-counts_sub <- clean_counts[ , info_sub$sample_id]
+#| label: subset-counts
+
+counts_sub <- clean_counts[, info_sub$sample_id]
 ```
 
-### 3.3 - Drop unused factor levels after subsetting
+### 3.3 Drop unused factor levels after subsetting
 
 ```{r}
+#| label: droplevels
+
 info_sub$genotype <- droplevels(info_sub$genotype)
 ```
 
-### 3.4 - Set WT as the reference level (baseline for comparison)
+### 3.4 Set WT as the reference level (baseline for comparison)
 
 ```{r}
+#| label: relevel
+
 info_sub$genotype <- relevel(info_sub$genotype, ref = "WT")
 ```
 
 ### 3.5 Confirm subset dimensions
 
 ```{r}
+#| label: confirm-subset
+
 cat("Subsetted dataset:", nrow(counts_sub), "genes x", ncol(counts_sub), "samples\n")
 print(info_sub)
 ```
 
-# 🏗️ Part 4 — Build the DESeq2 Object
+## 🏗️ Part 4 — Build the DESeq2 Object
 
 ### 4.1 Create DESeqDataSet
 
 ```{r}
-dds <- DESeqDataSetFromMatrix( countData = counts_sub, # genes x samples count matrix 
-                               colData = info_sub, # sample metadata 
-                               design = ~ genotype # simple two-group design
-                               )
+#| label: build-dds
+
+dds <- DESeqDataSetFromMatrix(
+  countData = counts_sub,   # genes x samples count matrix
+  colData   = info_sub,     # sample metadata
+  design    = ~ genotype    # simple two-group design
+)
 ```
 
-#### Understanding the design formula:
+::: callout-note
+## Understanding the design formula
 
-**genotype** tells DESeq2 to model gene expression as a function of genotype.
+`~ genotype` tells DESeq2 to model gene expression as a function of genotype.
 
-With WT set as the reference, all results will be expressed as: Shank3 relative to WT
+With WT set as the reference, all results will be expressed as **Shank3 relative to WT**.
+:::
 
+### 4.2 Pre-filter Low-Count Genes
 
-### 4.2 Pre-filter Low-Count Genes plaintext
-
-Keep genes with at least 10 counts in at least 3 samples (adjust thresholds based on your smallest group size)
+Keep genes with at least 10 counts in at least 3 samples (adjust thresholds based on your smallest group size).
 
 ```{r}
-keep <- rowSums(counts(dds) >= 10) >= 3 
-dds <- dds[keep, ]
+#| label: prefilter
 
-cat("Genes remaining after filtering:", nrow(dds), "\n") 
+keep <- rowSums(counts(dds) >= 10) >= 3
+dds  <- dds[keep, ]
+
+cat("Genes remaining after filtering:", nrow(dds), "\n")
 ```
 
-# 🔬 Part 5 — Run DESeq2
+## 🔬 Part 5 — Run DESeq2
 
 ```{r}
+#| label: run-deseq
+
 dds <- DESeq(dds)
 ```
 
-What does DESeq() do? Three steps happen automatically:
+::: callout-note
+## What does `DESeq()` do?
 
-Size factor estimation — normalizes for differences in sequencing depth Dispersion estimation — models count variability across samples Model fitting — fits a negative binomial GLM and tests each gene
+Three steps happen automatically:
 
-# 📊 Part 6 — Quality Control
+1.  **Size factor estimation** — normalizes for differences in sequencing depth
+2.  **Dispersion estimation** — models count variability across samples
+3.  **Model fitting** — fits a negative binomial GLM and tests each gene
+:::
+
+## 📊 Part 6 — Quality Control
 
 ### 6.1 Transform Counts for Visualization
 
-vst = Variance Stabilizing Transformation
-
-Faster than rlog() for larger datasets; both are suitable for QC
+`vst` = Variance Stabilizing Transformation. It is faster than `rlog()` for larger datasets; both are suitable for QC.
 
 ```{r}
+#| label: vst
+
 vsd <- vst(dds, blind = TRUE)
 ```
 
-blind = TRUE vs blind = FALSE
+::: callout-note
+## `blind = TRUE` vs `blind = FALSE`
 
-blind = TRUE — transformation ignores the design (used for QC/exploration) blind = FALSE — uses the design (used for downstream visualization of results)
+- **`blind = TRUE`** — the transformation ignores the design (used for QC and exploration)
+- **`blind = FALSE`** — the transformation uses the design (used for downstream visualization of results)
+:::
 
 ### 6.2 PCA Plot
 
-What to look for in the PCA Samples should cluster by genotype along PC1 (the axis of greatest variation) Any outlier samples should be investigated before proceeding If genotype is not the dominant source of variation, review your metadata
+::: callout-tip
+## What to look for in the PCA
+
+- Samples should cluster by genotype along PC1 (the axis of greatest variation)
+- Any outlier samples should be investigated before proceeding
+- If genotype is not the dominant source of variation, review your metadata
+:::
 
 ```{r}
-pca_data <- plotPCA(vsd, intgroup = "genotype", returnData = TRUE) 
+#| label: pca-plot
+#| fig-width: 7
+#| fig-height: 5
+#| fig-cap: "PCA of variance-stabilized counts, coloured by genotype."
+
+pca_data <- plotPCA(vsd, intgroup = "genotype", returnData = TRUE)
 
 pct_var <- round(100 * attr(pca_data, "percentVar"))
 
-pca_plot <- ggplot(pca_data, aes(x = PC1, y = PC2, color = genotype, label = name)) + 
-            geom_point(size = 4, alpha = 0.8) + 
-            geom_text(vjust = -0.8, size = 3) + 
-            scale_color_manual(values = c("WT" = "#2196F3", "Shank3" = "#F44336")) + 
-            labs( title = "PCA: Shank3 vs WT (normal condition)", x = paste0("PC1: ", pct_var[1], "% variance"), y = paste0("PC2: ", pct_var[2], "% variance") ) + 
-            theme_classic(base_size = 13) + 
-            theme(legend.position = "right")
+pca_plot <- ggplot(pca_data, aes(x = PC1, y = PC2, color = genotype, label = name)) +
+  geom_point(size = 4, alpha = 0.8) +
+  geom_text(vjust = -0.8, size = 3) +
+  scale_color_manual(values = c("WT" = "#2196F3", "Shank3" = "#F44336")) +
+  labs(
+    title = "PCA: Shank3 vs WT (normal condition)",
+    x = paste0("PC1: ", pct_var[1], "% variance"),
+    y = paste0("PC2: ", pct_var[2], "% variance")
+  ) +
+  theme_classic(base_size = 13) +
+  theme(legend.position = "right")
 
 pca_plot
 
 # Save
-ggsave(filename = file.path(path_figures, "PCA_Shank3vsWT.png"), plot = pca_plot, width = 7, height = 5, dpi = 300)
+ggsave(
+  filename = file.path(path_figures, "PCA_Shank3vsWT.png"),
+  plot = pca_plot, width = 7, height = 5, dpi = 300
+)
 ```
 
 ### 6.3 Sample Distance Heatmap
 
 ```{r}
-samp_dists <- dist(t(assay(vsd))) 
-samp_mat <- as.matrix(samp_dists)
+#| label: distance-heatmap
+#| fig-width: 7
+#| fig-height: 5
+#| fig-cap: "Euclidean distances between samples, computed on the variance-stabilized counts."
 
-rownames(samp_mat) <- colnames(samp_mat) <- paste(colData(vsd)$genotype, colData(vsd)$sample_id, sep = " | ")
+samp_dists <- dist(t(assay(vsd)))
+samp_mat   <- as.matrix(samp_dists)
+
+rownames(samp_mat) <- colnames(samp_mat) <-
+  paste(colData(vsd)$genotype, colData(vsd)$sample_id, sep = " | ")
 
 colors <- colorRampPalette(rev(brewer.pal(9, "Blues")))(255)
 
-pheatmap(samp_mat, col = colors, 
-         clustering_distance_rows = samp_dists, 
-         clustering_distance_cols = samp_dists, 
-         main = "Sample-to-Sample Distances", fontsize = 10, 
-         filename = file.path(path_figures, "SampleDistances_Shank3vsWT.png"))
-
-dev.new()
+# Display inline
 pheatmap(samp_mat, col = colors,
          clustering_distance_rows = samp_dists,
          clustering_distance_cols = samp_dists,
          main = "Sample-to-Sample Distances",
          fontsize = 10)
+
+# Save to file
+pheatmap(samp_mat, col = colors,
+         clustering_distance_rows = samp_dists,
+         clustering_distance_cols = samp_dists,
+         main = "Sample-to-Sample Distances", fontsize = 10,
+         filename = file.path(path_figures, "SampleDistances_Shank3vsWT.png"))
 ```
 
-# 📈 Part 7 — Extract & Interpret Results
+## 📈 Part 7 — Extract & Interpret Results
 
-### 7.1 Check Available Coefficients plaintext #\| label: results-names
+### 7.1 Check Available Coefficients
 
 ```{r}
-resultsNames(dds) 
-# Expected output: 
-# [1] "Intercept" 
-# [2] "genotype_Shank3_vs_WT" 
+#| label: results-names
+
+resultsNames(dds)
 ```
 
-### 7.2 Extract Results: Shank3 vs WT plaintext
+### 7.2 Extract Results: Shank3 vs WT
 
 ```{r}
 #| label: extract-results
 
-res <- results(dds, name = "genotype_Shank3_vs_WT", alpha = 0.05) # sets the FDR threshold for independent filtering
+# alpha sets the FDR threshold used for independent filtering
+res <- results(dds, name = "genotype_Shank3_vs_WT", alpha = 0.05)
 
 summary(res)
 ```
 
 ::: callout-note
-Understanding the results columns Column Meaning baseMean Average normalized count across all samples log2FoldChange Log2 ratio of Shank3 / WT lfcSE Standard error of the log2 fold change stat Wald test statistic pvalue Raw p-value padj Adjusted p-value (FDR) — use this for significance testing
+## Understanding the results columns
+
+| Column | Meaning |
+|-------------------|-----------------------------------------------------|
+| `baseMean` | Average normalized count across all samples |
+| `log2FoldChange` | Log2 ratio of Shank3 / WT |
+| `lfcSE` | Standard error of the log2 fold change |
+| `stat` | Wald test statistic |
+| `pvalue` | Raw p-value |
+| `padj` | Adjusted p-value (FDR) — **use this for significance testing** |
 :::
 
 ### 7.3 Shrink Fold Changes (Recommended)
@@ -320,8 +410,8 @@ Understanding the results columns Column Meaning baseMean Average normalized cou
 ```{r}
 #| label: lfc-shrink
 
-# lfcShrink improves fold change estimates for genes with low counts
-# This is recommended for ranking and visualization — NOT for hypothesis testing
+# lfcShrink improves fold change estimates for genes with low counts.
+# This is recommended for ranking and visualization — NOT for hypothesis testing.
 
 res_shrunk <- lfcShrink(dds, coef = "genotype_Shank3_vs_WT", type = "apeglm")
 
@@ -329,49 +419,57 @@ summary(res_shrunk)
 ```
 
 ::: callout-tip
-Why shrink fold changes? Genes with low counts can have artificially extreme fold changes due to high variability. lfcShrink() pulls these estimates towards zero, making volcano plots and ranked gene lists more reliable.
+## Why shrink fold changes?
 
-Use res_shrunk for visualization. Use res for hypothesis testing.
+Genes with low counts can have artificially extreme fold changes due to high
+variability. `lfcShrink()` pulls these estimates towards zero, making volcano
+plots and ranked gene lists more reliable.
+
+Use `res_shrunk` for **visualization**. Use `res` for **hypothesis testing**.
 :::
 
 ### 7.4 MA Plot
 
 ```{r}
-# | label: ma-plot 
-# | fig-width: 7
-# | fig-height: 5 
-# | fig-cap: "MA plot showing log2 fold change (Shank3/WT) versus mean expression. Significant genes (padj < 0.05) are highlighted in blue."
+#| label: ma-plot
+#| fig-width: 7
+#| fig-height: 5
+#| fig-cap: "MA plot showing log2 fold change (Shank3/WT) versus mean expression. Significant genes are highlighted in red."
 
-# Save to file and display
+# Save to file
+png(file.path(path_figures, "MAplot_Shank3vsWT.png"),
+    width = 700, height = 500, res = 120)
 
-png(file.path(path_figures, "MAplot_Shank3vsWT.png"), width = 700, height = 500, res = 120) 
+plotMA(res_shrunk, ylim = c(-5, 5),
+       main      = "MA Plot: Shank3 vs WT",
+       alpha     = 0.1,
+       colSig    = "#F44336",
+       colNonSig = "grey60")
 
-plotMA(res_shrunk, ylim = c(-5, 5), 
-                    main = "MA Plot: Shank3 vs WT", 
-                    alpha = 0.1, 
-                    colSig = "#F44336", 
-                    colNonSig = "grey60") 
-
-dev.off()
+invisible(dev.off())
 
 # Display inline
-
-plotMA(res_shrunk, ylim = c(-5, 5), 
-                    main = "MA Plot: Shank3 vs WT", 
-                    alpha = 0.1, 
-                    colSig = "#F44336", 
-                    colNonSig = "grey60") 
+plotMA(res_shrunk, ylim = c(-5, 5),
+       main      = "MA Plot: Shank3 vs WT",
+       alpha     = 0.1,
+       colSig    = "#F44336",
+       colNonSig = "grey60")
 ```
 
 ### 7.5 Volcano Plot
 
 ```{r}
+#| label: volcano-plot
+#| fig-width: 8
+#| fig-height: 6
+#| fig-cap: "Volcano plot of adjusted significance against effect size."
+
 res_df <- as.data.frame(res_shrunk) %>%
   tibble::rownames_to_column("gene") %>%
   filter(!is.na(padj)) %>%
   mutate(
     significance = case_when(
-      padj < 0.1 & log2FoldChange > 0  ~ "Up in Shank3",
+      padj < 0.1 & log2FoldChange > 0 ~ "Up in Shank3",
       padj < 0.1 & log2FoldChange < 0 ~ "Down in Shank3",
       TRUE                            ~ "Not significant"
     )
@@ -383,8 +481,8 @@ deg_counts
 volcano_plot <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
   geom_point(alpha = 0.5, size = 1.5) +
   scale_color_manual(values = c(
-    "Up in Shank3" = "#F44336",
-    "Down in Shank3" = "#2196F3",
+    "Up in Shank3"    = "#F44336",
+    "Down in Shank3"  = "#2196F3",
     "Not significant" = "grey70"
   )) +
   geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "grey40") +
@@ -403,22 +501,24 @@ volcano_plot <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color =
   theme(legend.position = "top")
 
 volcano_plot
-ggsave(file.path(path_figures, "Volcano_Shank3vsWT.png"), plot = volcano_plot, width = 8, height = 6, dpi = 300)
+
+ggsave(file.path(path_figures, "Volcano_Shank3vsWT.png"),
+       plot = volcano_plot, width = 8, height = 6, dpi = 300)
 ```
 
-# 💾 Part 8 — Export Results
+## 💾 Part 8 — Export Results
 
 ### 8.1 Filter Significant DEGs
 
 ```{r}
-# | label: filter-degs
+#| label: filter-degs
 
 # All results (sorted by adjusted p-value)
-
-res_all <- as.data.frame(res_shrunk) %>% tibble::rownames_to_column("gene") %>% arrange(padj)
+res_all <- as.data.frame(res_shrunk) %>%
+  tibble::rownames_to_column("gene") %>%
+  arrange(padj)
 
 # Significant DEGs only (padj < 0.05, |LFC| > 1)
-
 res_sig <- res_all %>% filter(padj < 0.05, abs(log2FoldChange) > 1)
 
 cat("Total DEGs (padj < 0.05, |LFC| > 1):", nrow(res_sig), "\n")
@@ -428,48 +528,54 @@ head(res_sig)
 ### 8.2 Save Results Tables
 
 ```{r}
-# | label: save-tables
+#| label: save-tables
 
 # Full results table
-
-write.csv(res_all, file = file.path(path_tables, "DESeq2_Shank3vsWT_allGenes.csv"), row.names = FALSE)
+write.csv(res_all, file = file.path(path_tables, "DESeq2_Shank3vsWT_allGenes.csv"),
+          row.names = FALSE)
 
 # Significant DEGs only
-
-write.csv(res_sig, file = file.path(path_tables, "DESeq2_Shank3vsWT_sigDEGs.csv"), row.names = FALSE)
+write.csv(res_sig, file = file.path(path_tables, "DESeq2_Shank3vsWT_sigDEGs.csv"),
+          row.names = FALSE)
 
 # Normalised counts
+norm_counts <- counts(dds, normalized = TRUE)
+write.csv(norm_counts, file = file.path(path_tables, "normCounts_Shank3vsWT.csv"),
+          row.names = TRUE)
 
-norm_counts <- counts(dds, normalized = TRUE) 
-write.csv(norm_counts, file = file.path(path_tables, "normCounts_Shank3vsWT.csv"), row.names = TRUE)
-
-cat("✅ Tables saved to outputs/tables \n") 
+cat("✅ Tables saved to outputs/tables \n")
 ```
 
-# 🔁 Part 9 — Reproducibility Session Information
+## 🔁 Part 9 — Reproducibility Session Information
+
 ```{r}
-# | label: session-info 
-# | code-fold: true
+#| label: session-info
+#| code-fold: true
+
 sessionInfo()
 ```
 
 ::: callout-tip
-Saving your renv snapshot After the workshop, lock your package versions so results are reproducible:
+## Saving your renv snapshot
+
+After the workshop, lock your package versions so results are reproducible:
 
 ```{r}
- renv::snapshot() 
+#| eval: false
+
+renv::snapshot()
 ```
 
-Commit the updated renv.lock to GitHub:
+Then commit the updated `renv.lock` to GitHub:
 
-```{bash}
-git add renv.lock 
-git commit -m "update renv snapshot after workshop" 
-git push 
+``` bash
+git add renv.lock
+git commit -m "update renv snapshot after workshop"
+git push
 ```
 :::
 
-# 📚 Summary
+## 📚 Summary
 
 | Step | What we did |
 |------------------------------------|------------------------------------|
@@ -480,7 +586,7 @@ git push
 | **QC** | PCA and sample distance heatmap |
 | **Results** | Extracted Shank3 vs WT comparison with LFC shrinkage |
 | **Visualize** | MA plot, volcano plot, top gene counts |
-| **Export** | Saved tables to `/tables`, plots to `/images`, counts to `/processed_data` |
+| **Export** | Saved tables to `outputs/tables/` and plots to `outputs/figures/` |
 
 ::: callout-note
 ## 🔭 Next Steps (beyond this workshop)
@@ -492,3 +598,5 @@ git push
 
 ------------------------------------------------------------------------
 
+Next up: [**Apptainer**](08-apptainer.qmd) — running this same pipeline inside a
+container, so the environment travels with the code.

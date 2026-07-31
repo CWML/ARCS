@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Build Your Own Container – Advancing Reproducibility with Computational Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3c3cbabf557a9ee2b01242af36073d69.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Advancing Reproducibility with Computational Skills</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-workshops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Workshops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-workshops">    
+        <li>
+    <a class="dropdown-item" href="../../workshops/arcs_01/01-fundamentals.html">
+ <span class="dropdown-text">ARCS 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../workshops/arcs_02/03-structures.html">
+ <span class="dropdown-text">ARCS 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../workshops/arcs_03/05-tidyverse.html">
+ <span class="dropdown-text">ARCS 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../workshops/arcs_04/07-deseq2_pipeline.html">
+ <span class="dropdown-text">ARCS 4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CWML/ARCS"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_04/07-deseq2_pipeline.html">ARCS 4</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_04/09-build-your-own.html">Build Your Own Container</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">ARCS 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workshops/arcs_04/07-deseq2_pipeline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DESeq2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workshops/arcs_04/08-apptainer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apptainer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workshops/arcs_04/09-build-your-own.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Build Your Own Container</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#step-0-get-a-linux-environment" id="toc-step-0-get-a-linux-environment" class="nav-link active" data-scroll-target="#step-0-get-a-linux-environment">Step 0 — Get a Linux environment</a>
+  <ul class="collapse">
+  <li><a href="#option-a-github-codespaces-easiest-start" id="toc-option-a-github-codespaces-easiest-start" class="nav-link" data-scroll-target="#option-a-github-codespaces-easiest-start">Option A — GitHub Codespaces (easiest start)</a></li>
+  <li><a href="#option-b-lima-macos" id="toc-option-b-lima-macos" class="nav-link" data-scroll-target="#option-b-lima-macos">Option B — Lima (macOS)</a></li>
+  <li><a href="#option-c-wsl2-windows" id="toc-option-c-wsl2-windows" class="nav-link" data-scroll-target="#option-c-wsl2-windows">Option C — WSL2 (Windows)</a></li>
+  <li><a href="#option-d-native-linux" id="toc-option-d-native-linux" class="nav-link" data-scroll-target="#option-d-native-linux">Option D — Native Linux</a></li>
+  <li><a href="#install-apptainer-all-options-except-codespaces-which-has-it-already" id="toc-install-apptainer-all-options-except-codespaces-which-has-it-already" class="nav-link" data-scroll-target="#install-apptainer-all-options-except-codespaces-which-has-it-already">Install Apptainer (all options except Codespaces, which has it already)</a></li>
+  </ul></li>
+  <li><a href="#step-1-read-the-definition-file-line-by-line" id="toc-step-1-read-the-definition-file-line-by-line" class="nav-link" data-scroll-target="#step-1-read-the-definition-file-line-by-line">Step 1 — Read the definition file, line by line</a></li>
+  <li><a href="#step-2-build-the-image" id="toc-step-2-build-the-image" class="nav-link" data-scroll-target="#step-2-build-the-image">Step 2 — Build the image</a></li>
+  <li><a href="#step-3-test-it-locally" id="toc-step-3-test-it-locally" class="nav-link" data-scroll-target="#step-3-test-it-locally">Step 3 — Test it locally</a></li>
+  <li><a href="#step-4-sharing-your-image-the-concept" id="toc-step-4-sharing-your-image-the-concept" class="nav-link" data-scroll-target="#step-4-sharing-your-image-the-concept">Step 4 — Sharing your image: the concept</a></li>
+  <li><a href="#step-5-keeping-the-image-in-sync-the-concept" id="toc-step-5-keeping-the-image-in-sync-the-concept" class="nav-link" data-scroll-target="#step-5-keeping-the-image-in-sync-the-concept">Step 5 — Keeping the image in sync: the concept</a></li>
+  <li><a href="#step-6-adapt-the-pattern-to-your-own-analysis" id="toc-step-6-adapt-the-pattern-to-your-own-analysis" class="nav-link" data-scroll-target="#step-6-adapt-the-pattern-to-your-own-analysis">Step 6 — Adapt the pattern to your own analysis</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../workshops/arcs_04/07-deseq2_pipeline.html">ARCS 4</a></li><li class="breadcrumb-item"><a href="../../workshops/arcs_04/09-build-your-own.html">Build Your Own Container</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Build Your Own Container</h1>
+<p class="subtitle lead">Self-paced follow-up to the Apptainer workshop</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>By the end of this guide, you should be able to…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Set up a <strong>Linux environment</strong> to build containers on a Mac, Windows, or Linux machine, and choose the right one for your situation</li>
+<li><strong>Read</strong> an Apptainer definition file (<code>.def</code>) section by section and explain what each part does</li>
+<li><strong>Build</strong> a container image from a definition file with <code>apptainer build</code></li>
+<li><strong>Explain</strong> what a container registry is, why images are versioned, and what your options are for sharing one — well enough to research the specifics</li>
+<li><strong>Recognize</strong> the risk of a published image drifting from its definition, and the manual and automated ways to prevent it</li>
+<li><strong>Adapt</strong> the whole pattern to your <em>own</em> analysis</li>
+</ul>
+</div>
+</div>
+<p>In the workshop you <em>used and modified</em> a pre-built container. This guide is about <em>authoring</em> one. It’s self-paced — work through it at your own speed, and come back to it when you’re ready to containerize your own research.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>You need Linux to build a container
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Apptainer is Linux-only, so building an image requires a Linux environment. Step 0 below sets one up. Everything after Step 0 is run <em>inside</em> that Linux environment.</p>
+</div>
+</div>
+<hr>
+<section id="step-0-get-a-linux-environment" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-get-a-linux-environment">Step 0 — Get a Linux environment</h2>
+<p>You have four honest options, from least to most commitment. Pick based on how often you’ll do this and how much you want a persistent local setup.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Best for</th>
+<th>Install cost</th>
+<th>Persists?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GitHub Codespaces</strong></td>
+<td>Trying this out; occasional builds</td>
+<td>None (browser)</td>
+<td>No — ephemeral</td>
+</tr>
+<tr class="even">
+<td><strong>Lima</strong> (macOS)</td>
+<td>Mac users who build regularly</td>
+<td>Moderate</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><strong>WSL2</strong> (Windows)</td>
+<td>Windows users who build regularly</td>
+<td>Moderate</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><strong>Native Linux</strong></td>
+<td>You already run Linux</td>
+<td>None</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<section id="option-a-github-codespaces-easiest-start" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-github-codespaces-easiest-start">Option A — GitHub Codespaces (easiest start)</h3>
+<p>This is the same environment you used in the workshop, and it can build images too, not just run them. Open a Codespace on a repo whose <code>.devcontainer</code> is privileged (the workshop repo already is — see the note below), then jump to Step 1.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why the Codespace must be “privileged”
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Apptainer creates <strong>Linux user namespaces</strong> to run and build containers. A Codespace is itself a container, and nested user namespaces are blocked unless the container runs privileged. The workshop repo’s <code>.devcontainer/devcontainer.json</code> sets <code>"runArgs": ["--privileged"]</code> for exactly this reason. If you build your own Codespace config, you need that line or <code>apptainer</code> will fail with <em>“Failed to create user namespace.”</em></p>
+</div>
+</div>
+</div>
+<p><strong>Tradeoff:</strong> zero install, but the environment is ephemeral — anything not committed or pushed disappears when the Codespace is deleted.</p>
+</section>
+<section id="option-b-lima-macos" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-lima-macos">Option B — Lima (macOS)</h3>
+<p><a href="https://lima-vm.io/">Lima</a> runs a real Linux VM on your Mac. Because it’s a genuine VM (not a nested container), user namespaces work natively — no privileged tricks needed.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install lima</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">limactl</span> start                 <span class="co"># launches an Ubuntu VM (accept the defaults)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">limactl</span> shell default         <span class="co"># drop into the Linux VM</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ...now you're on Linux. Install Apptainer (Step 1) inside here.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Tradeoff:</strong> a few GB of disk and a VM to maintain, but a fast, persistent local Linux you fully control.</p>
+</section>
+<section id="option-c-wsl2-windows" class="level3">
+<h3 class="anchored" data-anchor-id="option-c-wsl2-windows">Option C — WSL2 (Windows)</h3>
+<p><a href="https://learn.microsoft.com/windows/wsl/install">WSL2</a> gives Windows a real Linux kernel. User namespaces work, so Apptainer runs normally.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu       <span class="co"># in PowerShell; reboot if prompted</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then open the <strong>Ubuntu</strong> terminal and continue with Step 1 inside it.</p>
+<p><strong>Tradeoff:</strong> moderate one-time setup, then a persistent Ubuntu integrated with Windows.</p>
+</section>
+<section id="option-d-native-linux" class="level3">
+<h3 class="anchored" data-anchor-id="option-d-native-linux">Option D — Native Linux</h3>
+<p>Nothing to set up — go straight to Step 1.</p>
+</section>
+<section id="install-apptainer-all-options-except-codespaces-which-has-it-already" class="level3">
+<h3 class="anchored" data-anchor-id="install-apptainer-all-options-except-codespaces-which-has-it-already">Install Apptainer (all options except Codespaces, which has it already)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Debian/Ubuntu (Lima, WSL2, or native Ubuntu)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">APPTAINER_VERSION</span><span class="op">=</span>1.3.6</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /tmp</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/apptainer/apptainer/releases/download/v<span class="va">${APPTAINER_VERSION}</span>/apptainer_<span class="va">${APPTAINER_VERSION}</span>_amd64.deb</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt-get install <span class="at">-y</span> ./apptainer_<span class="va">${APPTAINER_VERSION}</span>_amd64.deb</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We pin a specific version (<code>1.3.6</code>) on purpose — pinning is the same reproducibility habit you’ll apply to the image itself below. The non-<code>suid</code> package shown here runs rootless via user namespaces, which is what you want on a personal machine.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-1-read-the-definition-file-line-by-line" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-read-the-definition-file-line-by-line">Step 1 — Read the definition file, line by line</h2>
+<p>A definition file is the <strong>recipe</strong> for your environment. Here is the workshop’s <code>_materials/container/deseq2.def</code>, with every section explained.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Bootstrap: docker</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>From: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>Bootstrap</code> / <code>From</code></strong> — where the build <em>starts</em>. <code>Bootstrap: docker</code> means “pull a starting image from a Docker/OCI registry.” <code>From:</code> names that image.</p>
+<p>Why <code>bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1</code>? Because it already contains R, <code>BiocManager</code>, and — crucially — the system libraries needed to compile Bioconductor packages. Starting from a bare Ubuntu would mean installing all of that by hand. <strong>Why the <code>RELEASE_3_23-R-4.6.1</code> tag?</strong> A Bioconductor release pins a specific R version <em>and</em> a specific set of package versions. Pinning the tag is what makes the build reproducible: <code>:latest</code> would silently change underneath you.</p>
+<p>Note the tag names the R patch version too. A bare <code>RELEASE_3_23</code> would fix the Bioconductor release but let R move if the image were rebuilt — the same silent drift, one level down. Pin as much as the registry lets you.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>%labels</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    Author       ARCS Workshop ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    Description  DESeq2 ...</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    Version      1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>%labels</code></strong> — metadata baked into the image. Readable later with <code>apptainer inspect deseq2.sif</code>. Good place to record a version.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>%help</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    Reproducible R environment for the ARCS Part 4 DESeq2 pipeline...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>%help</code></strong> — free text shown by <code>apptainer run-help deseq2.sif</code>. Document how to run the image so the next person (often future-you) doesn’t have to guess.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>%post</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    R -e 'BiocManager::install(c("DESeq2"), update = FALSE, ask = FALSE)'</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    R -e 'install.packages(c("ggplot2"), repos = "https://cloud.r-project.org")'</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    R -e 'library(DESeq2); library(ggplot2)'</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>%post</code></strong> — commands run <strong>once, at build time</strong>, inside the image. This is where you install everything your analysis needs. It’s the <strong>slow</strong> step (Bioconductor compiles), which is exactly why you build <em>once</em> and reuse the result. Note the two package worlds: Bioconductor packages go through <code>BiocManager::install()</code>; CRAN packages through <code>install.packages()</code>. The final <code>library(...)</code> line makes the build <strong>fail loudly</strong> if anything didn’t install, rather than shipping a broken image.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>%environment</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    export LC_ALL=C.UTF-8</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    export LANG=C.UTF-8</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>%environment</code></strong> — variables set every time the container <em>runs</em> (not at build time). Locale settings here keep R’s text handling consistent across hosts.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>%runscript</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    exec Rscript scripts/pipeline.R "$@"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>%runscript</code></strong> — the default action of <code>apptainer run deseq2.sif</code>. Here it runs the pipeline in the current directory. (<code>apptainer exec ... Rscript scripts/pipeline.R</code> does the same thing explicitly; <code>run</code> just bakes in the default.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>%test</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    R -e 'stopifnot(requireNamespace("DESeq2", quietly = TRUE)); cat("DESeq2 OK\n")'</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>%test</code></strong> — runs automatically at the <strong>end of the build</strong> to sanity-check the image. If DESeq2 didn’t install, the build fails here instead of in front of your collaborators.</p>
+<hr>
+</section>
+<section id="step-2-build-the-image" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-build-the-image">Step 2 — Build the image</h2>
+<p>From the folder containing the <code>.def</code> file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> workshops/arcs_04/_materials/container</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> build deseq2.sif deseq2.def</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>This is slow — that’s normal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Building this image compiles DESeq2 and its dependencies. Expect <strong>several minutes to ~20+ minutes</strong> depending on your machine and network. You’ll see pages of compiler output scroll by. That long compile is precisely why we never build live in class and instead distribute the finished <code>.sif</code>.</p>
+</div>
+</div>
+<p>When it finishes you’ll see your <code>%test</code> print <code>DESeq2 OK</code> and a <code>deseq2.sif</code> file appear. Common hiccups:</p>
+<ul>
+<li><strong>Out of disk space</strong> — the build cache plus the base image can need several GB. Free space, or run <code>apptainer cache clean</code>.</li>
+<li><strong>Network flake during package install</strong> — re-run the build; it’s the <code>%post</code> downloads failing, not your <code>.def</code>.</li>
+<li><strong>“Failed to create user namespace”</strong> — you’re in a nested container that isn’t privileged (see Step 0).</li>
+</ul>
+<hr>
+</section>
+<section id="step-3-test-it-locally" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-test-it-locally">Step 3 — Test it locally</h2>
+<p>Before publishing, confirm the image actually runs your analysis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..                                   <span class="co"># back to _materials/</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec container/deseq2.sif R <span class="at">--version</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec container/deseq2.sif Rscript scripts/pipeline.R</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> outputs/tables/ outputs/figures/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>outputs/</code> fills with results, your image is good to ship.</p>
+<hr>
+</section>
+<section id="step-4-sharing-your-image-the-concept" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-sharing-your-image-the-concept">Step 4 — Sharing your image: the concept</h2>
+<p>Steps 0–3 are the part you can do today. What follows is a <strong>concept orientation</strong>, not a walkthrough — enough vocabulary to know what exists and what to search for when you need it.</p>
+<p>Once you have a working <code>.sif</code>, the question becomes: how does anyone <em>else</em> get it? Image files are large — often several gigabytes — so they don’t belong in a Git repository. They live somewhere else, and your repo points at them.</p>
+<p><strong>A registry</strong> is a server that stores and serves container images, the way CRAN serves R packages. You upload (“push”) an image once; collaborators, an HPC cluster, or an automated job download (“pull”) it by name. The common choices are the <strong>GitHub Container Registry (GHCR)</strong>, which sits next to your code, <strong>Docker Hub</strong>, <strong>Quay.io</strong>, and the Apptainer-native <strong>Sylabs Cloud Library</strong>. Pushing requires an account and an access token with permission to write packages; images are private by default, so there’s a visibility setting to flip if you want people to pull without logging in.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>You’d publish to <em>your</em> namespace, not ours
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The workshop image lives at <code>ghcr.io/cwml/cwml_arcs_4_deseq2</code> — you can pull from it, but you can’t push to it. Publishing means creating your own registry namespace under your GitHub account or your lab’s organization. That’s an account setup task, not a container task, which is why it isn’t a step you can follow along with here.</p>
+</div>
+</div>
+<p><strong>Version tags</strong> are the idea worth carrying away even if you never push anything. A registry name ends in a tag — <code>:1.0</code>, <code>:latest</code>. Give an image a real version and bump it whenever the <code>.def</code> changes, rather than overwriting <code>:latest</code> forever. The payoff: a methods section can cite the exact environment a result came from, and a colleague asking for that version gets precisely what you ran. Treat the image tag as a Git tag for your environment.</p>
+<p><strong>Two lighter-weight alternatives</strong> are worth knowing about. You can attach a <code>.sif</code> to a <strong>GitHub Release</strong> — no registry account, works well for a single occasional artifact. Or deposit the image in <strong>Zenodo</strong>, which mints a <strong>DOI</strong> you can cite in a paper and guarantees long-term archival. For published research, the Zenodo route is often the more appropriate one.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What to search for
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>apptainer push</code>, <code>apptainer pull</code>, <code>apptainer registry login</code> — the three commands involved</li>
+<li><strong>ORAS</strong> — the protocol Apptainer uses to store <code>.sif</code> files in OCI registries; you’ll see <code>oras://</code> prefixes in registry addresses</li>
+<li><strong>GHCR authentication</strong>, <strong>personal access token</strong>, <code>write:packages</code> scope, <strong>package visibility</strong> — the GitHub account-side setup</li>
+<li><strong>Sylabs Cloud Library</strong> — the registry built specifically for Apptainer/Singularity</li>
+<li><strong>Zenodo DOI software archiving</strong> — for citable, permanent deposits</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-5-keeping-the-image-in-sync-the-concept" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-keeping-the-image-in-sync-the-concept">Step 5 — Keeping the image in sync: the concept</h2>
+<p>Here’s the failure mode that eventually bites everyone: you edit the <code>.def</code>, commit it, and forget to rebuild. Now the recipe in your repo and the published image describe different environments — and there’s nothing to warn you. The image people are actually using no longer matches the definition people are actually reading. That’s a reproducibility bug that looks like nothing at all.</p>
+<p><strong>The low-tech answer is discipline</strong>, and it’s genuinely sufficient for most projects: whenever you change the <code>.def</code>, rebuild, bump the version tag, and note the current image version in your README. Because the change is a Git commit, you have a record of when the environment changed and why.</p>
+<p><strong>The automated answer is continuous integration (CI)</strong> — a service that watches your repository and runs jobs when something changes. Configured for this purpose, it rebuilds and republishes the image automatically whenever the <code>.def</code> file is modified, so the published image cannot drift from the definition. On GitHub this is <strong>GitHub Actions</strong>: a YAML file in <code>.github/workflows/</code> describing what to run and what should trigger it. Notably, CI runners are full virtual machines rather than nested containers, so the privileged-mode problem from Step 0 doesn’t arise there.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>This one is genuinely a later topic
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>CI is a substantial subject of its own — worth learning, but not a prerequisite for containerizing your research. Manual rebuilds with honest version tags get you the reproducibility benefit. Come back to automation when rebuilding by hand starts to feel like the thing you keep forgetting.</p>
+<p>This repository does have such a workflow, at <code>.github/workflows/build-image.yml</code>, if you want to see a real one.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What to search for
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>GitHub Actions workflow syntax</strong> — the structure of the YAML file</li>
+<li><strong>workflow triggers</strong>, <strong>path filters</strong> — running a job only when specific files change</li>
+<li><code>setup-apptainer</code> <strong>GitHub Action</strong> — installs Apptainer on a runner</li>
+<li><code>GITHUB_TOKEN</code>, <strong>workflow permissions</strong> — how a job authenticates to push a package without a personal token</li>
+<li><strong>continuous integration</strong> generally — the concept is not container-specific</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-6-adapt-the-pattern-to-your-own-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-adapt-the-pattern-to-your-own-analysis">Step 6 — Adapt the pattern to your own analysis</h2>
+<p>This is the real goal. To containerize <em>your</em> work, repeat the same moves:</p>
+<ol type="1">
+<li><strong>List your dependencies.</strong> What language/version, and which packages? For R, skim your <code>library()</code> / <code>pacman::p_load()</code> calls. Split them into CRAN vs.&nbsp;Bioconductor (or pip vs.&nbsp;conda for Python).</li>
+<li><strong>Pick a base image.</strong> Match the heavy lifting to your stack: a Bioconductor image for Bioc work, <code>rocker/r-ver:4.4.1</code> for plain R, <code>python:3.12-slim</code> for Python. Pin the tag.</li>
+<li><strong>Write the <code>.def</code>.</strong> Copy <code>deseq2.def</code> and edit the <code>%post</code> installs. Keep the <code>%runscript</code> pointing at your entry script and the <code>%test</code> checking your key package loads.</li>
+<li><strong>Build and test</strong> (Steps 2–3) until your pipeline runs inside the image.</li>
+<li><strong>Share it when you need to</strong> (Steps 4–5). A local <code>.sif</code> plus a committed <code>.def</code> is already reproducible for you and anyone who can rebuild. Reach for a registry when collaborators, a cluster, or a publication need the exact image.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Keep the <code>.def</code>, your pipeline script, and a small example dataset together in the repo — exactly like <code>_materials/</code>. That folder <em>is</em> your reproducible project: someone can clone it, pull the image, and reproduce your results on any Linux host, including HPC.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<ul>
+<li>Building needs Linux — <strong>Codespaces</strong> to start, <strong>Lima</strong>/<strong>WSL2</strong> for a persistent local setup.</li>
+<li>The <code>.def</code> file is a readable recipe; each section has one job.</li>
+<li><code>apptainer build</code> turns the recipe into a single <code>.sif</code> image (slow, once).</li>
+<li>Images are too large for Git — a <strong>registry</strong>, a <strong>GitHub Release</strong>, or a <strong>Zenodo deposit</strong> is how one gets shared. A real <strong>version tag</strong> is what makes it citable.</li>
+<li>A published image can silently <strong>drift</strong> from its definition. Rebuild and bump the version whenever the <code>.def</code> changes; automate it with <strong>CI</strong> later.</li>
+<li>The same pattern containerizes <em>any</em> analysis — which is the whole point of the ARCS series.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>ARCS Workshop Series</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

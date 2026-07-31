@@ -328,17 +328,16 @@ You'll use the **remote-first / clone** workflow when you collaborate on someone
 ::: callout-note
 ## Can You...?
 
-- [x] Find the Source Control tab in Positron and read the U / M / A status indicators?
-- [x] Explain the modify → stage → commit workflow in your own words?
-- [x] Make a commit using the Positron Source Control panel?
-- [x] Explain why large data files shouldn't be stored in git, and create a `.gitignore` to exclude them?
-- [x] Publish a local repository to GitHub using GitHub Desktop?
-- [x] Find your files and commit history on GitHub.com?
-- [x] Explain the difference between a local-first and a remote-first (clone) workflow?
+- ✓ Find the Source Control tab in Positron and read the U / M / A status indicators?
+- ✓ Explain the modify → stage → commit workflow in your own words?
+- ✓ Make a commit using the Positron Source Control panel?
+- ✓ Explain why large data files shouldn't be stored in git, and create a `.gitignore` to exclude them?
+- ✓ Publish a local repository to GitHub using GitHub Desktop?
+- ✓ Find your files and commit history on GitHub.com?
+- ✓ Explain the difference between a local-first and a remote-first (clone) workflow?
 :::
 
----
----
+------------------------------------------------------------------------
 
 # Appendices
 
@@ -397,8 +396,8 @@ Forking creates an exact copy of the entire project history — all commits, bra
 
 Good branch names are descriptive, verb-focused, and lowercase with hyphens:
 
-- [x] `add-ggplot-visualization`
-- [x] `fix-data-loading`
+- ✓ `add-ggplot-visualization`
+- ✓ `fix-data-loading`
 - ✗ `new-feature`
 - ✗ `MyBranch`
 :::
@@ -540,9 +539,16 @@ participants need.
 
 #### After Merging
 
-**For the Project Owner:** - The contribution is now part of the main project - The contributor's branch can be safely deleted
+**For the Project Owner:**
 
-**For the Contributor:** - Switch back to `main` and pull the latest changes - Delete your feature branch — it's no longer needed - Your contribution is now part of the official project history!
+- The contribution is now part of the main project
+- The contributor's branch can be safely deleted
+
+**For the Contributor:**
+
+- Switch back to `main` and pull the latest changes
+- Delete your feature branch — it's no longer needed
+- Your contribution is now part of the official project history!
 
 ### Key Benefits of This Workflow
 

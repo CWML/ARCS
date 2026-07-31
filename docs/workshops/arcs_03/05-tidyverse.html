@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.21">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Tidyverse – Advancing Reproducibility with Computational Skills</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -67,15 +70,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-278cfcba7e0e0e33db68069b13002fc7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3c3cbabf557a9ee2b01242af36073d69.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -403,7 +405,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"install.packages(\"tidyverse\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"install.packages(c(\"tidyverse\", \"magrittr\", \"here\", \"readr\", \"janitor\"))","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(tidyverse)\nlibrary(magrittr)\nlibrary(here)\nlibrary(readr)\nlibrary(janitor)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(c(\"tidyverse\", \"magrittr\", \"here\", \"readr\", \"janitor\"))","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(here)\nhere()","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_metadata)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_metadata)","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_metadata)","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_metadata %>% count(genotype)","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names()","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics)","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)        ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    ))","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    ))","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition))","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond)","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = x1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_data)","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_data)","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_data)","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#library(tidyverse), library(dplyr)\nraw_data %>%\n  filter(if_any(everything(), is.na))","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names()","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2)","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0))\n  # drop_na() %>%  # alternative: drop all rows with at least one NA","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\"))","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id)","id":25,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr), library(tibble)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])","id":26,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-26","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr), library(tibble)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = x2) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -x1, -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1]) %>%\n  select(all_of(clean_meta_data$sample_id))","id":27,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-27","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"setequal(clean_meta_data$sample_id, colnames(clean_data))","id":28,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-28","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"install.packages(\"tidyverse\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"install.packages(c(\"tidyverse\", \"magrittr\", \"here\", \"readr\", \"janitor\"))","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(tidyverse)\nlibrary(magrittr)\nlibrary(here)\nlibrary(readr)\nlibrary(janitor)\nlibrary(rio)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(here)\nhere()","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_metadata)","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_metadata)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_metadata)","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_metadata %>% count(genotype)","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names()","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics)","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)        ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    ))","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    ))","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition))","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond)","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"view(raw_data)","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(raw_data)","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"str(raw_data)","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"#library(tidyverse), library(dplyr)\nraw_data %>%\n  filter(if_any(everything(), is.na))","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names()","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1)","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0))\n  # drop_na() %>%  # alternative: drop all rows with at least one NA","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\"))","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -gene_symbol, -gene_id)","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr), library(tibble)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])","id":25,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# library(janitor), library(tidyverse), library(dplyr), library(tibble)\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1]) %>%\n  select(all_of(clean_meta_data$sample_id))","id":26,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-26","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"setequal(clean_meta_data$sample_id, colnames(clean_data))","id":27,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-27","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1668,8 +1670,6 @@ globalThis.qwebrExecuteCode = async function (
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Advancing Reproducibility with Computational Skills</span>
     </a>
@@ -1681,7 +1681,7 @@ globalThis.qwebrExecuteCode = async function (
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -1702,7 +1702,7 @@ globalThis.qwebrExecuteCode = async function (
  <span class="dropdown-text">ARCS 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../workshops/arcs_04/07-deseq2.html">
+    <a class="dropdown-item" href="../../workshops/arcs_04/07-deseq2_pipeline.html">
  <span class="dropdown-text">ARCS 4</span></a>
   </li>  
     </ul>
@@ -1735,10 +1735,6 @@ globalThis.qwebrExecuteCode = async function (
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -2181,9 +2177,6 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>One at a time:</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Multiple at once:</p>
-<div id="qwebr-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
 <section id="importing-data-into-r-using-rio-and-here" class="level2">
@@ -2292,7 +2285,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="confirm-your-working-directory" class="level3">
 <h3 class="anchored" data-anchor-id="confirm-your-working-directory">Confirm Your Working Directory</h3>
 <p>Run this to make sure you are currently in the correct R project:</p>
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2313,7 +2306,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h3 class="anchored" data-anchor-id="import-the-data-files">Import the Data Files</h3>
 <p>Import the raw counts data</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(rio), library(here)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data_3.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Import the metadata</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(rio), library(here)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2473,13 +2466,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li><p><strong>If column names are clean (concise, no spaces, no blanks, no dots, no caps)</strong></p></li>
 </ul>
 <p>Physically look at the data you just imported:</p>
-<div id="qwebr-insertion-location-6"></div>
+<div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Use <code>head()</code> to see the first 6 rows, column names, and data types:</p>
-<div id="qwebr-insertion-location-7"></div>
+<div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Use <code>str()</code> to see the structure, data types, dimensions, and how data are organized:</p>
-<div id="qwebr-insertion-location-8"></div>
+<div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2492,7 +2485,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <p>We can find the unique values within a variable and their counts using <code>count()</code> — similar to the <code>unique()</code> and <code>table()</code> exercises from the Data Structures section:</p>
-<div id="qwebr-insertion-location-9"></div>
+<div id="qwebr-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
@@ -2528,13 +2521,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="step-1-fix-all-column-names" class="level4">
 <h4 class="anchored" data-anchor-id="step-1-fix-all-column-names">Step 1: Fix All Column Names</h4>
 <p><code>clean_names()</code> standardizes all column names to lowercase with underscores:</p>
-<div id="qwebr-insertion-location-10"></div>
+<div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="step-2-rename-columns" class="level4">
 <h4 class="anchored" data-anchor-id="step-2-rename-columns">Step 2: Rename Columns</h4>
-<p>Rename column <code>x1</code> to <code>sample_id</code> and <code>characteristics</code> to <code>condition</code>:</p>
-<div id="qwebr-insertion-location-11"></div>
+<p>Rename column <code>v1</code> to <code>sample_id</code> and <code>characteristics</code> to <code>condition</code>:</p>
+<div id="qwebr-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="step-3-recode-values-in-condition" class="level4">
@@ -2543,7 +2536,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>If the value includes <code>"homecage"</code> → change to <code>"normal"</code></li>
 <li>If the value includes <code>"sleep deprivation"</code> → change to <code>"sleep_deprived"</code></li>
 </ul>
-<div id="qwebr-insertion-location-12"></div>
+<div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2565,25 +2558,25 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>If the value includes <code>"WT"</code> → change to <code>"WT"</code></li>
 <li>If the value includes <code>"shank3"</code> → change to <code>"shank3"</code></li>
 </ul>
-<div id="qwebr-insertion-location-13"></div>
+<div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="step-5-create-geno_cond-column" class="level4">
 <h4 class="anchored" data-anchor-id="step-5-create-geno_cond-column">Step 5: Create <code>geno_cond</code> Column</h4>
 <p>Combine <code>genotype</code> and <code>condition</code> into a new variable:</p>
-<div id="qwebr-insertion-location-14"></div>
+<div id="qwebr-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="step-6-select-and-reorder-columns" class="level4">
 <h4 class="anchored" data-anchor-id="step-6-select-and-reorder-columns">Step 6: Select and Reorder Columns</h4>
 <p>Keep only the columns we need in the correct order:</p>
-<div id="qwebr-insertion-location-15"></div>
+<div id="qwebr-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="step-7-lowercase-sample_id" class="level4">
 <h4 class="anchored" data-anchor-id="step-7-lowercase-sample_id">Step 7: Lowercase <code>sample_id</code></h4>
 <p>Make <code>sample_id</code> values lowercase — this will be important for harmonizing with the raw counts data in the next section:</p>
-<div id="qwebr-insertion-location-16"></div>
+<div id="qwebr-insertion-location-15"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
@@ -2593,11 +2586,11 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h2 class="anchored" data-anchor-id="now-lets-move-on-to-the-raw_data-file">Now, let’s move on to the ‘raw_data’ file</h2>
 <section id="first-inspect-the-data-1" class="level3">
 <h3 class="anchored" data-anchor-id="first-inspect-the-data-1">First, Inspect the Data</h3>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-17"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-18"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-19"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="what-issues-did-you-find" class="level3">
@@ -2619,7 +2612,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <p>Use <code>filter()</code>, <code>if_any()</code>, and <code>everything()</code> with <code>is.na()</code> to search all rows and columns for missing values:</p>
-<div id="qwebr-insertion-location-20"></div>
+<div id="qwebr-insertion-location-19"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>The NA value identified here will be addressed in the cleaning steps below.</p>
 </div>
@@ -2630,19 +2623,19 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="clean_names" class="level4">
 <h4 class="anchored" data-anchor-id="clean_names"><code>clean_names()</code></h4>
 <p>Gives columns 1 and 2 auto-generated labels, replaces spaces in column names with underscores, and converts all uppercase letters to lowercase:</p>
-<div id="qwebr-insertion-location-21"></div>
+<div id="qwebr-insertion-location-20"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="rename" class="level4">
 <h4 class="anchored" data-anchor-id="rename"><code>rename()</code></h4>
-<p>Change the auto-generated name for column 2 (<code>x2</code>) to <code>gene_id</code>:</p>
-<div id="qwebr-insertion-location-22"></div>
+<p>Change the auto-generated name for column 2 (<code>v1</code>) to <code>gene_id</code>:</p>
+<div id="qwebr-insertion-location-21"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="mutate-handle-the-na-value" class="level4">
 <h4 class="anchored" data-anchor-id="mutate-handle-the-na-value"><code>mutate()</code> — Handle the NA Value</h4>
 <p>Replace the NA value under <code>gsm3119015</code> with <code>0</code>:</p>
-<div id="qwebr-insertion-location-23"></div>
+<div id="qwebr-insertion-location-22"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2661,13 +2654,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="mutate-create-a-combined-gene-id-column" class="level4">
 <h4 class="anchored" data-anchor-id="mutate-create-a-combined-gene-id-column"><code>mutate()</code> — Create a Combined Gene ID Column</h4>
 <p>Create a new variable that combines <code>gene_id</code> and <code>gene_symbol</code> separated by <code>|</code>. Notice that <code>paste()</code> from base R works seamlessly inside a Tidyverse pipeline:</p>
-<div id="qwebr-insertion-location-24"></div>
+<div id="qwebr-insertion-location-23"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="select" class="level4">
 <h4 class="anchored" data-anchor-id="select"><code>select()</code></h4>
-<p>Make <code>gene_id_symbol</code> the first column, keep everything else in the same order using <code>everything()</code>, and remove <code>x1</code>, <code>gene_symbol</code>, and <code>gene_id</code> using the <code>-</code> operator:</p>
-<div id="qwebr-insertion-location-25"></div>
+<p>Make <code>gene_id_symbol</code> the first column, keep everything else in the same order using <code>everything()</code>, and remove <code>v1</code>, <code>gene_symbol</code>, and <code>gene_id</code> using the <code>-</code> operator:</p>
+<div id="qwebr-insertion-location-24"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
@@ -2679,19 +2672,19 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="extra-1-set-row-ids" class="level3">
 <h3 class="anchored" data-anchor-id="extra-1-set-row-ids">Extra 1: Set Row IDs</h3>
 <p>Use <code>column_to_rownames()</code> from the <code>tibble</code> package to convert the first column from a data variable into row identifiers:</p>
-<div id="qwebr-insertion-location-26"></div>
+<div id="qwebr-insertion-location-25"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="extra-2-reorder-columns-to-match-metadata" class="level3">
 <h3 class="anchored" data-anchor-id="extra-2-reorder-columns-to-match-metadata">Extra 2: Reorder Columns to Match Metadata</h3>
 <p>Reorder the columns in <code>clean_data</code> to match the order of <code>sample_id</code> values in <code>clean_meta_data</code>:</p>
-<div id="qwebr-insertion-location-27"></div>
+<div id="qwebr-insertion-location-26"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="extra-3-verify-harmonization" class="level3">
 <h3 class="anchored" data-anchor-id="extra-3-verify-harmonization">Extra 3: Verify Harmonization</h3>
 <p>Run a quick check to confirm that the column names in <code>clean_data</code> and the <code>sample_id</code> values in <code>clean_meta_data</code> match exactly:</p>
-<div id="qwebr-insertion-location-28"></div>
+<div id="qwebr-insertion-location-27"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
@@ -2787,13 +2780,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
