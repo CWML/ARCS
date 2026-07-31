@@ -4,8 +4,9 @@ A four-part workshop series that teaches R programming and reproducible research
 practice together, from a first `<-` assignment to a containerized RNA-seq
 pipeline. Part of the ARCS initiative at the Yale Medical Library.
 
-The repository is a [Quarto](https://quarto.org) website. Sources live in
-`workshops/`; the rendered site is committed to `docs/` for GitHub Pages.
+The repository is a [Quarto](https://quarto.org) website, published at
+**<https://cwml.github.io/ARCS/>**. Sources live in `workshops/`; the rendered
+site is committed to `docs/` for GitHub Pages.
 
 ## The series
 
@@ -53,5 +54,32 @@ The leading underscore on `_materials/` is deliberate — Quarto skips it, so th
 pipeline and container files ship with the repo without publishing as pages.
 Part 4's student-facing pages also exist as `*_codespaces.md` twins in plain
 Markdown, which preview in VS Code without Quarto; the `.qmd` is canonical.
+
+## The website
+
+Every lesson linked above is also a page on <https://cwml.github.io/ARCS/>,
+served by GitHub Pages from `docs/` on `main`. There is no build workflow — the
+only GitHub Action here rebuilds the Part 4 container image. The site is
+rendered locally and its output committed, so `docs/` has to be regenerated and
+staged alongside any lesson edit:
+
+```bash
+quarto render     # builds the whole site into docs/
+git add -A        # -A matters: a render also deletes stale hashed assets
+```
+
+Two things let that render succeed on any machine:
+
+- **`_freeze/`** stores Part 4 Hour 1's executed output. That lesson runs a real
+  DESeq2 analysis at render time, so without the cache a rebuild would need the
+  full Bioconductor stack installed; with it, Quarto reuses the stored results
+  and figures.
+- **`engine: knitr`** is pinned on the webR lessons. They hold only `webr-r`
+  cells and no knitr chunks, so Quarto would otherwise fall back to a Jupyter
+  kernel and fail wherever one isn't installed.
+
+To actually re-run Part 4 Hour 1 instead of reusing the cache, restore the R
+environment first with `renv::restore()` — `freeze: auto` re-executes a document
+only when its own source changes.
 
 
