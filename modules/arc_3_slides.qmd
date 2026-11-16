@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 3: Data Structures"
+title: "Arc 3"
+subtitle: "Data Structures and Control Flow"
 format:
   revealjs:
     incremental: false

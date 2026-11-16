@@ -80,6 +80,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -185,8 +186,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#why-arcs" id="toc-why-arcs" class="nav-link active" data-scroll-target="#why-arcs">Why ARCS?</a></li>
   <li><a href="#what-is-arcs" id="toc-what-is-arcs" class="nav-link" data-scroll-target="#what-is-arcs">What Is ARCS?</a></li>
   <li><a href="#who-is-it-for" id="toc-who-is-it-for" class="nav-link" data-scroll-target="#who-is-it-for">Who Is It For?</a></li>
-  <li><a href="#how-to-use-this-site" id="toc-how-to-use-this-site" class="nav-link" data-scroll-target="#how-to-use-this-site">How to Use This Site</a></li>
-  <li><a href="#understanding-the-callout-boxes" id="toc-understanding-the-callout-boxes" class="nav-link" data-scroll-target="#understanding-the-callout-boxes">Understanding the Callout Boxes</a></li>
+  <li><a href="#new-to-this-site" id="toc-new-to-this-site" class="nav-link" data-scroll-target="#new-to-this-site">New to This Site?</a></li>
   <li><a href="#reusing-and-adapting-these-materials" id="toc-reusing-and-adapting-these-materials" class="nav-link" data-scroll-target="#reusing-and-adapting-these-materials">Reusing and Adapting These Materials</a></li>
   <li><a href="#the-arcs-team" id="toc-the-arcs-team" class="nav-link" data-scroll-target="#the-arcs-team">The ARCS Team</a></li>
   </ul>
@@ -217,103 +217,52 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="why-arcs" class="level2">
 <h2 class="anchored" data-anchor-id="why-arcs">Why ARCS?</h2>
-<p>Reproducibility is a core expectation of rigorous research — but the skills that make research reproducible are rarely taught in graduate programs or credentialed programming courses. Researchers learn to write code, but not necessarily to organize it, document it, version it, or hand it off to someone else (including their future selves) in a form that actually works.</p>
-<p>ARCS was built to fill that gap.</p>
-<p>We start not with code, but with a project — a folder structure, a README, a version-controlled environment. We introduce R within that context, so that reproducible habits are the foundation, not an afterthought. Every tool we teach, we teach in terms of what problem it solves for a researcher who wants their work to last.</p>
+<p>Many introductions to R or Python teach a tool: syntax, functions, how to make a plot. Advancing Reproducibility with Computational Skills (ARCS) teaches something adjacent but different: a research computing mindset grounded in practices that implement <a href="./glossary.html#reproducibility">reproducibility</a>. You will learn R here, but every choice we make about <em>how</em> we teach it is shaped by a second question running underneath the first: how is scientific data actually expected to be produced, managed, and shared today, and what does your code need to do to hold up under that expectation?</p>
+<p>That second question is what separates code that merely runs from code that is <strong>verifiable, repeatable, and accountable to the context it came from</strong>, taking into account what the data represents, how it should be handled, and what responsible, ethical practice requires of the person producing it. A script that works on your machine today, with no record of what version of R produced it or why a column was dropped, is internally functional. It does not meet emerging standards for scientific research.</p>
+<p>ARCS treats these as inseparable. Reproducibility is not a topic we add once you already know R. It is the lens through which the whole series is taught.</p>
 </section>
 <section id="what-is-arcs" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-arcs">What Is ARCS?</h2>
-<p>ARCS is a four-session workshop series introducing R-based reproducible research computing to researchers at any career stage and in any domain. No prior programming experience is required.</p>
+<p>ARCS is an eight-module series introducing R-based reproducible research computing to researchers at any career stage and in any domain. No prior programming experience is required.</p>
+<p>Each module is built around roughly one hour of core hands-on work, making the series flexible to teach or work through as:</p>
+<ul>
+<li>One full day</li>
+<li>Two half-day sessions</li>
+<li>Four two-hour blocks</li>
+<li>Eight individual sessions</li>
+</ul>
 <p>The series covers:</p>
 <ul>
-<li><strong>Session 1:</strong> Setting up a reproducible R project from scratch — folder structure, environment management with <code>renv</code>, version control, and the first R scripts</li>
-<li><strong>Session 2:</strong> Writing functions, loops, and conditionals; reading error messages; and producing dynamic documents with Quarto</li>
-<li><strong>Session 3:</strong> Transforming and cleaning research data with the tidyverse; committing analytical decisions to Git; saving outputs reproducibly</li>
-<li><strong>Session 4:</strong> Containerization and running pipelines across machines; using AI coding assistants critically and responsibly</li>
+<li><strong>Module 1:</strong> R fundamentals — objects, vectors, data types, and your first data frame</li>
+<li><strong>Module 2:</strong> Building your first reproducible project — folder structure, environment management with <code>renv</code>, loading real data, and writing a README</li>
+<li><strong>Module 3:</strong> Data structures, writing your own functions, loops, and conditionals, and reading error messages</li>
+<li><strong>Module 4:</strong> Producing dynamic, reproducible documents with Quarto</li>
+<li><strong>Module 5:</strong> Transforming and cleaning research data with the tidyverse</li>
+<li><strong>Module 6:</strong> Version control with Git and GitHub</li>
+<li><strong>Module 7:</strong> Advancing systems-level reproducibility — a DESeq2 analysis pipeline and containerization</li>
+<li><strong>Module 8:</strong> AI coding assistants, data packaging, and research ethics</li>
 </ul>
-<p>Each session builds directly on the last. By the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them.</p>
+<p>By the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them.</p>
 </section>
 <section id="who-is-it-for" class="level2">
 <h2 class="anchored" data-anchor-id="who-is-it-for">Who Is It For?</h2>
 <p>ARCS is designed for researchers — graduate students, postdocs, faculty, staff scientists — who work with data and want to make their computational work more organized, trustworthy, and reusable. It is not a statistics course and not a computer science course. It is a research computing practices course, taught through the lens of things researchers actually need to do.</p>
 <p>The series uses a genomics dataset throughout (RNA-seq data from a Shank3 mouse model), but the skills are domain-general. Instructors at other institutions are welcome to substitute a dataset appropriate to their audience.</p>
 </section>
-<section id="how-to-use-this-site" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-site">How to Use This Site</h2>
-<p>Each session page on this site contains everything you need to follow along:</p>
-<ul>
-<li><strong>Slides</strong> introduce concepts and provide the “why” before the “how”</li>
-<li><strong>Build</strong> sections are hands-on exercises you complete in Positron on your own machine</li>
-<li><strong>Code Tour</strong> sections walk through more complex code that you read, run, and modify — but do not write from scratch</li>
-<li><strong>Callout boxes</strong> provide just-in-time context, optional depth, and instructor guidance</li>
-</ul>
-<p>If you are attending a live workshop, the site is your reference — use it to catch up, check your work, or follow along if your local environment isn’t cooperating. If you are working through the materials on your own, the site is designed to be self-contained.</p>
-</section>
-<section id="understanding-the-callout-boxes" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-the-callout-boxes">Understanding the Callout Boxes</h2>
-<p>Throughout the session pages you will encounter four types of callout boxes. Here is what each one means:</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>📘 About This
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Provides just-in-time context at the moment you need it — explaining <em>why</em> a convention exists, what a concept means in practice, or how a tool connects to your research workflow. Read these when you encounter them; they are part of the instruction, not optional extras.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>💡 Learn More
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Optional depth for the curious. These boxes point toward topics beyond the scope of the current session — tools, techniques, or concepts worth knowing about but not required for the session objectives. Return to these on your own time.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>🔧 Instructor Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Guidance for instructors and helpers. These boxes contain pedagogical rationale, timing suggestions, common student difficulties, and facilitation notes. Students are welcome to read them, but they are written for the people running the session.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-important no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>⚠️ Watch Out
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Flags a common mistake, a point of frequent confusion, or a step where something often goes wrong. Pay attention here — these are things we have seen trip people up before.</p>
-</div>
-</div>
+<section id="new-to-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="new-to-this-site">New to This Site?</h2>
+<p>Before your first module, see <strong>Session 0: Before You Arrive</strong> for setup instructions, plus a short guide to how this site is organized — including what the different callout boxes mean and how Slides, Code Tour, and hands-on sections work throughout.</p>
 </section>
 <section id="reusing-and-adapting-these-materials" class="level2">
 <h2 class="anchored" data-anchor-id="reusing-and-adapting-these-materials">Reusing and Adapting These Materials</h2>
-<p>ARCS was developed at Yale University’s Cushing/Whitney Medical Library. The core curriculum is designed to be institution-agnostic: the tools, conventions, and pedagogical approach apply to any research computing context.</p>
+<p>ARCS was developed at Yale University’s Cushing/Whitney Medical Library. The core curriculum is designed to be institution-agnostic: the tools, conventions, and pedagogical approach are intended to apply broadly to introducing research computing practices.</p>
 <p>If you are an instructor at another institution and want to use or adapt these materials:</p>
 <ul>
 <li><strong>Fork the repository</strong> on GitHub and adapt freely — the materials are openly licensed</li>
 <li>Yale-specific content (contact information, institutional context, specific dataset provenance) is clearly marked and easy to replace</li>
 <li>The dataset used throughout the series is publicly available from GEO (accession GSE113754) and can be substituted with any tabular research dataset</li>
-<li>The callout box taxonomy, activity type structure (Slides / Build / Code Tour), and session learning objectives are designed to transfer directly</li>
+<li>The module structure, the callout box taxonomy, and the module learning objectives are designed to transfer directly, regardless of how you schedule the eight modules</li>
+<li>Schedule and Slides files contain some situational and institutional information that you would want to customize.</li>
 </ul>
 <p>If you do adapt and use these materials, we would love to hear about it — reach out to the ARCS team at the contact information below.</p>
 </section>

@@ -542,21 +542,21 @@
     "href": "index.html",
     "title": "Advancing Reproducibility with Computational Skills",
     "section": "",
-    "text": "Reproducibility is a core expectation of rigorous research — but the skills that make research reproducible are rarely taught in graduate programs or credentialed programming courses. Researchers learn to write code, but not necessarily to organize it, document it, version it, or hand it off to someone else (including their future selves) in a form that actually works.\nARCS was built to fill that gap.\nWe start not with code, but with a project — a folder structure, a README, a version-controlled environment. We introduce R within that context, so that reproducible habits are the foundation, not an afterthought. Every tool we teach, we teach in terms of what problem it solves for a researcher who wants their work to last."
+    "text": "Many introductions to R or Python teach a tool: syntax, functions, how to make a plot. Advancing Reproducibility with Computational Skills (ARCS) teaches something adjacent but different: a research computing mindset grounded in practices that implement reproducibility. You will learn R here, but every choice we make about how we teach it is shaped by a second question running underneath the first: how is scientific data actually expected to be produced, managed, and shared today, and what does your code need to do to hold up under that expectation?\nThat second question is what separates code that merely runs from code that is verifiable, repeatable, and accountable to the context it came from, taking into account what the data represents, how it should be handled, and what responsible, ethical practice requires of the person producing it. A script that works on your machine today, with no record of what version of R produced it or why a column was dropped, is internally functional. It does not meet emerging standards for scientific research.\nARCS treats these as inseparable. Reproducibility is not a topic we add once you already know R. It is the lens through which the whole series is taught."
   },
   {
     "objectID": "index.html#why-arcs",
     "href": "index.html#why-arcs",
     "title": "Advancing Reproducibility with Computational Skills",
     "section": "",
-    "text": "Reproducibility is a core expectation of rigorous research — but the skills that make research reproducible are rarely taught in graduate programs or credentialed programming courses. Researchers learn to write code, but not necessarily to organize it, document it, version it, or hand it off to someone else (including their future selves) in a form that actually works.\nARCS was built to fill that gap.\nWe start not with code, but with a project — a folder structure, a README, a version-controlled environment. We introduce R within that context, so that reproducible habits are the foundation, not an afterthought. Every tool we teach, we teach in terms of what problem it solves for a researcher who wants their work to last."
+    "text": "Many introductions to R or Python teach a tool: syntax, functions, how to make a plot. Advancing Reproducibility with Computational Skills (ARCS) teaches something adjacent but different: a research computing mindset grounded in practices that implement reproducibility. You will learn R here, but every choice we make about how we teach it is shaped by a second question running underneath the first: how is scientific data actually expected to be produced, managed, and shared today, and what does your code need to do to hold up under that expectation?\nThat second question is what separates code that merely runs from code that is verifiable, repeatable, and accountable to the context it came from, taking into account what the data represents, how it should be handled, and what responsible, ethical practice requires of the person producing it. A script that works on your machine today, with no record of what version of R produced it or why a column was dropped, is internally functional. It does not meet emerging standards for scientific research.\nARCS treats these as inseparable. Reproducibility is not a topic we add once you already know R. It is the lens through which the whole series is taught."
   },
   {
     "objectID": "index.html#what-is-arcs",
     "href": "index.html#what-is-arcs",
     "title": "Advancing Reproducibility with Computational Skills",
     "section": "What Is ARCS?",
-    "text": "What Is ARCS?\nARCS is a four-session workshop series introducing R-based reproducible research computing to researchers at any career stage and in any domain. No prior programming experience is required.\nThe series covers:\n\nSession 1: Setting up a reproducible R project from scratch — folder structure, environment management with renv, version control, and the first R scripts\nSession 2: Writing functions, loops, and conditionals; reading error messages; and producing dynamic documents with Quarto\nSession 3: Transforming and cleaning research data with the tidyverse; committing analytical decisions to Git; saving outputs reproducibly\nSession 4: Containerization and running pipelines across machines; using AI coding assistants critically and responsibly\n\nEach session builds directly on the last. By the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them."
+    "text": "What Is ARCS?\nARCS is an eight-module series introducing R-based reproducible research computing to researchers at any career stage and in any domain. No prior programming experience is required.\nEach module is built around roughly one hour of core hands-on work, making the series flexible to teach or work through as:\n\nOne full day\nTwo half-day sessions\nFour two-hour blocks\nEight individual sessions\n\nThe series covers:\n\nModule 1: R fundamentals — objects, vectors, data types, and your first data frame\nModule 2: Building your first reproducible project — folder structure, environment management with renv, loading real data, and writing a README\nModule 3: Data structures, writing your own functions, loops, and conditionals, and reading error messages\nModule 4: Producing dynamic, reproducible documents with Quarto\nModule 5: Transforming and cleaning research data with the tidyverse\nModule 6: Version control with Git and GitHub\nModule 7: Advancing systems-level reproducibility — a DESeq2 analysis pipeline and containerization\nModule 8: AI coding assistants, data packaging, and research ethics\n\nBy the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them."
   },
   {
     "objectID": "index.html#who-is-it-for",
@@ -584,7 +584,7 @@
     "href": "index.html#reusing-and-adapting-these-materials",
     "title": "Advancing Reproducibility with Computational Skills",
     "section": "Reusing and Adapting These Materials",
-    "text": "Reusing and Adapting These Materials\nARCS was developed at Yale University’s Cushing/Whitney Medical Library. The core curriculum is designed to be institution-agnostic: the tools, conventions, and pedagogical approach apply to any research computing context.\nIf you are an instructor at another institution and want to use or adapt these materials:\n\nFork the repository on GitHub and adapt freely — the materials are openly licensed\nYale-specific content (contact information, institutional context, specific dataset provenance) is clearly marked and easy to replace\nThe dataset used throughout the series is publicly available from GEO (accession GSE113754) and can be substituted with any tabular research dataset\nThe callout box taxonomy, activity type structure (Slides / Build / Code Tour), and session learning objectives are designed to transfer directly\n\nIf you do adapt and use these materials, we would love to hear about it — reach out to the ARCS team at the contact information below."
+    "text": "Reusing and Adapting These Materials\nARCS was developed at Yale University’s Cushing/Whitney Medical Library. The core curriculum is designed to be institution-agnostic: the tools, conventions, and pedagogical approach are intended to apply broadly to introducing research computing practices.\nIf you are an instructor at another institution and want to use or adapt these materials:\n\nFork the repository on GitHub and adapt freely — the materials are openly licensed\nYale-specific content (contact information, institutional context, specific dataset provenance) is clearly marked and easy to replace\nThe dataset used throughout the series is publicly available from GEO (accession GSE113754) and can be substituted with any tabular research dataset\nThe module structure, the callout box taxonomy, and the module learning objectives are designed to transfer directly, regardless of how you schedule the eight modules\nSchedule and Slides files contain some situational and institutional information that you would want to customize.\n\nIf you do adapt and use these materials, we would love to hear about it — reach out to the ARCS team at the contact information below."
   },
   {
     "objectID": "index.html#the-arcs-team",
@@ -2024,7 +2024,7 @@
     "href": "glossary.html",
     "title": "Glossary",
     "section": "",
-    "text": "Short definitions of terms used across ARCS, with links back to where each one is taught and out to fuller references.\n\nArgument\nA value passed into a function when it is called — the function’s input. → Arc 1 · Advanced R: Functions\n\n\nAssignment Operator\n&lt;-, used to store a value in an object. Read it as “gets” — x &lt;- 5 means “x gets 5.” → Arc 1\n\n\nData Frame\nA table-like object in R — rows and columns, similar to a spreadsheet. → Arc 1 · R for Data Science: Data Frames\n\n\nData Type\nThe kind of value an object holds — numeric, character, or logical. Determines what operations R will let you perform on it. → Arc 1 · R Language Definition\n\n\nFunction\nA reusable block of code that takes arguments (inputs) and returns a value (output). → Arc 1 · Advanced R: Functions\n\n\nObject\nA named value stored in R’s environment, created with the assignment operator &lt;-. → Arc 1\n\n\nR Project\nA folder that Positron/RStudio treats as a self-contained working directory, keeping file paths and settings local to that project rather than scattered across your computer. → Arc 2\n\n\nREADME\nA plain-text file describing what a project contains and how to use it, so a collaborator — or future you — doesn’t have to guess. → Arc 2 · Cornell README Template\n\n\nrenv\nAn R package that locks the exact version of every package a project uses, so the project runs identically on any machine, including yours a year from now. → Arc 2 · renv documentation\n\n\nReproducibility\nThe property of a project, script, or pipeline producing the same result every time it’s re-run — including after changes to upstream data, parameters, or package versions. → Arc 1: Code Tour · Arc 2 · The Turing Way: Definitions\n\n\nVector\nA collection of values of the same data type, created with c(). → Arc 1\n\n\nWorking Directory\nThe folder R treats as “home” for a session — where it looks for files by default, and where relative file paths are measured from. → Arc 1"
+    "text": "Short definitions of terms used across ARCS, with links back to where each one is taught and out to fuller references.\n\nArgument\nA value passed into a function when it is called — the function’s input. → Arc 1 · Advanced R: Functions\n\n\nAssignment Operator\n&lt;-, used to store a value in an object. Read it as “gets” — x &lt;- 5 means “x gets 5.” → Arc 1\n\n\nData Frame\nA table-like object in R — rows and columns, similar to a spreadsheet. → Arc 1 · R for Data Science: Data Frames\n\n\nData Type\nThe kind of value an object holds — numeric, character, or logical. Determines what operations R will let you perform on it. → Arc 1 · R Language Definition\n\n\nFunction\nA reusable block of code that takes arguments (inputs) and returns a value (output). → Arc 1 · Advanced R: Functions\n\n\nIDE\nIDE stands for “integrated development environment”, a kind of software application that combines a variety of developer tools together into one interface, as opposed to many narrower standalone applications. Positron, R Studio, and VS Code are examples of IDEs. → Arc 0 · GitHub: What is an IDE?\n\n\nObject\nA named value stored in R’s environment, created with the assignment operator &lt;-. → Arc 1\n\n\nR Project\nA folder that Positron/RStudio treats as a self-contained working directory, keeping file paths and settings local to that project rather than scattered across your computer. → Arc 2\n\n\nREADME\nA plain-text file describing what a project contains and how to use it, so a collaborator — or future you — doesn’t have to guess. → Arc 2 · Cornell README Template\n\n\nrenv\nAn R package that locks the exact version of every package a project uses, so the project runs identically on any machine, including yours a year from now. → Arc 2 · renv documentation\n\n\nReproducibility\nThe property of a project, script, or pipeline producing the same result every time it’s re-run — including after changes to upstream data, parameters, or package versions. → Arc 1: Code Tour · Arc 2 · The Turing Way: Definitions\n\n\nVector\nA collection of values of the same data type, created with c(). → Arc 1\n\n\nWorking Directory\nThe folder R treats as “home” for a session — where it looks for files by default, and where relative file paths are measured from. → Arc 1"
   },
   {
     "objectID": "arcs/arc_2_slides.html#true-story-data-management-gone-awry-1-of-2",
@@ -2183,23 +2183,23 @@
   {
     "objectID": "modules/arc_0.html",
     "href": "modules/arc_0.html",
-    "title": "Session 0: Before You Arrive",
+    "title": "Arc 0",
     "section": "",
-    "text": "If you can do only one thing before Session 1, do this: install R and Positron on your computer.\nEverything else we can help you with at the start of class.\nIf you can do more, great — the full setup instructions are below. The more you complete before arriving, the more you will get out of Session 1.\n\n\n\n\n\n\nImportant⚠️ Work or School Laptop?\n\n\n\nIf you are on a work or school-managed laptop, you may need administrator rights to install software. Test this before class by attempting to install R (Step 1 below).\nIf you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. If that is not possible in time, you can still follow along using this website during Session 1 — and we will help you find a longer-term solution between sessions.\nDo not wait until class starts to discover this. It is the single most common setup problem we encounter."
+    "text": "Before Session 1, complete the setup steps below, in order: install R, create a GitHub account, install GitHub Desktop, clone the course data, and install Positron.\nIf you get stuck on any step, reach out to us using the contact information at the bottom of this page, or bring your questions to class.\n\n\n\n\n\n\nImportant Work or School Laptop?\n\n\n\nIf you are on a work or school-managed laptop, you may need administrator rights to install software. Test this before class by attempting to install R (Step 1 below).\nIf you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. To get the most out of ARCS, do not wait until class starts to discover this."
   },
   {
     "objectID": "modules/arc_0.html#the-short-version",
     "href": "modules/arc_0.html#the-short-version",
-    "title": "Session 0: Before You Arrive",
+    "title": "Arc 0",
     "section": "",
-    "text": "If you can do only one thing before Session 1, do this: install R and Positron on your computer.\nEverything else we can help you with at the start of class.\nIf you can do more, great — the full setup instructions are below. The more you complete before arriving, the more you will get out of Session 1.\n\n\n\n\n\n\nImportant⚠️ Work or School Laptop?\n\n\n\nIf you are on a work or school-managed laptop, you may need administrator rights to install software. Test this before class by attempting to install R (Step 1 below).\nIf you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. If that is not possible in time, you can still follow along using this website during Session 1 — and we will help you find a longer-term solution between sessions.\nDo not wait until class starts to discover this. It is the single most common setup problem we encounter."
+    "text": "Before Session 1, complete the setup steps below, in order: install R, create a GitHub account, install GitHub Desktop, clone the course data, and install Positron.\nIf you get stuck on any step, reach out to us using the contact information at the bottom of this page, or bring your questions to class.\n\n\n\n\n\n\nImportant Work or School Laptop?\n\n\n\nIf you are on a work or school-managed laptop, you may need administrator rights to install software. Test this before class by attempting to install R (Step 1 below).\nIf you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. To get the most out of ARCS, do not wait until class starts to discover this."
   },
   {
     "objectID": "modules/arc_0.html#setup-steps",
     "href": "modules/arc_0.html#setup-steps",
-    "title": "Session 0: Before You Arrive",
+    "title": "Arc 0",
     "section": "Setup Steps",
-    "text": "Setup Steps\nComplete as many of these as you can before Session 1, in order. Stop wherever you get stuck and bring your questions to class — or reach out to us in advance using the contact information at the bottom of this page.\n\n\nStep 1: Install R\nR is the statistical computing language we will use throughout the series.\nWindows and Mac:\n\nGo to cran.r-project.org\nClick your operating system\nDownload the latest installer\nRun the installer using all default options\n\nWindows only — also install Rtools:\nAfter installing R, go to the Rtools page on CRAN and download the version that matches your R installation (e.g., Rtools44 for R 4.4). Run the installer using default options.\nMac only — also install Command Line Tools:\nOpen the Terminal application (search for “Terminal” in Spotlight) and run:\nxcode-select --install\nA dialog box will appear — click Install and follow the prompts.\n\n\n\n\n\n\nNote\n\n\n\n📘 About This: Why Both R and Rtools/Command Line Tools?\nR is the language. Rtools (Windows) and Command Line Tools (Mac) are compilers that allow R to build certain packages from source code — including several packages we use in this series. You will not interact with them directly, but R needs them to be present.\n\n\nStep 2: Create a GitHub Account\nGitHub is where we will store and share our work. You will need a free account.\nGo to github.com and click Sign up\nEnter your email address, create a password, and choose a username\nVerify your account using the code GitHub sends to your email\nYou can skip the personalization questions at the end\nKeep a note of your username and password — you will need them in Step 3. Step 3: Install GitHub Desktop\nGitHub Desktop is a visual application that makes it easier to work with Git and GitHub without using the command line.\nWindows:\nGo to desktop.github.com\nClick Download for Windows (64-bit)\nRun the downloaded .exe file — it will install and open automatically\nSign in with the GitHub account you created in Step 2\nMac:\nGo to desktop.github.com\nClick Download for macOS\nOpen the downloaded .zip file — this extracts the GitHub Desktop app\nDrag GitHub Desktop into your Applications folder\nOpen it from Applications and sign in with your GitHub account\nStep 4: Get the Course Data\nWe will use the same dataset throughout the series. Clone the course data repository using GitHub Desktop:\nMake sure GitHub Desktop is open and you are signed in\nVisit this URL in your browser: https://github.com/CWML/arcs-data\nClick the green Code button\nSelect Open with GitHub Desktop\nWhen GitHub Desktop opens, choose a location you can find easily (Desktop or Documents) and click Clone\nThis downloads a folder called arcs-data containing the two data files we will use. You do not need to do anything else with this folder yet — we will use it in Session 1.\n\n\n\n\n\n\nNote\n\n\n\n📘 About This: Why Clone Instead of Just Downloading?\nWe clone the data repository rather than downloading a zip file so that you practice the same workflow you will use throughout the series. Cloning also makes it easy to get any updates we push before future sessions.\n\n\nStep 5: Install Positron\nPositron is the IDE (integrated development environment) we will use to write and run R code. It was built by Posit specifically for data science work.\nGo to the Positron releases page on GitHub\nFind the most recent stable release\nUnder Assets, download the installer for your operating system:\n    Windows: .exe file\n    Mac: .dmg file\nRun the installer\nOpen Positron — it should automatically detect your R installation and show R in the bottom right corner\n\n\n\n\n\n\nImportant\n\n\n\n⚠️ Watch Out\nIf Positron does not detect R automatically, go to Settings → R and point it to your R installation manually. On Mac this is usually /usr/local/bin/R or /opt/homebrew/bin/R. On Windows it is usually C:Files-4.x.x.exe.\n\n\nStep 6: Open the Course Repository in Positron\nOnce Positron is installed:\nOpen Positron\nGo to File → Open Folder\nNavigate to the arcs-data folder you cloned in Step 4\nClick Open\nPositron will restart in project mode. You should see the folder contents in the file explorer panel on the left."
+    "text": "Setup Steps\n\n\nStep 1: Install R\nR is the computing language we will use throughout the series.\nWindows and Mac:\n\nGo to cran.r-project.org\nClick your operating system\nDownload the latest installer\nRun the installer using all default options\n\nWindows only — also install Rtools:\nAfter installing R, go to the Rtools page on CRAN and download the version that matches your R installation (e.g., Rtools44 for R 4.4). Run the installer using default options.\nMac only — also install Command Line Tools:\nOpen the Terminal application (search for “Terminal” in Spotlight) and run:\nxcode-select --install\nA dialog box will appear — click Install and follow the prompts.\n\n\n\n\n\n\nNote About This — Why Both R and Rtools/Command Line Tools?\n\n\n\nR is the language. Rtools (Windows) and Command Line Tools (Mac) are compilers that allow R to build certain packages from source code — including several packages we use in this series. You will not interact with them directly, but R needs them to be present.\n\n\n\n\nStep 2: Create a GitHub Account\nGitHub is where we will store and share our work. You will need a free account.\n\nGo to github.com and click Sign up\nEnter your email address, create a password, and choose a username\nVerify your account using the code GitHub sends to your email\nYou can skip the personalization questions at the end\n\nKeep a note of your username and password — you will need them in Step 3.\n\n\nStep 3: Install GitHub Desktop\nGitHub Desktop is a visual application that makes it easier to work with Git and GitHub without using the command line.\nWindows:\n\nGo to desktop.github.com\nClick Download for Windows (64-bit)\nRun the downloaded .exe file — it will install and open automatically\nSign in with the GitHub account you created in Step 2\n\nMac:\n\nGo to desktop.github.com\nClick Download for macOS\nOpen the downloaded .zip file — this extracts the GitHub Desktop app\nDrag GitHub Desktop into your Applications folder\nOpen it from Applications and sign in with your GitHub account\n\n\n\nStep 4: Get the Course Data\nWe will use the same dataset throughout the series. Clone the course data repository using GitHub Desktop:\n\nMake sure GitHub Desktop is open and you are signed in\nVisit this URL in your browser: https://github.com/CWML/arcs-data #TODO update URL\nClick the green Code button\nSelect Open with GitHub Desktop\nWhen GitHub Desktop opens, choose a location you can find easily (Desktop or Documents) and click Clone\n\nThis downloads a folder called arcs-data #TODO updatecontaining the two data files we will use. You do not need to do anything else with this folder yet — we will use it in Session 1.\n\n\n\n\n\n\nNote About This — Why Clone Instead of Just Downloading?\n\n\n\nWe clone the data repository rather than downloading a zip file so that you practice the same workflow you will use throughout the series. Cloning also makes it easy to get any updates we push before future sessions.\n\n\n\n\nStep 5: Install Positron\nPositron is the IDE (integrated development environment) we will use to write and run R code. It was built by Posit specifically for data science work.\n\nGo to the Positron releases page on GitHub\nFind the most recent stable release\nUnder Assets, download the installer for your operating system:\n\nWindows: .exe file\nMac: .dmg file\n\nRun the installer\nOpen Positron — it should automatically detect your R installation and show R in the bottom right corner\n\n\n\n\n\n\n\nImportant Watch Out\n\n\n\nIf Positron does not detect R automatically, go to Settings → R and point it to your R installation manually. On Mac this is usually /usr/local/bin/R or /opt/homebrew/bin/R. On Windows it is usually C:\\Program Files\\R\\R-4.x.x\\bin\\R.exe.\n\n\n\n\nStep 6: Open the Course Repository in Positron\nOnce Positron is installed:\n\nOpen Positron\nGo to File → Open Folder\nNavigate to the arcs-data folder you cloned in Step 4\nClick Open\n\nPositron will restart in project mode. You should see the folder contents in the file explorer panel on the left."
   },
   {
     "objectID": "modules/arc_0.html#what-to-expect-at-the-start-of-session-1",
@@ -2211,9 +2211,9 @@
   {
     "objectID": "modules/arc_0.html#need-help-before-class",
     "href": "modules/arc_0.html#need-help-before-class",
-    "title": "Session 0: Before You Arrive",
+    "title": "Arc 0",
     "section": "Need Help Before Class?",
-    "text": "Need Help Before Class?\nIf you hit a wall during setup, reach out to us before the workshop:\nLevi Dolan: levi.dolan@yale.edu\nMax Wegener: maximilian.wegener@yale.edu\nSofia Fertuzinhos: sofia.fertuzinhos@yale.edu\nJustin DeMayo: justin.demayo@yale.edu\nYou can also come at 9:00 AM on the day of Session 1 — we will be there early and happy to help."
+    "text": "Need Help Before Class?\nIf you hit a wall during setup, reach out to us before the workshop:\n\nLevi Dolan: levi.dolan@yale.edu\nMax Wegener: maximilian.wegener@yale.edu\nSofia Fertuzinhos: sofia.fertuzinhos@yale.edu\nJustin DeMayo: justin.demayo@yale.edu\n\nYou can also come at 9:00 AM on the day of Session 1 — we will be there early and happy to help."
   },
   {
     "objectID": "modules/arc_1.html",
@@ -2328,9 +2328,9 @@
   {
     "objectID": "modules/arc_2.html",
     "href": "modules/arc_2.html",
-    "title": "Arc 2: Your First Reproducible Project",
+    "title": "Arc 2",
     "section": "",
-    "text": "By the end of this arc, you will have created a reproducible project and loaded a real dataset that we’ll use for the rest of the series.\n🔵 Slides:\nOpen slides fullscreen",
+    "text": "By the end of this arc, you will have written your first lines of R code, created objects and vectors, and built your first data frame.",
     "crumbs": [
       "Arc 2: Your First Reproducible Project"
     ]
@@ -2380,7 +2380,7 @@
     "href": "modules/arc_2.html#load-the-dataset",
     "title": "Arc 2: Your First Reproducible Project",
     "section": "Load the Dataset",
-    "text": "Load the Dataset\nWe’ll use this dataset — real RNA-seq data from a published Shank3 mouse study — for the rest of the series.\n\n# ---- Download once, save locally ----\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nmetadata  &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nrawcounts &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n# ---- For browser-based students only: uncomment the lines below ----\n# metadata  &lt;- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\n# rawcounts &lt;- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")\n\nInspect what you loaded:\n\nhead(metadata)\nstr(metadata)\ndim(rawcounts)\n\n\n\n\n\n\n\nNote⚪ About This — Why download-and-save here, but read-from-URL in the Code Tour below?\n\n\n\n\n\nThis isn’t an inconsistency — it’s intentional. In a real project, raw data should live inside your project folder (raw_data/) so your analysis doesn’t silently depend on the internet being available every time you run it. If the GitHub repo moves, is renamed, or GitHub has an outage, a project with a local copy still runs. A project that re-fetches a URL every time does not.\nBrowser-based tools like webR can’t save a persistent local copy the way a laptop can, so reading from the URL each time is the necessary workaround for that environment — not the ideal pattern. You’re seeing a real technical tradeoff, not a mistake.\n\n\n\n🟠 Code Tour — For browser-based students: you can still load and inspect the real dataset directly from its source, right here:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Load the Dataset\nWe’ll use this dataset — real RNA-seq data from a published Shank3 mouse study — for the rest of the series.\n\n# ---- Download once, save locally ----\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nmetadata  &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nrawcounts &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n# ---- For browser-based students only: uncomment the lines below ----\n# metadata  &lt;- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\n# rawcounts &lt;- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")\n\nInspect what you loaded:\n\nhead(metadata)\nstr(metadata)\ndim(rawcounts)\n\n\n\n\n\n\n\nNote⚪ About This — Why download-and-save here, but read-from-URL in the Code Tour below?\n\n\n\n\n\nThis isn’t an inconsistency — it’s intentional. In a real project, raw data should live inside your project folder (raw_data/) so your analysis doesn’t silently depend on the internet being available every time you run it. If the GitHub repo moves, is renamed, or GitHub has an outage, a project with a local copy still runs. A project that re-fetches a URL every time does not.\nBrowser-based tools like webR can’t save a persistent local copy the way a laptop can, so reading from the URL each time is the necessary workaround for that environment — not the ideal pattern. You’re seeing a real technical tradeoff, not a mistake.\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — No Local R? Read This First\n\n\n\n\n\n…\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Arc 2: Your First Reproducible Project"
     ]
@@ -2425,9 +2425,9 @@
   {
     "objectID": "modules/arc_3.html",
     "href": "modules/arc_3.html",
-    "title": "Arc 3: Data Structures",
+    "title": "Arc 3",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n#| eval: false\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nraw_metadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nraw_data     &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Arc 3: Data Structures"
     ]
@@ -2435,9 +2435,9 @@
   {
     "objectID": "modules/arc_3.html#slides",
     "href": "modules/arc_3.html#slides",
-    "title": "Arc 3: Data Structures",
+    "title": "Arc 3",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n#| eval: false\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nraw_metadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nraw_data     &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Arc 3: Data Structures"
     ]
@@ -2515,9 +2515,9 @@
   {
     "objectID": "modules/arc_3.html#what-we-did-and-why",
     "href": "modules/arc_3.html#what-we-did-and-why",
-    "title": "Arc 3: Data Structures",
+    "title": "Arc 3",
     "section": "What We Did, and Why",
-    "text": "What We Did, and Why\nWhat we built: lists, base R subsetting, a custom function, a for loop, an if/else conditional, and a deliberate error.\nWhy it matters: these are the building blocks that let a script adapt to real data instead of breaking the first time something doesn’t match exactly what you expected.",
+    "text": "What We Did, and Why\nWhat we built: lists, base R subsetting, a function that operates on a single value and a function that operates on a whole data frame (plus your own variation of each), a for loop (and its vectorized alternative), an if/else conditional (extended with your own branch), a deliberate error, and a small combined QC function.\nWhy it matters: these are the building blocks that let a script adapt to real data instead of breaking the first time something doesn’t match exactly what you expected — and, just as importantly, that let an analysis run the same way twice, which is the whole point of reproducibility at the level of a single script.",
     "crumbs": [
       "Arc 3: Data Structures"
     ]
@@ -2525,37 +2525,37 @@
   {
     "objectID": "modules/arc_3_slides.html#from-objects-to-structures",
     "href": "modules/arc_3_slides.html#from-objects-to-structures",
-    "title": "ARCS Series",
+    "title": "Arc 3",
     "section": "From Objects to Structures",
     "text": "From Objects to Structures\n\nSo far, you’ve created objects and seen vectors and data frames exist.\nToday: a second data structure (lists), enough subsetting to read others’ code, and the tools to make your code make decisions."
   },
   {
     "objectID": "modules/arc_3_slides.html#vectors-matrices-data-frames-and-lists",
     "href": "modules/arc_3_slides.html#vectors-matrices-data-frames-and-lists",
-    "title": "ARCS Series",
+    "title": "Arc 3",
     "section": "Vectors, Matrices, Data Frames — and Lists",
     "text": "Vectors, Matrices, Data Frames — and Lists\n\nVector — one type of value, in a line.\nMatrix — one type of value, in rows and columns.\nData frame — mixed types allowed, organized in rows and columns; this is what most of your data will look like.\nList — the most flexible structure: can hold anything, including other lists, vectors, or data frames, all at once."
   },
   {
     "objectID": "modules/arc_3_slides.html#why-functions-loops-and-conditionals",
     "href": "modules/arc_3_slides.html#why-functions-loops-and-conditionals",
-    "title": "ARCS Series",
+    "title": "Arc 3",
     "section": "Why Functions, Loops, and Conditionals?",
     "text": "Why Functions, Loops, and Conditionals?\n\nA script that only works once, on one exact dataset, isn’t reproducible — it’s lucky.\nFunctions let you package a calculation so you don’t repeat it.\nLoops let you repeat an action without copy-pasting.\nConditionals let your code respond differently depending on what it finds.\nTogether, these are what let a script survive contact with messier, real data.\n\n\nLet’s Build"
   },
   {
     "objectID": "modules/arc_3_slides.html#lets-build",
     "href": "modules/arc_3_slides.html#lets-build",
-    "title": "ARCS Series",
+    "title": "Arc 3",
     "section": "Let’s Build",
     "text": "Let’s Build"
   },
   {
     "objectID": "modules/arc_6.html",
     "href": "modules/arc_6.html",
-    "title": "Arc 6: Git & GitHub",
+    "title": "Arc 6",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\nWe’ll take a project that lives only on your computer and give it a full version history and an online home, using three tools, each with one clear job:\n\n\n\nTool\nIts job\n\n\n\n\nPositron\nBuild your local commit history\n\n\nGitHub Desktop\nThe bridge — publish and sync, no SSH setup\n\n\nGitHub.com\nThe remote — host and view your project online\n\n\n\nEverything through the GitHub Desktop step happens locally on your own computer. After that, we connect the local project to GitHub. A collaboration workflow (fork & pull requests), the command-line equivalent of everything we do visually, and institutional hosting options are all covered later, in Extending Further.",
     "crumbs": [
       "Arc 6: Git & GitHub"
     ]
@@ -2563,9 +2563,9 @@
   {
     "objectID": "modules/arc_6.html#slides",
     "href": "modules/arc_6.html#slides",
-    "title": "Arc 6: Git & GitHub",
+    "title": "Arc 6",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\nWe’ll take a project that lives only on your computer and give it a full version history and an online home, using three tools, each with one clear job:\n\n\n\nTool\nIts job\n\n\n\n\nPositron\nBuild your local commit history\n\n\nGitHub Desktop\nThe bridge — publish and sync, no SSH setup\n\n\nGitHub.com\nThe remote — host and view your project online\n\n\n\nEverything through the GitHub Desktop step happens locally on your own computer. After that, we connect the local project to GitHub. A collaboration workflow (fork & pull requests), the command-line equivalent of everything we do visually, and institutional hosting options are all covered later, in Extending Further.",
     "crumbs": [
       "Arc 6: Git & GitHub"
     ]
@@ -2573,7 +2573,7 @@
   {
     "objectID": "modules/arc_6.html#build-init-commit-push-github-desktop",
     "href": "modules/arc_6.html#build-init-commit-push-github-desktop",
-    "title": "Arc 6: Git & GitHub",
+    "title": "Arc 6",
     "section": "Build: Init, Commit, Push (GitHub Desktop)",
     "text": "Build: Init, Commit, Push (GitHub Desktop)\n\n\n\n\n\n\n\nImportant🔴 About This — Never Overwrite Raw Data\n\n\n\n\n\nOnce something is committed as raw_data/, treat it as permanent. If a cleaning step is wrong, fix it downstream in processed_data/ — don’t edit the raw file itself.",
     "crumbs": [
@@ -2583,7 +2583,7 @@
   {
     "objectID": "modules/arc_6.html#build-commit-discipline-practiced-incrementally",
     "href": "modules/arc_6.html#build-commit-discipline-practiced-incrementally",
-    "title": "Arc 6: Git & GitHub",
+    "title": "Arc 6",
     "section": "Build: Commit Discipline, Practiced Incrementally",
     "text": "Build: Commit Discipline, Practiced Incrementally\n\nCommit after each meaningful step today — importing, cleaning, harmonizing — not just once at the very end.\nA good commit message answers: what changed, and why?",
     "crumbs": [
@@ -2593,7 +2593,7 @@
   {
     "objectID": "modules/arc_6.html#code-tour-pull-requests",
     "href": "modules/arc_6.html#code-tour-pull-requests",
-    "title": "Arc 6: Git & GitHub",
+    "title": "Arc 6",
     "section": "Code Tour: Pull Requests",
     "text": "Code Tour: Pull Requests\n\n\n\n\n\n\n\nTip🔍 Learn More — Pull Requests and Collaborative Review\n\n\n\n\n\nFull branch-and-PR workflows are covered in the Collaborative Workflows extension; here we’re just showing you what one looks like.\n\n\n\n\n\n\n\n\n\nTip🔍 Learn More — FAIR and CARE Principles\n\n\n\n\n\nFAIR — Findable, Accessible, Interoperable, Reusable — describes how research outputs should be structured so others (including future-you) can find and use them.\nCARE — Collective Benefit, Authority to Control, Responsibility, Ethics — centers who the data is about, particularly for Indigenous data governance, asking not just “can this be reused” but “should it be, and by whose permission.”\nWe’ll return to both of these directly in Arc 8.",
     "crumbs": [
@@ -2603,9 +2603,9 @@
   {
     "objectID": "modules/arc_6.html#what-we-did-and-why",
     "href": "modules/arc_6.html#what-we-did-and-why",
-    "title": "Arc 6: Git & GitHub",
+    "title": "Arc 6",
     "section": "What We Did, and Why",
-    "text": "What We Did, and Why\nWhat we built: a committed history of today’s work, with discipline around when to commit and what a commit message should say.\nWhy it matters: your commit history is becoming a lab notebook for your code — a record of what changed and why, that exists independent of your memory.",
+    "text": "What We Did, and Why\nWhat we built: initialized and confirmed a git repository, practiced the modify → stage → commit cycle twice (once reviewing a diff), extended .gitignore to keep data out of version control, and published the result to GitHub with GitHub Desktop — giving the project both a local history and an online home.\nWhy it matters: your commit history is becoming a lab notebook for your code — a record of what changed and why, that exists independent of your memory. You can now read the U/M/A status indicators, explain why large data files don’t belong in git, and tell local-first apart from remote-first — the foundation every collaboration workflow below builds on.",
     "crumbs": [
       "Arc 6: Git & GitHub"
     ]
@@ -2613,21 +2613,21 @@
   {
     "objectID": "modules/arc_6_slides.html#git-vs.-github",
     "href": "modules/arc_6_slides.html#git-vs.-github",
-    "title": "ARCS Series",
+    "title": "Arc 6",
     "section": "Git vs. GitHub",
     "text": "Git vs. GitHub\n\nGit — a command-line, distributed version control system. Created by Linus Torvalds in 2005. The industry standard.\nGitHub — a web/desktop platform built on Git, adding a graphical interface, cloud hosting, Codespaces, and collaboration tools.\nGit is the engine. GitHub is one (very common) place to park the car."
   },
   {
     "objectID": "modules/arc_6_slides.html#why-version-control-matters-for-research",
     "href": "modules/arc_6_slides.html#why-version-control-matters-for-research",
-    "title": "ARCS Series",
+    "title": "Arc 6",
     "section": "Why Version Control Matters for Research",
     "text": "Why Version Control Matters for Research\n\n“A system that records every change to your files, code, and documentation over time — creating a complete and auditable history of your research workflow.”\n\n\nReproducibility\nCollaboration\nAccountability\nA safety net\nTransparency"
   },
   {
     "objectID": "modules/arc_6_slides.html#lets-build",
     "href": "modules/arc_6_slides.html#lets-build",
-    "title": "ARCS Series",
+    "title": "Arc 6",
     "section": "Let’s Build",
     "text": "Let’s Build"
   },
@@ -2697,65 +2697,65 @@
   {
     "objectID": "modules/arc_8_slides.html#closing-the-loop",
     "href": "modules/arc_8_slides.html#closing-the-loop",
-    "title": "ARCS Series",
+    "title": "Arc 8",
     "section": "Closing the Loop",
     "text": "Closing the Loop\n\nEvery habit in this series has been building toward one idea: your work should be usable by someone who isn’t you.\nToday: AI-assisted code, packaging your project for deposit, and what reproducibility actually asks of you."
   },
   {
     "objectID": "modules/arc_8_slides.html#ai-can-write-code-who-checks-it",
     "href": "modules/arc_8_slides.html#ai-can-write-code-who-checks-it",
-    "title": "ARCS Series",
+    "title": "Arc 8",
     "section": "AI Can Write Code — Who Checks It?",
     "text": "AI Can Write Code — Who Checks It?\n\nAI-generated code can run without error and still be wrong — statistically, biologically, or just quietly.\nEverything you’ve learned (functions, error messages, Git history, renv.lock) is exactly the toolkit for verifying code you didn’t write yourself.\nThe habits don’t change. Only who typed the first draft does."
   },
   {
     "objectID": "modules/arc_8_slides.html#series-wrap-up",
     "href": "modules/arc_8_slides.html#series-wrap-up",
-    "title": "ARCS Series",
+    "title": "Arc 8",
     "section": "Series Wrap-Up",
     "text": "Series Wrap-Up\n\nThe repo is the reproducible artifact — whether you wrote every line of it or not.\nCode, environment, and data now travel together, with a record of how they got that way."
   },
   {
     "objectID": "modules/arc_7_slides.html#your-code-someone-elses-machine",
     "href": "modules/arc_7_slides.html#your-code-someone-elses-machine",
-    "title": "ARCS Series",
+    "title": "Arc 7",
     "section": "Your Code, Someone Else’s Machine",
     "text": "Your Code, Someone Else’s Machine\n\nA shared repo and a locked renv.lock still leave one thing unaddressed: the operating system underneath.\nContainers package the entire environment — OS included."
   },
   {
     "objectID": "modules/arc_7_slides.html#containers-vs.-virtual-machines",
     "href": "modules/arc_7_slides.html#containers-vs.-virtual-machines",
-    "title": "ARCS Series",
+    "title": "Arc 7",
     "section": "Containers vs. Virtual Machines",
     "text": "Containers vs. Virtual Machines\n\nA virtual machine simulates an entire computer, including its own OS kernel — heavy, slow to start.\nA container shares the host’s Linux kernel and packages only what sits above it — software, libraries, files.\nThat’s why a container starts in seconds, and why it needs Linux specifically: it isn’t simulating a kernel, it’s borrowing the one already running."
   },
   {
     "objectID": "modules/arc_7_slides.html#four-words-you-need",
     "href": "modules/arc_7_slides.html#four-words-you-need",
-    "title": "ARCS Series",
+    "title": "Arc 7",
     "section": "Four Words You Need",
     "text": "Four Words You Need\n\n\n\n\n\n\n\nTerm\nWhat it is\n\n\n\n\nContainer\nSoftware packaged with everything it needs to run\n\n\nImage (.sif)\nThe actual file on disk — one shareable artifact\n\n\nApptainer\nThe program that builds and runs images\n\n\n.def file\nThe plain-text recipe describing what goes into an image"
   },
   {
     "objectID": "modules/arc_7_slides.html#a-preview-not-the-whole-story",
     "href": "modules/arc_7_slides.html#a-preview-not-the-whole-story",
-    "title": "ARCS Series",
+    "title": "Arc 7",
     "section": "A Preview, Not the Whole Story",
     "text": "A Preview, Not the Whole Story\n\nToday you’ll watch a real DESeq2 pipeline run inside a real container.\nFull depth on each piece — the pipeline itself, and container-based HPC work — lives in dedicated extension courses."
   },
   {
     "objectID": "modules/arc_7_slides.html#lets-watch-it-run",
     "href": "modules/arc_7_slides.html#lets-watch-it-run",
-    "title": "ARCS Series",
+    "title": "Arc 7",
     "section": "Let’s Watch It Run",
     "text": "Let’s Watch It Run"
   },
   {
     "objectID": "modules/arc_5.html",
     "href": "modules/arc_5.html",
-    "title": "Arc 5: Tidyverse",
+    "title": "Arc 5",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(janitor)\n\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\ndownload.file(rawcounts_url, destfile = here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data.csv\"))\n\nraw_metadata &lt;- read_csv(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\nraw_data     &lt;- read_csv(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data.csv\"))\n\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\n\nTip Learn More — The rio Package\n\n\n\n\n\nrio::import() is a popular alternative that auto-detects file type and picks the right reader underneath — handy if your project mixes .csv, .xlsx, .sav, and .dta files. For a single, consistent file type like the .csv files here, read_csv() works directly and is what you’ll see most often in published scripts and tutorials.",
     "crumbs": [
       "Arc 5: Tidyverse"
     ]
@@ -2763,9 +2763,9 @@
   {
     "objectID": "modules/arc_5.html#slides",
     "href": "modules/arc_5.html#slides",
-    "title": "Arc 5: Tidyverse",
+    "title": "Arc 5",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(janitor)\n\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\ndownload.file(rawcounts_url, destfile = here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data.csv\"))\n\nraw_metadata &lt;- read_csv(here(\"raw_data\", \"GSE113754_filtered_metadata.csv\"))\nraw_data     &lt;- read_csv(here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data.csv\"))\n\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\n\nTip Learn More — The rio Package\n\n\n\n\n\nrio::import() is a popular alternative that auto-detects file type and picks the right reader underneath — handy if your project mixes .csv, .xlsx, .sav, and .dta files. For a single, consistent file type like the .csv files here, read_csv() works directly and is what you’ll see most often in published scripts and tutorials.",
     "crumbs": [
       "Arc 5: Tidyverse"
     ]
@@ -2823,9 +2823,9 @@
   {
     "objectID": "modules/arc_4.html",
     "href": "modules/arc_4.html",
-    "title": "Arc 4: Reproducible Reports",
+    "title": "Arc 4",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n#| eval: false\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nraw_metadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nraw_data     &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Arc 4: Reproducible Reports"
     ]
@@ -2833,9 +2833,9 @@
   {
     "objectID": "modules/arc_4.html#slides",
     "href": "modules/arc_4.html#slides",
-    "title": "Arc 4: Reproducible Reports",
+    "title": "Arc 4",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n#| eval: false\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nraw_metadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nraw_data     &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Arc 4: Reproducible Reports"
     ]
@@ -2855,7 +2855,7 @@
     "href": "modules/arc_4.html#code-tour-yaml-header-options",
     "title": "Arc 4: Reproducible Reports",
     "section": "Code Tour: YAML Header Options",
-    "text": "Code Tour: YAML Header Options\n---\ntitle: \"Reports\"\nsidebar: arcs02\nfilters:\n  - webr\nwebr:\n  cell-options:\n    reset-button: true\n---\n\n\n\n\n\n\nTip🔍 Learn More — Themes and Output Formats\n\n\n\n\n\nChanging format: html to format: pdf or format: docx in the YAML header changes your entire output type without touching a single line of analysis code — the same document can become a slideshow, a PDF, or a Word file depending only on this header.",
+    "text": "Code Tour: YAML Header Options\n---\ntitle: \"Reports\"\nsidebar: arcs02\nfilters:\n  - webr\nwebr:\n  cell-options:\n    reset-button: true\n---\n\n\n\n\n\n\nTip Learn More — Themes and Output Formats\n\n\n\n\n\nChanging format: html to format: pdf or format: docx in the YAML header changes your entire output type without touching a single line of analysis code — the same document can become a slideshow, a PDF, or a Word file depending only on this header.",
     "crumbs": [
       "Arc 4: Reproducible Reports"
     ]
@@ -2873,9 +2873,9 @@
   {
     "objectID": "modules/arc_4.html#what-we-did-and-why",
     "href": "modules/arc_4.html#what-we-did-and-why",
-    "title": "Arc 4: Reproducible Reports",
+    "title": "Arc 4",
     "section": "What We Did, and Why",
-    "text": "What We Did, and Why\nWhat we built: converted a plain README into a Quarto document with an auto-generated, annotated project tree; then created a separate publication-ready document using a real journal template, a gene variability analysis, and a saved heatmap figure.\nWhy it matters: your project’s own documentation now regenerates itself instead of going stale, and your path from raw data to a publication figure is a script someone else could re-run — not a series of manual steps living only in your memory.",
+    "text": "What We Did, and Why\nWhat we built: converted a plain README into a self-updating Quarto document, created a figure inside a .qmd for the first time, wrote a function that safely checks before plotting, and read through a worked example of a methods-section sentence that updates itself from the same values driving a figure — plus a guided tour of a full publication-style analysis.\nWhy it matters: your project’s own documentation now regenerates itself instead of going stale, and the gap between “the number in my figure” and “the number in my methods text” — a classic, quiet source of irreproducible papers — disappears when both come from the same chunk of code instead of being typed twice, by hand, separately.",
     "crumbs": [
       "Arc 4: Reproducible Reports"
     ]
@@ -2883,9 +2883,9 @@
   {
     "objectID": "modules/arc_7.html",
     "href": "modules/arc_7.html",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n#| eval: false\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nraw_metadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nraw_data     &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nYou will almost certainly write code with an AI’s help, starting the moment you leave this course — maybe you already do. That’s not a problem this course is trying to talk you out of. The problem is narrower, and it’s the same problem every other arc has been circling: code that runs is not the same thing as code you understand, can verify, and can hand to someone else. An AI makes it easier than ever to produce code that runs. It does nothing, on its own, to make that code reproducible — that part is still entirely on you.\n\n\n\n\n\n\nImportant Watch Out — Runs ≠ Correct\n\n\n\n\n\nAn AI assistant will confidently hand you a function that executes without error and returns the wrong answer. It can invent a function that doesn’t exist, use a real function’s arguments in the wrong order, or quietly reach for an outdated package instead of its modern replacement. None of these mistakes announce themselves — they look exactly as confident as a correct answer.",
     "crumbs": [
       "Arc 7: DESeq2 Pipeline"
     ]
@@ -2893,9 +2893,9 @@
   {
     "objectID": "modules/arc_7.html#slides",
     "href": "modules/arc_7.html#slides",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — Starting Fresh? Run This First\n\n\n\n\n\nIf you’re jumping into this module on a new day, or raw_data and raw_metadata aren’t in your environment, run this once before continuing:\n#| eval: false\nmetadata_url  &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url &lt;- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\ndownload.file(metadata_url,  destfile = \"raw_data/GSE113754_filtered_metadata.csv\")\ndownload.file(rawcounts_url, destfile = \"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\nraw_metadata &lt;- read.csv(\"raw_data/GSE113754_filtered_metadata.csv\")\nraw_data     &lt;- read.csv(\"raw_data/GSE113754_GeneLevel_Raw_data.csv\")\n\n\n\n\n\n\n\n\n\nNote Browser Only Version — Load Straight From the URL\n\n\n\n\n\nNo persistent filesystem here, so skip the download step and read directly from the source instead:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nYou will almost certainly write code with an AI’s help, starting the moment you leave this course — maybe you already do. That’s not a problem this course is trying to talk you out of. The problem is narrower, and it’s the same problem every other arc has been circling: code that runs is not the same thing as code you understand, can verify, and can hand to someone else. An AI makes it easier than ever to produce code that runs. It does nothing, on its own, to make that code reproducible — that part is still entirely on you.\n\n\n\n\n\n\nImportant Watch Out — Runs ≠ Correct\n\n\n\n\n\nAn AI assistant will confidently hand you a function that executes without error and returns the wrong answer. It can invent a function that doesn’t exist, use a real function’s arguments in the wrong order, or quietly reach for an outdated package instead of its modern replacement. None of these mistakes announce themselves — they look exactly as confident as a correct answer.",
     "crumbs": [
       "Arc 7: DESeq2 Pipeline"
     ]
@@ -2903,7 +2903,7 @@
   {
     "objectID": "modules/arc_7.html#demo-launching-a-codespace",
     "href": "modules/arc_7.html#demo-launching-a-codespace",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "Demo: Launching a Codespace",
     "text": "Demo: Launching a Codespace\nA Codespace is a Linux computer running in your browser — needed because Apptainer is Linux-only.\napptainer --version\nls -lh ~/deseq2.sif\napptainer exec ~/deseq2.sif R --version",
     "crumbs": [
@@ -2913,7 +2913,7 @@
   {
     "objectID": "modules/arc_7.html#code-tour-the-.def-file",
     "href": "modules/arc_7.html#code-tour-the-.def-file",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "Code Tour: The .def File",
     "text": "Code Tour: The .def File\nBootstrap: docker\nFrom: bioconductor/bioconductor_docker:RELEASE_3_23-R-4.6.1\n\n%post          # run once, at build time — installs DESeq2, ggplot2\n%environment   # variables set every run\n%runscript     # the default action of `apptainer run`\n%test          # sanity check at the end of build\n\n\n\n\n\n\nNote⚪ About This — Why Pin the Version?\n\n\n\n\n\nRELEASE_3_23-R-4.6.1 pins both the Bioconductor release and the R version, instead of using :latest — preventing silent drift if the base image updates after you’ve built your pipeline on it.",
     "crumbs": [
@@ -2923,7 +2923,7 @@
   {
     "objectID": "modules/arc_7.html#code-tour-running-the-pipeline",
     "href": "modules/arc_7.html#code-tour-running-the-pipeline",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "Code Tour: Running the Pipeline",
     "text": "Code Tour: Running the Pipeline\napptainer exec ~/deseq2.sif Rscript scripts/pipeline.R\nPADJ      &lt;- 0.05      # adjusted p-value (FDR) cutoff\nLFC       &lt;- 1         # |log2 fold change| cutoff\nCONDITION &lt;- \"normal\"  # which condition to keep",
     "crumbs": [
@@ -2933,7 +2933,7 @@
   {
     "objectID": "modules/arc_7.html#build-change-one-parameter-re-run-observe",
     "href": "modules/arc_7.html#build-change-one-parameter-re-run-observe",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "Build: Change One Parameter, Re-Run, Observe",
     "text": "Build: Change One Parameter, Re-Run, Observe\nLFC &lt;- 0   # active modification point\nChanging LFC from 1 to 0 moves the significant gene count from 3 → 16. Tightening PADJ to 0.01 afterward moves it 16 → 9.\n\n\n\n\n\n\nNote⚪ About This — Statistical vs. Biological Significance\n\n\n\n\n\nPADJ is about statistical significance — how confident we are the difference is real. LFC is about biological significance — how large the difference is. Neither bar is “the right one” — it depends on the question being asked.",
     "crumbs": [
@@ -2943,7 +2943,7 @@
   {
     "objectID": "modules/arc_7.html#build-lock-the-environment",
     "href": "modules/arc_7.html#build-lock-the-environment",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "Build: Lock the Environment",
     "text": "Build: Lock the Environment\nrenv::snapshot()\ngit add renv.lock\ngit commit -m \"update renv snapshot after workshop\"\ngit push",
     "crumbs": [
@@ -2953,9 +2953,9 @@
   {
     "objectID": "modules/arc_7.html#what-we-did-and-why",
     "href": "modules/arc_7.html#what-we-did-and-why",
-    "title": "Arc 7: Advancing Systems-Level Reproducibility",
+    "title": "Arc 7",
     "section": "What We Did, and Why",
-    "text": "What We Did, and Why\nWhat we built: ran a real published pipeline inside a container, modified a biological significance threshold, and watched the result change — then locked the environment that produced it.\nWhy it matters: the container means this exact pipeline runs identically on any Linux machine with Apptainer — your laptop, a collaborator’s, or an HPC cluster. If today’s pace or depth wasn’t enough, this is exactly what the DESeq2 and HPC extension courses go deeper on.",
+    "text": "What We Did, and Why\nWhat we built: evaluated a worked AI-generated function against the five-point checklist, requested a function of your own from an AI tool and audited it the same way, and diagnosed three common, quiet failure patterns in AI-generated R code.\nWhy it matters: nothing in this arc was a new R skill — every piece of the checklist was something Arcs 1, 2, 3, and 6 already built. What’s new is the source of the code. The repo is the reproducible artifact — whether you wrote every line of it yourself, or an AI handed you the first draft. The habits from this entire course are what make that true either way.",
     "crumbs": [
       "Arc 7: DESeq2 Pipeline"
     ]
@@ -2963,9 +2963,9 @@
   {
     "objectID": "modules/arc_8.html",
     "href": "modules/arc_8.html",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — This Isn’t About Picking a Repository\n\n\n\n\n\nWe won’t be creating a Zenodo account or clicking through a real deposit form today. The specific repository you’ll eventually use depends on your field, your funder, and your data — that’s a decision for later, with your librarian. What matters today is the shape of what every deposit process asks for, so none of it is a surprise when you actually need it.",
     "crumbs": [
       "Arc 8: Apptainer & Containers"
     ]
@@ -2973,9 +2973,9 @@
   {
     "objectID": "modules/arc_8.html#slides",
     "href": "modules/arc_8.html#slides",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "",
-    "text": "Open slides fullscreen",
+    "text": "Open slides fullscreen\n\n\n\n\n\n\n\n\nImportant Watch Out — This Isn’t About Picking a Repository\n\n\n\n\n\nWe won’t be creating a Zenodo account or clicking through a real deposit form today. The specific repository you’ll eventually use depends on your field, your funder, and your data — that’s a decision for later, with your librarian. What matters today is the shape of what every deposit process asks for, so none of it is a surprise when you actually need it.",
     "crumbs": [
       "Arc 8: Apptainer & Containers"
     ]
@@ -2983,7 +2983,7 @@
   {
     "objectID": "modules/arc_8.html#demo-ai-writing-code",
     "href": "modules/arc_8.html#demo-ai-writing-code",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "Demo: AI Writing Code",
     "text": "Demo: AI Writing Code",
     "crumbs": [
@@ -2993,7 +2993,7 @@
   {
     "objectID": "modules/arc_8.html#build-a-reproducibility-checklist-for-ai-generated-code",
     "href": "modules/arc_8.html#build-a-reproducibility-checklist-for-ai-generated-code",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "Build: A Reproducibility Checklist for AI-Generated Code",
     "text": "Build: A Reproducibility Checklist for AI-Generated Code\nBefore trusting AI-generated code, check it the same way you’d check your own:\n\nDoes it run without modification, in a clean environment?\nDo you understand every line, or just that it “worked”?\nHave you tested it on an edge case (empty input, NA, wrong type)?\nIs it committed with a message describing that it was AI-assisted?\nHas it been added to your .qmd with narrative explaining what it does?",
     "crumbs": [
@@ -3003,7 +3003,7 @@
   {
     "objectID": "modules/arc_8.html#build-code-quarto-annotate-commit",
     "href": "modules/arc_8.html#build-code-quarto-annotate-commit",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "Build: Code → Quarto → Annotate → Commit",
     "text": "Build: Code → Quarto → Annotate → Commit\n\n# Paste the AI-generated function here\n# Add a narrative sentence above explaining what it's supposed to do\n# Run it against a test case\n# Commit with a message noting AI assistance",
     "crumbs": [
@@ -3013,7 +3013,7 @@
   {
     "objectID": "modules/arc_8.html#code-tour-common-ai-failure-modes-in-r",
     "href": "modules/arc_8.html#code-tour-common-ai-failure-modes-in-r",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "Code Tour: Common AI Failure Modes in R",
     "text": "Code Tour: Common AI Failure Modes in R",
     "crumbs": [
@@ -3023,7 +3023,7 @@
   {
     "objectID": "modules/arc_8.html#build-packaging-your-project-for-deposit",
     "href": "modules/arc_8.html#build-packaging-your-project-for-deposit",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "Build: Packaging Your Project for Deposit",
     "text": "Build: Packaging Your Project for Deposit\nYour project folder is already most of the way to deposit-ready:\nproject/\n├── raw_data/          (never modified)\n├── processed_data/\n├── scripts/\n├── outputs/\n├── renv.lock\n├── README.md\n└── .git/\n\n\n\n\n\n\nNote⚪ About This — Where Does It Actually Go?\n\n\n\n\n\n\nGitHub Release — lightweight, no registry account needed, fine for an occasional artifact.\nZenodo — mints a citable DOI and guarantees long-term archival. The more appropriate route for published research.",
     "crumbs": [
@@ -3033,7 +3033,7 @@
   {
     "objectID": "modules/arc_8.html#reflection-evaluating-reproducibility",
     "href": "modules/arc_8.html#reflection-evaluating-reproducibility",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "Reflection: Evaluating Reproducibility",
     "text": "Reflection: Evaluating Reproducibility\nAs Ethical Practice - Accountability in research - Transparency serves scientific rigor - Levels the scientific playing field - Reliable translation to clinical practice\nAs Potential Harm - Data re-identification - Informed consent for secondary use of data - Intensification of extractive research - Data access prioritized over data quality\n\n\n\n\n\n\nTip🔍 Learn More — CARE Principles for Indigenous Data Governance\n\n\n\n\n\nRead more: CARE Principles\nReproducibility tools don’t automatically make research ethical — they make it visible. What’s visible can still cause harm if stewardship isn’t part of the practice.",
     "crumbs": [
@@ -3043,9 +3043,487 @@
   {
     "objectID": "modules/arc_8.html#what-we-did-and-why",
     "href": "modules/arc_8.html#what-we-did-and-why",
-    "title": "Arc 8: AI, Data Packaging & Ethics",
+    "title": "Arc 8",
     "section": "What We Did, and Why",
-    "text": "What We Did, and Why\nWhat we built: verified AI-generated code against a checklist, packaged a project folder for deposit, and sat with what transparency costs as well as what it gives.\nWhy it matters: this is where the whole series points — not just “can you reproduce this,” but “should this exist in the form you’re about to share it in.” That question doesn’t have a script. It has you.",
+    "text": "What We Did, and Why\nWhat we built, across all eight arcs: a reproducible project, start to finish — a managed environment (renv), organized files and a README, vectors and functions, dynamic Quarto reports, tidyverse cleaning pipelines, a committed git history published to GitHub, a checklist for auditing AI-generated code, and — today — a package ready to hand to someone else, with an honest accounting of what packaging can’t settle on its own.\nWhy it matters: Arc 2 opened this course with a warning: R’s flexibility creates new responsibilities, and nothing about the language enforces good habits for you. Everything since has been one answer after another to that warning — a specific habit for each specific risk. Today’s isn’t a habit. It’s the reminder that the habits have a edge. Computational reproducibility is necessary for trustworthy science. It has never been sufficient. A perfectly reproducible pipeline can still answer the wrong question, on the wrong data, without the right permission to ask it in the first place — and no package, pin, or commit history will tell you that on its own. That part stays on you.",
+    "crumbs": [
+      "Arc 8: Apptainer & Containers"
+    ]
+  },
+  {
+    "objectID": "modules/arc_0.html#how-to-use-this-site",
+    "href": "modules/arc_0.html#how-to-use-this-site",
+    "title": "Arc 0",
+    "section": "How to Use This Site",
+    "text": "How to Use This Site\nEach session page on this site contains everything you need to follow along:\n\nSlides introduce concepts and provide the “why” before the “how”\nMost of each session happens in topical sections with hands-on code you run and modify directly in Positron on your own machine — this hands-on building is the default way this workshop works, not a separate, labeled activity\nCode Tour sections, used selectively, walk through longer or more complex code that you read and run but are not expected to write from scratch — often showing how a technique extends further than what’s strictly required for that session\nCallout boxes provide just-in-time context, optional depth, common-mistake warnings, browser-based alternatives, and instructor guidance\n\nIf you are attending a live workshop, the site is your reference — use it to catch up, check your work, or follow along if your local environment isn’t cooperating. If you are working through the materials on your own, the site is designed to be self-contained."
+  },
+  {
+    "objectID": "modules/arc_0.html#understanding-the-callout-boxes",
+    "href": "modules/arc_0.html#understanding-the-callout-boxes",
+    "title": "Arc 0",
+    "section": "Understanding the Callout Boxes",
+    "text": "Understanding the Callout Boxes\nThroughout the session pages you will encounter five types of callout boxes, each marked with a colored circle. Here is what each one means:\n\n\n\n\n\n\nNote About This\n\n\n\nProvides just-in-time context at the moment you need it — explaining why a convention exists, what a concept means in practice, or how a tool connects to your research workflow. Read these when you encounter them; they are part of the instruction, not optional extras.\n\n\n\n\n\n\n\n\nTip Learn More\n\n\n\nOptional depth for the curious. These boxes point toward topics beyond the scope of the current session — tools, techniques, or concepts worth knowing about but not required for the session objectives. Return to these on your own time.\n\n\n\n\n\n\n\n\nImportant Watch Out\n\n\n\nFlags a common mistake, a point of frequent confusion, or a step where something often goes wrong. Pay attention here — these are things we have seen trip people up before.\n\n\n\n\n\n\n\n\nNote Browser Version\n\n\n\nMost code on this site runs identically whether you’re working in your browser or on your own machine, so it appears only once. This label marks the exceptions — moments where the browser-based (webR) version has to do something differently than the local version would, such as reading a file from a URL instead of downloading and saving it first, or where something about the browser environment itself (its own virtual filesystem, for instance) means an identical line of code won’t mean quite the same thing here as it does on your machine.\n\n\n\n\n\n\n\n\nNote Code Tour\n\n\n\nA guided read-through of code that goes beyond what we’ll build together live — often because it depends on packages or concepts from a later module, or because it’s simply more than a single session needs to cover. You’re not expected to type this yourself: read it, run it if you’re curious, and know it’s here if you want to come back to it.\n\n\n\n\n\n\n\n\nWarning Instructor Note\n\n\n\nGuidance for instructors and helpers. These boxes contain pedagogical rationale, timing suggestions, common student difficulties, and facilitation notes. Students are welcome to read them, but they are written for the people running the session."
+  },
+  {
+    "objectID": "index.html#new-to-this-site",
+    "href": "index.html#new-to-this-site",
+    "title": "Advancing Reproducibility with Computational Skills",
+    "section": "New to This Site?",
+    "text": "New to This Site?\nBefore your first module, see Session 0: Before You Arrive for setup instructions, plus a short guide to how this site is organized — including what the different callout boxes mean and how Slides, Code Tour, and hands-on sections work throughout."
+  },
+  {
+    "objectID": "modules/arc_3.html#lists",
+    "href": "modules/arc_3.html#lists",
+    "title": "Arc 3",
+    "section": "Lists",
+    "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote About This — Why Lists?\n\n\n\n\n\nA data frame requires every column to be the same length. A list doesn’t — it’s the structure R reaches for when things genuinely don’t fit a tidy rectangle, which happens more often than you’d expect once you start working with real analysis output (model results, nested settings, mixed metadata).",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#base-r-subsetting-just-enough-to-read-code",
+    "href": "modules/arc_3.html#base-r-subsetting-just-enough-to-read-code",
+    "title": "Arc 3",
+    "section": "Base R Subsetting (Just Enough to Read Code)",
+    "text": "Base R Subsetting (Just Enough to Read Code)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nConditional subsetting uses the same comparison operators you already know: ==, !=, &gt;, &lt;, &gt;=, &lt;=, and %in%.\n\n\n\n\n\n\nTip Learn More — You Don’t Need to Master This Today\n\n\n\n\n\nThere are several equally valid ways to subset in base R. The goal here is recognition, not fluency — so that when you see df[row, col] or df$col in someone else’s script, you’re not stopped cold.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#checking-for-missing-values",
+    "href": "modules/arc_3.html#checking-for-missing-values",
+    "title": "Arc 3",
+    "section": "Checking for Missing Values",
+    "text": "Checking for Missing Values\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip Learn More — Zero vs. NA: Not the Same Thing\n\n\n\n\n\nA 0 means “we measured this, and the value was zero.” An NA means “we don’t know this value.” Replacing a missing value with 0 without thinking it through can quietly distort every downstream calculation — averages, totals, and models all treat a fabricated zero as real data.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#writing-your-own-function",
+    "href": "modules/arc_3.html#writing-your-own-function",
+    "title": "Arc 3",
+    "section": "Writing Your Own Function",
+    "text": "Writing Your Own Function\nA function has four parts: a name, the arguments it accepts, a body of code that runs each time it’s called, and a return value — the thing it hands back to you.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote About This — Anatomy of a Function\n\n\n\n\n\nname        &lt;- function(argument1, argument2 = default) {\n                 ... body ...\n                 return(value)\n               }\n\nName — what you’ll call it by, same rules as naming any object\nArguments — the inputs; can have defaults, so callers only need to supply what’s different each time\nBody — the code that runs, using the arguments as temporary objects\nReturn value — the last line evaluated, or an explicit return() — what the function hands back to whatever called it\n\nThis is the DRY principle — Don’t Repeat Yourself. If you find yourself copy-pasting the same calculation more than twice, that’s the signal to wrap it in a function instead.\n\n\n\nA function’s argument doesn’t have to be a single number — it can be an entire data frame. This is closer to what a function looks like in a real analysis script:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis one function — written once — can now check any sample column for low-count genes just by changing the sample_col argument, instead of retyping the same comparison by hand for every sample.\n\nYour Turn: Write flag_high_expression()\nflag_low_expression() flags genes below a threshold. Modify the skeleton below so it flags genes above a threshold instead — your function should take the same kind of arguments, but compare with &gt; instead of &lt;.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nCheck your work\n\nflag_high_expression &lt;- function(df, sample_col, max_count = 1000) {\n  df[[sample_col]] &gt; max_count\n}\nOnly the comparison operator changes — everything else about how the function is structured and called stays the same.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#for-loops",
+    "href": "modules/arc_3.html#for-loops",
+    "title": "Arc 3",
+    "section": "for Loops",
+    "text": "for Loops\nA for loop repeats its body once for every element in a sequence.\n\n\n\n\n\n\nNote About This — Anatomy of a for Loop\n\n\n\n\n\nfor (variable in sequence) {\n  ... body ...\n}\n\nSequence — the collection being stepped through (a vector, a list, a set of column names)\nLoop variable — takes on one value from the sequence per repetition\nBody — runs once per element, using the current value of the loop variable\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe same pattern works over column names, not just numbers — useful when you want to repeat a check across several samples without retyping it:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nYour Turn: Report the Average Instead\nThe loop above counts low-count genes per sample. Modify it so it reports the mean count for each sample instead — ignoring NA values.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nCheck your work\n\nfor (col in sample_cols[1:3]) {\n  avg_count &lt;- mean(raw_data[[col]], na.rm = TRUE)\n  cat(col, \":\", round(avg_count, 1), \"average count\\n\")\n}\n\n\n\n\n\n\n\nTip Learn More — When a for Loop Isn’t the Best Tool\n\n\n\n\n\nR is built around vectorized operations — functions that act on an entire vector or data frame at once, without an explicit loop. The same result from the first loop above can be written as:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nOne line, same answer, and — critically — much faster on a real dataset with thousands of rows, because the looping happens in compiled C code under the hood rather than in R itself. A for loop isn’t wrong, and it’s often easier to read while you’re learning. But once you’re comfortable, watch for places where you’re looping over rows or columns just to repeat a simple comparison — that’s usually a sign a vectorized function already exists for the job.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#if-else-conditionals",
+    "href": "modules/arc_3.html#if-else-conditionals",
+    "title": "Arc 3",
+    "section": "if / else Conditionals",
+    "text": "if / else Conditionals\nAn if/else chain lets a function respond differently depending on the value it receives — only one branch runs, whichever condition is met first.\n\n\n\n\n\n\nNote About This — Anatomy of if / else\n\n\n\n\n\nif (condition1) {\n  ... runs if condition1 is TRUE ...\n} else if (condition2) {\n  ... runs if condition1 was FALSE and condition2 is TRUE ...\n} else {\n  ... runs if nothing above was TRUE ...\n}\nEach condition must evaluate to a single TRUE or FALSE. R checks them in order and stops at the first one that’s TRUE — later branches are skipped entirely, even if they’d also have been TRUE.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe same structure is what you’d reach for to turn a raw number into a meaningful research label:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nYour Turn: Add a Fifth Category\nclassify_expression() currently lumps everything above 10 into a single \"detected\" label. Modify it so counts above 1000 are labeled \"high\" instead, leaving \"detected\" for everything in between.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nCheck your work\n\nclassify_expression &lt;- function(count) {\n  if (is.na(count)) {\n    \"missing\"\n  } else if (count == 0) {\n    \"not detected\"\n  } else if (count &lt; 10) {\n    \"low\"\n  } else if (count &lt;= 1000) {\n    \"detected\"\n  } else {\n    \"high\"\n  }\n}\nNote the order matters — the new branch has to come before the final else, and it has to use &lt;= for the upper bound of \"detected\" so the two categories don’t overlap or leave a gap at exactly 1000.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#reading-an-error-message-deliberate-exercise",
+    "href": "modules/arc_3.html#reading-an-error-message-deliberate-exercise",
+    "title": "Arc 3",
+    "section": "Reading an Error Message (Deliberate Exercise)",
+    "text": "Reading an Error Message (Deliberate Exercise)\n\nmean(FamAges)   # object doesn't exist yet — intentional\n\n\n\n\n\n\n\nWarning Instructor Note\n\n\n\n\n\nLet this error sit uncorrected for a beat before explaining. The goal is normalizing errors as information, not something to panic over — most of your future debugging time will be spent reading messages like this one.\n\n\n\nEverything above used these pieces one at a time. Here’s what it looks like when a function, a loop, and a conditional are combined into something closer to a real quality check.\n\n\n\n\n\n\nCaution Code Tour — A Small, Reproducible QC Check\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou could run these three lines by hand for every sample column instead. But written this way, the check runs identically for every sample, it’s one call away from being reused in your next project, and if you later decide min_count should be 20 instead of 10, you change it in exactly one place.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_3.html#code-tour-a-small-reproducible-qc-check",
+    "href": "modules/arc_3.html#code-tour-a-small-reproducible-qc-check",
+    "title": "Arc 3",
+    "section": "Code Tour: A Small, Reproducible QC Check",
+    "text": "Code Tour: A Small, Reproducible QC Check\nThis combines everything above — a function, wrapped around a loop, wrapped around a conditional — into something closer to a real quality check you’d run once, early, in an analysis script. Read it, run it, and notice that nothing here is new; it’s the same three pieces from this lesson, nested together.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote About This — Why Bother Wrapping This in a Function?\n\n\n\n\n\nYou could run these three lines by hand for every sample column. But written this way, the check is guaranteed to run identically for every sample, it’s one call away from being reused in your next project, and if you later decide min_count should be 20 instead of 10, you change it in exactly one place — which is the same console-vs-script trade-off from the opening slides, applied to something you just built yourself.",
+    "crumbs": [
+      "Arc 3: Data Structures"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#your-first-quarto-document",
+    "href": "modules/arc_4.html#your-first-quarto-document",
+    "title": "Arc 4: Reproducible Reports",
+    "section": "Your First Quarto Document",
+    "text": "Your First Quarto Document\nA .qmd file mixes narrative text with executable code chunks — when you render it, the text and the live output of your code are woven together into one finished document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nRender (knit) the document to see the narrative text above and the histogram below combine into one finished file — change the text, change the code, and both update together.\n\nYour Turn: Wrap the Plot in a Function\nTurn the chunk above into a reusable function that can plot any sample column, and — using an if/else from Arc 3 — let it switch between a histogram and a boxplot depending on an argument.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nCheck your work\n\nplot_sample &lt;- function(df, sample_col, type = \"hist\") {\n  values &lt;- df[[sample_col]]\n  if (type == \"hist\") {\n    hist(values, main = sample_col, xlab = \"Raw count\")\n  } else if (type == \"box\") {\n    boxplot(values, main = sample_col)\n  } else {\n    stop(\"type must be 'hist' or 'box'\")\n  }\n}\nOne function, two ways to call it — plot_sample(rawc, sample_cols[1]) or plot_sample(rawc, sample_cols[1], type = \"box\") — instead of writing two separate chunks you’d have to keep in sync by hand.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#turning-your-readme-into-a-living-document",
+    "href": "modules/arc_4.html#turning-your-readme-into-a-living-document",
+    "title": "Arc 4: Reproducible Reports",
+    "section": "Turning Your README Into a Living Document",
+    "text": "Turning Your README Into a Living Document\nYour README.txt from Arc 2 is a snapshot — accurate the moment you wrote it, and silently out of date the moment your folder structure changes. Converting it to a .qmd file means the project tree inside it can be generated by code instead of typed by hand, so it regenerates itself, correctly, every time you render.\n\nConvert README.txt to README.qmd\n\nFind README.txt in your project folder and rename it to README.qmd (right-click → Rename on Windows, or select the file and press Return on Mac)\nIf you don’t already have a _quarto.yml file in your project root, create one and add:\nproject:\n  type: default\nIn your README.qmd, wrap your existing file-structure listing in triple backticks (```) so it’s formatted as a code block\nIn the terminal, run quarto render, then quarto preview readme.qmd\n\n\n\n\n\n\n\nNote About This — What Is localhost?\n\n\n\nThe browser window that opens shows an address starting with localhost followed by a port number. That means your own computer is serving the file to itself — it is not on the internet, and no one else can see it. This is how you preview a Quarto document before it’s ever published anywhere.\n\n\n\n\nAutomate the Project Tree\nInstead of manually retyping your folder structure every time it changes, this code chunk generates and annotates it automatically, every time you render.\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\nfor (item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for (name in names(comments)) {\n    if (grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNote About This — What This Script Does\n\n\n\n\ndir_tree() generates a visual tree of your project folder, two levels deep\ncapture.output() stores that tree as a character vector your own code can modify — rather than text you’d have to retype by hand\nThe comments list defines annotations for specific folders or files\nThe for loop (from Arc 3) checks each line against every name in that list and appends a matching annotation where it finds one\ncat() prints the result back out as a formatted code block in your rendered document\n\n\n\nPaste this chunk into your README.qmd in place of your plain file tree, wrapped in ```{r} instead of plain triple backticks. Re-render, and your README now regenerates its own project structure every time — try adding your own entry to the comments list and rendering again to see it reflected.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#code-tour-publishing-with-a-journal-template",
+    "href": "modules/arc_4.html#code-tour-publishing-with-a-journal-template",
+    "title": "Arc 4: Reproducible Reports",
+    "section": "Code Tour: Publishing with a Journal Template",
+    "text": "Code Tour: Publishing with a Journal Template\nThis next piece is an extension beyond what we’ll build from scratch together today — it’s here so you know it’s possible, and can come back to it on your own. Read through it, run the analysis code yourself, and notice that none of the actual logic is new: it’s dplyr verbs and a ggplot() call, applied to a real research question.\n\n\n\n\n\n\nNote About This — Packages Used Here\n\n\n\nThis Code Tour uses tidyverse and scales, which we haven’t covered in depth yet — that’s coming in Arc 5. For now, treat library(...) simply as “turn this set of extra functions on for this session.”\n\n\n\nFormatting as a Journal Submission (Try This Later, On Your Own Machine)\nQuarto extensions can format a document to match a specific journal’s submission requirements — layout, fonts, and figure formatting — without touching your analysis code at all. This part can’t run in a browser sandbox, since it installs files onto a real file system:\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\n\n\n\n\n\n\nNote About This — What This Does\n\n\n\nThis installs an extension that reformats your rendered output to PLOS journal standards. The same approach works for other journals under quarto-journals — the installation step changes, but your actual analysis code underneath never has to.\n\n\n\n\nThe Analysis Itself — Run It Now\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#reading-an-error-message-not-this-time.",
+    "href": "modules/arc_4.html#reading-an-error-message-not-this-time.",
+    "title": "Arc 4: Reproducible Reports",
+    "section": "Reading an Error Message? Not This Time.",
+    "text": "Reading an Error Message? Not This Time.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#slides",
+    "href": "modules/arc_2.html#slides",
+    "title": "Arc 2",
+    "section": "Slides",
+    "text": "Slides\nOpen slides fullscreen",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#what-is-a-package",
+    "href": "modules/arc_2.html#what-is-a-package",
+    "title": "Arc 2: Your First Reproducible Project",
+    "section": "What Is a Package?",
+    "text": "What Is a Package?\nBase R ships with a core set of built-in functions. A package is an add-on that extends what R can do — installed once per machine with install.packages(), then turned on for each new R session with library(). The very next tool we use, renv, is a package — and it needs to be installed before it can do anything.\n\ninstall.packages(\"renv\")\n\n\n\n\n\n\n\nNote About This — Minimal Packages, On Purpose\n\n\n\n\n\nThis series installs very few packages before Arc 5. That’s deliberate: the goal here is understanding what a package actually does for you — renv protects reproducibility, fs generates a file tree — not accumulating a long list of dependencies before you’ve seen why any one of them earns its place.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#what-we-did-and-why",
+    "href": "modules/arc_2.html#what-we-did-and-why",
+    "title": "Arc 2",
+    "section": "What We Did, and Why",
+    "text": "What We Did, and Why\nWhat we built: your first lines of R — arithmetic, your first error message and what it means, objects, vectors, R’s core data types (character, numeric, logical), a handful of functions, and your first data frame, built from scratch.\nWhy it matters: these habits — commenting your reasoning, reading an error calmly instead of panicking, understanding that a stored value doesn’t update itself — are the foundation everything else in this series builds on. You’re establishing best practices from the very first line of code, not bolting them on later.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_0.html#code-tour",
+    "href": "modules/arc_0.html#code-tour",
+    "title": "Session 0: Before You Arrive",
+    "section": " Code Tour",
+    "text": "Code Tour\nA guided read-through of code that goes beyond what we’ll build together live — often because it depends on packages or concepts from a later module, or because it’s simply more than a single session needs to cover. You’re not expected to type this yourself: read it, run it if you’re curious, and know it’s here if you want to come back to it.\n\n\n\n\n\n\nWarning Instructor Note\n\n\n\nGuidance for instructors and helpers. These boxes contain pedagogical rationale, timing suggestions, common student difficulties, and facilitation notes. Students are welcome to read them, but they are written for the people running the session."
+  },
+  {
+    "objectID": "modules/arc_2.html#orient-to-positron",
+    "href": "modules/arc_2.html#orient-to-positron",
+    "title": "Arc 2",
+    "section": "Orient to Positron",
+    "text": "Orient to Positron\nBefore writing any code, take a moment to locate four things in your Positron window:\n\nThe Console — where code runs and results appear\nThe Editor — where you write and save scripts\nThe Environment pane — where your objects (variables) appear once created\nThe Files pane — where you can see and navigate your project folder\n\nFind your working directory — the folder R considers “home” for this session:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nImportant Watch Out — This Won’t Match Your Positron Panes\n\n\n\n\n\nThe code cells on this page run in a browser-based R engine (webR), which has its own virtual filesystem — not the real folder you’re working in locally. getwd() above will return something, but it won’t match what you see in Positron’s Files pane. On your own machine, running the same line will correctly show your actual project folder.\n\n\n\n\n\n\n\n\n\nNote About This — Setting Your Working Directory Without Code\n\n\n\n\n\nIn Positron, you can also set your working directory by right-clicking a folder in the Files pane and choosing Set as Working Directory — no code required. This is often faster than typing setwd(), and it’s less error-prone since you’re pointing at a real folder rather than typing a path by hand.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#two-basic-rules-for-writing-reproducible-code",
+    "href": "modules/arc_2.html#two-basic-rules-for-writing-reproducible-code",
+    "title": "Arc 2",
+    "section": "Two Basic Rules for Writing Reproducible Code",
+    "text": "Two Basic Rules for Writing Reproducible Code\n\nUse # to annotate and document your code. A comment explains why you did something, not just what the code does — that’s the difference between code you can hand to someone else and code only you can decode.\nUse a visible pattern to separate sections, e.g. #----- Section Title ------#. This turns a script into something a collaborator — or you, in six months — can scan and navigate without reading every line.\n\nThese two habits are the first, smallest form of reproducibility: a reader who wasn’t there when you wrote the code should still be able to follow your thinking.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#arithmetic",
+    "href": "modules/arc_2.html#arithmetic",
+    "title": "Arc 2",
+    "section": "Arithmetic",
+    "text": "Arithmetic\nR evaluates arithmetic the way you’d expect from paper math:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#your-first-error-message",
+    "href": "modules/arc_2.html#your-first-error-message",
+    "title": "Arc 2",
+    "section": "Your First Error Message",
+    "text": "Your First Error Message\nOne syntax rule worth knowing up front: text must be wrapped in quotation marks \" \" — object names are the only exception. Here’s what happens when you forget:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR reads Hello world! as an attempt to call an object named Hello — but Hello has never been created, and world! isn’t valid syntax either. You should see an error like unexpected symbol. Error messages like this will come up constantly from here on — learning to read them calmly, rather than panicking, is a core programming skill, not a sign something’s gone badly wrong.\nWrapping the same text in quotes tells R “this is text, not code”:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#objects-and-assignment",
+    "href": "modules/arc_2.html#objects-and-assignment",
+    "title": "Arc 2",
+    "section": "Objects and Assignment",
+    "text": "Objects and Assignment\nR stores information in objects using the assignment arrow &lt;-.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nCaution Code Tour — Why Didn’t My Answer Update?\n\n\n\n\n\nChange my_age and re-run only this one line:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nbirth_year still shows the old value — because R doesn’t recalculate it automatically. It only stores what you told it to store, at the moment you ran that line. The variable has no memory of how it was created, only what it currently holds.\nThis is a small version of a problem that shows up everywhere in computational work: a pipeline is only as current as the last time each step was actually re-run. Changing one upstream value — a raw data point, a filtering threshold, a parameter — doesn’t automatically update everything downstream of it. You have to re-run the whole chain, in order, every time.\nThis is why, later in ARCS, you’ll get in the habit of re-running entire scripts top to bottom rather than just the last line you touched — and it’s part of why reproducibility isn’t only “did I get the right answer,” but “would I get the same answer again if I changed one thing and reran everything downstream of it?”\n\n\n\n\n\n\n\n\n\nTip Learn More — Object Naming Rules\n\n\n\n\n\n\nMust start with a letter (not a number or symbol)\nCan contain letters, numbers, _ and .\nCase-sensitive: age and Age are different objects\nAvoid names that are already functions in R (e.g. c, mean, data)",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#data-types",
+    "href": "modules/arc_2.html#data-types",
+    "title": "Arc 2",
+    "section": "Data Types",
+    "text": "Data Types\nR has a few core data types you’ll use constantly:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#vectors",
+    "href": "modules/arc_2.html#vectors",
+    "title": "Arc 2",
+    "section": "Vectors",
+    "text": "Vectors\nA vector holds multiple values of the same type, built with c():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nCaution Code Tour — Vectors Don’t Have to Be Numbers\n\n\n\n\n\nFamNames &lt;- c(\"Ana\", \"Ben\", \"Carla\", \"Dev\")\nis_adult  &lt;- c(TRUE, TRUE, TRUE, FALSE)\nA vector can hold character or logical values too — but every element inside one vector must be the same type. Try running c(1, \"two\", 3) and look closely at the result. What happened to the 1 and the 3?",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#calling-functions",
+    "href": "modules/arc_2.html#calling-functions",
+    "title": "Arc 2",
+    "section": "Calling Functions",
+    "text": "Calling Functions\nA function takes arguments (inputs) and returns a value (output). You’ve already called one — c(). Here are three more:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote About This — Why Parentheses?\n\n\n\n\n\nParentheses tell R “run this now.” Typing mean alone just shows you the function’s underlying code — typing mean() actually executes it. This distinction matters more once you start writing your own functions, in Arc 3.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_2.html#building-your-first-data-frame",
+    "href": "modules/arc_2.html#building-your-first-data-frame",
+    "title": "Arc 2",
+    "section": "Building Your First Data Frame",
+    "text": "Building Your First Data Frame\nA data frame can be thought of as a table with rows and columns, like a spreadsheet. Data frames are composed of vectors in a certain order. Let’s turn our family ages into one. Feel free to swap in your own numbers here instead of ours.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAdd a names column with cbind():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nInspect it three ways:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip Learn More — head(), str(), and dim() Each Answer a Different Question\n\n\n\n\n\n\nhead() — “What does my data actually look like?”\nstr() — “What type is each column, and how is this object structured?”\ndim() — “How big is this — how many rows and columns?” You’ll run this same trio on almost every dataset you ever load into R, including the real genomics data in the next arc.",
+    "crumbs": [
+      "Arc 2: Your First Reproducible Project"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#convert-readme.txt-to-readme.qmd",
+    "href": "modules/arc_4.html#convert-readme.txt-to-readme.qmd",
+    "title": "Arc 4",
+    "section": "Convert README.txt to README.qmd",
+    "text": "Convert README.txt to README.qmd\nYour README.txt from Arc 2 is a snapshot — accurate the moment you wrote it, and silently out of date the moment your folder structure changes. Converting it to a .qmd file is our first step toward fixing that.\n\nFind README.txt in your project folder and rename it to README.qmd (right-click → Rename on Windows, or select the file and press Return on Mac)\nIf you don’t already have a _quarto.yml file in your project root, create one and add:\nproject:\n  type: default\nIn your README.qmd, wrap your existing file-structure listing in triple backticks (```) so it’s formatted as a code block\nIn the terminal, run quarto render, then quarto preview readme.qmd\n\n\n\n\n\n\n\nNote About This — What Is localhost?\n\n\n\n\n\nThe browser window that opens shows an address starting with localhost followed by a port number. That means your own computer is serving the file to itself — it is not on the internet, and no one else can see it. This is how you preview a Quarto document before it’s ever published anywhere.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#automate-the-project-tree",
+    "href": "modules/arc_4.html#automate-the-project-tree",
+    "title": "Arc 4",
+    "section": "Automate the Project Tree",
+    "text": "Automate the Project Tree\nRight now your file tree is still just text you typed — exactly as easy to go stale as it was in README.txt. This code chunk generates and annotates it automatically, every time you render, so it can’t.\n\n\n\n\n\n\nImportant Watch Out — This One’s Local-Only\n\n\n\n\n\ndir_tree() reads your actual project folder from disk. There’s no real project structure to list inside a browser sandbox, so this chunk is shown as a display only — paste it into your own README.qmd to see it work.\n\n\n\n#| echo: false\n#| message: false\n#| results: asis\n\nlibrary(fs)\n\ntree_output &lt;- capture.output(dir_tree(\".\", recurse = 2))\n\ncomments &lt;- list(\n  \"raw_data\"       = \" (original data goes here)\",\n  \"processed_data\" = \" (clean data goes here)\",\n  \"scripts\"        = \" (code goes here)\",\n  \"outputs\"        = \" (results and charts go here)\",\n  \"README.qmd\"     = \" (project documentation)\"\n)\n\nfor (item in seq_along(tree_output)) {\n  line &lt;- tree_output[item]\n  for (name in names(comments)) {\n    if (grepl(name, line)) {\n      tree_output[item] &lt;- paste0(line, comments[[name]])\n      break\n    }\n  }\n}\n\ncat(\"```\\n\")\ncat(paste(tree_output, collapse = \"\\n\"))\ncat(\"\\n```\\n\")\n\n\n\n\n\n\nNote About This — What This Script Does\n\n\n\n\n\n\ndir_tree() generates a visual tree of your project folder, two levels deep\ncapture.output() stores that tree as a character vector your own code can modify — rather than text you’d have to retype by hand\nThe comments list defines annotations for specific folders or files\nThe for loop (from Arc 3) checks each line against every name in that list and appends a matching annotation where it finds one\ncat() prints the result back out as a formatted code block in your rendered document\n\n\n\n\nPaste this chunk into your README.qmd in place of your plain file tree, wrapped in ```{r} instead of plain triple backticks. Re-render, and your README now regenerates its own project structure every time — try adding your own entry to the comments list and rendering again to see it reflected.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#your-first-data-visualization-in-a-.qmd",
+    "href": "modules/arc_4.html#your-first-data-visualization-in-a-.qmd",
+    "title": "Arc 4",
+    "section": "Your First Data Visualization in a .qmd",
+    "text": "Your First Data Visualization in a .qmd\nA .qmd file mixes narrative text with executable code chunks — when you render it, the text and the live output of your code are woven together into one finished document. You just saw this with your project tree; here it is with a figure.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nRender the document to see the sentence above and the histogram below combine into one finished file — change either one, and both update together when you render again.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#your-turn-visualize-a-range-safely",
+    "href": "modules/arc_4.html#your-turn-visualize-a-range-safely",
+    "title": "Arc 4",
+    "section": "Your Turn: Visualize a Range, Safely",
+    "text": "Your Turn: Visualize a Range, Safely\nModify the function below so it only plots when there’s actually data in the requested range — using an if/else from Arc 3 to check first.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nCheck your work\n\nvisualize_range &lt;- function(df, sample_col, min_val, max_val) {\n  values &lt;- df[[sample_col]]\n  in_range &lt;- values[values &gt;= min_val & values &lt;= max_val]\n\n  if (length(in_range) == 0) {\n    cat(\"No values found in that range\\n\")\n  } else {\n    hist(in_range, main = paste(sample_col, \":\", min_val, \"to\", max_val),\n         xlab = \"Raw count\")\n  }\n}",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#from-figure-to-methods-text",
+    "href": "modules/arc_4.html#from-figure-to-methods-text",
+    "title": "Arc 4",
+    "section": "From Figure to Methods Text",
+    "text": "From Figure to Methods Text\nEverything so far has been browser-based, which means the narrative text on this page can’t actually react to the live code cells above it — only a document you render yourself, on your own machine, can do that.\n\n\n\n\n\n\nImportant Watch Out — This Won’t Run on This Page\n\n\n\n\n\nInline code like `r min_val` only updates when you render a .qmd file locally. The live cells on this website are compiled once, ahead of time — changing a value in a browser cell above will never change a sentence of text on this page. Try the block below in your own analysis.qmd file instead, where it will.\n\n\n\n\n\n\n\n\n\nCaution Code Tour — Tying Your Figure to Your Text\n\n\n\n\n\nIn your own .qmd file, a code chunk can set values that your narrative text then refers to directly:\n#| echo: false\n\nsample_col &lt;- \"GSM3119015\"\nmin_val &lt;- 10\nmax_val &lt;- 1000\n\nvalues &lt;- raw_data[[sample_col]]\nin_range_idx &lt;- which(values &gt;= min_val & values &lt;= max_val)\n## Methods\n\nRaw counts for sample `r sample_col` were examined in the range\n`r min_val`–`r max_val`. This range contained `r length(in_range_idx)`\ngenes (row indices: `r paste(head(in_range_idx, 5), collapse = \", \")`,\namong others).\n\nChange min_val and max_val in the code chunk, re-render, and watch both the sentence and the figure update together — from the same two numbers, in one place.\n\n\n\n\n\n\n\n\n\nNote About This — Why Row Indices, Not Gene Names, for Now\n\n\n\n\n\nWe haven’t cleaned this dataset yet — that happens in Arc 5, which is where readable gene symbols get attached to each row. For now, a row index is a placeholder for “which gene,” standing in for the moment you’ll replace it with gene_symbol[in_range_idx] once that column exists. This is exactly the kind of methods-section sentence that, in a real paper, needs to update itself the instant an upstream analysis choice changes — which is the entire point of writing it this way instead of typing a number by hand.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_4.html#extending-further-publishing-with-a-journal-template",
+    "href": "modules/arc_4.html#extending-further-publishing-with-a-journal-template",
+    "title": "Arc 4",
+    "section": "Extending Further: Publishing with a Journal Template",
+    "text": "Extending Further: Publishing with a Journal Template\nThis next piece goes beyond what we’ll build from scratch together today — it’s here so you know it’s possible, and can come back to it on your own.\n\n\n\n\n\n\nCaution Code Tour — Publishing with a Journal Template\n\n\n\n\n\nThis uses tidyverse and scales, which we haven’t covered in depth yet — that’s coming in Arc 5. For now, treat library(...) simply as “turn this set of extra functions on for this session.”\nFormatting as a journal submission — try this later, on your own machine. Quarto extensions can format a document to match a specific journal’s submission requirements — layout, fonts, figure formatting — without touching your analysis code at all. This part can’t run in a browser sandbox, since it installs files onto a real file system:\nquarto add quarto-journals/plos\nquarto use template quarto-journals/plos\nThis installs an extension that reformats your rendered output to PLOS journal standards. The same approach works for other journals under quarto-journals — the installation step changes, but your analysis code underneath never has to.\nThe analysis itself — this part runs right here:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 4: Reproducible Reports"
+    ]
+  },
+  {
+    "objectID": "modules/arc_5.html#cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe",
+    "href": "modules/arc_5.html#cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe",
+    "title": "Arc 5",
+    "section": "Cleaning the Raw Counts with dplyr Verbs and the Pipe",
+    "text": "Cleaning the Raw Counts with dplyr Verbs and the Pipe\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 5: Tidyverse"
+    ]
+  },
+  {
+    "objectID": "modules/arc_5.html#cleaning-the-metadata",
+    "href": "modules/arc_5.html#cleaning-the-metadata",
+    "title": "Arc 5",
+    "section": "Cleaning the Metadata",
+    "text": "Cleaning the Metadata\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 5: Tidyverse"
+    ]
+  },
+  {
+    "objectID": "modules/arc_5.html#harmonizing-the-two-files",
+    "href": "modules/arc_5.html#harmonizing-the-two-files",
+    "title": "Arc 5",
+    "section": "Harmonizing the Two Files",
+    "text": "Harmonizing the Two Files\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote About This — This Is the Whole Point\n\n\n\n\n\nThis check is exactly what the Arc 2 “data management gone awry” story was missing — a scripted, verifiable confirmation that two files actually match, instead of a manual check done from memory.",
+    "crumbs": [
+      "Arc 5: Tidyverse"
+    ]
+  },
+  {
+    "objectID": "modules/arc_5.html#what-we-did-and-why",
+    "href": "modules/arc_5.html#what-we-did-and-why",
+    "title": "Arc 5",
+    "section": "What We Did, and Why",
+    "text": "What We Did, and Why\nWhat we built: imported both raw files with read_csv(), cleaned the counts matrix and the metadata separately using dplyr/janitor verbs chained with the pipe, and ended with a scripted check confirming the two cleaned files actually line up with each other.\nWhy it matters: every step here replaces something that could have been done by hand, in a spreadsheet, invisibly — renaming a column, recoding a label, matching sample IDs by eye. Writing it as code instead means the exact same cleaning happens the same way every time, and the final setequal() check turns “I’m pretty sure these match” into something you can actually verify, instead of trust.",
+    "crumbs": [
+      "Arc 5: Tidyverse"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#why-version-control",
+    "href": "modules/arc_6.html#why-version-control",
+    "title": "Arc 6",
+    "section": "Why Version Control?",
+    "text": "Why Version Control?\nYou’ve probably seen a folder like this:\nanalysis.R\nanalysis_v2.R\nanalysis_final.R\nanalysis_final_FINAL.R\nanalysis_final_FINAL_really.R\nThis is version control done by hand — and it’s painful. You can’t remember what changed between versions, you can’t safely delete any of them, and collaborating means emailing files back and forth.\nGit solves this. It’s a time machine for your project: it saves snapshots (called commits) of your work over time, so you can always see what changed, when, and why — and roll back if you need to. Instead of five copies of a file, you keep one file with a complete history.\n\n\n\n\n\n\nNote About This — Git vs. GitHub\n\n\n\n\n\n\nGit is the tool that tracks changes on your computer (local).\nGitHub is a website that hosts git projects online (remote), so you can back them up and share them.\n\nYou can use git entirely on its own. GitHub adds the online home.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#checking-whether-git-is-initialized",
+    "href": "modules/arc_6.html#checking-whether-git-is-initialized",
+    "title": "Arc 6",
+    "section": "Checking Whether Git Is Initialized",
+    "text": "Checking Whether Git Is Initialized\nBefore using Positron’s Source Control tab, confirm git is actually tracking your project. Open the Terminal tab in Positron — because you’re working inside an R project, it opens directly in your project folder.\ngit status\n\nGit is readyNot a git repository\n\n\nOn branch main\n\nNo commits yet\n\nUntracked files:\n  (use \"git add &lt;file&gt;...\" to include in what will be committed)\n        data/\n        scripts/\n        ...\nYour repository is already initialized. Move on to the next section.\n\n\nfatal: not a git repository (or any of the parent directories): .git\nRun one command to fix it:\ngit init\nYou should see:\nInitialized empty Git repository in /path/to/your/project/.git/\nRun git status again — you should now see the “Git is ready” output.\n\n\n\n\n\n\n\n\n\nTip Learn More — Why the Terminal First?\n\n\n\n\n\nPositron’s Source Control tab is a visual interface built on top of the same git commands you just ran. Starting here lets you see what’s happening under the hood before switching to the GUI — and git init is the one thing the GUI can’t do for you.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#local-git-in-positron-modify-stage-commit",
+    "href": "modules/arc_6.html#local-git-in-positron-modify-stage-commit",
+    "title": "Arc 6",
+    "section": "Local Git in Positron: Modify → Stage → Commit",
+    "text": "Local Git in Positron: Modify → Stage → Commit\nYour control center for git in Positron is the Source Control tab in the left activity bar. Every change you save to your history goes through three steps:\n\nModify — you edit files in your project as usual\nStage — you pick which changes to include in the next snapshot\nCommit — you save those staged changes as a permanent snapshot\n\nThe “stage” step is what surprises newcomers: git lets you choose exactly what goes into each commit, so you can group related changes together instead of dumping everything at once.\nWhen you change files, they appear in the panel with a letter:\n\n\n\nIndicator\nMeaning\n\n\n\n\nU\nUntracked — a new file git doesn’t know about yet\n\n\nM\nModified — an existing file has changed\n\n\nA\nAdded — a new file that’s been staged, ready to commit\n\n\n\n\n\n\n\n\n\nTip Learn More — Two Zones\n\n\n\n\n\nThe panel has two areas: Changes (modified but not yet staged) and Staged Changes (packed and ready to commit). Clicking the + next to a file moves it from Changes → Staged Changes.\n\n\n\n\nYour First Commit\n\nLook at the Source Control tab. You should see several files listed as untracked (U) — the scripts and data files you’ve worked with so far.\nStage everything. Hover over the Changes heading and click the + icon to stage all files at once. They move into Staged Changes.\nWrite a commit message. In the message box, type something descriptive: Add project scripts and data.\nCommit. Click the ✓ Commit button.\n\n\n\n\n\n\n\nTip Learn More — Write Messages for Your Future Self\n\n\n\n\n\nA good commit message finishes the sentence “This commit will…”. Add data loading script is useful; stuff and update are not.\n\n\n\n\n\nA Second Commit\n\nMake an edit. Open any script and add a comment line at the top:\n# Analysis script — tracked with git\nCheck the panel. The file now shows an M (modified) under Changes.\nReview the diff (recommended). Click the filename to open a diff view — additions in green, deletions in red. Reviewing the diff before committing is the single best habit for catching mistakes early.\nStage and commit. Click +, type Add header comment to    analysis script, and click ✓ Commit.\n\n\n\n\n\n\n\nNote About This — A Peek Behind the Curtain\n\n\n\n\n\nThe Source Control panel just runs git commands for you. In the Terminal, run:\ngit status\ngit log --oneline\nYou’ll see the current state and the commits you just made. You never have to use the terminal — but it’s good to know the GUI isn’t doing anything magic. The full command-line workflow is in Extending Further.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#excluding-data-files-the-.gitignore-file",
+    "href": "modules/arc_6.html#excluding-data-files-the-.gitignore-file",
+    "title": "Arc 6",
+    "section": "Excluding Data Files: The .gitignore File",
+    "text": "Excluding Data Files: The .gitignore File\nAn important best practice: don’t store large data files in git. Git is built for code and text, not big datasets — it keeps every version of every file, so a 100 MB dataset can balloon your repo after a few edits, GitHub enforces a 100 MB per-file limit, and git compresses text well but handles large binary data poorly.\n\n\n\n\n\n\nNote About This — Where Should Data Live Instead?\n\n\n\n\n\n\n\n\n\n\n\n\nData Size\nRecommended Approach\n\n\n\n\nSmall reference data (&lt; 10 MB)\nOK to include if it rarely changes\n\n\nMedium (10 MB–1 GB)\nCloud storage (Dropbox, Drive, OneDrive) — document the location\n\n\nLarge (&gt; 1 GB)\nInstitutional repositories, OSF, Zenodo, Figshare\n\n\nVery large\nGit LFS — stores big files externally, keeps references in git\n\n\n\n\n\n\nYou already have a .gitignore in your project root — renv::init() created it back in Arc 1 to exclude its package cache. Extend it:\n\nOpen it. In Positron’s Explorer pane, click .gitignore in your project root. (If you don’t see it: View → Show Hidden Files.)\nAdd these lines below what’s already there:\n# Ignore data folders\nraw_data/\nprocessed_data/\n\n# Ignore large output files\noutputs/*.pdf\noutputs/*.html\nSave the file.\nWatch git react. The files in raw_data/ and processed_data/ disappear from the Source Control panel — git is now ignoring them.\nCommit the updated .gitignore, with the message Extend .gitignore to exclude data files.\n\n\n\n\n\n\n\nImportant Watch Out — Track Code, Not Data\n\n\n\n\n\nKeep your repository lean by tracking code, not data. This is exactly what the Arc 2 “data management gone awry” story was missing: note where your data actually lives in your README instead of committing it directly.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#publishing-to-github-with-github-desktop",
+    "href": "modules/arc_6.html#publishing-to-github-with-github-desktop",
+    "title": "Arc 6",
+    "section": "Publishing to GitHub with GitHub Desktop",
+    "text": "Publishing to GitHub with GitHub Desktop\nYour project now has a local history. Let’s give it an online home so it’s backed up and shareable. GitHub Desktop handles authentication through your browser — no SSH keys, no tokens.\n\n\n\n\n\n\nImportant Watch Out — Make Sure You Have These First\n\n\n\n\n\n\nA free GitHub account\nGitHub Desktop installed and signed in\n\n\n\n\nStep 1: Sign in to GitHub Desktop\n\nOpen GitHub Desktop.\nGo to File → Options → Accounts (macOS: GitHub Desktop → Settings → Accounts).\nClick Sign in next to GitHub.com. Your browser opens — approve the request, and you’re authenticated.\n\nStep 2: Add your existing project\n\nFile → Add Local Repository.\nNavigate to your project folder and select it.\nClick Add Repository.\n\nGitHub Desktop now shows your project and its full commit history — the same commits you made in Positron.\nStep 3: Publish\n\nClick Publish repository at the top.\nConfirm the name and add a short description if you like.\nKeep this code private — leave this checked for research work (uncheck it only if you intend the project to be public).\nClick Publish repository.\n\n\n\n\n\n\n\nTip Learn More — Positron ↔︎ GitHub Desktop\n\n\n\n\n\nKeep editing and committing in Positron, then switch to GitHub Desktop and click Push origin to send your latest commits to GitHub. Push whenever you want your online copy up to date.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#seeing-it-on-github.com",
+    "href": "modules/arc_6.html#seeing-it-on-github.com",
+    "title": "Arc 6",
+    "section": "Seeing It on GitHub.com",
+    "text": "Seeing It on GitHub.com\n\nGo to github.com and open Your repositories.\nClick the repository you just published.\n\nYou should see all your files, and — by clicking the commits link (or the clock/history icon) — the complete history you built in Positron. Your local project now has an online backup.\nLocal-first vs. remote-first. There are two ways a project’s life can begin:\n\nLocal-first (what we just did): you start on your own computer, build a history, then publish to GitHub — like writing a document on your desktop and later uploading it to share.\nRemote-first (cloning): the project already exists on GitHub. You clone it — downloading a complete copy, history and all — before you start working, like a colleague sharing a document you download to edit.\n\n\n\n\n\n\n\nNote About This — When You’ll Use Remote-First\n\n\n\n\n\nYou’ll use the remote-first / clone workflow when collaborating on someone else’s repository — covered in Extending Further, below.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_6.html#extending-further-collaboration-the-command-line-and-institutional-options",
+    "href": "modules/arc_6.html#extending-further-collaboration-the-command-line-and-institutional-options",
+    "title": "Arc 6",
+    "section": "Extending Further: Collaboration, the Command Line, and Institutional Options",
+    "text": "Extending Further: Collaboration, the Command Line, and Institutional Options\nThis next material goes beyond what we’ll build together today — it’s here so you know it’s possible, and can come back to it on your own.\n\n\n\n\n\n\nCaution Code Tour — Collaborating with Fork & Pull Requests\n\n\n\n\n\nOne of the most powerful aspects of version control is collaboration. This walks through a complete, real-world workflow where one person proposes a change to another person’s project.\nRoles: the Project Owner owns the original repository and decides what changes to accept; the Contributor wants to suggest improvements, fixes, or additions.\nThe workflow: Fork → Clone → Branch → Edit → Push → Pull Request.\nFork the repository. On GitHub.com, navigate to the owner’s repository and click Fork — this creates an exact copy of the entire project history, all commits, branches, and files, under your own account. You can experiment freely without affecting the original.\nClone your fork. Click the green &lt;&gt; Code button, copy the HTTPS URL, then in GitHub Desktop: File → Clone Repository, paste the URL, choose a save location, and click Clone.\nCreate a new branch. In GitHub Desktop, open the Current Branch dropdown → New Branch. Give it a descriptive, lowercase, hyphen-separated, verb-focused name (add-readme-documentation, not new-feature or MyBranch), then Create Branch → Publish branch.\nMake your edits in Positron. Click Open in Positron from GitHub Desktop, make your change (a new file, a fix, documentation), and save.\nCommit and push. Back in GitHub Desktop, review your changes by clicking each filename, write a descriptive commit message, click Commit to [your-branch-name], then Push origin.\nOpen a pull request. After pushing, click Create Pull Request. Give it a clear title and a description explaining what changed and why:\n## Summary\nAdded comprehensive README documentation to help users understand\nthe project's structure, objectives, and prerequisites.\n\n## Changes Made\n- Created README.md in the project root\n- Documented setup and prerequisites\n\n## Why This Improvement\nThe repository lacked documentation explaining what it covers and\nwhat participants need to get started.\nThe owner’s review. On the original repository’s Pull requests tab, open the PR, review line-by-line differences under Files changed (green = additions, red = deletions), leave comments, and either Approve and Merge, Request Changes, or Close without Merging.\n\nBe constructive — focus on the code, not the person\nBe specific — point to exact lines and suggest improvements\nBe appreciative — thank contributors for their time\nTest locally — for important changes, pull the branch and test it yourself before merging\n\nAfter merging, the owner can safely delete the contributor’s branch; the contributor switches back to main, pulls the latest changes, and deletes their own feature branch — their contribution is now part of the official project history.\nWhy this matters: the original project is never at risk during development, every change goes through review before integration, contributors and maintainers can discuss openly, and every contribution is documented with clear attribution.\n\n\n\n\n\n\n\n\n\nCaution Code Tour — Git on the Command Line\n\n\n\n\n\nThe Positron Source Control panel is a visual interface that runs git commands for you in the background. Here’s how to run those same commands yourself — useful for speed, advanced operations, and remote servers where no GUI is available.\ngit status\ngit add .\n. means “add all changed files in the current directory and subdirectories.” To stage a single file, name it: git add scripts/analysis.R.\ngit commit -m \"Describe what changed\"\ngit log --oneline\nConfirm your data files are actually excluded after adding a .gitignore:\ngit status --ignored\nYou should see your data folders listed under “Ignored files.”\nIf you’ve set up SSH (just below) or an HTTPS credential, you can connect and push from the terminal instead of GitHub Desktop:\ngit remote add origin git@github.com:username/yourreponame.git\ngit branch -M main\ngit push -u origin main\n\n\n\n\n\n\n\nApproach\nBest For\n\n\n\n\nGUI (Source Control panel / GitHub Desktop)\nVisual learners, reviewing diffs, getting started\n\n\nCLI (Terminal)\nSpeed, advanced operations, remote servers\n\n\n\nMany experienced users mix both: GUI for reviewing diffs, CLI for quick commits. On Windows, you may see “CRLF will be replaced by LF the next time Git touches it” — this is normal, git converting Windows-style line endings to Unix-style for consistency, and safe to ignore.\n\n\n\n\n\n\n\n\n\nCaution Code Tour — SSH Key Authentication (Advanced)\n\n\n\n\n\nGitHub Desktop handles authentication for you, so you don’t need this for the core workflow. But if you prefer to push from the command line, SSH keys let you authenticate securely without typing a password every time.\nPATs (personal access tokens) are an HTTPS-based alternative, but they expire every 90 days and need renewal. SSH is preferred for long-term research projects because it’s a one-time setup — if SSH is blocked by your network, GitHub Desktop (HTTPS) is the reliable fallback.\nCheck for existing keys in the Positron Terminal:\nls ~/.ssh\nIf you see id_ed25519 or id_rsa, you already have keys — skip to adding your key to GitHub, below. Otherwise:\n\nmacOS / LinuxWindows\n\n\nssh-keygen -t ed25519 -C \"your_email@example.com\"\nPress Enter to accept the default save location, and again twice to skip a passphrase (optional).\neval \"$(ssh-agent -s)\"\nssh-add ~/.ssh/id_ed25519\npbcopy &lt; ~/.ssh/id_ed25519.pub\n\n\nThese commands work in the Positron Terminal or Git Bash (installed with Git for Windows) — the Positron Terminal is recommended for consistency.\nssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"\nPress Enter to accept the default save location, and again twice to skip a passphrase (optional).\neval \"$(ssh-agent -s)\"\nssh-add ~/.ssh/id_rsa\ncat ~/.ssh/id_rsa.pub | clip\nIf clip doesn’t work, run cat ~/.ssh/id_rsa.pub and copy the output manually. If ssh-agent won’t start, try running Positron or Git Bash as Administrator — and if you see “Could not open a connection to your authentication agent,” run ssh-agent bash first, then retry ssh-add.\n\n\n\nThe .pub file is your public key — safe to share with GitHub. The file without .pub is your private key — never share this. If someone asks for your SSH key, they always mean the public one.\nAdd it to GitHub: profile photo → Settings → SSH and GPG keys → New SSH key → give it a descriptive title (My Positron Laptop) → paste the key → Add SSH key.\nTest the connection:\nssh -T git@github.com\nType yes if prompted about authenticity. You should see: Hi username! You've successfully authenticated...\n\n\n\n\n\n\n\n\n\nTip Learn More — GitHub Enterprise Options at Yale\n\n\n\n\n\nIf you’re working with sensitive research data, Yale offers two GitHub Enterprise options beyond standard GitHub.com.\nGitHub Enterprise Server (On-Premises) — a self-hosted platform running within Yale’s secure infrastructure. Suitable for version-controlling analysis scripts, maintaining reproducible research pipelines, and integrating with Yale’s research computing resources. Hosted on Yale’s own infrastructure; supports High data classification (including HIPAA-covered data); full control over data location and security policies.\nGitHub Enterprise Cloud — adds advanced functionality to GitHub.com, including SAML single sign-on with Yale credentials, additional GitHub Actions minutes, and enhanced security/compliance features. Cloud-based, managed by GitHub; supports Moderate data classification (not suitable for high-sensitivity data).\n\n\n\n\n\n\n\nPlatform\nBest For\n\n\n\n\nGitHub.com\nPublic research, open-source projects, teaching\n\n\nGitHub Enterprise Cloud\nCollaborative research with Yale auth, moderate-sensitivity data\n\n\nGitHub Enterprise Server\nHigh-sensitivity data, HIPAA compliance, institutional governance\n\n\n\nContact Yale ITS for access, or request GitHub Enterprise support via Yale ServiceNow.",
+    "crumbs": [
+      "Arc 6: Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/arc_7.html#evaluating-ai-generated-code-a-worked-example",
+    "href": "modules/arc_7.html#evaluating-ai-generated-code-a-worked-example",
+    "title": "Arc 7",
+    "section": "Evaluating AI-Generated Code: A Worked Example",
+    "text": "Evaluating AI-Generated Code: A Worked Example\nBefore you try this yourself, here’s what evaluating AI output actually looks like, step by step. Suppose you’d asked an AI assistant:\n\n“Write an R function that takes a data frame and a column name, and returns the number of values in that column below 10.”\n\nAnd it handed back this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIt runs. It returns a number. Is that enough?\n\n\n\n\n\n\nNote About This — The AI Code Checklist\n\n\n\n\n\nRun this same checklist on every piece of AI-generated code before it goes anywhere near a real analysis — all five items are habits this course has already built, just aimed at a new source of code:\n\nDoes it run? — the lowest bar, and the only one an AI’s confidence guarantees.\nDo you understand every line? — if not, that’s the signal to ask the AI to explain it, not to accept it on faith (Arc 3: reading error messages applies here too, since you can’t debug what you don’t understand).\nIs it documented in your words — your Quarto doc explaining what it does and why, independent of whatever comments the AI added itself? (Arc 2)\nIs it committed, with a message describing what changed and why? (Arc 6)\nDoes renv::snapshot() capture every package it pulled in — not just the ones you already had? (Arc 1)\n\nRunning the example above through this list: it executes (1), it’s simple enough to understand fully (2) — but it silently drops every NA without flagging that it did, which is exactly the Arc 3 lesson about na.rm and missing values resurfacing in new clothes. An AI didn’t know to ask whether that silence was intentional. You have to.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Arc 7: DESeq2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "modules/arc_7.html#your-turn-get-code-from-an-ai-then-audit-it",
+    "href": "modules/arc_7.html#your-turn-get-code-from-an-ai-then-audit-it",
+    "title": "Arc 7",
+    "section": "Your Turn: Get Code From an AI, Then Audit It",
+    "text": "Your Turn: Get Code From an AI, Then Audit It\nOpen Claude, ChatGPT, or whichever assistant you use, and ask it this:\n\n“Write an R function called flag_mid_expression that takes a data frame, a column name, a low threshold, and a high threshold, and returns TRUE for every value strictly between the two thresholds — and FALSE for everything else, including missing values.”\n\nPaste whatever it gives you into the cell below, in place of the placeholder, and run it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow run it through the checklist above. Specifically:\n\nDoes it correctly return FALSE — not NA — for missing values? (anyNA(raw_data$GSM3119015) told you there’s at least one to test this against.)\nDo you understand every operator it used?\nCould you explain, out loud, what this function does to someone who’s never seen it?\n\n\n\nOne possible correct version\n\nflag_mid_expression &lt;- function(df, col_name, low, high) {\n  values &lt;- df[[col_name]]\n  result &lt;- values &gt; low & values &lt; high\n  result[is.na(values)] &lt;- FALSE\n  result\n}\nMany AI assistants will skip the NA handling entirely — &gt; and &lt; against NA silently return NA, not FALSE. If what you pasted did that, you’ve just caught exactly the kind of error this checklist exists to catch.\n\n\n\n\n\n\n\nCaution Code Tour — Three Ways AI-Generated R Code Fails Quietly\n\n\n\n\n\nThree real patterns worth recognizing on sight. Each runs if you run it in your own browser cell — try each one before reading what’s wrong.\n1. The invented function. AI assistants sometimes blend real function names with plausible-sounding ones that don’t exist:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis fails loudly — could not find function — which is actually the easy case. The real function is mean(x, na.rm = TRUE); mean_no_na() was never real.\n2. The misordered argument. Unlike many functions, grepl() expects pattern first, text to search second — reverse them and the function still runs, it just silently matches nothing:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCompare the two outputs. The first returns all FALSE. Nothing about that result looks like an error.\n3. The outdated package. Ask an AI for a “group and summarize” operation in R and it may reach for the plyr package — a real tool, but one dplyr (which this course has used throughout Arc 5) has almost entirely replaced:\n#| eval: false\nlibrary(plyr)\nddply(raw_metadata, \"genotype\", summarise, n = length(genotype))\nThis isn’t wrong, exactly — it’s dated. plyr is no longer actively maintained, and its functions can conflict with dplyr if both are loaded. The equivalent you already know:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAn AI trained on years of public code will sometimes hand you the 2014 answer to a question that has a better 2024 answer.\n\n\n\n\n\n\n\n\n\nTip Learn More — Getting Better Code Out of an AI\n\n\n\n\n\nA vague prompt gets a vague — or wrong — answer. A few habits that consistently produce better code:\n\nBe specific about shape and edge cases — “returns FALSE for missing values” is something you have to ask for; it’s rarely assumed.\nGive it real context — paste the actual column names or a few real rows, instead of describing your data in the abstract.\nAsk it to explain its own code back to you — if the explanation doesn’t match what the code actually does, that mismatch is worth investigating before you trust either one.\nTreat the first answer as a draft — asking a follow-up (“what happens here if the column has an NA?”) often surfaces exactly the kind of gap this arc has been pointing at.\n\nFor more on getting useful results from Claude specifically, Anthropic’s prompting documentation is at docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview.\n\n\n\n\n\n\n\n\n\nTip Learn More — Going Further: Claude Code\n\n\n\n\n\nEverything in this arc used chat-based AI — you asked a question, got code back, and pasted it in yourself. A coding agent like Claude Code goes a step further: it reads your project’s files directly, writes code into them, runs it, and fixes its own errors. The checklist from this arc doesn’t change — it’s the same “Claude does, you decide” split — it just needs sharper tools, since an agent can do far more per turn than a chat window ever could. ARCS’s companion class, Analyzing Research Data with Claude Code, walks through exactly that: permission rules that enforce what advice alone can’t, a plan-before-you-code workflow, and a required human review step before anything is trusted. If this arc made you want to go further, that’s the natural next stop.",
+    "crumbs": [
+      "Arc 7: DESeq2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "modules/arc_8.html#packaging-your-project-for-someone-else",
+    "href": "modules/arc_8.html#packaging-your-project-for-someone-else",
+    "title": "Arc 8",
+    "section": "Packaging Your Project for Someone Else",
+    "text": "Packaging Your Project for Someone Else\nEvery arc so far has quietly been building toward this moment. The README you were asked to write in Arc 1, the file naming conventions from Arc 2, the .gitignore and commit history from Arc 6 — all of it is exactly what a real data or code repository asks you to produce at deposit time. There’s no new skill left to learn here. There’s just a new name for what you’ve already been doing: packaging.\n\nWriting a README That Could Survive Being Downloaded by a Stranger\nA repository deposit lives or dies on its README. Open your project’s README.md — the one you started in Arc 1 — and check it against what an actual deposit would require:\n# Project Title\n\n## Description\nOne paragraph: what is this project, and what question does it answer?\n\n## Data\nWhere the raw data came from (source, URL or accession number, date\naccessed), and what license or use agreement governs it.\n\n## Files\nA short list of what's in each folder and what it contains —\n`raw_data/`, `processed_data/`, `scripts/`, `outputs/`.\n\n## How to Reproduce This\nThe exact steps someone else would run, in order, to get from\n`raw_data/` to your result. If you've been using `renv`, say so, and\nsay which R version you used.\n\n## Citation\nHow you'd like this project cited, if someone reuses it.\n\n## Contact\nWho to contact with questions, and how.\n\n\n\n\n\n\nNote About This — Why “A Stranger” Is the Right Standard\n\n\n\n\n\nThe test for a good README isn’t “would I understand this?” — you already do, you wrote it. The test is “would someone who has never seen this project, and can’t ask me anything, get it running?” That stranger is usually future-you, eighteen months from now, having forgotten all of it.\n\n\n\n\n\nDocumenting Your Environment, Automatically\nA README can describe your setup in prose. R can also just tell you exactly what it was, with no risk of the description drifting out of sync with reality:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis single function call — R version, operating system, every loaded package and its exact version — is the kind of thing a real data package often asks you to include directly, sometimes as its own file (sessionInfo.txt or similar). It’s renv’s snapshot, read back to you in plain language.\n\n\n\n\n\n\nTip Learn More — Where This Actually Goes\n\n\n\n\n\nWhen you’re ready to deposit for real, a few common destinations:\n\nZenodo — general-purpose, issues a DOI, widely accepted by funders and journals\nOSF — project-level, good for packaging code, data, and materials together as one unit\nFigshare — similar to Zenodo, popular in some fields over others\n\nMost funders and many journals now also require a data availability statement in the manuscript itself — a sentence or two saying where the underlying data lives and how to access it. If your field has a standard, field-specific repository instead (a gene expression database for genomics, for instance), that often takes priority over a general-purpose one. Your library’s research data services can help you figure out which applies to you.\n\n\n\n\n\nWhat a DOI Actually Buys You\n\n\n\n\n\n\nNote About This — Citable, Not Just Downloadable\n\n\n\n\n\nA repository deposit usually earns a DOI — a permanent link that won’t break even if the file moves, gets renamed, or the hosting service redesigns its site. That permanence is what lets someone else cite your data the same way they’d cite a paper — and what lets you point to a fixed, unchanging version of your work, instead of “whatever’s currently in my Google Drive folder.”",
+    "crumbs": [
+      "Arc 8: Apptainer & Containers"
+    ]
+  },
+  {
+    "objectID": "modules/arc_8.html#the-limits-of-reproducibility",
+    "href": "modules/arc_8.html#the-limits-of-reproducibility",
+    "title": "Arc 8",
+    "section": "The Limits of Reproducibility",
+    "text": "The Limits of Reproducibility\nBack in Arc 2, before any of this started, we put up a list:\n\nR’s Flexibility Creates New Responsibilities\n\nEfficiency — You can still write code that runs slowly\nBest practices — R is agnostic to readability, optimal analysis, data ethics\nData management — Explicit instructions are needed to select and organize pipelines, folders, files\nInformation — Code that runs is not always code that produces desired or understandable results\n\n\nSeven arcs later, you can read every line of that list and recognize exactly which habit answers it — renv and functions for efficiency, here() and naming conventions for data management, error messages and testing for information. Reproducibility, as this course has taught it, is the answer to “can this be run again, by someone else, and get the same result?”\nThat’s a real, necessary thing. It’s also not the whole question.\n\n\n\n\n\n\nImportant Watch Out — Reproducible Isn’t the Same as Right\n\n\n\n\n\nA perfectly reproducible pipeline — pinned packages, committed history, documented every step — can still analyze the wrong population, apply the wrong definition, or answer a question nobody should have asked in the first place, with full fidelity, every single time it’s run. Running the same flawed analysis twice and getting the same flawed answer twice is not a correction. It’s just a well-documented mistake.\n\n\n\n\nA Live Example of This Exact Trap\nARCS’s companion extension, Analyzing Research Data with Claude Code, walks through a real version of this. Students there ask an AI coding agent to estimate a published health statistic, and compare what happens when a single hidden decision changes — not a bug, just a quiet choice about how to handle a missing survey answer. The script still runs without error. It’s still fully reproducible — anyone re-running it gets the identical number back. But depending on that one choice, the result ranges from roughly 48% to over 90%, for the same underlying data. Nothing in that pipeline looks broken. The code runs is not always code that produces desired or understandable results — Arc 2’s warning, wearing new clothes.\nThat extension calls this the garden of forking paths: when it’s cheap to try “just one more” version of a definition or a filter, and you report the version you like best, reproducibility doesn’t save you. It just means your selectively-chosen answer is now permanently, verifiably reproducible — which is a strange kind of trust to have earned.\n\n\nWho the Data Is About, and Who Decides\nTwo frameworks, often mentioned together, ask a question reproducibility never does:\n\n\n\n\n\n\nNote About This — FAIR and CARE Principles\n\n\n\n\n\nFAIR — Findable, Accessible, Interoperable, Reusable — describes how research outputs should be structured so others (including future-you) can find and use them. Everything in the packaging section above is, in effect, FAIR in practice.\nCARE — Collective Benefit, Authority to Control, Responsibility, Ethics — centers who the data is about, particularly for Indigenous data governance, asking not just “can this be reused” but “should it be, and by whose permission.”\nFAIR asks whether data can be found and reused. CARE asks whether it should be — and who gets to answer that. A dataset can score perfectly on every FAIR criterion and still have been collected, shared, or reused in a way the people it describes never consented to.\n\n\n\n\n\nMeet R Where It’s At — One More Time\nArc 2 closed its own list with a set of habits, not warnings:\n\nR Projects · README · File Naming Conventions · Workflow automation · Look beyond R\n\nEvery one of those became a full arc. That’s the shape this entire course has had: name a responsibility that comes with power, then build the specific habit that answers it. Data ethics doesn’t get a habit in the same way — there’s no function call, no package, no checklist item that resolves “should this be reproduced at all?” That question doesn’t go away because you’ve finished a course. It’s meant to stay open.\n\n Instructor Note\nLet the discussion questions below actually sit — don’t rush to supply an answer, and don’t let students treat this as a problem with a correct solution to find. The goal is the opposite of every prior arc: this is the one place in the course where “I’m not sure” is the honest and correct response. If the room goes quiet, that’s the material working, not a sign to fill the silence.\n\nFor discussion:\n\nThink of a dataset or analysis you’re familiar with. Who was it about? Were they consulted about how it would be used?\nIs there a difference between data you have permission to use and data you have standing to use?\nArc 7 showed that AI-assisted code can run perfectly and still be wrong. Is a dataset with no FAIR/CARE consideration behind it a version of the same problem — technically functional, substantively compromised?",
     "crumbs": [
       "Arc 8: Apptainer & Containers"
     ]

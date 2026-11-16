@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Arc 3: Data Structures – ARCS</title>
+<title>Arc 3 – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -412,7 +412,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# A list can hold mixed, differently-shaped things together\nsample_info <- list(\n  id = \"GSM3119015\",\n  values = c(12, 18, 9),\n  notes = \"control group\"\n)\nsample_info$notes","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"rawc[1, ]              # entire first row\nrawc[, 3]              # entire third column\nrawc[1059, \"GSM3119015\"]   # one specific cell\nrawc$GSM3119015             # a column, by name","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"anyNA(rawc)\nwhich(is.na(rawc$GSM3119015))","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"celsius_to_fahrenheit <- function(temp_c) {\n  temp_f <- (temp_c * 9/5) + 32\n  return(temp_f)\n}\ncelsius_to_fahrenheit(20)","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"for (i in 1:5) {\n  print(i^2)\n}","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"check_value <- function(x) {\n  if (x > 0) {\n    \"positive\"\n  } else if (x < 0) {\n    \"negative\"\n  } else {\n    \"zero\"\n  }\n}\ncheck_value(-4)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"raw_metadata <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\nraw_data     <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# A list can hold mixed, differently-shaped things together\nsample_info <- list(\n  id = \"GSM3119015\",\n  values = c(12, 18, 9),\n  notes = \"control group\"\n)\nsample_info$notes","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"raw_data[1, ]                   # entire first row\nraw_data[, 3]                   # entire third column\nraw_data[1059, \"GSM3119015\"]    # one specific cell\nraw_data$GSM3119015             # a column, by name","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"anyNA(raw_data)\nwhich(is.na(raw_data$GSM3119015))","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"celsius_to_fahrenheit <- function(temp_c) {\n  temp_f <- (temp_c * 9/5) + 32\n  return(temp_f)\n}\ncelsius_to_fahrenheit(20)","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"flag_low_expression <- function(df, sample_col, min_count = 10) {\n  df[[sample_col]] < min_count\n}\n\nlow_in_sample <- flag_low_expression(raw_data, \"GSM3119015\", min_count = 10)\nsum(low_in_sample, na.rm = TRUE)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"flag_high_expression <- function(df, sample_col, max_count = 1000) {\n  # TODO: fix the line below so it returns TRUE wherever the value\n  # is GREATER than max_count, not less than it\n  df[[sample_col]] < max_count\n}\n\nhigh_in_sample <- flag_high_expression(raw_data, \"GSM3119015\", max_count = 1000)\nsum(high_in_sample, na.rm = TRUE)","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"for (i in 1:5) {\n  print(i^2)\n}","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"sample_cols <- grep(\"^GSM\", colnames(raw_data), value = TRUE)\n\nfor (col in sample_cols[1:3]) {\n  n_low <- sum(raw_data[[col]] < 10, na.rm = TRUE)\n  cat(col, \":\", n_low, \"low-count genes\\n\")\n}","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"sample_cols <- grep(\"^GSM\", colnames(raw_data), value = TRUE)\n\nfor (col in sample_cols[1:3]) {\n  # TODO: replace the next line so it calculates mean(raw_data[[col]], na.rm = TRUE)\n  # instead of counting low-count genes\n  n_low <- sum(raw_data[[col]] < 10, na.rm = TRUE)\n  cat(col, \":\", n_low, \"low-count genes\\n\")\n}","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"colSums(raw_data[sample_cols[1:3]] < 10, na.rm = TRUE)","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"check_value <- function(x) {\n  if (x > 0) {\n    \"positive\"\n  } else if (x < 0) {\n    \"negative\"\n  } else {\n    \"zero\"\n  }\n}\ncheck_value(-4)","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"classify_expression <- function(count) {\n  if (is.na(count)) {\n    \"missing\"\n  } else if (count == 0) {\n    \"not detected\"\n  } else if (count < 10) {\n    \"low\"\n  } else {\n    \"detected\"\n  }\n}\n\nclassify_expression(raw_data$GSM3119015[1059])  # the NA we found earlier","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"classify_expression <- function(count) {\n  if (is.na(count)) {\n    \"missing\"\n  } else if (count == 0) {\n    \"not detected\"\n  } else if (count < 10) {\n    \"low\"\n  } else {\n    # TODO: split this branch — counts above 1000 should return \"high\";\n    # everything else (10 to 1000) should still return \"detected\"\n    \"detected\"\n  }\n}\n\nclassify_expression(500)\nclassify_expression(5000)","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"qc_report <- function(df, sample_cols, min_count = 10) {\n  for (col in sample_cols) {\n    n_low   <- sum(df[[col]] < min_count, na.rm = TRUE)\n    pct_low <- round(100 * n_low / nrow(df), 1)\n    status  <- if (pct_low > 50) \"high dropout\" else \"ok\"\n    cat(col, \":\", pct_low, \"% low-count genes —\", status, \"\\n\")\n  }\n}\n\nqc_report(raw_data, grep(\"^GSM\", colnames(raw_data), value = TRUE)[1:3])","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1668,6 +1668,7 @@ globalThis.qwebrExecuteCode = async function (
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -1840,13 +1841,22 @@ globalThis.qwebrExecuteCode = async function (
    
   <ul>
   <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#build-lists" id="toc-build-lists" class="nav-link" data-scroll-target="#build-lists">Build: Lists</a></li>
-  <li><a href="#build-base-r-subsetting-just-enough-to-read-code" id="toc-build-base-r-subsetting-just-enough-to-read-code" class="nav-link" data-scroll-target="#build-base-r-subsetting-just-enough-to-read-code">Build: Base R Subsetting (Just Enough to Read Code)</a></li>
-  <li><a href="#build-checking-for-missing-values" id="toc-build-checking-for-missing-values" class="nav-link" data-scroll-target="#build-checking-for-missing-values">Build: Checking for Missing Values</a></li>
-  <li><a href="#build-writing-your-own-function" id="toc-build-writing-your-own-function" class="nav-link" data-scroll-target="#build-writing-your-own-function">Build: Writing Your Own Function</a></li>
-  <li><a href="#build-for-loops" id="toc-build-for-loops" class="nav-link" data-scroll-target="#build-for-loops">Build: <code>for</code> Loops</a></li>
-  <li><a href="#build-if-else-conditionals" id="toc-build-if-else-conditionals" class="nav-link" data-scroll-target="#build-if-else-conditionals">Build: <code>if</code> / <code>else</code> Conditionals</a></li>
-  <li><a href="#build-reading-an-error-message-deliberate-exercise" id="toc-build-reading-an-error-message-deliberate-exercise" class="nav-link" data-scroll-target="#build-reading-an-error-message-deliberate-exercise">Build: Reading an Error Message (Deliberate Exercise)</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#base-r-subsetting-just-enough-to-read-code" id="toc-base-r-subsetting-just-enough-to-read-code" class="nav-link" data-scroll-target="#base-r-subsetting-just-enough-to-read-code">Base R Subsetting (Just Enough to Read Code)</a></li>
+  <li><a href="#checking-for-missing-values" id="toc-checking-for-missing-values" class="nav-link" data-scroll-target="#checking-for-missing-values">Checking for Missing Values</a></li>
+  <li><a href="#writing-your-own-function" id="toc-writing-your-own-function" class="nav-link" data-scroll-target="#writing-your-own-function">Writing Your Own Function</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-write-flag_high_expression" id="toc-your-turn-write-flag_high_expression" class="nav-link" data-scroll-target="#your-turn-write-flag_high_expression">Your Turn: Write <code>flag_high_expression()</code></a></li>
+  </ul></li>
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><code>for</code> Loops</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-report-the-average-instead" id="toc-your-turn-report-the-average-instead" class="nav-link" data-scroll-target="#your-turn-report-the-average-instead">Your Turn: Report the Average Instead</a></li>
+  </ul></li>
+  <li><a href="#if-else-conditionals" id="toc-if-else-conditionals" class="nav-link" data-scroll-target="#if-else-conditionals"><code>if</code> / <code>else</code> Conditionals</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-add-a-fifth-category" id="toc-your-turn-add-a-fifth-category" class="nav-link" data-scroll-target="#your-turn-add-a-fifth-category">Your Turn: Add a Fifth Category</a></li>
+  </ul></li>
+  <li><a href="#reading-an-error-message-deliberate-exercise" id="toc-reading-an-error-message-deliberate-exercise" class="nav-link" data-scroll-target="#reading-an-error-message-deliberate-exercise">Reading an Error Message (Deliberate Exercise)</a></li>
   <li><a href="#what-we-did-and-why" id="toc-what-we-did-and-why" class="nav-link" data-scroll-target="#what-we-did-and-why">What We Did, and Why</a></li>
   </ul>
 </nav>
@@ -2140,8 +2150,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arc 3: Data Structures</h1>
-<p class="subtitle lead">Vectors, Matrices, Data Frames, and Lists</p>
+<h1 class="title">Arc 3</h1>
+<p class="subtitle lead">Data Structures and Control Flow</p>
 </div>
 
 
@@ -2163,128 +2173,333 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p><a href="arc_3_slides.html" target="_blank">Open slides fullscreen</a></p>
 <iframe src="arc_3_slides.html" width="100%" height="400px" style="border:none;">
 </iframe>
-</section>
-<section id="build-lists" class="level2">
-<h2 class="anchored" data-anchor-id="build-lists">Build: Lists</h2>
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⚪ About This — Why Lists?
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you’re jumping into this module on a new day, or <code>raw_data</code> and <code>raw_metadata</code> aren’t in your environment, run this once before continuing:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>metadata_url  <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rawcounts_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(metadata_url,  <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(rawcounts_url, <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>raw_data     <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No persistent filesystem here, so skip the download step and read directly from the source instead:</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+</section>
+<section id="lists" class="level2">
+<h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Why Lists?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A data frame requires every column to be the same length. A list doesn’t — it’s the structure R reaches for when things genuinely don’t fit a tidy rectangle, which happens more often than you’d expect once you start working with real analysis output (model results, nested settings, mixed metadata).</p>
 </div>
 </div>
 </div>
 </section>
-<section id="build-base-r-subsetting-just-enough-to-read-code" class="level2">
-<h2 class="anchored" data-anchor-id="build-base-r-subsetting-just-enough-to-read-code">Build: Base R Subsetting (Just Enough to Read Code)</h2>
-<div id="qwebr-insertion-location-2"></div>
+<section id="base-r-subsetting-just-enough-to-read-code" class="level2">
+<h2 class="anchored" data-anchor-id="base-r-subsetting-just-enough-to-read-code">Base R Subsetting (Just Enough to Read Code)</h2>
+<div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Conditional subsetting uses the same comparison operators you already know: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, and <code>%in%</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>🔍 Learn More — You Don’t Need to Master This Today
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — You Don’t Need to Master This Today
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>There are several equally valid ways to subset in base R. The goal here is recognition, not fluency — so that when you see <code>df[row, col]</code> or <code>df$col</code> in someone else’s script, you’re not stopped cold.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="build-checking-for-missing-values" class="level2">
-<h2 class="anchored" data-anchor-id="build-checking-for-missing-values">Build: Checking for Missing Values</h2>
-<div id="qwebr-insertion-location-3"></div>
+<section id="checking-for-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="checking-for-missing-values">Checking for Missing Values</h2>
+<div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>🔍 Learn More — Zero vs.&nbsp;NA: Not the Same Thing
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Zero vs.&nbsp;NA: Not the Same Thing
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A <code>0</code> means “we measured this, and the value was zero.” An <code>NA</code> means “we don’t know this value.” Replacing a missing value with <code>0</code> without thinking it through can quietly distort every downstream calculation — averages, totals, and models all treat a fabricated zero as real data.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="build-writing-your-own-function" class="level2">
-<h2 class="anchored" data-anchor-id="build-writing-your-own-function">Build: Writing Your Own Function</h2>
-<div id="qwebr-insertion-location-4"></div>
+<section id="writing-your-own-function" class="level2">
+<h2 class="anchored" data-anchor-id="writing-your-own-function">Writing Your Own Function</h2>
+<p>A function has four parts: a <strong>name</strong>, the <strong>arguments</strong> it accepts, a <strong>body</strong> of code that runs each time it’s called, and a <strong>return value</strong> — the thing it hands back to you.</p>
+<div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⚪ About This — Why Write a Function?
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Anatomy of a Function
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<pre><code>name        &lt;- function(argument1, argument2 = default) {
+                 ... body ...
+                 return(value)
+               }</code></pre>
+<ul>
+<li><strong>Name</strong> — what you’ll call it by, same rules as naming any object</li>
+<li><strong>Arguments</strong> — the inputs; can have defaults, so callers only need to supply what’s different each time</li>
+<li><strong>Body</strong> — the code that runs, using the arguments as temporary objects</li>
+<li><strong>Return value</strong> — the last line evaluated, or an explicit <code>return()</code> — what the function hands back to whatever called it</li>
+</ul>
 <p>This is the <strong>DRY principle</strong> — Don’t Repeat Yourself. If you find yourself copy-pasting the same calculation more than twice, that’s the signal to wrap it in a function instead.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="build-for-loops" class="level2">
-<h2 class="anchored" data-anchor-id="build-for-loops">Build: <code>for</code> Loops</h2>
-<div id="qwebr-insertion-location-5"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="build-if-else-conditionals" class="level2">
-<h2 class="anchored" data-anchor-id="build-if-else-conditionals">Build: <code>if</code> / <code>else</code> Conditionals</h2>
+<p>A function’s argument doesn’t have to be a single number — it can be an entire data frame. This is closer to what a function looks like in a real analysis script:</p>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>This one function — written once — can now check <em>any</em> sample column for low-count genes just by changing the <code>sample_col</code> argument, instead of retyping the same comparison by hand for every sample.</p>
+<section id="your-turn-write-flag_high_expression" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-write-flag_high_expression">Your Turn: Write <code>flag_high_expression()</code></h3>
+<p><code>flag_low_expression()</code> flags genes <em>below</em> a threshold. Modify the skeleton below so it flags genes <em>above</em> a threshold instead — your function should take the same kind of arguments, but compare with <code>&gt;</code> instead of <code>&lt;</code>.</p>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<details>
+<summary>
+Check your work
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flag_high_expression <span class="ot">&lt;-</span> <span class="cf">function</span>(df, sample_col, <span class="at">max_count =</span> <span class="dv">1000</span>) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  df[[sample_col]] <span class="sc">&gt;</span> max_count</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+Only the comparison operator changes — everything else about how the function is structured and called stays the same.
+</details>
 </section>
-<section id="build-reading-an-error-message-deliberate-exercise" class="level2">
-<h2 class="anchored" data-anchor-id="build-reading-an-error-message-deliberate-exercise">Build: Reading an Error Message (Deliberate Exercise)</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(FamAges)   <span class="co"># object doesn't exist yet — intentional</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+</section>
+<section id="for-loops" class="level2">
+<h2 class="anchored" data-anchor-id="for-loops"><code>for</code> Loops</h2>
+<p>A <code>for</code> loop repeats its body once for every element in a sequence.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>🔴 Instructor Note
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Anatomy of a <code>for</code> Loop
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>for (variable in sequence) {
+  ... body ...
+}</code></pre>
+<ul>
+<li><strong>Sequence</strong> — the collection being stepped through (a vector, a list, a set of column names)</li>
+<li><strong>Loop variable</strong> — takes on one value from the sequence per repetition</li>
+<li><strong>Body</strong> — runs once per element, using the current value of the loop variable</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The same pattern works over column names, not just numbers — useful when you want to repeat a check across several samples without retyping it:</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="your-turn-report-the-average-instead" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-report-the-average-instead">Your Turn: Report the Average Instead</h3>
+<p>The loop above counts <em>low-count</em> genes per sample. Modify it so it reports the <strong>mean count</strong> for each sample instead — ignoring <code>NA</code> values.</p>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<details>
+<summary>
+Check your work
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> sample_cols[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  avg_count <span class="ot">&lt;-</span> <span class="fu">mean</span>(raw_data[[col]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(col, <span class="st">":"</span>, <span class="fu">round</span>(avg_count, <span class="dv">1</span>), <span class="st">"average count</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — When a <code>for</code> Loop Isn’t the Best Tool
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>R is built around <strong>vectorized</strong> operations — functions that act on an entire vector or data frame at once, without an explicit loop. The same result from the first loop above can be written as:</p>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>One line, same answer, and — critically — much faster on a real dataset with thousands of rows, because the looping happens in compiled C code under the hood rather than in R itself. A <code>for</code> loop isn’t wrong, and it’s often easier to read while you’re learning. But once you’re comfortable, watch for places where you’re looping over rows or columns just to repeat a simple comparison — that’s usually a sign a vectorized function already exists for the job.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="if-else-conditionals" class="level2">
+<h2 class="anchored" data-anchor-id="if-else-conditionals"><code>if</code> / <code>else</code> Conditionals</h2>
+<p>An <code>if</code>/<code>else</code> chain lets a function respond differently depending on the value it receives — only one branch runs, whichever condition is met first.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Anatomy of <code>if</code> / <code>else</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>if (condition1) {
+  ... runs if condition1 is TRUE ...
+} else if (condition2) {
+  ... runs if condition1 was FALSE and condition2 is TRUE ...
+} else {
+  ... runs if nothing above was TRUE ...
+}</code></pre>
+<p>Each <code>condition</code> must evaluate to a single <code>TRUE</code> or <code>FALSE</code>. R checks them in order and stops at the first one that’s <code>TRUE</code> — later branches are skipped entirely, even if they’d also have been <code>TRUE</code>.</p>
+</div>
+</div>
+</div>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The same structure is what you’d reach for to turn a raw number into a meaningful research label:</p>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="your-turn-add-a-fifth-category" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-add-a-fifth-category">Your Turn: Add a Fifth Category</h3>
+<p><code>classify_expression()</code> currently lumps everything above 10 into a single <code>"detected"</code> label. Modify it so counts above 1000 are labeled <code>"high"</code> instead, leaving <code>"detected"</code> for everything in between.</p>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<details>
+<summary>
+Check your work
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>classify_expression <span class="ot">&lt;-</span> <span class="cf">function</span>(count) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(count)) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"missing"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (count <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"not detected"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (count <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"low"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (count <span class="sc">&lt;=</span> <span class="dv">1000</span>) {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"detected"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"high"</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+Note the order matters — the new branch has to come <em>before</em> the final <code>else</code>, and it has to use <code>&lt;=</code> for the upper bound of <code>"detected"</code> so the two categories don’t overlap or leave a gap at exactly 1000.
+</details>
+</section>
+</section>
+<section id="reading-an-error-message-deliberate-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="reading-an-error-message-deliberate-exercise">Reading an Error Message (Deliberate Exercise)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(FamAges)   <span class="co"># object doesn't exist yet — intentional</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><span class="dot dot-important"></span> Instructor Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Let this error sit uncorrected for a beat before explaining. The goal is normalizing errors as information, not something to panic over — most of your future debugging time will be spent reading messages like this one.</p>
+</div>
+</div>
+</div>
+<p>Everything above used these pieces one at a time. Here’s what it looks like when a function, a loop, and a conditional are combined into something closer to a real quality check.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — A Small, Reproducible QC Check
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>You could run these three lines by hand for every sample column instead. But written this way, the check runs identically for every sample, it’s one call away from being reused in your next project, and if you later decide <code>min_count</code> should be 20 instead of 10, you change it in exactly one place.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="what-we-did-and-why" class="level2">
 <h2 class="anchored" data-anchor-id="what-we-did-and-why">What We Did, and Why</h2>
-<p><strong>What we built:</strong> lists, base R subsetting, a custom function, a <code>for</code> loop, an <code>if</code>/<code>else</code> conditional, and a deliberate error.</p>
-<p><strong>Why it matters:</strong> these are the building blocks that let a script adapt to real data instead of breaking the first time something doesn’t match exactly what you expected.</p>
+<p><strong>What we built:</strong> lists, base R subsetting, a function that operates on a single value and a function that operates on a whole data frame (plus your own variation of each), a <code>for</code> loop (and its vectorized alternative), an <code>if</code>/<code>else</code> conditional (extended with your own branch), a deliberate error, and a small combined QC function.</p>
+<p><strong>Why it matters:</strong> these are the building blocks that let a script adapt to real data instead of breaking the first time something doesn’t match exactly what you expected — and, just as importantly, that let an analysis run the same way twice, which is the whole point of reproducibility at the level of a single script.</p>
 
 
 </section>

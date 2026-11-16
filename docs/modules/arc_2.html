@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Arc 2: Your First Reproducible Project – ARCS</title>
+<title>Arc 2 – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -412,7 +412,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"metadata <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\nhead(metadata)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"rawcounts <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")\ndim(rawcounts)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"getwd()","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"1 + 1\n2 * 2\n2 / 1\n2^2\n4:8","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"Hello world!","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"\"Hello world!\"","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"my_age <- 30\nbirth_year <- 2026 - my_age\nbirth_year","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"my_age <- 31\nbirth_year","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# character (text)\nname <- \"Shank3\"\n\n# numeric\nvalue <- 12.5\n\n# logical\nis_significant <- TRUE","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamAges <- c(34, 28, 61, 5)\nFamAges","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"mean(FamAges)\nsum(FamAges)\nnchar(\"Shank3\")","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamAges <- c(34, 28, 61, 5)\nFamYear <- 2026 - FamAges\ndf_FamInfo <- data.frame(FamAges, FamYear)\ndf_FamInfo","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"FamNames <- c(\"Ana\", \"Ben\", \"Carla\", \"Dev\")\ndf_FamInfo <- cbind(df_FamInfo, FamNames)\ndf_FamInfo","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"head(df_FamInfo)\nstr(df_FamInfo)\ndim(df_FamInfo)","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1668,6 +1668,7 @@ globalThis.qwebrExecuteCode = async function (
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -1839,14 +1840,17 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-project-management-matters" id="toc-why-project-management-matters" class="nav-link active" data-scroll-target="#why-project-management-matters">Why Project Management Matters</a></li>
-  <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R Project</a></li>
-  <li><a href="#build-your-folder-structure" id="toc-build-your-folder-structure" class="nav-link" data-scroll-target="#build-your-folder-structure">Build Your Folder Structure</a></li>
-  <li><a href="#initialize-renv" id="toc-initialize-renv" class="nav-link" data-scroll-target="#initialize-renv">Initialize <code>renv</code></a></li>
-  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">Load the Dataset</a></li>
-  <li><a href="#write-a-readme" id="toc-write-a-readme" class="nav-link" data-scroll-target="#write-a-readme">Write a <strong>README</strong></a></li>
-  <li><a href="#what-we-did" id="toc-what-we-did" class="nav-link" data-scroll-target="#what-we-did">⚪ What We Did</a></li>
-  <li><a href="#why-we-did-it-this-way" id="toc-why-we-did-it-this-way" class="nav-link" data-scroll-target="#why-we-did-it-this-way">Why We Did It This Way</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#orient-to-positron" id="toc-orient-to-positron" class="nav-link" data-scroll-target="#orient-to-positron">Orient to Positron</a></li>
+  <li><a href="#two-basic-rules-for-writing-reproducible-code" id="toc-two-basic-rules-for-writing-reproducible-code" class="nav-link" data-scroll-target="#two-basic-rules-for-writing-reproducible-code">Two Basic Rules for Writing Reproducible Code</a></li>
+  <li><a href="#arithmetic" id="toc-arithmetic" class="nav-link" data-scroll-target="#arithmetic">Arithmetic</a></li>
+  <li><a href="#your-first-error-message" id="toc-your-first-error-message" class="nav-link" data-scroll-target="#your-first-error-message">Your First Error Message</a></li>
+  <li><a href="#objects-and-assignment" id="toc-objects-and-assignment" class="nav-link" data-scroll-target="#objects-and-assignment">Objects and Assignment</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data Types</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  <li><a href="#calling-functions" id="toc-calling-functions" class="nav-link" data-scroll-target="#calling-functions">Calling Functions</a></li>
+  <li><a href="#building-your-first-data-frame" id="toc-building-your-first-data-frame" class="nav-link" data-scroll-target="#building-your-first-data-frame">Building Your First Data Frame</a></li>
+  <li><a href="#what-we-did-and-why" id="toc-what-we-did-and-why" class="nav-link" data-scroll-target="#what-we-did-and-why">What We Did, and Why</a></li>
   </ul>
 </nav>
     </div>
@@ -2139,8 +2143,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arc 2: Your First Reproducible Project</h1>
-<p class="subtitle lead">Folder structure, renv, loading real data, README</p>
+<h1 class="title">Arc 2</h1>
+<p class="subtitle lead">Research Computing Projects in R</p>
 </div>
 
 
@@ -2157,268 +2161,218 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<p>By the end of this arc, you will have created a reproducible project and loaded a real dataset that we’ll use for the rest of the series.</p>
-<p>🔵 <strong>Slides:</strong></p>
-<p><a href="arc_2_slides.html" target="_blank">Open slides fullscreen</a></p>
-<iframe src="arc_2_slides.html" width="100%" height="500px" style="border:none;">
+<p>By the end of this arc, you will have written your first lines of R code, created objects and vectors, and built your first data frame.</p>
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
+<p><a href="arc_1_slides.html" target="_blank">Open slides fullscreen</a></p>
+<iframe src="arc_1_slides.html" width="100%" height="500px" style="border:none;">
 </iframe>
-<section id="why-project-management-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-project-management-matters">Why Project Management Matters</h2>
-<p>A consistent project structure means a collaborator — or you, six months from now — can open your folder and immediately understand what goes where, without asking you a single question. This is one piece of what we mean by <strong><a href="../glossary.html#reproducibility">reproducibility</a></strong></p>
+</section>
+<section id="orient-to-positron" class="level2">
+<h2 class="anchored" data-anchor-id="orient-to-positron">Orient to Positron</h2>
+<p>Before writing any code, take a moment to locate four things in your Positron window:</p>
+<ol type="1">
+<li>The <strong>Console</strong> — where code runs and results appear</li>
+<li>The <strong>Editor</strong> — where you write and save scripts</li>
+<li>The <strong>Environment pane</strong> — where your objects (variables) appear once created</li>
+<li>The <strong>Files pane</strong> — where you can see and navigate your project folder</li>
+</ol>
+<p>Find your <a href="../glossary.html#working-directory">working directory</a> — the folder R considers “home” for this session:</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>🔴 For Browser-Based Students
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — This Won’t Match Your Positron Panes
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The folder structure, <code>renv</code>, and README steps below require a persistent filesystem — something a browser sandbox can’t provide. Directories created in webR exist only for this page session and disappear on refresh.</p>
-<p>Read through these steps to understand <em>why</em> a reproducible project needs them, but you’ll need a local R install (Positron or RStudio) to actually build and keep a project folder. The dataset-loading steps further down <em>do</em> work live in your browser, since they don’t depend on anything being saved.</p>
+<p>The code cells on this page run in a browser-based R engine (webR), which has its own virtual filesystem — not the real folder you’re working in locally. <code>getwd()</code> above will return <em>something</em>, but it won’t match what you see in Positron’s Files pane. On your own machine, running the same line will correctly show your actual project folder.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="create-an-r-project" class="level2">
-<h2 class="anchored" data-anchor-id="create-an-r-project">Create an R Project</h2>
-<p>In Positron: <strong>File → New Folder from Project Template → <a href="../glossary.html#r-project">R Project</a></strong>, or create a plain folder and open it in Positron as your working directory.</p>
-</section>
-<section id="build-your-folder-structure" class="level2">
-<h2 class="anchored" data-anchor-id="build-your-folder-structure">Build Your Folder Structure</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"raw_data"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"processed_data"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"scripts"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"outputs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Folder</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>raw_data/</code></td>
-<td>Original data. Never edit these files directly.</td>
-</tr>
-<tr class="even">
-<td><code>processed_data/</code></td>
-<td>Cleaned, transformed versions of your data.</td>
-</tr>
-<tr class="odd">
-<td><code>scripts/</code></td>
-<td>Your code.</td>
-</tr>
-<tr class="even">
-<td><code>outputs/</code></td>
-<td>Figures, tables, and results.</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>🟠 Code Tour — File Naming Conventions
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Setting Your Working Directory Without Code
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ul>
-<li>No spaces — use <code>_</code> or <code>-</code> instead</li>
-<li>Start timestamped files with an ISO date: <code>YYYY-MM-DD</code></li>
-<li>Be descriptive</li>
-</ul>
-<p><strong>Avoid:</strong> - ❌ <code>data analysis.R</code> (spaces) - ❌ <code>data.csv</code> (not descriptive) - ❌ <code>final_FINAL_really_final.R</code> (version chaos)</p>
-<p><strong>Prefer:</strong> - ✅ <code>2024-03-15_survey_analysis.R</code> - ✅ <code>participant_demographics_clean.csv</code> - ✅ <code>README.md</code></p>
+<p>In Positron, you can also set your working directory by right-clicking a folder in the Files pane and choosing <strong>Set as Working Directory</strong> — no code required. This is often faster than typing <code>setwd()</code>, and it’s less error-prone since you’re pointing at a real folder rather than typing a path by hand.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="initialize-renv" class="level2">
-<h2 class="anchored" data-anchor-id="initialize-renv">Initialize <code>renv</code></h2>
-<p><a href="../glossary.html#renv">renv</a> tracks exactly which package versions your project uses, so it runs the same way on any machine, including yours a year from now.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>This creates:</p>
-<pre><code>├── .Rprofile
-├── renv.lock
-└── renv/
-    ├── .gitignore
-    ├── activate.R
-    ├── settings.json
-    └── library/</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="two-basic-rules-for-writing-reproducible-code" class="level2">
+<h2 class="anchored" data-anchor-id="two-basic-rules-for-writing-reproducible-code">Two Basic Rules for Writing Reproducible Code</h2>
+<ol type="1">
+<li><strong>Use <code>#</code> to annotate and document your code.</strong> A comment explains <em>why</em> you did something, not just <em>what</em> the code does — that’s the difference between code you can hand to someone else and code only you can decode.</li>
+<li><strong>Use a visible pattern to separate sections</strong>, e.g.&nbsp;<code>#----- Section Title ------#</code>. This turns a script into something a collaborator — or you, in six months — can scan and navigate without reading every line.</li>
+</ol>
+<p>These two habits are the first, smallest form of reproducibility: a reader who wasn’t there when you wrote the code should still be able to follow your thinking.</p>
+</section>
+<section id="arithmetic" class="level2">
+<h2 class="anchored" data-anchor-id="arithmetic">Arithmetic</h2>
+<p>R evaluates arithmetic the way you’d expect from paper math:</p>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="your-first-error-message" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-error-message">Your First Error Message</h2>
+<p>One syntax rule worth knowing up front: text must be wrapped in quotation marks <code>" "</code> — object names are the only exception. Here’s what happens when you forget:</p>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>R reads <code>Hello world!</code> as an attempt to call an object named <code>Hello</code> — but <code>Hello</code> has never been created, and <code>world!</code> isn’t valid syntax either. You should see an error like <code>unexpected symbol</code>. Error messages like this will come up constantly from here on — learning to read them calmly, rather than panicking, is a core programming skill, not a sign something’s gone badly wrong.</p>
+<p>Wrapping the same text in quotes tells R “this is text, not code”:</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="objects-and-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="objects-and-assignment">Objects and Assignment</h2>
+<p>R stores information in <strong><a href="../glossary.html#object">objects</a></strong> using the assignment arrow <code>&lt;-</code>.</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>🟣 Learn More — What’s actually inside renv.lock?
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Why Didn’t My Answer Update?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"R"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"4.6.0"</span> <span class="fu">},</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Packages"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"dplyr"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"dplyr"</span><span class="fu">,</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"1.1.4"</span><span class="fu">,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Every package your project depends on gets pinned to an exact version here. When a collaborator runs <code>renv::restore()</code>, R installs these exact versions — not whatever happens to be newest that day. The full <code>renv</code> documentation is at <a href="https://rstudio.github.io/renv/">rstudio.github.io/renv</a>.</p>
+<p>Change <code>my_age</code> and re-run only this one line:</p>
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code>birth_year</code> still shows the old value — because R doesn’t recalculate it automatically. It only stores what you told it to store, at the moment you ran that line. The variable has no memory of how it was created, only what it currently holds.</p>
+<p>This is a small version of a problem that shows up everywhere in computational work: a pipeline is only as current as the last time each step was actually re-run. Changing one upstream value — a raw data point, a filtering threshold, a parameter — doesn’t automatically update everything downstream of it. You have to re-run the whole chain, in order, every time.</p>
+<p>This is why, later in ARCS, you’ll get in the habit of re-running entire scripts top to bottom rather than just the last line you touched — and it’s part of why reproducibility isn’t only “did I get the right answer,” but “would I get the same answer again if I changed one thing and reran everything downstream of it?”</p>
 </div>
 </div>
 </div>
-</section>
-<section id="load-the-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-dataset">Load the Dataset</h2>
-<p>We’ll use this dataset — real RNA-seq data from a published Shank3 mouse study — for the rest of the series.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Download once, save locally ----</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>metadata_url  <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rawcounts_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(metadata_url,  <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(rawcounts_url, <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>metadata  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>rawcounts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- For browser-based students only: uncomment the lines below ----</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata  &lt;- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv")</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># rawcounts &lt;- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Inspect what you loaded:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metadata)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(metadata)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(rawcounts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⚪ About This — Why download-and-save here, but read-from-URL in the Code Tour below?
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Object Naming Rules
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This isn’t an inconsistency — it’s intentional. In a real project, raw data should live inside your project folder (<code>raw_data/</code>) so your analysis doesn’t silently depend on the internet being available every time you run it. If the GitHub repo moves, is renamed, or GitHub has an outage, a project with a local copy still runs. A project that re-fetches a URL every time does not.</p>
-<p>Browser-based tools like webR can’t save a persistent local copy the way a laptop can, so reading from the URL each time is the necessary workaround for that environment — not the ideal pattern. You’re seeing a real technical tradeoff, not a mistake.</p>
+<ul>
+<li>Must start with a letter (not a number or symbol)</li>
+<li>Can contain letters, numbers, <code>_</code> and <code>.</code></li>
+<li>Case-sensitive: <code>age</code> and <code>Age</code> are different objects</li>
+<li>Avoid names that are already functions in R (e.g.&nbsp;<code>c</code>, <code>mean</code>, <code>data</code>)</li>
+</ul>
 </div>
 </div>
 </div>
-<p>🟠 <strong>Code Tour — For browser-based students:</strong> you can still load and inspect the real dataset directly from its source, right here:</p>
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-2"></div>
+</section>
+<section id="data-types" class="level2">
+<h2 class="anchored" data-anchor-id="data-types">Data Types</h2>
+<p>R has a few core <strong><a href="../glossary.html#data-type">data types</a></strong> you’ll use constantly:</p>
+<div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="write-a-readme" class="level2">
-<h2 class="anchored" data-anchor-id="write-a-readme">Write a <strong><a href="../glossary.html#readme">README</a></strong></h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"fs"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_tree</span>()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">capture.output</span>(fs<span class="sc">::</span><span class="fu">dir_tree</span>(), <span class="at">file =</span> <span class="st">"README.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Then open <code>README.txt</code> and fill in the template:</p>
-<pre><code>This readme file was generated on [YYYY-MM-DD] by [NAME]
-
-GENERAL INFORMATION
-
-Title of Dataset:
-
-Author/Principal Investigator Information
-Name:
-ORCID:
-Institution:
-Address:
-Email:
-
-SHARING/ACCESS INFORMATION
-
-This data was retrieved through the GREIN web platform, which
-interfaces with the NIH Gene Expression Omnibus (GEO) repository.
-Link to dataset: https://www.ilincs.org/apps/grein/?gse=GSE113754
-
-DATA &amp; FILE OVERVIEW
-
-raw_data/        — original data (never edited)
-processed_data/  — cleaned data
-scripts/         — analysis code
-outputs/         — figures, tables, results</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="vectors" class="level2">
+<h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
+<p>A <strong><a href="../glossary.html#vector">vector</a></strong> holds multiple values of the same type, built with <code>c()</code>:</p>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>🟣 Learn More — README Templates
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Vectors Don’t Have to Be Numbers
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This project’s README is a simplified version of the Cornell Research Data Management README template: <a href="https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230">Cornell eCommons README Template</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>FamNames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ana"</span>, <span class="st">"Ben"</span>, <span class="st">"Carla"</span>, <span class="st">"Dev"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>is_adult  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A vector can hold character or logical values too — but every element inside <em>one</em> vector must be the same type. Try running <code>c(1, "two", 3)</code> and look closely at the result. What happened to the <code>1</code> and the <code>3</code>?</p>
 </div>
 </div>
 </div>
+</section>
+<section id="calling-functions" class="level2">
+<h2 class="anchored" data-anchor-id="calling-functions">Calling Functions</h2>
+<p>A <strong><a href="../glossary.html#function">function</a></strong> takes <strong><a href="../glossary.html#argument">arguments</a></strong> (inputs) and returns a <strong>value</strong> (output). You’ve already called one — <code>c()</code>. Here are three more:</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⚪ About This — The project is the unit of reproducibility
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Why Parentheses?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It’s tempting to think of a single script as “the analysis.” But a script alone can’t be reproduced — it depends on data files, package versions, and a folder structure that has to exist for it to run. The <strong>project</strong>, not the script, is what makes your work reproducible: the folders, the <code>renv.lock</code>, the raw data, and the code together. If you zipped your project folder and sent it to a stranger, could they run it? That’s the real test.</p>
+<p>Parentheses tell R “run this now.” Typing <code>mean</code> alone just shows you the function’s underlying code — typing <code>mean()</code> actually executes it. This distinction matters more once you start writing your own functions, in Arc 3.</p>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="what-we-did" class="level2">
-<h2 class="anchored" data-anchor-id="what-we-did">⚪ What We Did</h2>
-<p>In this arc, you:</p>
+<section id="building-your-first-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="building-your-first-data-frame">Building Your First Data Frame</h2>
+<p>A <strong><a href="../glossary.html#data-frame">data frame</a></strong> can be thought of as a table with rows and columns, like a spreadsheet. Data frames are composed of vectors in a certain order. Let’s turn our family ages into one. Feel free to swap in your own numbers here instead of ours.</p>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Add a names column with <code>cbind()</code>:</p>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Inspect it three ways:</p>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — head(), str(), and dim() Each Answer a Different Question
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li>Created a reproducible project with a standard folder structure</li>
-<li>Initialized renv to track your project’s dependencies</li>
-<li>Loaded a real genomics dataset you’ll use for the rest of this series</li>
-<li>Wrote a README so someone else could understand your project</li>
+<li><code>head()</code> — “What does my data actually look like?”</li>
+<li><code>str()</code> — “What type is each column, and how is this object structured?”</li>
+<li><code>dim()</code> — “How big is this — how many rows and columns?” You’ll run this same trio on almost every dataset you ever load into R, including the real genomics data in the next arc.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
-<section id="why-we-did-it-this-way" class="level2">
-<h2 class="anchored" data-anchor-id="why-we-did-it-this-way">Why We Did It This Way</h2>
-<ul>
-<li>Think about the future as you are forming habits</li>
-<li>Document and automate iteratively</li>
-<li>Give your work collaborative potential</li>
-</ul>
-<p>…so reproducibility becomes how you work, not someone else’s checklist.</p>
+<section id="what-we-did-and-why" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-and-why">What We Did, and Why</h2>
+<p><strong>What we built:</strong> your first lines of R — arithmetic, your first error message and what it means, objects, vectors, R’s core data types (character, numeric, logical), a handful of functions, and your first data frame, built from scratch.</p>
+<p><strong>Why it matters:</strong> these habits — commenting your reasoning, reading an error calmly instead of panicking, understanding that a stored value doesn’t update itself — are the foundation everything else in this series builds on. You’re establishing best practices from the very first line of code, not bolting them on later.</p>
 
 
 </section>

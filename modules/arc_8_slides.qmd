@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 8: AI, Data Packaging & Ethics"
+title: "Arc 8"
+subtitle: "AI Use, Data Packaging, & Data Ethics"
 format:
   revealjs:
     incremental: false

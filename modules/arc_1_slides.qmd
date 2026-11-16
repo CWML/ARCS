@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 1: R in a Reproducible Project"
+title: "Arc 1"
+subtitle: "R Fundamentals and Reproducibility"
 format:
   revealjs:
     incremental: false

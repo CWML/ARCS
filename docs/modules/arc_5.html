@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Arc 5: Tidyverse – ARCS</title>
+<title>Arc 5 – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -412,7 +412,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"library(dplyr)\nlibrary(tidyr)\nlibrary(stringr)\nlibrary(janitor)\nlibrary(readr)\n\nmetadata_url  <- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\"\nrawcounts_url <- \"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\"\n\nraw_metadata <- read_csv(metadata_url)\nraw_data     <- read_csv(rawcounts_url)\n\nclean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])\n\nclean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))\n\nclean_data <- clean_data %>%\n  select(all_of(clean_meta_data$sample_id))\n\nsetequal(clean_meta_data$sample_id, colnames(clean_data))","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"library(dplyr)\nlibrary(tidyr)\nlibrary(stringr)\nlibrary(janitor)\nlibrary(readr)\n\nraw_metadata <- read_csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\nraw_data     <- read_csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- raw_data %>%\n  clean_names() %>%\n  rename(gene_id = v1) %>%\n  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%\n  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = \"|\")) %>%\n  select(gene_id_symbol, everything(), -gene_symbol, -gene_id) %>%\n  column_to_rownames(var = colnames(.)[1])","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_meta_data <- raw_metadata %>%\n  clean_names() %>%\n  rename(sample_id = v1, condition = characteristics) %>%\n  mutate(\n    condition = case_when(\n      grepl(\"homecage\", condition)          ~ \"normal\",\n      grepl(\"sleep deprivation\", condition) ~ \"sleep_deprived\",\n      TRUE ~ condition\n    )) %>%\n  mutate(\n    genotype = case_when(\n      grepl(\"WT\",     genotype, ignore.case = TRUE) ~ \"WT\",\n      grepl(\"shank3\", genotype, ignore.case = TRUE) ~ \"shank3\",\n      TRUE ~ genotype\n    )) %>%\n  mutate(geno_cond = paste0(genotype, condition)) %>%\n  select(sample_id, genotype, condition, geno_cond) %>%\n  mutate(sample_id = str_to_lower(sample_id))","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"clean_data <- clean_data %>%\n  select(all_of(clean_meta_data$sample_id))\n\nsetequal(clean_meta_data$sample_id, colnames(clean_data))","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1668,6 +1668,7 @@ globalThis.qwebrExecuteCode = async function (
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -1840,11 +1841,10 @@ globalThis.qwebrExecuteCode = async function (
    
   <ul>
   <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#build-load-packages" id="toc-build-load-packages" class="nav-link" data-scroll-target="#build-load-packages">Build: Load Packages</a></li>
-  <li><a href="#build-importing-with-read_csv" id="toc-build-importing-with-read_csv" class="nav-link" data-scroll-target="#build-importing-with-read_csv">Build: Importing with <code>read_csv()</code></a></li>
-  <li><a href="#build-dplyr-verbs-and-the-pipe" id="toc-build-dplyr-verbs-and-the-pipe" class="nav-link" data-scroll-target="#build-dplyr-verbs-and-the-pipe">Build: <code>dplyr</code> Verbs and the Pipe</a></li>
-  <li><a href="#build-cleaning-the-metadata" id="toc-build-cleaning-the-metadata" class="nav-link" data-scroll-target="#build-cleaning-the-metadata">Build: Cleaning the Metadata</a></li>
-  <li><a href="#build-harmonizing-the-two-files" id="toc-build-harmonizing-the-two-files" class="nav-link" data-scroll-target="#build-harmonizing-the-two-files">Build: Harmonizing the Two Files</a></li>
+  <li><a href="#cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe" id="toc-cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe" class="nav-link" data-scroll-target="#cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe">Cleaning the Raw Counts with <code>dplyr</code> Verbs and the Pipe</a></li>
+  <li><a href="#cleaning-the-metadata" id="toc-cleaning-the-metadata" class="nav-link" data-scroll-target="#cleaning-the-metadata">Cleaning the Metadata</a></li>
+  <li><a href="#harmonizing-the-two-files" id="toc-harmonizing-the-two-files" class="nav-link" data-scroll-target="#harmonizing-the-two-files">Harmonizing the Two Files</a></li>
+  <li><a href="#what-we-did-and-why" id="toc-what-we-did-and-why" class="nav-link" data-scroll-target="#what-we-did-and-why">What We Did, and Why</a></li>
   </ul>
 </nav>
     </div>
@@ -2137,8 +2137,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arc 5: Tidyverse</h1>
-<p class="subtitle lead">Data Cleaning with Packages</p>
+<h1 class="title">Arc 5</h1>
+<p class="subtitle lead">Data Cleaning with the Tidyverse</p>
 </div>
 
 
@@ -2160,117 +2160,106 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p><a href="arc_5_slides.html" target="_blank">Open slides fullscreen</a></p>
 <iframe src="arc_5_slides.html" width="100%" height="450px" style="border:none;">
 </iframe>
-</section>
-<section id="build-load-packages" class="level2">
-<h2 class="anchored" data-anchor-id="build-load-packages">Build: Load Packages</h2>
-</section>
-<section id="build-importing-with-read_csv" class="level2">
-<h2 class="anchored" data-anchor-id="build-importing-with-read_csv">Build: Importing with <code>read_csv()</code></h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Download once, save locally ----</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>metadata_url  <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rawcounts_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(metadata_url,  <span class="at">destfile =</span> <span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(rawcounts_url, <span class="at">destfile =</span> <span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data.csv"</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>raw_data     <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>🔍 Learn More — The <code>rio</code> Package
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you’re jumping into this module on a new day, or <code>raw_data</code> and <code>raw_metadata</code> aren’t in your environment, run this once before continuing:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>metadata_url  <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rawcounts_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(metadata_url,  <span class="at">destfile =</span> <span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(rawcounts_url, <span class="at">destfile =</span> <span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data.csv"</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_filtered_metadata.csv"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>raw_data     <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"raw_data"</span>, <span class="st">"GSE113754_GeneLevel_Raw_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No persistent filesystem here, so skip the download step and read directly from the source instead:</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — The <code>rio</code> Package
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>rio::import()</code> is a popular alternative that auto-detects file type and picks the right reader underneath — handy if your project mixes <code>.csv</code>, <code>.xlsx</code>, <code>.sav</code>, and <code>.dta</code> files. For a single, consistent file type like the <code>.csv</code> files here, <code>read_csv()</code> works directly and is what you’ll see most often in published scripts and tutorials.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="build-dplyr-verbs-and-the-pipe" class="level2">
-<h2 class="anchored" data-anchor-id="build-dplyr-verbs-and-the-pipe">Build: <code>dplyr</code> Verbs and the Pipe</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gene_id =</span> v1) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gsm3119015 =</span> <span class="fu">replace_na</span>(gsm3119015, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene_id_symbol =</span> <span class="fu">paste</span>(gene_id, gene_symbol, <span class="at">sep =</span> <span class="st">"|"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gene_id_symbol, <span class="fu">everything</span>(), <span class="sc">-</span>gene_symbol, <span class="sc">-</span>gene_id) <span class="sc">%&gt;%</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="fu">colnames</span>(.)[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-raw-counts-with-dplyr-verbs-and-the-pipe">Cleaning the Raw Counts with <code>dplyr</code> Verbs and the Pipe</h2>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="build-cleaning-the-metadata" class="level2">
-<h2 class="anchored" data-anchor-id="build-cleaning-the-metadata">Build: Cleaning the Metadata</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clean_meta_data <span class="ot">&lt;-</span> raw_metadata <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">sample_id =</span> v1, <span class="at">condition =</span> characteristics) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition =</span> <span class="fu">case_when</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"homecage"</span>, condition)          <span class="sc">~</span> <span class="st">"normal"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"sleep deprivation"</span>, condition) <span class="sc">~</span> <span class="st">"sleep_deprived"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> condition</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">genotype =</span> <span class="fu">case_when</span>(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"WT"</span>,     genotype, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"WT"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"shank3"</span>, genotype, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"shank3"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> genotype</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">geno_cond =</span> <span class="fu">paste0</span>(genotype, condition)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sample_id, genotype, condition, geno_cond) <span class="sc">%&gt;%</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample_id =</span> <span class="fu">str_to_lower</span>(sample_id))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="cleaning-the-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-metadata">Cleaning the Metadata</h2>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="build-harmonizing-the-two-files" class="level2">
-<h2 class="anchored" data-anchor-id="build-harmonizing-the-two-files">Build: Harmonizing the Two Files</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(clean_meta_data<span class="sc">$</span>sample_id))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(clean_meta_data<span class="sc">$</span>sample_id, <span class="fu">colnames</span>(clean_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<section id="harmonizing-the-two-files" class="level2">
+<h2 class="anchored" data-anchor-id="harmonizing-the-two-files">Harmonizing the Two Files</h2>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>🔴 About This — This Is the Whole Point
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — This Is the Whole Point
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>This check is exactly what the Arc 2 “data management gone awry” story was missing — a scripted, verifiable confirmation that two files actually match, instead of a manual check done from memory.</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>💻 Try It Live — Browser-Based / Async Students
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Running in your browser, there’s no local file system to download into — so this version reads each file directly from its URL.</p>
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</div>
+</section>
+<section id="what-we-did-and-why" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-and-why">What We Did, and Why</h2>
+<p><strong>What we built:</strong> imported both raw files with <code>read_csv()</code>, cleaned the counts matrix and the metadata separately using <code>dplyr</code>/<code>janitor</code> verbs chained with the pipe, and ended with a scripted check confirming the two cleaned files actually line up with each other.</p>
+<p><strong>Why it matters:</strong> every step here replaces something that could have been done by hand, in a spreadsheet, invisibly — renaming a column, recoding a label, matching sample IDs by eye. Writing it as code instead means the exact same cleaning happens the same way every time, and the final <code>setequal()</code> check turns “I’m pretty sure these match” into something you can actually verify, instead of trust.</p>
 
 
 </section>

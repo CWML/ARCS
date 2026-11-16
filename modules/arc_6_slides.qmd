@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 6: Git & GitHub"
+title: "Arc 6"
+subtitle: "Version Control with Git"
 format:
   revealjs:
     incremental: false

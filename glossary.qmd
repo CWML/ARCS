@@ -25,6 +25,10 @@ The kind of value an object holds — `numeric`, `character`, or `logical`. Dete
 A reusable block of code that takes arguments (inputs) and returns a value (output).
 → [Arc 1](/arcs/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
 
+### IDE
+IDE stands for "integrated development environment", a kind of software application that combines a variety of developer tools together into one interface, as opposed to many narrower standalone applications. Positron, R Studio, and VS Code are examples of IDEs. 
+→ [Arc 0](/arcs/arc_0.qmd) · [GitHub: What is an IDE?](https://github.com/resources/articles/what-is-an-ide)
+
 ### Object {#object}
 A named value stored in R's environment, created with the assignment operator `<-`.
 → [Arc 1](/arcs/arc_1.qmd#objects-and-assignment)

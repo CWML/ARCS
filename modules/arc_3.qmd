@@ -1,6 +1,6 @@
 ---
-title: "Arc 3: Data Structures"
-subtitle: "Vectors, Matrices, Data Frames, and Lists"
+title: "Arc 3"
+subtitle: "Data Structures and Control Flow"
 engine: knitr
 filters:
   - webr
@@ -14,6 +14,35 @@ webr:
 [Open slides fullscreen](arc_3_slides.html){target="_blank"}
 
 <iframe src="arc_3_slides.html" width="100%" height="400px" style="border:none;"></iframe>
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
+If you're jumping into this module on a new day, or `raw_data` and
+`raw_metadata` aren't in your environment, run this once before continuing:
+
+```r
+#| eval: false
+metadata_url  <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"
+rawcounts_url <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"
+
+download.file(metadata_url,  destfile = "raw_data/GSE113754_filtered_metadata.csv")
+download.file(rawcounts_url, destfile = "raw_data/GSE113754_GeneLevel_Raw_data.csv")
+
+raw_metadata <- read.csv("raw_data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data.csv")
+```
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+No persistent filesystem here, so skip the download step and read
+directly from the source instead:
+
+```{webr-r}
+raw_metadata <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv")
+```
+:::
 
 ## Lists
 
@@ -38,10 +67,10 @@ with real analysis output (model results, nested settings, mixed metadata).
 ## Base R Subsetting (Just Enough to Read Code)
 
 ```{webr-r}
-rawc[1, ]                   # entire first row
-rawc[, 3]                   # entire third column
-rawc[1059, "GSM3119015"]    # one specific cell
-rawc$GSM3119015             # a column, by name
+raw_data[1, ]                   # entire first row
+raw_data[, 3]                   # entire third column
+raw_data[1059, "GSM3119015"]    # one specific cell
+raw_data$GSM3119015             # a column, by name
 ```
 
 Conditional subsetting uses the same comparison operators you already know:
@@ -57,8 +86,8 @@ in someone else's script, you're not stopped cold.
 ## Checking for Missing Values
 
 ```{webr-r}
-anyNA(rawc)
-which(is.na(rawc$GSM3119015))
+anyNA(raw_data)
+which(is.na(raw_data$GSM3119015))
 ```
 
 ::: {.callout-tip collapse="true"}
@@ -112,13 +141,44 @@ flag_low_expression <- function(df, sample_col, min_count = 10) {
   df[[sample_col]] < min_count
 }
 
-low_in_sample <- flag_low_expression(rawc, "GSM3119015", min_count = 10)
+low_in_sample <- flag_low_expression(raw_data, "GSM3119015", min_count = 10)
 sum(low_in_sample, na.rm = TRUE)
 ```
 
 This one function — written once — can now check *any* sample column for
 low-count genes just by changing the `sample_col` argument, instead of
 retyping the same comparison by hand for every sample.
+
+### Your Turn: Write `flag_high_expression()`
+
+`flag_low_expression()` flags genes *below* a threshold. Modify the
+skeleton below so it flags genes *above* a threshold instead — your
+function should take the same kind of arguments, but compare with `>`
+instead of `<`.
+
+```{webr-r}
+flag_high_expression <- function(df, sample_col, max_count = 1000) {
+  # TODO: fix the line below so it returns TRUE wherever the value
+  # is GREATER than max_count, not less than it
+  df[[sample_col]] < max_count
+}
+
+high_in_sample <- flag_high_expression(raw_data, "GSM3119015", max_count = 1000)
+sum(high_in_sample, na.rm = TRUE)
+```
+
+<details>
+<summary>Check your work</summary>
+
+```r
+flag_high_expression <- function(df, sample_col, max_count = 1000) {
+  df[[sample_col]] > max_count
+}
+```
+
+Only the comparison operator changes — everything else about how the
+function is structured and called stays the same.
+</details>
 
 ## `for` Loops
 
@@ -148,22 +208,50 @@ The same pattern works over column names, not just numbers — useful when
 you want to repeat a check across several samples without retyping it:
 
 ```{webr-r}
-sample_cols <- grep("^GSM", colnames(rawc), value = TRUE)
+sample_cols <- grep("^GSM", colnames(raw_data), value = TRUE)
 
 for (col in sample_cols[1:3]) {
-  n_low <- sum(rawc[[col]] < 10, na.rm = TRUE)
+  n_low <- sum(raw_data[[col]] < 10, na.rm = TRUE)
   cat(col, ":", n_low, "low-count genes\n")
 }
 ```
+
+### Your Turn: Report the Average Instead
+
+The loop above counts *low-count* genes per sample. Modify it so it
+reports the **mean count** for each sample instead — ignoring `NA`
+values.
+
+```{webr-r}
+sample_cols <- grep("^GSM", colnames(raw_data), value = TRUE)
+
+for (col in sample_cols[1:3]) {
+  # TODO: replace the next line so it calculates mean(raw_data[[col]], na.rm = TRUE)
+  # instead of counting low-count genes
+  n_low <- sum(raw_data[[col]] < 10, na.rm = TRUE)
+  cat(col, ":", n_low, "low-count genes\n")
+}
+```
+
+<details>
+<summary>Check your work</summary>
+
+```r
+for (col in sample_cols[1:3]) {
+  avg_count <- mean(raw_data[[col]], na.rm = TRUE)
+  cat(col, ":", round(avg_count, 1), "average count\n")
+}
+```
+</details>
 
 ::: {.callout-tip collapse="true"}
 ## <span class="dot dot-tip"></span> Learn More — When a `for` Loop Isn't the Best Tool
 R is built around **vectorized** operations — functions that act on an
 entire vector or data frame at once, without an explicit loop. The same
-result above can be written as:
+result from the first loop above can be written as:
 
 ```{webr-r}
-colSums(rawc[sample_cols[1:3]] < 10, na.rm = TRUE)
+colSums(raw_data[sample_cols[1:3]] < 10, na.rm = TRUE)
 ```
 
 One line, same answer, and — critically — much faster on a real dataset
@@ -225,33 +313,57 @@ classify_expression <- function(count) {
   }
 }
 
-classify_expression(rawc$GSM3119015[1059])  # the NA we found earlier
+classify_expression(raw_data$GSM3119015[1059])  # the NA we found earlier
 ```
 
-## From the Console to a Script
+### Your Turn: Add a Fifth Category
 
-Everything in this lesson — functions, loops, conditionals — exists to
-solve the same underlying problem: **running commands one at a time, by
-hand, at the console is not a reliable way to produce research results.**
+`classify_expression()` currently lumps everything above 10 into a single
+`"detected"` label. Modify it so counts above 1000 are labeled `"high"`
+instead, leaving `"detected"` for everything in between.
 
-::: {.callout-important collapse="true"}
-## <span class="dot dot-warning"></span> Watch Out — The Hidden Cost of Line-by-Line Execution
-It's common to see analysis scripts written as a long sequence of commands,
-run one at a time, with the researcher re-running earlier lines by hand
-whenever something upstream changes. This works until it doesn't:
+```{webr-r}
+classify_expression <- function(count) {
+  if (is.na(count)) {
+    "missing"
+  } else if (count == 0) {
+    "not detected"
+  } else if (count < 10) {
+    "low"
+  } else {
+    # TODO: split this branch — counts above 1000 should return "high";
+    # everything else (10 to 1000) should still return "detected"
+    "detected"
+  }
+}
 
-- A line gets skipped by accident, and the output looks fine — it's just wrong
-- An object gets overwritten mid-analysis, and an earlier result silently
-  reflects the wrong data
-- Six months later, no one — including you — can tell which lines were
-  actually run, in which order, to produce the result in the paper
+classify_expression(500)
+classify_expression(5000)
+```
 
-A script that runs top-to-bottom without manual intervention, and a
-function that performs the same check the same way every time it's called,
-both exist to remove *you* as a source of inconsistency between one run
-and the next. This is what reproducibility means at the level of a single
-script, not just a whole project.
-:::
+<details>
+<summary>Check your work</summary>
+
+```r
+classify_expression <- function(count) {
+  if (is.na(count)) {
+    "missing"
+  } else if (count == 0) {
+    "not detected"
+  } else if (count < 10) {
+    "low"
+  } else if (count <= 1000) {
+    "detected"
+  } else {
+    "high"
+  }
+}
+```
+
+Note the order matters — the new branch has to come *before* the final
+`else`, and it has to use `<=` for the upper bound of `"detected"` so the
+two categories don't overlap or leave a gap at exactly 1000.
+</details>
 
 ## Reading an Error Message (Deliberate Exercise)
 
@@ -267,14 +379,12 @@ normalizing errors as information, not something to panic over — most of
 your future debugging time will be spent reading messages like this one.
 :::
 
-## Code Tour: A Small, Reproducible QC Check
+Everything above used these pieces one at a time. Here's what it looks
+like when a function, a loop, and a conditional are combined into
+something closer to a real quality check.
 
-This combines everything above — a function, wrapped around a loop,
-wrapped around a conditional — into something closer to a real quality
-check you'd run once, early, in an analysis script. Read it, run it, and
-notice that nothing here is new; it's the same three pieces from this
-lesson, nested together.
-
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — A Small, Reproducible QC Check
 ```{webr-r}
 qc_report <- function(df, sample_cols, min_count = 10) {
   for (col in sample_cols) {
@@ -285,24 +395,23 @@ qc_report <- function(df, sample_cols, min_count = 10) {
   }
 }
 
-qc_report(rawc, grep("^GSM", colnames(rawc), value = TRUE)[1:3])
+qc_report(raw_data, grep("^GSM", colnames(raw_data), value = TRUE)[1:3])
 ```
 
-::: {.callout-note collapse="true"}
-## <span class="dot dot-note"></span> About This — Why Bother Wrapping This in a Function?
-You could run these three lines by hand for every sample column. But
-written this way, the check is guaranteed to run identically for every
-sample, it's one call away from being reused in your next project, and if
-you later decide `min_count` should be 20 instead of 10, you change it in
-exactly one place.
+You could run these three lines by hand for every sample column instead.
+But written this way, the check runs identically for every sample, it's
+one call away from being reused in your next project, and if you later
+decide `min_count` should be 20 instead of 10, you change it in exactly
+one place.
 :::
 
 ## What We Did, and Why
 
 **What we built:** lists, base R subsetting, a function that operates on a
-single value and a function that operates on a whole data frame, a `for`
-loop (and its vectorized alternative), an `if`/`else` conditional, a
-deliberate error, and a small combined QC function.
+single value and a function that operates on a whole data frame (plus your
+own variation of each), a `for` loop (and its vectorized alternative), an
+`if`/`else` conditional (extended with your own branch), a deliberate
+error, and a small combined QC function.
 
 **Why it matters:** these are the building blocks that let a script adapt
 to real data instead of breaking the first time something doesn't match

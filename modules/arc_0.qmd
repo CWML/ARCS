@@ -1,5 +1,5 @@
 ---
-title: "Session 0: Before You Arrive"
+title: "Arc 0"
 subtitle: "Getting your machine ready for ARCS"
 toc: true
 sidebar: false
@@ -16,9 +16,8 @@ If you get stuck on any step, reach out to us using the contact information at t
 
 If you are on a work or school-managed laptop, you may need **administrator rights** to install software. Test this before class by attempting to install R (Step 1 below).
 
-If you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. If that is not possible in time, you can still follow along using this website during Session 1 — and we will help you find a longer-term solution between sessions.
-
-Do not wait until class starts to discover this. It is the single most common setup problem we encounter.
+If you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. 
+To get the most out of ARCS, do not wait until class starts to discover this.
 
 :::
 
@@ -30,7 +29,7 @@ Do not wait until class starts to discover this. It is the single most common se
 
 ### Step 1: Install R
 
-R is the statistical computing language we will use throughout the series.
+R is the computing language we will use throughout the series.
 
 **Windows and Mac:**
 
@@ -94,12 +93,12 @@ GitHub Desktop is a visual application that makes it easier to work with Git and
 We will use the same dataset throughout the series. Clone the course data repository using GitHub Desktop:
 
 1. Make sure GitHub Desktop is open and you are signed in
-2. Visit this URL in your browser: `https://github.com/CWML/arcs-data`
+2. Visit this URL in your browser: `https://github.com/CWML/arcs-data` `#TODO update URL`
 3. Click the green Code button
 4. Select Open with GitHub Desktop
 5. When GitHub Desktop opens, choose a location you can find easily (Desktop or Documents) and click Clone
 
-This downloads a folder called `arcs-data` containing the two data files we will use. You do not need to do anything else with this folder yet — we will use it in Session 1.
+This downloads a folder called `arcs-data` `#TODO update`containing the two data files we will use. You do not need to do anything else with this folder yet — we will use it in Session 1.
 
 ::: {.callout-note icon="false"}
 ## <span class="dot dot-note"></span> About This — Why Clone Instead of Just Downloading?
@@ -109,7 +108,7 @@ We clone the data repository rather than downloading a zip file so that you prac
 
 ### Step 5: Install Positron
 
-Positron is the IDE (integrated development environment) we will use to write and run R code. It was built by Posit specifically for data science work.
+Positron is the [IDE (integrated development environment)](/glossary.qmd#ide) we will use to write and run R code. It was built by Posit specifically for data science work.
 
 1. Go to the Positron releases page on GitHub
 2. Find the most recent stable release
@@ -172,10 +171,26 @@ Flags a common mistake, a point of frequent confusion, or a step where something
 :::
 
 ::: {.callout-note icon="false"}
-## <span class="dot dot-live"></span> Try It Live
-
-A browser-based version of an exercise, for anyone following along without R installed locally. These run directly on this page — nothing to install, though some steps (like saving a file to your computer) work a little differently in-browser than they would on your own machine.
+## <span class="dot dot-live"></span> Browser Version
+Most code on this site runs identically whether you're working in your
+browser or on your own machine, so it appears only once. This label
+marks the exceptions — moments where the browser-based (webR) version has
+to do something differently than the local version would, such as
+reading a file from a URL instead of downloading and saving it first, or
+where something about the browser environment itself (its own virtual
+filesystem, for instance) means an identical line of code won't mean
+quite the same thing here as it does on your machine.
 :::
+
+::: {.callout-note icon="false"}
+## <span class="dot dot-tour"></span> Code Tour
+
+A guided read-through of code that goes beyond what we'll build together
+live — often because it depends on packages or concepts from a later
+module, or because it's simply more than a single session needs to cover.
+You're not expected to type this yourself: read it, run it if you're
+curious, and know it's here if you want to come back to it.
+::: 
 
 ::: {.callout-warning icon="false"}
 ## <span class="dot dot-important"></span> Instructor Note

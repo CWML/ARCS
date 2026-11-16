@@ -1,5 +1,5 @@
 ---
-title: "Arc 4: Reproducible Reports"
+title: "Arc 4"
 subtitle: "Literate Programming with Quarto"
 engine: knitr
 filters:
@@ -15,80 +15,280 @@ webr:
 
 <iframe src="arc_4_slides.html" width="100%" height="450px" style="border:none;"></iframe>
 
-## Build: Your First Quarto Document
-
-In a new `.qmd` file, add a code chunk and some narrative text around it:
-
-```{webr-r}
-summary(rawc)
-```
-
-Render (knit) the document to see the text and code output combine into 
-one finished file.
-
-## Code Tour: YAML Header Options
-
-```yaml
----
-title: "Reports"
-sidebar: arcs02
-filters:
-  - webr
-webr:
-  cell-options:
-    reset-button: true
----
-```
-
-::: {.callout-tip collapse="true"}
-## 🔍 Learn More — Themes and Output Formats
-Changing `format: html` to `format: pdf` or `format: docx` in the YAML 
-header changes your entire output type without touching a single line of 
-analysis code — the same document can become a slideshow, a PDF, or a Word 
-file depending only on this header.
-:::
-
-## Create a Quarto Document for Publishing
-
-In this exercise you will create a publication-quality document using a 
-PLOS journal template, run a gene variability analysis, and generate a 
-heatmap figure.
-
-### Setup
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
+If you're jumping into this module on a new day, or `raw_data` and
+`raw_metadata` aren't in your environment, run this once before continuing:
 
 ```r
-library(tidyverse)
-library(readxl)
-library(scales)
-# if any are missing: install.packages("tidyverse"); install.packages("readxl"); install.packages("scales")
-```
+#| eval: false
+metadata_url  <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"
+rawcounts_url <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"
 
-::: callout-tip
-## Checking installed packages in Positron
-You can also check in the **Extensions** pane by searching for the package name.
+download.file(metadata_url,  destfile = "raw_data/GSE113754_filtered_metadata.csv")
+download.file(rawcounts_url, destfile = "raw_data/GSE113754_GeneLevel_Raw_data.csv")
+
+raw_metadata <- read.csv("raw_data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data.csv")
+```
 :::
 
-### Install the PLOS Template
+::: {.callout-note collapse="true"}
+## <span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+No persistent filesystem here, so skip the download step and read
+directly from the source instead:
+
+```{webr-r}
+raw_metadata <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv")
+```
+:::
+
+## Convert README.txt to README.qmd
+
+Your `README.txt` from Arc 2 is a snapshot — accurate the moment you wrote
+it, and silently out of date the moment your folder structure changes.
+Converting it to a `.qmd` file is our first step toward fixing that.
+
+1. Find `README.txt` in your project folder and rename it to `README.qmd`
+   (right-click → Rename on Windows, or select the file and press Return
+   on Mac)
+2. If you don't already have a `_quarto.yml` file in your project root,
+   create one and add:
+
+   ```yaml
+   project:
+     type: default
+   ```
+
+3. In your `README.qmd`, wrap your existing file-structure listing in
+   triple backticks (```` ``` ````) so it's formatted as a code block
+4. In the terminal, run `quarto render`, then `quarto preview readme.qmd`
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — What Is `localhost`?
+The browser window that opens shows an address starting with `localhost`
+followed by a port number. That means your own computer is serving the
+file to itself — it is not on the internet, and no one else can see it.
+This is how you preview a Quarto document before it's ever published
+anywhere.
+:::
+
+## Automate the Project Tree
+
+Right now your file tree is still just text you typed — exactly as
+easy to go stale as it was in `README.txt`. This code chunk generates
+and annotates it automatically, every time you render, so it can't.
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — This One's Local-Only
+`dir_tree()` reads your actual project folder from disk. There's no real
+project structure to list inside a browser sandbox, so this chunk is
+shown as a display only — paste it into your own `README.qmd` to see it
+work.
+:::
+
+```r
+#| echo: false
+#| message: false
+#| results: asis
+
+library(fs)
+
+tree_output <- capture.output(dir_tree(".", recurse = 2))
+
+comments <- list(
+  "raw_data"       = " (original data goes here)",
+  "processed_data" = " (clean data goes here)",
+  "scripts"        = " (code goes here)",
+  "outputs"        = " (results and charts go here)",
+  "README.qmd"     = " (project documentation)"
+)
+
+for (item in seq_along(tree_output)) {
+  line <- tree_output[item]
+  for (name in names(comments)) {
+    if (grepl(name, line)) {
+      tree_output[item] <- paste0(line, comments[[name]])
+      break
+    }
+  }
+}
+
+cat("```\n")
+cat(paste(tree_output, collapse = "\n"))
+cat("\n```\n")
+```
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — What This Script Does
+- `dir_tree()` generates a visual tree of your project folder, two levels deep
+- `capture.output()` stores that tree as a character vector your own code
+  can modify — rather than text you'd have to retype by hand
+- The `comments` list defines annotations for specific folders or files
+- The `for` loop (from Arc 3) checks each line against every name in that
+  list and appends a matching annotation where it finds one
+- `cat()` prints the result back out as a formatted code block in your
+  rendered document
+:::
+
+Paste this chunk into your `README.qmd` in place of your plain file tree,
+wrapped in ```` ```{r} ```` instead of plain triple backticks. Re-render,
+and your README now regenerates its own project structure every time —
+try adding your own entry to the `comments` list and rendering again to
+see it reflected.
+
+## Your First Data Visualization in a `.qmd`
+
+A `.qmd` file mixes narrative text with executable code chunks — when you
+render it, the text and the live output of your code are woven together
+into one finished document. You just saw this with your project tree;
+here it is with a figure.
+
+```{webr-r}
+sample_cols <- grep("^GSM", colnames(raw_data), value = TRUE)
+
+hist(raw_data[[sample_cols[1]]],
+     main = paste("Distribution of counts:", sample_cols[1]),
+     xlab = "Raw count")
+```
+
+Render the document to see the sentence above and the histogram below
+combine into one finished file — change either one, and both update
+together when you render again.
+
+## Your Turn: Visualize a Range, Safely
+
+Modify the function below so it only plots when there's actually data in
+the requested range — using an `if`/`else` from Arc 3 to check first.
+
+```{webr-r}
+visualize_range <- function(df, sample_col, min_val, max_val) {
+  values <- df[[sample_col]]
+  in_range <- values[values >= min_val & values <= max_val]
+
+  # TODO: add a check here — if length(in_range) is 0, print a message
+  # like "No values found in that range" instead of calling hist()
+  hist(in_range, main = paste(sample_col, ":", min_val, "to", max_val),
+       xlab = "Raw count")
+}
+
+visualize_range(raw_data, sample_cols[1], min_val = 10, max_val = 1000)
+```
+
+<details>
+<summary>Check your work</summary>
+
+```r
+visualize_range <- function(df, sample_col, min_val, max_val) {
+  values <- df[[sample_col]]
+  in_range <- values[values >= min_val & values <= max_val]
+
+  if (length(in_range) == 0) {
+    cat("No values found in that range\n")
+  } else {
+    hist(in_range, main = paste(sample_col, ":", min_val, "to", max_val),
+         xlab = "Raw count")
+  }
+}
+```
+</details>
+
+## From Figure to Methods Text
+
+Everything so far has been browser-based, which means the narrative text
+on this page can't actually react to the live code cells above it — only
+a document you render yourself, on your own machine, can do that.
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — This Won't Run on This Page
+Inline code like <code>&#96;r min_val&#96;</code> only updates when *you* render a
+`.qmd` file locally. The live cells on this website are compiled once,
+ahead of time — changing a value in a browser cell above will never
+change a sentence of text on this page. Try the block below in your own
+`analysis.qmd` file instead, where it will.
+:::
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Tying Your Figure to Your Text
+In your own `.qmd` file, a code chunk can set values that your narrative
+text then refers to directly:
+
+```r
+#| echo: false
+
+sample_col <- "GSM3119015"
+min_val <- 10
+max_val <- 1000
+
+values <- raw_data[[sample_col]]
+in_range_idx <- which(values >= min_val & values <= max_val)
+```
+
+<pre><code>## Methods
+
+Raw counts for sample &#96;r sample_col&#96; were examined in the range
+&#96;r min_val&#96;–&#96;r max_val&#96;. This range contained &#96;r length(in_range_idx)&#96;
+genes (row indices: &#96;r paste(head(in_range_idx, 5), collapse = ", ")&#96;,
+among others).
+</code></pre>
+
+Change `min_val` and `max_val` in the code chunk, re-render, and watch
+**both** the sentence and the figure update together — from the same two
+numbers, in one place.
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Why Row Indices, Not Gene Names, for Now
+We haven't cleaned this dataset yet — that happens in Arc 5, which is
+where readable gene symbols get attached to each row. For now, a row
+index is a placeholder for "which gene," standing in for the moment you'll
+replace it with `gene_symbol[in_range_idx]` once that column exists. This
+is exactly the kind of methods-section sentence that, in a real paper,
+needs to update itself the instant an upstream analysis choice changes —
+which is the entire point of writing it this way instead of typing a
+number by hand.
+:::
+
+## Extending Further: Publishing with a Journal Template
+
+This next piece goes beyond what we'll build from scratch together
+today — it's here so you know it's possible, and can come back to it on
+your own.
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Publishing with a Journal Template
+This uses `tidyverse` and `scales`, which we haven't covered in depth
+yet — that's coming in Arc 5. For now, treat `library(...)` simply as
+"turn this set of extra functions on for this session."
+
+**Formatting as a journal submission** — try this later, on your own
+machine. Quarto extensions can format a document to match a specific
+journal's submission requirements — layout, fonts, figure formatting —
+without touching your analysis code at all. This part can't run in a
+browser sandbox, since it installs files onto a real file system:
 
 ```bash
 quarto add quarto-journals/plos
 quarto use template quarto-journals/plos
 ```
 
-::: callout-note
-## What this does
-This installs a Quarto extension that formats your document to match PLOS 
-journal submission requirements — layout, fonts, and figure formatting. 
-The same approach works for other journal templates under `quarto-journals`.
-:::
+This installs an extension that reformats your rendered output to PLOS
+journal standards. The same approach works for other journals under
+`quarto-journals` — the installation step changes, but your analysis
+code underneath never has to.
 
-### Gene Variability Analysis
+**The analysis itself** — this part runs right here:
 
-Copy this into your `publication.qmd` under `## Gene Variability Analysis`:
+```{webr-r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(janitor)
 
-```r
-#| message: false
-#| warning: false
+gene_data <- rio::import(here::here("raw_data", "GSE113754_GeneLevel_Raw_data.csv")) %>%
+  clean_names()
 
 gene_data_long <- gene_data %>%
   rename(ensembl_id = `...1`) %>%
@@ -111,119 +311,11 @@ top_genes <- gene_variability %>%
   slice_head(n = 15)
 
 cat("Total genes analyzed:", nrow(gene_variability), "\n")
-cat("Mean variance across all genes:",
-    round(mean(gene_variability$variance, na.rm = TRUE), 2), "\n")
 cat("Most variable gene:", top_genes$gene_symbol[1],
     "with variance =", round(top_genes$variance[1], 2), "\n")
-
-cat("\nTop 10 most variable genes:\n")
-print(top_genes %>%
-        select(gene_symbol, variance) %>%
-        slice_head(n = 10) %>%
-        mutate(variance = round(variance, 2)))
 ```
-
-### Data Visualization
-
-Copy this into your `publication.qmd` under `## Data Visualization`:
-
-```r
-#| fig-cap: "Expression heatmap showing scaled expression levels of the
-#|   15 most variable genes across all samples. Blue indicates
-#|   below-average expression, white indicates average expression,
-#|   and red indicates above-average expression for each gene."
-#| fig-width: 10
-#| fig-height: 6
-
-heatmap_data <- gene_data_long %>%
-  filter(gene_symbol %in% top_genes$gene_symbol) %>%
-  left_join(top_genes %>% select(gene_symbol, variance),
-            by = "gene_symbol") %>%
-  group_by(gene_symbol) %>%
-  mutate(scaled_expr = scale(expression)[, 1]) %>%
-  ungroup()
-
-expression_heatmap <- heatmap_data %>%
-  ggplot(aes(x = sample,
-             y = reorder(gene_symbol, variance),
-             fill = scaled_expr)) +
-  geom_tile(color = "white", linewidth = 0.1) +
-  scale_fill_gradient2(
-    low = "blue", mid = "white", high = "red",
-    name = "Scaled\nExpression", limits = c(-3, 3),
-    oob = scales::squish
-  ) +
-  labs(
-    title = "Expression Variability Heatmap: Top 15 Most Variable Genes",
-    subtitle = "Genes ordered by variance (highest at top)",
-    x = "Sample ID", y = "Gene Symbol"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
-    axis.text.y = element_text(size = 10, face = "italic"),
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
-    plot.subtitle = element_text(hjust = 0.5, size = 12),
-    legend.position = "right",
-    panel.grid = element_blank()
-  )
-
-# print(expression_heatmap)  # not needed when rendering a full .qmd —
-# your rendered document and outputs/ folder will show the result
-
-ggsave(paste0("outputs/", timestamp, "_expression_heatmap.png"),
-       plot = expression_heatmap, width = 10, height = 6, dpi = 300)
-```
-
-Render your `publication.qmd` document to see your PLOS-formatted article.
-
-::: callout-tip
-## Saving your figure
-The `ggsave()` call saves a high-resolution `.png` to your `outputs/` 
-folder with a timestamp in the filename — the same automated file naming 
-pattern introduced in Arc 2.
-:::
-
-::: {.callout-note collapse="true"}
-## 💻 Try It Live — Browser-Based / Async Students
-
-If you don't have R installed locally, you can run this whole analysis 
-directly in your browser. `ggsave()` won't actually save a file here, 
-since this sandbox has no real file system — so `print()` stays active 
-instead, to show you the plot directly on this page.
 
 ```{webr-r}
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(scales)
-library(janitor)
-
-gene_data <- rio::import(here::here("raw_data", "GSE113754_GeneLevel_Raw_data.csv")) %>%
-  clean_names()
-
-timestamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
-
-gene_data_long <- gene_data %>%
-  rename(ensembl_id = `...1`) %>%
-  filter(!is.na(gene_symbol), gene_symbol != "") %>%
-  pivot_longer(cols = -c(ensembl_id, gene_symbol),
-               names_to = "sample",
-               values_to = "expression")
-
-gene_variability <- gene_data_long %>%
-  group_by(gene_symbol, ensembl_id) %>%
-  summarise(
-    mean_expression          = mean(expression, na.rm = TRUE),
-    variance                 = var(expression, na.rm = TRUE),
-    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,
-    .groups = 'drop'
-  )
-
-top_genes <- gene_variability %>%
-  arrange(desc(variance)) %>%
-  slice_head(n = 15)
-
 heatmap_data <- gene_data_long %>%
   filter(gene_symbol %in% top_genes$gene_symbol) %>%
   left_join(top_genes %>% select(gene_symbol, variance),
@@ -251,31 +343,29 @@ expression_heatmap <- heatmap_data %>%
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
     axis.text.y = element_text(size = 10, face = "italic"),
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
-    plot.subtitle = element_text(hjust = 0.5, size = 12),
     legend.position = "right",
     panel.grid = element_blank()
   )
 
 print(expression_heatmap)
-# ggsave() is commented out here — this browser sandbox has no real
-# file system to save to. On your own machine, this line writes a
-# real, timestamped .png to your outputs/ folder.
+# On your own machine, this line writes a real, timestamped .png to your
+# outputs/ folder — the same automated file-naming pattern from Arc 2:
 # ggsave(paste0("outputs/", timestamp, "_expression_heatmap.png"),
 #        plot = expression_heatmap, width = 10, height = 6, dpi = 300)
 ```
 :::
 
----
-
 ## What We Did, and Why
 
-**What we built:** converted a plain README into a Quarto document with 
-an auto-generated, annotated project tree; then created a separate 
-publication-ready document using a real journal template, a gene 
-variability analysis, and a saved heatmap figure.
+**What we built:** converted a plain README into a self-updating Quarto
+document, created a figure inside a `.qmd` for the first time, wrote a
+function that safely checks before plotting, and read through a worked
+example of a methods-section sentence that updates itself from the same
+values driving a figure — plus a guided tour of a full publication-style
+analysis.
 
-**Why it matters:** your project's own documentation now regenerates 
-itself instead of going stale, and your path from raw data to a 
-publication figure is a script someone else could re-run — not a series 
-of manual steps living only in your memory.
+**Why it matters:** your project's own documentation now regenerates
+itself instead of going stale, and the gap between "the number in my
+figure" and "the number in my methods text" — a classic, quiet source of
+irreproducible papers — disappears when both come from the same chunk of
+code instead of being typed twice, by hand, separately.

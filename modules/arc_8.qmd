@@ -1,6 +1,6 @@
 ---
-title: "Arc 8: Arcs and Beyond"
-subtitle: "AI, data packaging, data ethics"
+title: "Arc 8"
+subtitle: "Data Packaging and the Limits of Reproducibility"
 engine: knitr
 filters:
   - webr
@@ -13,90 +13,245 @@ webr:
 
 [Open slides fullscreen](arc_8_slides.html){target="_blank"}
 
-<iframe src="arc_8_slides.html" width="100%" height="350px" style="border:none;"></iframe>
+<iframe src="arc_8_slides.html" width="100%" height="400px" style="border:none;"></iframe>
 
-## Demo: AI Writing Code
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — This Isn't About Picking a Repository
+We won't be creating a Zenodo account or clicking through a real deposit
+form today. The specific repository you'll eventually use depends on your
+field, your funder, and your data — that's a decision for later, with
+your librarian. What matters today is the *shape* of what every deposit
+process asks for, so none of it is a surprise when you actually need it.
+:::
 
-<!-- TODO: live demo — AI tool generates a short function/script in front 
-     of students. No fixed script here; depends on tool used that day. -->
+## Packaging Your Project for Someone Else
 
-## Build: A Reproducibility Checklist for AI-Generated Code
+Every arc so far has quietly been building toward this moment. The
+README you were asked to write in Arc 1, the file naming conventions
+from Arc 2, the `.gitignore` and commit history from Arc 6 — all of it
+is exactly what a real data or code repository asks you to produce at
+deposit time. There's no new skill left to learn here. There's just a
+new name for what you've already been doing: **packaging**.
 
-Before trusting AI-generated code, check it the same way you'd check your own:
+### Writing a README That Could Survive Being Downloaded by a Stranger
 
-- [ ] Does it run without modification, in a clean environment?
-- [ ] Do you understand every line, or just that it "worked"?
-- [ ] Have you tested it on an edge case (empty input, `NA`, wrong type)?
-- [ ] Is it committed with a message describing *that it was AI-assisted*?
-- [ ] Has it been added to your `.qmd` with narrative explaining what it does?
+A repository deposit lives or dies on its README. Open your project's
+`README.md` — the one you started in Arc 1 — and check it against what
+an actual deposit would require:
 
-## Build: Code → Quarto → Annotate → Commit
+```markdown
+# Project Title
 
-```{r}
-#| eval: false
-# Paste the AI-generated function here
-# Add a narrative sentence above explaining what it's supposed to do
-# Run it against a test case
-# Commit with a message noting AI assistance
-```
+## Description
+One paragraph: what is this project, and what question does it answer?
 
-## Code Tour: Common AI Failure Modes in R
+## Data
+Where the raw data came from (source, URL or accession number, date
+accessed), and what license or use agreement governs it.
 
-<!-- TODO: specific examples not available via retrieval — common, 
-     well-known patterns worth covering: hallucinated package functions 
-     that don't exist, outdated tidyverse syntax, off-by-one indexing 
-     assuming 0-based like Python, silently wrong statistical defaults. -->
+## Files
+A short list of what's in each folder and what it contains —
+`raw_data/`, `processed_data/`, `scripts/`, `outputs/`.
 
-## Build: Packaging Your Project for Deposit
+## How to Reproduce This
+The exact steps someone else would run, in order, to get from
+`raw_data/` to your result. If you've been using `renv`, say so, and
+say which R version you used.
 
-Your project folder is already most of the way to deposit-ready:
+## Citation
+How you'd like this project cited, if someone reuses it.
 
-```default
-project/
-├── raw_data/          (never modified)
-├── processed_data/
-├── scripts/
-├── outputs/
-├── renv.lock
-├── README.md
-└── .git/
+## Contact
+Who to contact with questions, and how.
 ```
 
 ::: {.callout-note collapse="true"}
-## ⚪ About This — Where Does It Actually Go?
-- **GitHub Release** — lightweight, no registry account needed, fine for an occasional artifact.
-- **Zenodo** — mints a citable **DOI** and guarantees long-term archival. The more appropriate route for published research.
+## <span class="dot dot-note"></span> About This — Why "A Stranger" Is the Right Standard
+The test for a good README isn't "would I understand this?" — you
+already do, you wrote it. The test is "would someone who has never seen
+this project, and can't ask me anything, get it running?" That stranger
+is usually future-you, eighteen months from now, having forgotten all of
+it.
 :::
 
-## Reflection: Evaluating Reproducibility
+### Documenting Your Environment, Automatically
 
-**As Ethical Practice**
-- Accountability in research
-- Transparency serves scientific rigor
-- Levels the scientific playing field
-- Reliable translation to clinical practice
+A README can describe your setup in prose. R can also just *tell you*
+exactly what it was, with no risk of the description drifting out of
+sync with reality:
 
-**As Potential Harm**
-- Data re-identification
-- Informed consent for secondary use of data
-- Intensification of extractive research
-- Data access prioritized over data quality
+```{webr-r}
+sessionInfo()
+```
+
+This single function call — R version, operating system, every loaded
+package and its exact version — is the kind of thing a real data
+package often asks you to include directly, sometimes as its own file
+(`sessionInfo.txt` or similar). It's `renv`'s snapshot, read back to you
+in plain language.
 
 ::: {.callout-tip collapse="true"}
-## 🔍 Learn More — CARE Principles for Indigenous Data Governance
-Read more: [CARE Principles](https://www.gida-global.org/care)
+## <span class="dot dot-tip"></span> Learn More — Where This Actually Goes
+When you're ready to deposit for real, a few common destinations:
 
-Reproducibility tools don't automatically make research ethical — they 
-make it *visible*. What's visible can still cause harm if stewardship 
-isn't part of the practice.
+- **[Zenodo](https://zenodo.org)** — general-purpose, issues a DOI,
+  widely accepted by funders and journals
+- **[OSF](https://osf.io)** — project-level, good for packaging code,
+  data, and materials together as one unit
+- **[Figshare](https://figshare.com)** — similar to Zenodo, popular in
+  some fields over others
+
+Most funders and many journals now also require a **data availability
+statement** in the manuscript itself — a sentence or two saying where
+the underlying data lives and how to access it. If your field has a
+standard, field-specific repository instead (a gene expression database
+for genomics, for instance), that often takes priority over a
+general-purpose one. Your library's research data services can help you
+figure out which applies to you.
 :::
+
+### What a DOI Actually Buys You
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Citable, Not Just Downloadable
+A repository deposit usually earns a **DOI** — a permanent link that
+won't break even if the file moves, gets renamed, or the hosting service
+redesigns its site. That permanence is what lets someone else *cite*
+your data the same way they'd cite a paper — and what lets you point to
+a fixed, unchanging version of your work, instead of "whatever's
+currently in my Google Drive folder."
+:::
+
+## The Limits of Reproducibility
+
+Back in Arc 2, before any of this started, we put up a list:
+
+> **R's Flexibility Creates New Responsibilities**
+>
+> - **Efficiency** — You can still write code that runs slowly
+> - **Best practices** — R is agnostic to readability, optimal analysis,
+>   data ethics
+> - **Data management** — Explicit instructions are needed to select
+>   and organize pipelines, folders, files
+> - **Information** — Code that runs is not always code that produces
+>   desired or understandable results
+
+Seven arcs later, you can read every line of that list and recognize
+exactly which habit answers it — `renv` and functions for efficiency,
+`here()` and naming conventions for data management, error messages and
+testing for information. Reproducibility, as this course has taught it,
+is the answer to **"can this be run again, by someone else, and get the
+same result?"**
+
+That's a real, necessary thing. It's also not the whole question.
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Reproducible Isn't the Same as Right
+A perfectly reproducible pipeline — pinned packages, committed history,
+documented every step — can still analyze the wrong population, apply
+the wrong definition, or answer a question nobody should have asked in
+the first place, with full fidelity, every single time it's run. Running
+the same flawed analysis twice and getting the same flawed answer twice
+is not a correction. It's just a well-documented mistake.
+:::
+
+### A Live Example of This Exact Trap
+
+ARCS's companion extension, *Analyzing Research Data with Claude Code*,
+walks through a real version of this. Students there ask an AI coding
+agent to estimate a published health statistic, and compare what happens
+when a single hidden decision changes — not a bug, just a quiet choice
+about how to handle a missing survey answer. The script still runs
+without error. It's still fully reproducible — anyone re-running it gets
+the identical number back. But depending on that one choice, the result
+ranges from roughly 48% to over 90%, for the same underlying data.
+Nothing in that pipeline *looks* broken. The code runs is not always code
+that produces desired or understandable results — Arc 2's warning,
+wearing new clothes.
+
+That extension calls this the **garden of forking paths**: when it's
+cheap to try "just one more" version of a definition or a filter, and
+you report the version you like best, reproducibility doesn't save you.
+It just means your selectively-chosen answer is now permanently,
+verifiably reproducible — which is a strange kind of trust to have
+earned.
+
+### Who the Data Is About, and Who Decides
+
+Two frameworks, often mentioned together, ask a question reproducibility
+never does:
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — FAIR and CARE Principles
+**FAIR** — Findable, Accessible, Interoperable, Reusable — describes how
+research outputs should be structured so others (including future-you)
+can find and use them. Everything in the packaging section above is, in
+effect, FAIR in practice.
+
+**CARE** — Collective Benefit, Authority to Control, Responsibility,
+Ethics — centers who the data is *about*, particularly for Indigenous
+data governance, asking not just "can this be reused" but "should it be,
+and by whose permission."
+
+FAIR asks whether data *can* be found and reused. CARE asks whether it
+*should* be — and who gets to answer that. A dataset can score perfectly
+on every FAIR criterion and still have been collected, shared, or reused
+in a way the people it describes never consented to.
+:::
+
+### Meet R Where It's At — One More Time
+
+Arc 2 closed its own list with a set of habits, not warnings:
+
+> R Projects · README · File Naming Conventions · Workflow automation ·
+> Look beyond R
+
+Every one of those became a full arc. That's the shape this entire
+course has had: name a responsibility that comes with power, then build
+the specific habit that answers it. Data ethics doesn't get a habit in
+the same way — there's no function call, no package, no checklist item
+that resolves "should this be reproduced at all?" That question doesn't
+go away because you've finished a course. It's meant to stay open.
+
+::: {.instructor-note}
+**<span class="dot dot-important"></span> Instructor Note**
+
+Let the discussion questions below actually sit — don't rush to supply
+an answer, and don't let students treat this as a problem with a correct
+solution to find. The goal is the opposite of every prior arc: this is
+the one place in the course where "I'm not sure" is the honest and
+correct response. If the room goes quiet, that's the material working,
+not a sign to fill the silence.
+:::
+
+**For discussion:**
+
+- Think of a dataset or analysis you're familiar with. Who was it *about*?
+  Were they consulted about how it would be used?
+- Is there a difference between data you have *permission* to use and
+  data you have *standing* to use?
+- Arc 7 showed that AI-assisted code can run perfectly and still be
+  wrong. Is a dataset with no FAIR/CARE consideration behind it a
+  version of the same problem — technically functional, substantively
+  compromised?
 
 ## What We Did, and Why
 
-**What we built:** verified AI-generated code against a checklist, 
-packaged a project folder for deposit, and sat with what transparency 
-costs as well as what it gives.
+**What we built, across all eight arcs:** a reproducible project, start
+to finish — a managed environment (`renv`), organized files and a
+README, vectors and functions, dynamic Quarto reports, tidyverse
+cleaning pipelines, a committed git history published to GitHub, a
+checklist for auditing AI-generated code, and — today — a package ready
+to hand to someone else, with an honest accounting of what packaging
+can't settle on its own.
 
-**Why it matters:** this is where the whole series points — not just 
-"can you reproduce this," but "should this exist in the form you're 
-about to share it in." That question doesn't have a script. It has you.
+**Why it matters:** Arc 2 opened this course with a warning: R's
+flexibility creates new responsibilities, and nothing about the language
+enforces good habits for you. Everything since has been one answer after
+another to that warning — a specific habit for each specific risk.
+Today's isn't a habit. It's the reminder that the habits have a edge.
+Computational reproducibility is necessary for trustworthy science. It
+has never been sufficient. A perfectly reproducible pipeline can still
+answer the wrong question, on the wrong data, without the right
+permission to ask it in the first place — and no package, pin, or commit
+history will tell you that on its own. That part stays on you.

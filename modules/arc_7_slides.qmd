@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 7: DESeq2 Pipeline & Containers"
+title: "Arc 7"
+subtitle: "Pipelines & Containers"
 format:
   revealjs:
     incremental: false

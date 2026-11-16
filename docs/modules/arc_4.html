@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Arc 4: Reproducible Reports – ARCS</title>
+<title>Arc 4 – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -412,7 +412,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"summary(rawc)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(scales)\nlibrary(janitor)\n\ngene_data <- rio::import(here::here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data.csv\")) %>%\n  clean_names()\n\ntimestamp <- format(Sys.time(), \"%Y%m%d_%H%M%S\")\n\ngene_data_long <- gene_data %>%\n  rename(ensembl_id = `...1`) %>%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %>%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\ngene_variability <- gene_data_long %>%\n  group_by(gene_symbol, ensembl_id) %>%\n  summarise(\n    mean_expression          = mean(expression, na.rm = TRUE),\n    variance                 = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\ntop_genes <- gene_variability %>%\n  arrange(desc(variance)) %>%\n  slice_head(n = 15)\n\nheatmap_data <- gene_data_long %>%\n  filter(gene_symbol %in% top_genes$gene_symbol) %>%\n  left_join(top_genes %>% select(gene_symbol, variance),\n            by = \"gene_symbol\") %>%\n  group_by(gene_symbol) %>%\n  mutate(scaled_expr = scale(expression)[, 1]) %>%\n  ungroup()\n\nexpression_heatmap <- heatmap_data %>%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low = \"blue\", mid = \"white\", high = \"red\",\n    name = \"Scaled\\nExpression\", limits = c(-3, 3),\n    oob = scales::squish\n  ) +\n  labs(\n    title = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x = \"Sample ID\", y = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y = element_text(size = 10, face = \"italic\"),\n    plot.title = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    legend.position = \"right\",\n    panel.grid = element_blank()\n  )\n\nprint(expression_heatmap)\n# ggsave() is commented out here — this browser sandbox has no real\n# file system to save to. On your own machine, this line writes a\n# real, timestamped .png to your outputs/ folder.\n# ggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n#        plot = expression_heatmap, width = 10, height = 6, dpi = 300)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"raw_metadata <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\nraw_data     <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"sample_cols <- grep(\"^GSM\", colnames(raw_data), value = TRUE)\n\nhist(raw_data[[sample_cols[1]]],\n     main = paste(\"Distribution of counts:\", sample_cols[1]),\n     xlab = \"Raw count\")","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"visualize_range <- function(df, sample_col, min_val, max_val) {\n  values <- df[[sample_col]]\n  in_range <- values[values >= min_val & values <= max_val]\n\n  # TODO: add a check here — if length(in_range) is 0, print a message\n  # like \"No values found in that range\" instead of calling hist()\n  hist(in_range, main = paste(sample_col, \":\", min_val, \"to\", max_val),\n       xlab = \"Raw count\")\n}\n\nvisualize_range(raw_data, sample_cols[1], min_val = 10, max_val = 1000)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"library(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(scales)\nlibrary(janitor)\n\ngene_data <- rio::import(here::here(\"raw_data\", \"GSE113754_GeneLevel_Raw_data.csv\")) %>%\n  clean_names()\n\ngene_data_long <- gene_data %>%\n  rename(ensembl_id = `...1`) %>%\n  filter(!is.na(gene_symbol), gene_symbol != \"\") %>%\n  pivot_longer(cols = -c(ensembl_id, gene_symbol),\n               names_to = \"sample\",\n               values_to = \"expression\")\n\ngene_variability <- gene_data_long %>%\n  group_by(gene_symbol, ensembl_id) %>%\n  summarise(\n    mean_expression          = mean(expression, na.rm = TRUE),\n    variance                 = var(expression, na.rm = TRUE),\n    coefficient_of_variation = sd(expression, na.rm = TRUE) / mean_expression,\n    .groups = 'drop'\n  )\n\ntop_genes <- gene_variability %>%\n  arrange(desc(variance)) %>%\n  slice_head(n = 15)\n\ncat(\"Total genes analyzed:\", nrow(gene_variability), \"\\n\")\ncat(\"Most variable gene:\", top_genes$gene_symbol[1],\n    \"with variance =\", round(top_genes$variance[1], 2), \"\\n\")","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"heatmap_data <- gene_data_long %>%\n  filter(gene_symbol %in% top_genes$gene_symbol) %>%\n  left_join(top_genes %>% select(gene_symbol, variance),\n            by = \"gene_symbol\") %>%\n  group_by(gene_symbol) %>%\n  mutate(scaled_expr = scale(expression)[, 1]) %>%\n  ungroup()\n\nexpression_heatmap <- heatmap_data %>%\n  ggplot(aes(x = sample,\n             y = reorder(gene_symbol, variance),\n             fill = scaled_expr)) +\n  geom_tile(color = \"white\", linewidth = 0.1) +\n  scale_fill_gradient2(\n    low = \"blue\", mid = \"white\", high = \"red\",\n    name = \"Scaled\\nExpression\", limits = c(-3, 3),\n    oob = scales::squish\n  ) +\n  labs(\n    title = \"Expression Variability Heatmap: Top 15 Most Variable Genes\",\n    subtitle = \"Genes ordered by variance (highest at top)\",\n    x = \"Sample ID\", y = \"Gene Symbol\"\n  ) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(angle = 45, hjust = 1, size = 8),\n    axis.text.y = element_text(size = 10, face = \"italic\"),\n    legend.position = \"right\",\n    panel.grid = element_blank()\n  )\n\nprint(expression_heatmap)\n# On your own machine, this line writes a real, timestamped .png to your\n# outputs/ folder — the same automated file-naming pattern from Arc 2:\n# ggsave(paste0(\"outputs/\", timestamp, \"_expression_heatmap.png\"),\n#        plot = expression_heatmap, width = 10, height = 6, dpi = 300)","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1668,6 +1668,7 @@ globalThis.qwebrExecuteCode = async function (
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -1840,15 +1841,12 @@ globalThis.qwebrExecuteCode = async function (
    
   <ul>
   <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#build-your-first-quarto-document" id="toc-build-your-first-quarto-document" class="nav-link" data-scroll-target="#build-your-first-quarto-document">Build: Your First Quarto Document</a></li>
-  <li><a href="#code-tour-yaml-header-options" id="toc-code-tour-yaml-header-options" class="nav-link" data-scroll-target="#code-tour-yaml-header-options">Code Tour: YAML Header Options</a></li>
-  <li><a href="#create-a-quarto-document-for-publishing" id="toc-create-a-quarto-document-for-publishing" class="nav-link" data-scroll-target="#create-a-quarto-document-for-publishing">Create a Quarto Document for Publishing</a>
-  <ul class="collapse">
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#install-the-plos-template" id="toc-install-the-plos-template" class="nav-link" data-scroll-target="#install-the-plos-template">Install the PLOS Template</a></li>
-  <li><a href="#gene-variability-analysis" id="toc-gene-variability-analysis" class="nav-link" data-scroll-target="#gene-variability-analysis">Gene Variability Analysis</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a></li>
-  </ul></li>
+  <li><a href="#convert-readme.txt-to-readme.qmd" id="toc-convert-readme.txt-to-readme.qmd" class="nav-link" data-scroll-target="#convert-readme.txt-to-readme.qmd">Convert README.txt to README.qmd</a></li>
+  <li><a href="#automate-the-project-tree" id="toc-automate-the-project-tree" class="nav-link" data-scroll-target="#automate-the-project-tree">Automate the Project Tree</a></li>
+  <li><a href="#your-first-data-visualization-in-a-.qmd" id="toc-your-first-data-visualization-in-a-.qmd" class="nav-link" data-scroll-target="#your-first-data-visualization-in-a-.qmd">Your First Data Visualization in a <code>.qmd</code></a></li>
+  <li><a href="#your-turn-visualize-a-range-safely" id="toc-your-turn-visualize-a-range-safely" class="nav-link" data-scroll-target="#your-turn-visualize-a-range-safely">Your Turn: Visualize a Range, Safely</a></li>
+  <li><a href="#from-figure-to-methods-text" id="toc-from-figure-to-methods-text" class="nav-link" data-scroll-target="#from-figure-to-methods-text">From Figure to Methods Text</a></li>
+  <li><a href="#extending-further-publishing-with-a-journal-template" id="toc-extending-further-publishing-with-a-journal-template" class="nav-link" data-scroll-target="#extending-further-publishing-with-a-journal-template">Extending Further: Publishing with a Journal Template</a></li>
   <li><a href="#what-we-did-and-why" id="toc-what-we-did-and-why" class="nav-link" data-scroll-target="#what-we-did-and-why">What We Did, and Why</a></li>
   </ul>
 </nav>
@@ -2142,7 +2140,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arc 4: Reproducible Reports</h1>
+<h1 class="title">Arc 4</h1>
 <p class="subtitle lead">Literate Programming with Quarto</p>
 </div>
 
@@ -2165,208 +2163,280 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p><a href="arc_4_slides.html" target="_blank">Open slides fullscreen</a></p>
 <iframe src="arc_4_slides.html" width="100%" height="450px" style="border:none;">
 </iframe>
-</section>
-<section id="build-your-first-quarto-document" class="level2">
-<h2 class="anchored" data-anchor-id="build-your-first-quarto-document">Build: Your First Quarto Document</h2>
-<p>In a new <code>.qmd</code> file, add a code chunk and some narrative text around it:</p>
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Render (knit) the document to see the text and code output combine into one finished file.</p>
-</section>
-<section id="code-tour-yaml-header-options" class="level2">
-<h2 class="anchored" data-anchor-id="code-tour-yaml-header-options">Code Tour: YAML Header Options</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Reports"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sidebar</span><span class="kw">:</span><span class="at"> arcs02</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> webr</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">webr</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cell-options</span><span class="kw">:</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reset-button</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>🔍 Learn More — Themes and Output Formats
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Changing <code>format: html</code> to <code>format: pdf</code> or <code>format: docx</code> in the YAML header changes your entire output type without touching a single line of analysis code — the same document can become a slideshow, a PDF, or a Word file depending only on this header.</p>
+<p>If you’re jumping into this module on a new day, or <code>raw_data</code> and <code>raw_metadata</code> aren’t in your environment, run this once before continuing:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>metadata_url  <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rawcounts_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(metadata_url,  <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(rawcounts_url, <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>raw_data     <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-</section>
-<section id="create-a-quarto-document-for-publishing" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-quarto-document-for-publishing">Create a Quarto Document for Publishing</h2>
-<p>In this exercise you will create a publication-quality document using a PLOS journal template, run a gene variability analysis, and generate a heatmap figure.</p>
-<section id="setup" class="level3">
-<h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if any are missing: install.packages("tidyverse"); install.packages("readxl"); install.packages("scales")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Checking installed packages in Positron
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can also check in the <strong>Extensions</strong> pane by searching for the package name.</p>
-</div>
-</div>
-</section>
-<section id="install-the-plos-template" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-plos-template">Install the PLOS Template</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add quarto-journals/plos</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> use template quarto-journals/plos</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What this does
+<span class="screen-reader-only">Note</span><span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This installs a Quarto extension that formats your document to match PLOS journal submission requirements — layout, fonts, and figure formatting. The same approach works for other journal templates under <code>quarto-journals</code>.</p>
+<p>No persistent filesystem here, so skip the download step and read directly from the source instead:</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
 </div>
 </div>
 </section>
-<section id="gene-variability-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="gene-variability-analysis">Gene Variability Analysis</h3>
-<p>Copy this into your <code>publication.qmd</code> under <code>## Gene Variability Analysis</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>gene_data_long <span class="ot">&lt;-</span> gene_data <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ensembl_id =</span> <span class="st">`</span><span class="at">...1</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene_symbol), gene_symbol <span class="sc">!=</span> <span class="st">""</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(ensembl_id, gene_symbol),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"sample"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"expression"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>gene_variability <span class="ot">&lt;-</span> gene_data_long <span class="sc">%&gt;%</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene_symbol, ensembl_id) <span class="sc">%&gt;%</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_expression          =</span> <span class="fu">mean</span>(expression, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance                 =</span> <span class="fu">var</span>(expression, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">coefficient_of_variation =</span> <span class="fu">sd</span>(expression, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> mean_expression,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> gene_variability <span class="sc">%&gt;%</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(variance)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Total genes analyzed:"</span>, <span class="fu">nrow</span>(gene_variability), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean variance across all genes:"</span>,</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">mean</span>(gene_variability<span class="sc">$</span>variance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Most variable gene:"</span>, top_genes<span class="sc">$</span>gene_symbol[<span class="dv">1</span>],</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"with variance ="</span>, <span class="fu">round</span>(top_genes<span class="sc">$</span>variance[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Top 10 most variable genes:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_genes <span class="sc">%&gt;%</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(gene_symbol, variance) <span class="sc">%&gt;%</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">variance =</span> <span class="fu">round</span>(variance, <span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
-<p>Copy this into your <code>publication.qmd</code> under <code>## Data Visualization</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Expression heatmap showing scaled expression levels of the</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|   15 most variable genes across all samples. Blue indicates</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#|   below-average expression, white indicates average expression,</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#|   and red indicates above-average expression for each gene."</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>heatmap_data <span class="ot">&lt;-</span> gene_data_long <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gene_symbol <span class="sc">%in%</span> top_genes<span class="sc">$</span>gene_symbol) <span class="sc">%&gt;%</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(top_genes <span class="sc">%&gt;%</span> <span class="fu">select</span>(gene_symbol, variance),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">"gene_symbol"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene_symbol) <span class="sc">%&gt;%</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scaled_expr =</span> <span class="fu">scale</span>(expression)[, <span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>expression_heatmap <span class="ot">&lt;-</span> heatmap_data <span class="sc">%&gt;%</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="fu">reorder</span>(gene_symbol, variance),</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> scaled_expr)) <span class="sc">+</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"blue"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"red"</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Scaled</span><span class="sc">\n</span><span class="st">Expression"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>),</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">oob =</span> scales<span class="sc">::</span>squish</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Expression Variability Heatmap: Top 15 Most Variable Genes"</span>,</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Genes ordered by variance (highest at top)"</span>,</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sample ID"</span>, <span class="at">y =</span> <span class="st">"Gene Symbol"</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">8</span>),</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">"italic"</span>),</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># print(expression_heatmap)  # not needed when rendering a full .qmd —</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># your rendered document and outputs/ folder will show the result</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">"outputs/"</span>, timestamp, <span class="st">"_expression_heatmap.png"</span>),</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> expression_heatmap, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Render your <code>publication.qmd</code> document to see your PLOS-formatted article.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="convert-readme.txt-to-readme.qmd" class="level2">
+<h2 class="anchored" data-anchor-id="convert-readme.txt-to-readme.qmd">Convert README.txt to README.qmd</h2>
+<p>Your <code>README.txt</code> from Arc 2 is a snapshot — accurate the moment you wrote it, and silently out of date the moment your folder structure changes. Converting it to a <code>.qmd</code> file is our first step toward fixing that.</p>
+<ol type="1">
+<li><p>Find <code>README.txt</code> in your project folder and rename it to <code>README.qmd</code> (right-click → Rename on Windows, or select the file and press Return on Mac)</p></li>
+<li><p>If you don’t already have a <code>_quarto.yml</code> file in your project root, create one and add:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>In your <code>README.qmd</code>, wrap your existing file-structure listing in triple backticks (<code>```</code>) so it’s formatted as a code block</p></li>
+<li><p>In the terminal, run <code>quarto render</code>, then <code>quarto preview readme.qmd</code></p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Saving your figure
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — What Is <code>localhost</code>?
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The <code>ggsave()</code> call saves a high-resolution <code>.png</code> to your <code>outputs/</code> folder with a timestamp in the filename — the same automated file naming pattern introduced in Arc 2.</p>
+<p>The browser window that opens shows an address starting with <code>localhost</code> followed by a port number. That means your own computer is serving the file to itself — it is not on the internet, and no one else can see it. This is how you preview a Quarto document before it’s ever published anywhere.</p>
 </div>
 </div>
+</div>
+</section>
+<section id="automate-the-project-tree" class="level2">
+<h2 class="anchored" data-anchor-id="automate-the-project-tree">Automate the Project Tree</h2>
+<p>Right now your file tree is still just text you typed — exactly as easy to go stale as it was in <code>README.txt</code>. This code chunk generates and annotates it automatically, every time you render, so it can’t.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — This One’s Local-Only
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>dir_tree()</code> reads your actual project folder from disk. There’s no real project structure to list inside a browser sandbox, so this chunk is shown as a display only — paste it into your own <code>README.qmd</code> to see it work.</p>
+</div>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: asis</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tree_output <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">dir_tree</span>(<span class="st">"."</span>, <span class="at">recurse =</span> <span class="dv">2</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>comments <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"raw_data"</span>       <span class="ot">=</span> <span class="st">" (original data goes here)"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"processed_data"</span> <span class="ot">=</span> <span class="st">" (clean data goes here)"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts"</span>        <span class="ot">=</span> <span class="st">" (code goes here)"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outputs"</span>        <span class="ot">=</span> <span class="st">" (results and charts go here)"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"README.qmd"</span>     <span class="ot">=</span> <span class="st">" (project documentation)"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (item <span class="cf">in</span> <span class="fu">seq_along</span>(tree_output)) {</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  line <span class="ot">&lt;-</span> tree_output[item]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (name <span class="cf">in</span> <span class="fu">names</span>(comments)) {</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">grepl</span>(name, line)) {</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>      tree_output[item] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(line, comments[[name]])</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"```</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(tree_output, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">```</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>💻 Try It Live — Browser-Based / Async Students
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — What This Script Does
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you don’t have R installed locally, you can run this whole analysis directly in your browser. <code>ggsave()</code> won’t actually save a file here, since this sandbox has no real file system — so <code>print()</code> stays active instead, to show you the plot directly on this page.</p>
+<ul>
+<li><code>dir_tree()</code> generates a visual tree of your project folder, two levels deep</li>
+<li><code>capture.output()</code> stores that tree as a character vector your own code can modify — rather than text you’d have to retype by hand</li>
+<li>The <code>comments</code> list defines annotations for specific folders or files</li>
+<li>The <code>for</code> loop (from Arc 3) checks each line against every name in that list and appends a matching annotation where it finds one</li>
+<li><code>cat()</code> prints the result back out as a formatted code block in your rendered document</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Paste this chunk into your <code>README.qmd</code> in place of your plain file tree, wrapped in <code>```{r}</code> instead of plain triple backticks. Re-render, and your README now regenerates its own project structure every time — try adding your own entry to the <code>comments</code> list and rendering again to see it reflected.</p>
+</section>
+<section id="your-first-data-visualization-in-a-.qmd" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-data-visualization-in-a-.qmd">Your First Data Visualization in a <code>.qmd</code></h2>
+<p>A <code>.qmd</code> file mixes narrative text with executable code chunks — when you render it, the text and the live output of your code are woven together into one finished document. You just saw this with your project tree; here it is with a figure.</p>
 <div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Render the document to see the sentence above and the histogram below combine into one finished file — change either one, and both update together when you render again.</p>
+</section>
+<section id="your-turn-visualize-a-range-safely" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-visualize-a-range-safely">Your Turn: Visualize a Range, Safely</h2>
+<p>Modify the function below so it only plots when there’s actually data in the requested range — using an <code>if</code>/<code>else</code> from Arc 3 to check first.</p>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<details>
+<summary>
+Check your work
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>visualize_range <span class="ot">&lt;-</span> <span class="cf">function</span>(df, sample_col, min_val, max_val) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  values <span class="ot">&lt;-</span> df[[sample_col]]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  in_range <span class="ot">&lt;-</span> values[values <span class="sc">&gt;=</span> min_val <span class="sc">&amp;</span> values <span class="sc">&lt;=</span> max_val]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(in_range) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"No values found in that range</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hist</span>(in_range, <span class="at">main =</span> <span class="fu">paste</span>(sample_col, <span class="st">":"</span>, min_val, <span class="st">"to"</span>, max_val),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Raw count"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="from-figure-to-methods-text" class="level2">
+<h2 class="anchored" data-anchor-id="from-figure-to-methods-text">From Figure to Methods Text</h2>
+<p>Everything so far has been browser-based, which means the narrative text on this page can’t actually react to the live code cells above it — only a document you render yourself, on your own machine, can do that.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — This Won’t Run on This Page
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Inline code like <code>`r min_val`</code> only updates when <em>you</em> render a <code>.qmd</code> file locally. The live cells on this website are compiled once, ahead of time — changing a value in a browser cell above will never change a sentence of text on this page. Try the block below in your own <code>analysis.qmd</code> file instead, where it will.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Tying Your Figure to Your Text
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In your own <code>.qmd</code> file, a code chunk can set values that your narrative text then refers to directly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sample_col <span class="ot">&lt;-</span> <span class="st">"GSM3119015"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>min_val <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>max_val <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> raw_data[[sample_col]]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>in_range_idx <span class="ot">&lt;-</span> <span class="fu">which</span>(values <span class="sc">&gt;=</span> min_val <span class="sc">&amp;</span> values <span class="sc">&lt;=</span> max_val)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>## Methods
+
+Raw counts for sample `r sample_col` were examined in the range
+`r min_val`–`r max_val`. This range contained `r length(in_range_idx)`
+genes (row indices: `r paste(head(in_range_idx, 5), collapse = ", ")`,
+among others).
+</code></pre>
+<p>Change <code>min_val</code> and <code>max_val</code> in the code chunk, re-render, and watch <strong>both</strong> the sentence and the figure update together — from the same two numbers, in one place.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Why Row Indices, Not Gene Names, for Now
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We haven’t cleaned this dataset yet — that happens in Arc 5, which is where readable gene symbols get attached to each row. For now, a row index is a placeholder for “which gene,” standing in for the moment you’ll replace it with <code>gene_symbol[in_range_idx]</code> once that column exists. This is exactly the kind of methods-section sentence that, in a real paper, needs to update itself the instant an upstream analysis choice changes — which is the entire point of writing it this way instead of typing a number by hand.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="extending-further-publishing-with-a-journal-template" class="level2">
+<h2 class="anchored" data-anchor-id="extending-further-publishing-with-a-journal-template">Extending Further: Publishing with a Journal Template</h2>
+<p>This next piece goes beyond what we’ll build from scratch together today — it’s here so you know it’s possible, and can come back to it on your own.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Publishing with a Journal Template
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This uses <code>tidyverse</code> and <code>scales</code>, which we haven’t covered in depth yet — that’s coming in Arc 5. For now, treat <code>library(...)</code> simply as “turn this set of extra functions on for this session.”</p>
+<p><strong>Formatting as a journal submission</strong> — try this later, on your own machine. Quarto extensions can format a document to match a specific journal’s submission requirements — layout, fonts, figure formatting — without touching your analysis code at all. This part can’t run in a browser sandbox, since it installs files onto a real file system:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add quarto-journals/plos</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> use template quarto-journals/plos</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This installs an extension that reformats your rendered output to PLOS journal standards. The same approach works for other journals under <code>quarto-journals</code> — the installation step changes, but your analysis code underneath never has to.</p>
+<p><strong>The analysis itself</strong> — this part runs right here:</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
 </div>
-<hr>
-</section>
 </section>
 <section id="what-we-did-and-why" class="level2">
 <h2 class="anchored" data-anchor-id="what-we-did-and-why">What We Did, and Why</h2>
-<p><strong>What we built:</strong> converted a plain README into a Quarto document with an auto-generated, annotated project tree; then created a separate publication-ready document using a real journal template, a gene variability analysis, and a saved heatmap figure.</p>
-<p><strong>Why it matters:</strong> your project’s own documentation now regenerates itself instead of going stale, and your path from raw data to a publication figure is a script someone else could re-run — not a series of manual steps living only in your memory.</p>
+<p><strong>What we built:</strong> converted a plain README into a self-updating Quarto document, created a figure inside a <code>.qmd</code> for the first time, wrote a function that safely checks before plotting, and read through a worked example of a methods-section sentence that updates itself from the same values driving a figure — plus a guided tour of a full publication-style analysis.</p>
+<p><strong>Why it matters:</strong> your project’s own documentation now regenerates itself instead of going stale, and the gap between “the number in my figure” and “the number in my methods text” — a classic, quiet source of irreproducible papers — disappears when both come from the same chunk of code instead of being typed twice, by hand, separately.</p>
 
 
 </section>
