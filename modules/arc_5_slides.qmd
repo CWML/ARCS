@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 5: Tidyverse"
+title: "Arc 5"
+subtitle: "Data Cleaning with the Tidyverse"
 format:
   revealjs:
     incremental: false

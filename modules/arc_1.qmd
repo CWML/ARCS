@@ -1,6 +1,6 @@
 ---
-title: "Arc 1: R Fundamentals"
-subtitle: "Objects, vectors, data types, your first data frame"
+title: "Arc 1"
+subtitle: "R and Reproducibility"
 engine: knitr
 filters:
   - webr
@@ -11,11 +11,11 @@ webr:
 
 By the end of this arc, you will have written your first lines of R code, created objects and vectors, and built your first data frame.
 
-🔵 **Slides:** 
+## Slides
 
 [Open slides fullscreen](arc_1_slides.html){target="_blank"}
 
-<iframe src="arc_1_slides.html" width="100%" height="500px" style="border:none;"></iframe>
+<iframe src="arc_1_slides.html" width="100%" height="450px" style="border:none;"></iframe>
 
 ## Orient to Positron
 
@@ -33,7 +33,7 @@ getwd()
 ```
 
 ::: {.callout-note collapse="true"}
-## ⚪ About This — Setting Your Working Directory Without Code
+## <span class="dot dot-note"></span> About This — Setting Your Working Directory Without Code
 In Positron, you can also set your working directory by right-clicking a folder in the Files pane and choosing **Set as Working Directory** — no code required. This is often faster than typing `setwd()`, and it's less error-prone since you're pointing at a real folder rather than typing a path by hand.
 :::
 
@@ -55,11 +55,11 @@ R evaluates arithmetic the way you'd expect from paper math:
 2^2
 4:8
 ```
-One syntax rule worth knowing up front: text must be wrapped in quotation marks `" "` — object names are the only exception. Watch what happens when you "forget". 
+One syntax rule worth knowing up front: text must be wrapped in quotation marks `" "` — object names are the only exception. Watch what happens when you "forget".
 Run `Hello world!` on its own, then run `"Hello world!"` in quotes.
 
 ::: {.callout-caution collapse="true"}
-## 🟠 Code Tour — Why does one of these fail?
+## <span class="dot dot-tour"></span> Code Tour — Why does one of these fail?
 ```r
 Hello world!
 ```
@@ -80,11 +80,11 @@ birth_year <- 2026 - my_age
 birth_year
 ```
 ::: {.callout-caution collapse="true"}
-## 🟠 Code Tour — Why Didn't My Answer Update?
+## <span class="dot dot-tour"></span> Code Tour — Why Didn't My Answer Update?
 
 Change my_age and re-run only that one line:
 ```{webr-r}
-        
+
 
 my_age <- 31
 birth_year
@@ -97,7 +97,7 @@ This is why, later in ARCS, you'll get in the habit of re-running entire scripts
 :::
 
 ::: {.callout-note collapse="true"}
-## 🟣 Learn More — Object Naming Rules
+## <span class="dot dot-tip"></span> Learn More — Object Naming Rules
 - Must start with a letter (not a number or symbol)
 - Can contain letters, numbers, `_` and `.`
 - Case-sensitive: `age` and `Age` are different objects
@@ -129,7 +129,7 @@ FamAges
 ```
 
 ::: {.callout-caution collapse="true"}
-## 🟠 Code Tour — Vectors Don't Have to Be Numbers
+## <span class="dot dot-tour"></span> Code Tour — Vectors Don't Have to Be Numbers
 ```r
 FamNames <- c("Ana", "Ben", "Carla", "Dev")
 is_adult  <- c(TRUE, TRUE, TRUE, FALSE)
@@ -148,7 +148,7 @@ nchar("Shank3")
 ```
 
 ::: {.callout-note collapse="true"}
-## ⚪ About This — Why parentheses?
+## <span class="dot dot-note"></span> About This — Why parentheses?
 Parentheses tell R "run this now." Typing `mean` alone just shows you the function's underlying code — typing `mean()` actually executes it. This distinction matters more once you start writing your own functions, in Arc 3.
 :::
 
@@ -180,7 +180,7 @@ dim(df_FamInfo)
 ```
 
 ::: {.callout-note collapse="true"}
-## 🟣 Learn More — head(), str(), and dim() each answer a different question
+## <span class="dot dot-tip"></span> Learn More — head(), str(), and dim() each answer a different question
 - `head()` — "What does my data actually look like?"
 - `str()` — "What type is each column, and how is this object structured?"
 - `dim()` — "How big is this — how many rows and columns?"
@@ -189,7 +189,7 @@ You'll run this same trio on almost every dataset you ever load into R, includin
 
 ---
 
-## ⚪ What We Did
+## What We Did
 
 In this arc, you:
 

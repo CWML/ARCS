@@ -7,7 +7,7 @@ subtitle: "Version Control with Git"
 
 [Open slides fullscreen](arc_6_slides.html){target="_blank"}
 
-<iframe src="arc_6_slides.html" width="100%" height="400px" style="border:none;"></iframe>
+<iframe src="arc_6_slides.html" width="100%" height="450px" style="border:none;"></iframe>
 
 We'll take a project that lives only on your computer and give it a full
 version history and an online home, using three tools, each with one
@@ -195,11 +195,22 @@ anything magic. The full command-line workflow is in Extending Further.
 
 ## Excluding Data Files: The `.gitignore` File
 
-An important best practice: **don't store large data files in git.**
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Don't Store Large Data Files in Git
 Git is built for *code and text*, not big datasets — it keeps every
 version of every file, so a 100 MB dataset can balloon your repo after a
 few edits, GitHub enforces a 100 MB per-file limit, and git compresses
 text well but handles large binary data poorly.
+
+But the 100 MB limit is a technical ceiling, not a research-data
+strategy — even a file that fits comfortably under it usually still
+doesn't belong in a code repository. If it's your raw data or your
+processed data, it needs to be preserved in a **data repository**: a
+system built for depositing, citing, and sharing research data —
+Zenodo, OSF, Figshare, or an institutional repository — which is a
+fundamentally different kind of place than a GitHub repo. [Arc 8](modules/arc_8.qmd)
+covers packaging and depositing your data for exactly this reason.
+:::
 
 ::: {.callout-note collapse="true"}
 ## <span class="dot dot-note"></span> About This — Where Should Data Live Instead?

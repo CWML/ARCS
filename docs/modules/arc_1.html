@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Arc 1: R Fundamentals – ARCS</title>
+<title>Arc 1 – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1668,6 +1668,7 @@ globalThis.qwebrExecuteCode = async function (
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -1765,7 +1766,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modules/arc_1.html">Arc 1: R Fundamentals</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modules/arc_1.html">Arc 1: R and Reproducibility</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1784,49 +1785,49 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Arc 1: R Fundamentals</span></a>
+ <span class="menu-text">Arc 1: R and Reproducibility</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 2: Your First Reproducible Project</span></a>
+ <span class="menu-text">Arc 2: Research Computing Projects</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 3: Data Structures</span></a>
+ <span class="menu-text">Arc 3: Data Structures and Control Flow</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 4: Reproducible Reports</span></a>
+ <span class="menu-text">Arc 4: Literate Programming and Living Documents</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 5: Tidyverse</span></a>
+ <span class="menu-text">Arc 5: Data Cleaning with the Tidyverse</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 6: Git &amp; GitHub</span></a>
+ <span class="menu-text">Arc 6: Version Control with Git</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 7: DESeq2 Pipeline</span></a>
+ <span class="menu-text">Arc 7: AI and Reproducibility</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 8: Apptainer &amp; Containers</span></a>
+ <span class="menu-text">Arc 8: Data Packaging and the Limits of Reproducibility</span></a>
   </div>
 </li>
     </ul>
@@ -1839,7 +1840,8 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#orient-to-positron" id="toc-orient-to-positron" class="nav-link active" data-scroll-target="#orient-to-positron">Orient to Positron</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#orient-to-positron" id="toc-orient-to-positron" class="nav-link" data-scroll-target="#orient-to-positron">Orient to Positron</a></li>
   <li><a href="#two-basic-rules-for-writing-reproducible-code" id="toc-two-basic-rules-for-writing-reproducible-code" class="nav-link" data-scroll-target="#two-basic-rules-for-writing-reproducible-code">Two Basic Rules for Writing Reproducible Code</a></li>
   <li><a href="#arithmetic" id="toc-arithmetic" class="nav-link" data-scroll-target="#arithmetic">Arithmetic</a></li>
   <li><a href="#objects-and-assignment" id="toc-objects-and-assignment" class="nav-link" data-scroll-target="#objects-and-assignment">Objects and Assignment</a></li>
@@ -1847,7 +1849,7 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
   <li><a href="#calling-functions" id="toc-calling-functions" class="nav-link" data-scroll-target="#calling-functions">Calling Functions</a></li>
   <li><a href="#building-your-first-data-frame" id="toc-building-your-first-data-frame" class="nav-link" data-scroll-target="#building-your-first-data-frame">Building Your First Data Frame</a></li>
-  <li><a href="#what-we-did" id="toc-what-we-did" class="nav-link" data-scroll-target="#what-we-did">⚪ What We Did</a></li>
+  <li><a href="#what-we-did" id="toc-what-we-did" class="nav-link" data-scroll-target="#what-we-did">What We Did</a></li>
   <li><a href="#why-we-did-it-this-way" id="toc-why-we-did-it-this-way" class="nav-link" data-scroll-target="#why-we-did-it-this-way">Why We Did It This Way</a></li>
   </ul>
 </nav>
@@ -2141,8 +2143,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arc 1: R Fundamentals</h1>
-<p class="subtitle lead">Objects, vectors, data types, your first data frame</p>
+<h1 class="title">Arc 1</h1>
+<p class="subtitle lead">R and Reproducibility</p>
 </div>
 
 
@@ -2160,10 +2162,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 <p>By the end of this arc, you will have written your first lines of R code, created objects and vectors, and built your first data frame.</p>
-<p>🔵 <strong>Slides:</strong></p>
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <p><a href="arc_1_slides.html" target="_blank">Open slides fullscreen</a></p>
-<iframe src="arc_1_slides.html" width="100%" height="500px" style="border:none;">
+<iframe src="arc_1_slides.html" width="100%" height="450px" style="border:none;">
 </iframe>
+</section>
 <section id="orient-to-positron" class="level2">
 <h2 class="anchored" data-anchor-id="orient-to-positron">Orient to Positron</h2>
 <p>Before writing any code, take a moment to locate four things in your Positron window:</p>
@@ -2182,7 +2186,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⚪ About This — Setting Your Working Directory Without Code
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Setting Your Working Directory Without Code
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2213,7 +2217,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>🟠 Code Tour — Why does one of these fail?
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Why does one of these fail?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2238,7 +2242,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>🟠 Code Tour — Why Didn’t My Answer Update?
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Why Didn’t My Answer Update?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2259,7 +2263,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>🟣 Learn More — Object Naming Rules
+<span class="screen-reader-only">Note</span><span class="dot dot-tip"></span> Learn More — Object Naming Rules
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2292,7 +2296,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>🟠 Code Tour — Vectors Don’t Have to Be Numbers
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Vectors Don’t Have to Be Numbers
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2316,7 +2320,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⚪ About This — Why parentheses?
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Why parentheses?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2344,7 +2348,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>🟣 Learn More — head(), str(), and dim() each answer a different question
+<span class="screen-reader-only">Note</span><span class="dot dot-tip"></span> Learn More — head(), str(), and dim() each answer a different question
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2361,7 +2365,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <hr>
 </section>
 <section id="what-we-did" class="level2">
-<h2 class="anchored" data-anchor-id="what-we-did">⚪ What We Did</h2>
+<h2 class="anchored" data-anchor-id="what-we-did">What We Did</h2>
 <p>In this arc, you:</p>
 <ul>
 <li>Wrote your first lines of R — arithmetic, objects, vectors, and functions</li>

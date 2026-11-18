@@ -1766,7 +1766,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modules/arc_4.html">Arc 4: Reproducible Reports</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modules/arc_4.html">Arc 4: Literate Programming and Living Documents</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1785,49 +1785,49 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 1: R Fundamentals</span></a>
+ <span class="menu-text">Arc 1: R and Reproducibility</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 2: Your First Reproducible Project</span></a>
+ <span class="menu-text">Arc 2: Research Computing Projects</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 3: Data Structures</span></a>
+ <span class="menu-text">Arc 3: Data Structures and Control Flow</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_4.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Arc 4: Reproducible Reports</span></a>
+ <span class="menu-text">Arc 4: Literate Programming and Living Documents</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 5: Tidyverse</span></a>
+ <span class="menu-text">Arc 5: Data Cleaning with the Tidyverse</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 6: Git &amp; GitHub</span></a>
+ <span class="menu-text">Arc 6: Version Control with Git</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 7: DESeq2 Pipeline</span></a>
+ <span class="menu-text">Arc 7: AI and Reproducibility</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modules/arc_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arc 8: Apptainer &amp; Containers</span></a>
+ <span class="menu-text">Arc 8: Data Packaging and the Limits of Reproducibility</span></a>
   </div>
 </li>
     </ul>
@@ -2141,7 +2141,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Arc 4</h1>
-<p class="subtitle lead">Literate Programming with Quarto</p>
+<p class="subtitle lead">Literate Programming and Living Documents</p>
 </div>
 
 
@@ -2216,10 +2216,28 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>In your <code>README.qmd</code>, wrap your existing file-structure listing in triple backticks (<code>```</code>) so it’s formatted as a code block</p></li>
-<li><p>In the terminal, run <code>quarto render</code>, then <code>quarto preview readme.qmd</code></p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — What Is Markdown?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The triple-backtick formatting you just used, along with things like <code>#</code> for headings and <code>**bold**</code> for bold text, is called <strong>Markdown</strong> — a simple, plain-text way to add formatting that any text editor can read, with no special software required. A <code>.qmd</code> file is markdown text with executable code chunks mixed in; strip the code out, and what’s left is a plain markdown document.</p>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>In the terminal, run <code>quarto render</code>, then <code>quarto preview readme.qmd</code></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2228,7 +2246,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The browser window that opens shows an address starting with <code>localhost</code> followed by a port number. That means your own computer is serving the file to itself — it is not on the internet, and no one else can see it. This is how you preview a Quarto document before it’s ever published anywhere.</p>
 </div>
@@ -2239,7 +2257,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h2 class="anchored" data-anchor-id="automate-the-project-tree">Automate the Project Tree</h2>
 <p>Right now your file tree is still just text you typed — exactly as easy to go stale as it was in <code>README.txt</code>. This code chunk generates and annotates it automatically, every time you render, so it can’t.</p>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2248,7 +2266,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>dir_tree()</code> reads your actual project folder from disk. There’s no real project structure to list inside a browser sandbox, so this chunk is shown as a display only — paste it into your own <code>README.qmd</code> to see it work.</p>
 </div>
@@ -2284,7 +2302,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(tree_output, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">```</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2293,7 +2311,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><code>dir_tree()</code> generates a visual tree of your project folder, two levels deep</li>
@@ -2340,7 +2358,7 @@ Check your work
 <h2 class="anchored" data-anchor-id="from-figure-to-methods-text">From Figure to Methods Text</h2>
 <p>Everything so far has been browser-based, which means the narrative text on this page can’t actually react to the live code cells above it — only a document you render yourself, on your own machine, can do that.</p>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2349,14 +2367,14 @@ Check your work
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Inline code like <code>`r min_val`</code> only updates when <em>you</em> render a <code>.qmd</code> file locally. The live cells on this website are compiled once, ahead of time — changing a value in a browser cell above will never change a sentence of text on this page. Try the block below in your own <code>analysis.qmd</code> file instead, where it will.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2365,7 +2383,7 @@ Check your work
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In your own <code>.qmd</code> file, a code chunk can set values that your narrative text then refers to directly:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -2388,7 +2406,7 @@ among others).
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2397,7 +2415,7 @@ among others).
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We haven’t cleaned this dataset yet — that happens in Arc 5, which is where readable gene symbols get attached to each row. For now, a row index is a placeholder for “which gene,” standing in for the moment you’ll replace it with <code>gene_symbol[in_range_idx]</code> once that column exists. This is exactly the kind of methods-section sentence that, in a real paper, needs to update itself the instant an upstream analysis choice changes — which is the entire point of writing it this way instead of typing a number by hand.</p>
 </div>
@@ -2408,7 +2426,7 @@ among others).
 <h2 class="anchored" data-anchor-id="extending-further-publishing-with-a-journal-template">Extending Further: Publishing with a Journal Template</h2>
 <p>This next piece goes beyond what we’ll build from scratch together today — it’s here so you know it’s possible, and can come back to it on your own.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2417,7 +2435,7 @@ among others).
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>This uses <code>tidyverse</code> and <code>scales</code>, which we haven’t covered in depth yet — that’s coming in Arc 5. For now, treat <code>library(...)</code> simply as “turn this set of extra functions on for this session.”</p>
 <p><strong>Formatting as a journal submission</strong> — try this later, on your own machine. Quarto extensions can format a document to match a specific journal’s submission requirements — layout, fonts, figure formatting — without touching your analysis code at all. This part can’t run in a browser sandbox, since it installs files onto a real file system:</p>

@@ -1,6 +1,6 @@
 ---
 title: "Arc 4"
-subtitle: "Literate Programming with Quarto"
+subtitle: "Literate Programming and Living Documents"
 engine: knitr
 filters:
   - webr
@@ -63,6 +63,17 @@ Converting it to a `.qmd` file is our first step toward fixing that.
 
 3. In your `README.qmd`, wrap your existing file-structure listing in
    triple backticks (```` ``` ````) so it's formatted as a code block
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — What Is Markdown?
+The triple-backtick formatting you just used, along with things like
+`#` for headings and `**bold**` for bold text, is called **Markdown** —
+a simple, plain-text way to add formatting that any text editor can
+read, with no special software required. A `.qmd` file is markdown text
+with executable code chunks mixed in; strip the code out, and what's
+left is a plain markdown document.
+:::
+
 4. In the terminal, run `quarto render`, then `quarto preview readme.qmd`
 
 ::: {.callout-note collapse="true"}

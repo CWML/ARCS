@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 2: Setting Up a Reproducible Project"
+title: "Arc 2"
+subtitle: "Research Computing Projects"
 format:
   revealjs:
     incremental: false

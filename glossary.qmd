@@ -7,52 +7,52 @@ Short definitions of terms used across ARCS, with links back to where each one i
 
 ### Argument {#argument}
 A value passed into a function when it is called — the function's input.
-→ [Arc 1](/arcs/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
+→ [Arc 1](/modules/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
 
 ### Assignment Operator {#assignment-operator}
 `<-`, used to store a value in an object. Read it as "gets" — `x <- 5` means "x gets 5."
-→ [Arc 1](/arcs/arc_1.qmd#objects-and-assignment)
+→ [Arc 1](/modules/arc_1.qmd#objects-and-assignment)
 
 ### Data Frame {#data-frame}
 A table-like object in R — rows and columns, similar to a spreadsheet.
-→ [Arc 1](/arcs/arc_1.qmd#building-your-first-data-frame) · [R for Data Science: Data Frames](https://r4ds.hadley.nz)
+→ [Arc 1](/modules/arc_1.qmd#building-your-first-data-frame) · [R for Data Science: Data Frames](https://r4ds.hadley.nz)
 
 ### Data Type {#data-type}
 The kind of value an object holds — `numeric`, `character`, or `logical`. Determines what operations R will let you perform on it.
-→ [Arc 1](/arcs/arc_1.qmd#data-types) · [R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types)
+→ [Arc 1](/modules/arc_1.qmd#data-types) · [R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types)
 
 ### Function {#function}
 A reusable block of code that takes arguments (inputs) and returns a value (output).
-→ [Arc 1](/arcs/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
+→ [Arc 1](/modules/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
 
 ### IDE
 IDE stands for "integrated development environment", a kind of software application that combines a variety of developer tools together into one interface, as opposed to many narrower standalone applications. Positron, R Studio, and VS Code are examples of IDEs. 
-→ [Arc 0](/arcs/arc_0.qmd) · [GitHub: What is an IDE?](https://github.com/resources/articles/what-is-an-ide)
+→ [Arc 0](/modules/arc_0.qmd) · [GitHub: What is an IDE?](https://github.com/resources/articles/what-is-an-ide)
 
 ### Object {#object}
 A named value stored in R's environment, created with the assignment operator `<-`.
-→ [Arc 1](/arcs/arc_1.qmd#objects-and-assignment)
+→ [Arc 1](/modules/arc_1.qmd#objects-and-assignment)
 
 ### R Project {#r-project}
 A folder that Positron/RStudio treats as a self-contained working directory, keeping file paths and settings local to that project rather than scattered across your computer.
-→ [Arc 2](/arcs/arc_2.qmd#create-an-r-project)
+→ [Arc 2](/modules/arc_2.qmd#create-an-r-project)
 
 ### README {#readme}
 A plain-text file describing what a project contains and how to use it, so a collaborator — or future you — doesn't have to guess.
-→ [Arc 2](/arcs/arc_2.qmd#write-a-readme) · [Cornell README Template](https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230)
+→ [Arc 2](/modules/arc_2.qmd#write-a-readme) · [Cornell README Template](https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230)
 
 ### renv {#renv}
 An R package that locks the exact version of every package a project uses, so the project runs identically on any machine, including yours a year from now.
-→ [Arc 2](/arcs/arc_2.qmd#initialize-renv) · [renv documentation](https://rstudio.github.io/renv/)
+→ [Arc 2](/modules/arc_2.qmd#initialize-renv) · [renv documentation](https://rstudio.github.io/renv/)
 
 ### Reproducibility {#reproducibility}
 The property of a project, script, or pipeline producing the same result every time it's re-run — including after changes to upstream data, parameters, or package versions.
-→ [Arc 1: Code Tour](/arcs/arc_1.qmd#objects-and-assignment) · [Arc 2](/arcs/arc_2.qmd#why-project-management-matters) · [The Turing Way: Definitions](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/#rr-overview-definitions-reproducibility)
+→ [Arc 1: Code Tour](/modules/arc_1.qmd#objects-and-assignment) · [Arc 2](/modules/arc_2.qmd#why-project-management-matters) · [The Turing Way: Definitions](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/#rr-overview-definitions-reproducibility)
 
 ### Vector {#vector}
 A collection of values of the same data type, created with `c()`.
-→ [Arc 1](/arcs/arc_1.qmd#vectors)
+→ [Arc 1](/modules/arc_1.qmd#vectors)
 
 ### Working Directory {#working-directory}
 The folder R treats as "home" for a session — where it looks for files by default, and where relative file paths are measured from.
-→ [Arc 1](/arcs/arc_1.qmd#orient-to-positron)
+→ [Arc 1](/modules/arc_1.qmd#orient-to-positron)

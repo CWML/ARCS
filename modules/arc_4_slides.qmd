@@ -1,6 +1,6 @@
 ---
-title: "ARCS Series"
-subtitle: "Arc 4: Reproducible Reports"
+title: "Arc 4"
+subtitle: "Literate Programming and Living Documents"
 format:
   revealjs:
     incremental: false

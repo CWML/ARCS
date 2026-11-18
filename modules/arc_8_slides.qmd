@@ -1,6 +1,6 @@
 ---
 title: "Arc 8"
-subtitle: "AI Use, Data Packaging, & Data Ethics"
+subtitle: "Data Packaging and the Limits of Reproducibility"
 format:
   revealjs:
     incremental: false

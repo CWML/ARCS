@@ -1,6 +1,6 @@
 ---
 title: "Arc 2"
-subtitle: "Research Computing Projects in R"
+subtitle: "Research Computing Projects"
 engine: knitr
 filters:
   - webr
@@ -9,203 +9,260 @@ webr:
     reset-button: true
 ---
 
-By the end of this arc, you will have written your first lines of R code, created objects and vectors, and built your first data frame.
+By the end of this arc, you will have created a reproducible project and loaded a real dataset that we'll use for the rest of the series.
 
 ## Slides
 
-[Open slides fullscreen](arc_1_slides.html){target="_blank"}
+[Open slides fullscreen](arc_2_slides.html){target="_blank"}
 
-<iframe src="arc_1_slides.html" width="100%" height="500px" style="border:none;"></iframe>
+<iframe src="arc_2_slides.html" width="100%" height="450px" style="border:none;"></iframe>
 
-## Orient to Positron
+## Why Project Management Matters
 
-Before writing any code, take a moment to locate four things in your Positron window:
-
-1. The **Console** — where code runs and results appear
-2. The **Editor** — where you write and save scripts
-3. The **Environment pane** — where your objects (variables) appear once created
-4. The **Files pane** — where you can see and navigate your project folder
-
-Find your [working directory](/glossary.qmd#working-directory) — the folder R considers "home" for this session:
-
-```{webr-r}
-getwd()
-```
-
-::: {.callout-important collapse="true"}
-## <span class="dot dot-warning"></span> Watch Out — This Won't Match Your Positron Panes
-The code cells on this page run in a browser-based R engine (webR), which
-has its own virtual filesystem — not the real folder you're working in
-locally. `getwd()` above will return *something*, but it won't match
-what you see in Positron's Files pane. On your own machine, running the
-same line will correctly show your actual project folder.
-:::
+A consistent project structure means a collaborator — or you, six months from now — can open your folder and immediately understand what goes where, without asking you a single question. This is one piece of what we mean by **[reproducibility](/glossary.qmd#reproducibility)**.
 
 ::: {.callout-note collapse="true"}
-## <span class="dot dot-note"></span> About This — Setting Your Working Directory Without Code
-In Positron, you can also set your working directory by right-clicking a folder in the Files pane and choosing **Set as Working Directory** — no code required. This is often faster than typing `setwd()`, and it's less error-prone since you're pointing at a real folder rather than typing a path by hand.
+## <span class="dot dot-live"></span> Try It Live — No Local R? Read This First
+The folder structure, `renv`, and README steps below require a persistent
+filesystem — something a browser sandbox can't provide. Directories
+created in webR exist only for this page session and disappear on
+refresh.
+
+Read through these steps to understand *why* a reproducible project needs
+them, but you'll need a local R install (Positron or RStudio) to actually
+build and keep a project folder. The dataset-loading steps further down
+*do* work live in your browser, in a dedicated Try It Live block, since
+they don't depend on anything being saved.
 :::
 
-## Two Basic Rules for Writing Reproducible Code
+## Create an R Project
 
-1. **Use `#` to annotate and document your code.** A comment explains *why* you did something, not just *what* the code does — that's the difference between code you can hand to someone else and code only you can decode.
-2. **Use a visible pattern to separate sections**, e.g. `#----- Section Title ------#`. This turns a script into something a collaborator — or you, in six months — can scan and navigate without reading every line.
+In Positron: **File → New Folder from Project Template → [R Project](/glossary.qmd#r-project)**, or create a plain folder and open it in Positron as your working directory.
 
-These two habits are the first, smallest form of reproducibility: a reader who wasn't there when you wrote the code should still be able to follow your thinking.
+## Build Your Folder Structure
 
-## Arithmetic
-
-R evaluates arithmetic the way you'd expect from paper math:
-
-```{webr-r}
-1 + 1
-2 * 2
-2 / 1
-2^2
-4:8
+```{r}
+#| eval: false
+dir.create("raw_data")
+dir.create("processed_data")
+dir.create("scripts")
+dir.create("outputs")
 ```
 
-## Your First Error Message
-
-One syntax rule worth knowing up front: text must be wrapped in quotation marks `" "` — object names are the only exception. Here's what happens when you forget:
-
-```{webr-r}
-Hello world!
-```
-
-R reads `Hello world!` as an attempt to call an object named `Hello` — but `Hello` has never been created, and `world!` isn't valid syntax either. You should see an error like `unexpected symbol`. Error messages like this will come up constantly from here on — learning to read them calmly, rather than panicking, is a core programming skill, not a sign something's gone badly wrong.
-
-Wrapping the same text in quotes tells R "this is text, not code":
-
-```{webr-r}
-"Hello world!"
-```
-
-## Objects and Assignment
-
-R stores information in **[objects](/glossary.qmd#object)** using the assignment arrow `<-`.
-
-```{webr-r}
-my_age <- 30
-birth_year <- 2026 - my_age
-birth_year
-```
+| Folder | Purpose |
+|---|---|
+| `raw_data/` | Original data. Never edit these files directly. |
+| `processed_data/` | Cleaned, transformed versions of your data. |
+| `scripts/` | Your code. |
+| `outputs/` | Figures, tables, and results. |
 
 ::: {.callout-caution collapse="true"}
-## <span class="dot dot-tour"></span> Code Tour — Why Didn't My Answer Update?
+## <span class="dot dot-tour"></span> Code Tour — File Naming Conventions
+- No spaces — use `_` or `-` instead
+- Start timestamped files with an ISO date: `YYYY-MM-DD`
+- Be descriptive
 
-Change `my_age` and re-run only this one line:
-```{webr-r}
-my_age <- 31
-birth_year
-```
-`birth_year` still shows the old value — because R doesn't recalculate it automatically. It only stores what you told it to store, at the moment you ran that line. The variable has no memory of how it was created, only what it currently holds.
+**Avoid:**
+- ❌ `data analysis.R` (spaces)
+- ❌ `data.csv` (not descriptive)
+- ❌ `final_FINAL_really_final.R` (version chaos)
 
-This is a small version of a problem that shows up everywhere in computational work: a pipeline is only as current as the last time each step was actually re-run. Changing one upstream value — a raw data point, a filtering threshold, a parameter — doesn't automatically update everything downstream of it. You have to re-run the whole chain, in order, every time.
-
-This is why, later in ARCS, you'll get in the habit of re-running entire scripts top to bottom rather than just the last line you touched — and it's part of why reproducibility isn't only "did I get the right answer," but "would I get the same answer again if I changed one thing and reran everything downstream of it?"
+**Prefer:**
+- ✅ `2024-03-15_survey_analysis.R`
+- ✅ `participant_demographics_clean.csv`
+- ✅ `README.md`
 :::
 
-::: {.callout-tip collapse="true"}
-## <span class="dot dot-tip"></span> Learn More — Object Naming Rules
-- Must start with a letter (not a number or symbol)
-- Can contain letters, numbers, `_` and `.`
-- Case-sensitive: `age` and `Age` are different objects
-- Avoid names that are already functions in R (e.g. `c`, `mean`, `data`)
-:::
+## What Is a Package?
 
-## Data Types
+Base R ships with a core set of built-in functions. A **package** is an
+add-on that extends what R can do — installed once per machine with
+`install.packages()`, then turned on for each new R session with
+`library()`. The very next tool we use, `renv`, is a package — and it
+needs to be installed before it can do anything.
 
-R has a few core **[data types](/glossary.qmd#data-type)** you'll use constantly:
-
-```{webr-r}
-# character (text)
-name <- "Shank3"
-
-# numeric
-value <- 12.5
-
-# logical
-is_significant <- TRUE
-```
-
-## Vectors
-
-A **[vector](/glossary.qmd#vector)** holds multiple values of the same type, built with `c()`:
-
-```{webr-r}
-FamAges <- c(34, 28, 61, 5)
-FamAges
-```
-
-::: {.callout-caution collapse="true"}
-## <span class="dot dot-tour"></span> Code Tour — Vectors Don't Have to Be Numbers
-```r
-FamNames <- c("Ana", "Ben", "Carla", "Dev")
-is_adult  <- c(TRUE, TRUE, TRUE, FALSE)
-```
-A vector can hold character or logical values too — but every element inside *one* vector must be the same type. Try running `c(1, "two", 3)` and look closely at the result. What happened to the `1` and the `3`?
-:::
-
-## Calling Functions
-
-A **[function](/glossary.qmd#function)** takes **[arguments](/glossary.qmd#argument)** (inputs) and returns a **value** (output). You've already called one — `c()`. Here are three more:
-
-```{webr-r}
-mean(FamAges)
-sum(FamAges)
-nchar("Shank3")
+```{r}
+#| eval: false
+install.packages("renv")
 ```
 
 ::: {.callout-note collapse="true"}
-## <span class="dot dot-note"></span> About This — Why Parentheses?
-Parentheses tell R "run this now." Typing `mean` alone just shows you the function's underlying code — typing `mean()` actually executes it. This distinction matters more once you start writing your own functions, in Arc 3.
+## <span class="dot dot-note"></span> About This — Minimal Packages, On Purpose
+This series installs very few packages before Arc 5. That's deliberate:
+the goal here is understanding what a package actually *does* for you —
+`renv` protects reproducibility, `fs` generates a file tree — not
+accumulating a long list of dependencies before you've seen why any one
+of them earns its place.
 :::
 
-## Building Your First Data Frame
+## Initialize `renv`
 
-A **[data frame](/glossary.qmd#data-frame)** can be thought of as a table with rows and columns, like a spreadsheet. Data frames are composed of vectors in a certain order. Let's turn our family ages into one. Feel free to swap in your own numbers here instead of ours.
+[renv](/glossary.qmd#renv) tracks exactly which package versions your project uses, so it runs the same way on any machine, including yours a year from now.
 
-```{webr-r}
-FamAges <- c(34, 28, 61, 5)
-FamYear <- 2026 - FamAges
-df_FamInfo <- data.frame(FamAges, FamYear)
-df_FamInfo
+```{r}
+#| eval: false
+renv::init()
+renv::snapshot()
 ```
 
-Add a names column with `cbind()`:
+This creates:
 
-```{webr-r}
-FamNames <- c("Ana", "Ben", "Carla", "Dev")
-df_FamInfo <- cbind(df_FamInfo, FamNames)
-df_FamInfo
 ```
-
-Inspect it three ways:
-
-```{webr-r}
-head(df_FamInfo)
-str(df_FamInfo)
-dim(df_FamInfo)
+├── .Rprofile
+├── renv.lock
+└── renv/
+    ├── .gitignore
+    ├── activate.R
+    ├── settings.json
+    └── library/
 ```
 
 ::: {.callout-tip collapse="true"}
-## <span class="dot dot-tip"></span> Learn More — head(), str(), and dim() Each Answer a Different Question
-- `head()` — "What does my data actually look like?"
-- `str()` — "What type is each column, and how is this object structured?"
-- `dim()` — "How big is this — how many rows and columns?"
-You'll run this same trio on almost every dataset you ever load into R, including the real genomics data in the next arc.
+## <span class="dot dot-tip"></span> Learn More — What's Actually Inside renv.lock?
+```json
+{
+  "R": { "Version": "4.6.0" },
+  "Packages": {
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.1.4",
+      "Source": "Repository"
+    }
+  }
+}
+```
+Every package your project depends on gets pinned to an exact version
+here. When a collaborator runs `renv::restore()`, R installs these exact
+versions — not whatever happens to be newest that day. Full documentation
+is at [rstudio.github.io/renv](https://rstudio.github.io/renv/).
+:::
+
+## Load the Dataset
+
+We'll use this dataset — real RNA-seq data from a published Shank3 mouse
+study — for the rest of the series. Two files: a raw counts matrix, and a
+metadata file describing each sample. We'll call them `raw_data` and
+`raw_metadata` throughout, matching the `raw_data/` folder they live in.
+
+```{r}
+#| eval: false
+# ---- Download once, save locally ----
+metadata_url  <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"
+rawcounts_url <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"
+
+download.file(metadata_url,  destfile = "raw_data/GSE113754_filtered_metadata.csv")
+download.file(rawcounts_url, destfile = "raw_data/GSE113754_GeneLevel_Raw_data.csv")
+
+raw_metadata <- read.csv("raw_data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data.csv")
+```
+
+Inspect what you loaded:
+
+```{r}
+#| eval: false
+head(raw_metadata)
+str(raw_metadata)
+dim(raw_data)
+```
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Why Download-and-Save Here, but Read-from-URL Below?
+This isn't an inconsistency — it's intentional. In a real project, raw
+data should live inside your project folder (`raw_data/`) so your
+analysis doesn't silently depend on the internet being available every
+time you run it. If the GitHub repo moves, is renamed, or GitHub has an
+outage, a project with a local copy still runs. A project that re-fetches
+a URL every time does not.
+
+Browser-based tools like webR can't save a persistent local copy the way
+a laptop can, so reading from the URL each time is the necessary
+workaround for that environment — not the ideal pattern. You're seeing a
+real technical tradeoff, not a mistake.
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-live"></span> Try It Live — Load the Real Dataset in Your Browser
+No local file system here, so these read directly from the source URL
+instead of a saved copy — see the About This box above for why that's a
+tradeoff, not the ideal pattern.
+
+```{webr-r}
+raw_metadata <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv")
+head(raw_metadata)
+```
+
+```{webr-r}
+raw_data <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv")
+dim(raw_data)
+```
+:::
+
+## Write a [README](/glossary.qmd#readme)
+
+```{r}
+#| eval: false
+install.packages("fs")
+library(fs)
+fs::dir_tree()
+capture.output(fs::dir_tree(), file = "README.txt")
+```
+
+Then open `README.txt` and fill in the template:
+
+```
+This readme file was generated on [YYYY-MM-DD] by [NAME]
+
+GENERAL INFORMATION
+
+Title of Dataset:
+
+Author/Principal Investigator Information
+Name:
+ORCID:
+Institution:
+Address:
+Email:
+
+SHARING/ACCESS INFORMATION
+
+This data was retrieved through the GREIN web platform, which
+interfaces with the NIH Gene Expression Omnibus (GEO) repository.
+Link to dataset: https://www.ilincs.org/apps/grein/?gse=GSE113754
+
+DATA & FILE OVERVIEW
+
+raw_data/        — original data (never edited)
+processed_data/  — cleaned data
+scripts/         — analysis code
+outputs/         — figures, tables, results
+```
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — README Templates
+This project's README is a simplified version of the Cornell Research
+Data Management README template: [Cornell eCommons README Template](https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230)
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — The Project Is the Unit of Reproducibility
+It's tempting to think of a single script as "the analysis." But a script
+alone can't be reproduced — it depends on data files, package versions,
+and a folder structure that has to exist for it to run. The **project**,
+not the script, is what makes your work reproducible: the folders, the
+`renv.lock`, the raw data, and the code together. If you zipped your
+project folder and sent it to a stranger, could they run it? That's the
+real test.
 :::
 
 ## What We Did, and Why
 
-**What we built:** your first lines of R — arithmetic, your first error
-message and what it means, objects, vectors, R's core data types
-(character, numeric, logical), a handful of functions, and your first
-data frame, built from scratch.
+**What we built:** a reproducible project with a standard folder
+structure, `renv` tracking this project's exact dependencies, a real
+genomics dataset (`raw_data` and `raw_metadata`) loaded and inspected,
+and a README documenting all of it.
 
-**Why it matters:** these habits — commenting your reasoning, reading an
-error calmly instead of panicking, understanding that a stored value
-doesn't update itself — are the foundation everything else in this
-series builds on. You're establishing best practices from the very first
-line of code, not bolting them on later.
+**Why it matters:** think about the future as you form these habits —
+document and automate iteratively, give your work collaborative
+potential — so reproducibility becomes how you work, not a checklist
+someone hands you afterward.
