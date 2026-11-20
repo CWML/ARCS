@@ -1,0 +1,77 @@
+---
+title: "Glossary"
+---
+
+Short definitions of terms used across ARCS, with links back to where each one is taught and out to fuller references.
+
+### Argument {#argument}
+A value passed into a function when it is called — the function's input.
+→ [Arc 1](/modules/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
+
+### Assignment Operator {#assignment-operator}
+`<-`, used to store a value in an object. Read it as "gets" — `x <- 5` means "x gets 5."
+→ [Arc 1](/modules/arc_1.qmd#objects-and-assignment)
+
+### Commit {#commit}
+A saved snapshot of a project's files at a specific point in time, created in git with a short message describing what changed and why.
+→ [Arc 6](/modules/arc_6.qmd#local-git-in-positron-modify-stage-commit)
+
+### Data Frame {#data-frame}
+A table-like object in R — rows and columns, similar to a spreadsheet.
+→ [Arc 1](/modules/arc_1.qmd#building-your-first-data-frame) · [R for Data Science: Data Frames](https://r4ds.hadley.nz)
+
+### Data Repository {#data-repository}
+A system designed for depositing, preserving, and sharing research data long-term — distinct from a code repository like GitHub, which is built for tracking changes to text and scripts, not hosting datasets. Examples include Zenodo, Dryad, and institutional repositories.
+→ [Arc 6](/modules/arc_6.qmd#excluding-data-files-the-gitignore-file) · [Arc 8](/modules/arc_8.qmd)
+
+### Data Type {#data-type}
+The kind of value an object holds — `numeric`, `character`, or `logical`. Determines what operations R will let you perform on it.
+→ [Arc 1](/modules/arc_1.qmd#data-types) · [R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types)
+
+### Function {#function}
+A reusable block of code that takes arguments (inputs) and returns a value (output).
+→ [Arc 1](/modules/arc_1.qmd#calling-functions) · [Advanced R: Functions](http://adv-r.had.co.nz/Functions.html)
+
+### .gitignore {#gitignore}
+A plain-text file in a project's root folder listing files and folders git should never track — typically large data files, output files, and package caches.
+→ [Arc 6](/modules/arc_6.qmd#excluding-data-files-the-gitignore-file) · [GitHub: .gitignore docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
+
+### IDE
+IDE stands for "integrated development environment", a kind of software application that combines a variety of developer tools together into one interface, as opposed to many narrower standalone applications. Positron, R Studio, and VS Code are examples of IDEs. 
+→ [Arc 0](/modules/arc_0.qmd) · [GitHub: What is an IDE?](https://github.com/resources/articles/what-is-an-ide)
+
+### Object {#object}
+A named value stored in R's environment, created with the assignment operator `<-`.
+→ [Arc 1](/modules/arc_1.qmd#objects-and-assignment)
+
+### Package {#package}
+A bundle of R functions, data, and documentation that extends what base R can do — installed once with `install.packages()` and loaded per session with `library()`.
+→ [Arc 2](/modules/arc_2.qmd#what-is-a-package) · [Arc 5](/modules/arc_5.qmd) · [R Packages, 2nd ed.](https://r-pkgs.org/)
+
+### R Project {#r-project}
+A folder that Positron/RStudio treats as a self-contained working directory, keeping file paths and settings local to that project rather than scattered across your computer.
+→ [Arc 2](/modules/arc_2.qmd#create-an-r-project)
+
+### Repository {#repository}
+In git, a project folder tracked for version history — distinct from a [data repository](#data-repository), which is built for depositing and sharing datasets that represent scientific findings, often governed by human curation.
+→ [Arc 6](/modules/arc_6.qmd#checking-whether-git-is-initialized) · [Arc 8](/modules/arc_8.qmd)
+
+### README {#readme}
+A plain-text file describing what a project contains and how to use it, so a collaborator — or future you — doesn't have to guess.
+→ [Arc 2](/modules/arc_2.qmd#write-a-readme) · [Cornell README Template](https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230)
+
+### renv {#renv}
+An R package that locks the exact version of every package a project uses, so the project runs identically on any machine, including yours a year from now.
+→ [Arc 2](/modules/arc_2.qmd#initialize-renv) · [renv documentation](https://rstudio.github.io/renv/)
+
+### Reproducibility {#reproducibility}
+The property of a project, script, or pipeline producing the same result every time it's re-run — including after changes to upstream data, parameters, or package versions.
+→ [Arc 1: Code Tour](/modules/arc_1.qmd#objects-and-assignment) · [Arc 2](/modules/arc_2.qmd#why-project-management-matters) · [The Turing Way: Definitions](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/#rr-overview-definitions-reproducibility)
+
+### Vector {#vector}
+A collection of values of the same data type, created with `c()`.
+→ [Arc 1](/modules/arc_1.qmd#vectors)
+
+### Working Directory {#working-directory}
+The folder R treats as "home" for a session — where it looks for files by default, and where relative file paths are measured from.
+→ [Arc 1](/modules/arc_1.qmd#orient-to-positron)

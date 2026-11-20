@@ -1,0 +1,129 @@
+---
+title: "Arc 5"
+subtitle: "Data Cleaning with the Tidyverse"
+engine: knitr
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
+
+## Slides
+
+[Open slides fullscreen](arc_5_slides.html){target="_blank"}
+
+<iframe src="arc_5_slides.html" width="100%" height="450px" style="border:none;"></iframe>
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
+If you're jumping into this module on a new day, or `raw_data` and
+`raw_metadata` aren't in your environment, run this once before continuing:
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(here)
+library(janitor)
+
+metadata_url  <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"
+rawcounts_url <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"
+
+download.file(metadata_url,  destfile = here("raw_data", "GSE113754_filtered_metadata.csv"))
+download.file(rawcounts_url, destfile = here("raw_data", "GSE113754_GeneLevel_Raw_data.csv"))
+
+raw_metadata <- read_csv(here("raw_data", "GSE113754_filtered_metadata.csv"))
+raw_data     <- read_csv(here("raw_data", "GSE113754_GeneLevel_Raw_data.csv"))
+```
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+No persistent filesystem here, so skip the download step and read
+directly from the source instead:
+
+```{webr-r}
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(janitor)
+library(readr)
+
+raw_metadata <- read_csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv")
+raw_data     <- read_csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv")
+```
+:::
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — The `rio` Package
+`rio::import()` is a popular alternative that auto-detects file type and
+picks the right reader underneath — handy if your project mixes `.csv`,
+`.xlsx`, `.sav`, and `.dta` files. For a single, consistent file type like
+the `.csv` files here, `read_csv()` works directly and is what you'll see
+most often in published scripts and tutorials.
+:::
+
+## Cleaning the Raw Counts with `dplyr` Verbs and the Pipe
+
+```{webr-r}
+clean_data <- raw_data %>%
+  clean_names() %>%
+  rename(gene_id = v1) %>%
+  mutate(gsm3119015 = replace_na(gsm3119015, 0)) %>%
+  mutate(gene_id_symbol = paste(gene_id, gene_symbol, sep = "|")) %>%
+  select(gene_id_symbol, everything(), -gene_symbol, -gene_id) %>%
+  column_to_rownames(var = colnames(.)[1])
+```
+
+## Cleaning the Metadata
+
+```{webr-r}
+clean_meta_data <- raw_metadata %>%
+  clean_names() %>%
+  rename(sample_id = v1, condition = characteristics) %>%
+  mutate(
+    condition = case_when(
+      grepl("homecage", condition)          ~ "normal",
+      grepl("sleep deprivation", condition) ~ "sleep_deprived",
+      TRUE ~ condition
+    )) %>%
+  mutate(
+    genotype = case_when(
+      grepl("WT",     genotype, ignore.case = TRUE) ~ "WT",
+      grepl("shank3", genotype, ignore.case = TRUE) ~ "shank3",
+      TRUE ~ genotype
+    )) %>%
+  mutate(geno_cond = paste0(genotype, condition)) %>%
+  select(sample_id, genotype, condition, geno_cond) %>%
+  mutate(sample_id = str_to_lower(sample_id))
+```
+
+## Harmonizing the Two Files
+
+```{webr-r}
+clean_data <- clean_data %>%
+  select(all_of(clean_meta_data$sample_id))
+
+setequal(clean_meta_data$sample_id, colnames(clean_data))
+```
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — This Is the Whole Point
+This check is exactly what the Arc 2 "data management gone awry" story
+was missing — a scripted, verifiable confirmation that two files
+actually match, instead of a manual check done from memory.
+:::
+
+## What We Did, and Why
+
+**What we built:** imported both raw files with `read_csv()`, cleaned the
+counts matrix and the metadata separately using `dplyr`/`janitor` verbs
+chained with the pipe, and ended with a scripted check confirming the two
+cleaned files actually line up with each other.
+
+**Why it matters:** every step here replaces something that could have
+been done by hand, in a spreadsheet, invisibly — renaming a column,
+recoding a label, matching sample IDs by eye. Writing it as code instead
+means the exact same cleaning happens the same way every time, and the
+final `setequal()` check turns "I'm pretty sure these match" into
+something you can actually verify, instead of trust.

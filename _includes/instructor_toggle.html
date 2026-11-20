@@ -1,0 +1,15 @@
+<button id="instructor-toggle-btn">Instructor Notes: Off</button>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("instructor-toggle-btn");
+  const isOn = localStorage.getItem("arcs-instructor-mode") === "true";
+  if (isOn) document.body.classList.add("instructor-mode");
+  btn.textContent = isOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+
+  btn.addEventListener("click", function() {
+    const nowOn = document.body.classList.toggle("instructor-mode");
+    localStorage.setItem("arcs-instructor-mode", nowOn);
+    btn.textContent = nowOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+  });
+});
+</script>

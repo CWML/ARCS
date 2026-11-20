@@ -1,0 +1,52 @@
+---
+title: "Past Workshops"
+subtitle: "Archived materials from previous ARCS cohorts"
+toc: false
+sidebar: false
+---
+
+This page links to materials from previous iterations of the ARCS workshop series. Past workshop pages are preserved as they were taught — they reflect the curriculum, tools, and examples used with that cohort.
+
+*To archive a future cohort: copy the current schedule from the [Schedule page](/schedule.html) into a new section here, and update the links to point to the rendered HTML for that cohort.*
+
+## ARCS | Fall 2025 Cohort
+
+**Location:** Cushing/Whitney Medical Library, Yale University  
+**Instructors:** Levi Dolan, Sofia Fertuzinhos, Max Wegener, Justin DeMayo
+
+| Session | Topic | Materials |
+|---|---|---|
+| Part 1 | Fundamentals of R & Project Management | [Fundamentals](/workshops/01-fundamentals.html) · [Projects](/workshops/02-projects.html) |
+| Part 2 | Data Structures & Reports | [Structures](/workshops/03-structures.html) · [Reports](/workshops/04-reports.html) |
+| Part 3 | Tidyverse & Git | [Tidyverse](/workshops/05-tidyverse.html) · [Git](/workshops/06-git.html) |
+
+---
+
+## ARCS 2.0 | Summer 2026 Cohort
+
+| Date | Time | Lesson |
+|------|------|--------|
+| Friday, July 10 | 9:30–10:30 AM | [Fundamentals of R](/workshops/01-fundamentals.html) |
+| Friday, July 10 | 10:30–11:30 AM | [Project Management](/workshops/02-projects.html) |
+| Friday, July 17 | 9:30–10:30 AM | [Data Structures](/workshops/03-structures.html) |
+| Friday, July 17 | 10:30–11:30 AM | [Reports](/workshops/04-reports.html) |
+| Friday, July 24 | 9:30–10:30 AM | [Tidyverse](/workshops/05-tidyverse.html) |
+| Friday, July 24 | 10:30–11:30 AM | [Git & Version Control](/workshops/06-git.html) |
+| Friday, July 31 | 9:30–10:30 AM | [DESeq2](/workshops/07-deseq2_pipeline.html) |
+| Friday, July 31 | 10:30–11:30 AM | [Apptainer](/workshops/08-apptainer.html) |
+
+
+
+
+---
+
+::: {.callout-note icon="false"}
+## 📘 About This: Why We Keep Past Versions
+
+Each cohort is taught from a snapshot of the curriculum as it existed at that time. Keeping past versions means that participants from earlier cohorts can always find the materials they worked with, and instructors can see how the curriculum has evolved.
+
+If you are adapting these materials for your own institution, the archive also gives you a sense of how the series has developed over time.
+:::
+
+---
+

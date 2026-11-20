@@ -1,0 +1,267 @@
+---
+title: "Arc 7"
+subtitle: "AI and Reproducibility"
+engine: knitr
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
+
+## Slides
+
+[Open slides fullscreen](arc_7_slides.html){target="_blank"}
+
+<iframe src="arc_7_slides.html" width="100%" height="450px" style="border:none;"></iframe>
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
+If you're jumping into this module on a new day, or `raw_data` and
+`raw_metadata` aren't in your environment, run this once before continuing:
+
+```r
+#| eval: false
+metadata_url  <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"
+rawcounts_url <- "https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"
+
+download.file(metadata_url,  destfile = "raw_data/GSE113754_filtered_metadata.csv")
+download.file(rawcounts_url, destfile = "raw_data/GSE113754_GeneLevel_Raw_data.csv")
+
+raw_metadata <- read.csv("raw_data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("raw_data/GSE113754_GeneLevel_Raw_data.csv")
+```
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+No persistent filesystem here, so skip the download step and read
+directly from the source instead:
+
+```{webr-r}
+raw_metadata <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv")
+raw_data     <- read.csv("https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv")
+```
+:::
+
+You will almost certainly write code with an AI's help, starting the
+moment you leave this course — maybe you already do. That's not a
+problem this course is trying to talk you out of. The problem is
+narrower, and it's the same problem every other arc has been circling:
+**code that runs is not the same thing as code you understand, can
+verify, and can hand to someone else.** An AI makes it easier than ever
+to produce code that runs. It does nothing, on its own, to make that
+code reproducible — that part is still entirely on you.
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Runs ≠ Correct
+An AI assistant will confidently hand you a function that executes
+without error and returns the wrong answer. It can invent a function
+that doesn't exist, use a real function's arguments in the wrong order,
+or quietly reach for an outdated package instead of its modern
+replacement. None of these mistakes announce themselves — they look
+exactly as confident as a correct answer.
+:::
+
+## Evaluating AI-Generated Code: A Worked Example
+
+Before you try this yourself, here's what evaluating AI output actually
+looks like, step by step. Suppose you'd asked an AI assistant:
+
+> "Write an R function that takes a data frame and a column name, and
+> returns the number of values in that column below 10."
+
+And it handed back this:
+
+```{webr-r}
+count_low_values <- function(df, col_name) {
+  sum(df[[col_name]] < 10)
+}
+
+count_low_values(raw_data, "GSM3119015")
+```
+
+It runs. It returns a number. Is that enough?
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — The AI Code Checklist
+Run this same checklist on every piece of AI-generated code before it
+goes anywhere near a real analysis — all five items are habits this
+course has already built, just aimed at a new source of code:
+
+1. **Does it run?** — the lowest bar, and the only one an AI's confidence
+   guarantees.
+2. **Do you understand every line?** — if not, that's the signal to ask
+   the AI to explain it, not to accept it on faith (Arc 3: reading error
+   messages applies here too, since you can't debug what you don't
+   understand).
+3. **Is it documented in *your* words** — your Quarto doc explaining what
+   it does and why, independent of whatever comments the AI added
+   itself? (Arc 2)
+4. **Is it committed**, with a message describing what changed and why?
+   (Arc 6)
+5. **Does `renv::snapshot()` capture every package it pulled in** — not
+   just the ones you already had? (Arc 1)
+
+Running the example above through this list: it executes (1), it's
+simple enough to understand fully (2) — but it silently drops every `NA`
+without flagging that it did, which is exactly the Arc 3 lesson about
+`na.rm` and missing values resurfacing in new clothes. An AI didn't know
+to ask whether that silence was intentional. You have to.
+:::
+
+```{webr-r}
+# The same function, checked against what we already know about this column
+anyNA(raw_data$GSM3119015)
+count_low_values(raw_data, "GSM3119015")
+```
+
+## Your Turn: Get Code From an AI, Then Audit It
+
+Open Claude, ChatGPT, or whichever assistant you use, and ask it this:
+
+> "Write an R function called `flag_mid_expression` that takes a data
+> frame, a column name, a low threshold, and a high threshold, and
+> returns `TRUE` for every value strictly between the two thresholds —
+> and `FALSE` for everything else, including missing values."
+
+Paste whatever it gives you into the cell below, in place of the
+placeholder, and run it.
+
+```{webr-r}
+# TODO: replace this placeholder with whatever your AI assistant gave you
+flag_mid_expression <- function(df, col_name, low, high) {
+  df[[col_name]] > low & df[[col_name]] < high
+}
+
+flag_mid_expression(raw_data, "GSM3119015", low = 10, high = 1000)
+```
+
+Now run it through the checklist above. Specifically:
+
+- Does it correctly return `FALSE` — not `NA` — for missing values?
+  (`anyNA(raw_data$GSM3119015)` told you there's at least one to test
+  this against.)
+- Do you understand every operator it used?
+- Could you explain, out loud, what this function does to someone who's
+  never seen it?
+
+<details>
+<summary>One possible correct version</summary>
+
+```r
+flag_mid_expression <- function(df, col_name, low, high) {
+  values <- df[[col_name]]
+  result <- values > low & values < high
+  result[is.na(values)] <- FALSE
+  result
+}
+```
+
+Many AI assistants will skip the `NA` handling entirely — `>` and `<`
+against `NA` silently return `NA`, not `FALSE`. If what you pasted did
+that, you've just caught exactly the kind of error this checklist exists
+to catch.
+</details>
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Three Ways AI-Generated R Code Fails Quietly
+Three real patterns worth recognizing on sight. Each runs if you run it
+in your own browser cell — try each one before reading what's wrong.
+
+**1. The invented function.** AI assistants sometimes blend real function
+names with plausible-sounding ones that don't exist:
+
+```{webr-r}
+mean_no_na(raw_data$GSM3119015)
+```
+
+This fails loudly — `could not find function` — which is actually the
+easy case. The real function is `mean(x, na.rm = TRUE)`; `mean_no_na()`
+was never real.
+
+**2. The misordered argument.** Unlike many functions, `grepl()` expects
+*pattern* first, *text to search* second — reverse them and the function
+still runs, it just silently matches nothing:
+
+```{webr-r}
+grepl(raw_metadata$characteristics, "homecage")  # wrong order — runs, finds nothing
+grepl("homecage", raw_metadata$characteristics)  # correct order
+```
+
+Compare the two outputs. The first returns all `FALSE`. Nothing about
+that result looks like an error.
+
+**3. The outdated package.** Ask an AI for a "group and summarize"
+operation in R and it may reach for the `plyr` package — a real
+tool, but one `dplyr` (which this course has used throughout Arc 5)
+has almost entirely replaced:
+
+```r
+#| eval: false
+library(plyr)
+ddply(raw_metadata, "genotype", summarise, n = length(genotype))
+```
+
+This isn't wrong, exactly — it's dated. `plyr` is no longer actively
+maintained, and its functions can conflict with `dplyr` if both are
+loaded. The equivalent you already know:
+
+```{webr-r}
+raw_metadata %>%
+  count(genotype)
+```
+
+An AI trained on years of public code will sometimes hand you the
+2014 answer to a question that has a better 2024 answer.
+:::
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Getting Better Code Out of an AI
+A vague prompt gets a vague — or wrong — answer. A few habits that
+consistently produce better code:
+
+- **Be specific about shape and edge cases** — "returns `FALSE` for
+  missing values" is something you have to ask for; it's rarely assumed.
+- **Give it real context** — paste the actual column names or a few
+  real rows, instead of describing your data in the abstract.
+- **Ask it to explain its own code back to you** — if the explanation
+  doesn't match what the code actually does, that mismatch is worth
+  investigating before you trust either one.
+- **Treat the first answer as a draft** — asking a follow-up ("what
+  happens here if the column has an `NA`?") often surfaces exactly the
+  kind of gap this arc has been pointing at.
+
+For more on getting useful results from Claude specifically, Anthropic's
+prompting documentation is at
+[docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+:::
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Going Further: Claude Code
+Everything in this arc used chat-based AI — you asked a question, got code
+back, and pasted it in yourself. A coding agent like Claude Code goes a
+step further: it reads your project's files directly, writes code into
+them, runs it, and fixes its own errors. The checklist from this arc
+doesn't change — it's the same "Claude does, you decide" split — it just
+needs sharper tools, since an agent can do far more per turn than a chat
+window ever could. ARCS's companion class, *Analyzing Research Data with
+Claude Code*, walks through exactly that: permission rules that enforce
+what advice alone can't, a plan-before-you-code workflow, and a required
+human review step before anything is trusted. If this arc made you want
+to go further, that's the natural next stop.
+:::
+
+## What We Did, and Why
+
+**What we built:** evaluated a worked AI-generated function against the
+five-point checklist, requested a function of your own from an AI tool
+and audited it the same way, and diagnosed three common, quiet failure
+patterns in AI-generated R code.
+
+**Why it matters:** nothing in this arc was a new R skill — every piece
+of the checklist was something Arcs 1, 2, 3, and 6 already built. What's
+new is the source of the code. The repo is the reproducible artifact —
+whether you wrote every line of it yourself, or an AI handed you the
+first draft. The habits from this entire course are what make that true
+either way.

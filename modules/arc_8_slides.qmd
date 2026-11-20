@@ -1,0 +1,62 @@
+---
+title: "Arc 8"
+subtitle: "Data Packaging and the Limits of Reproducibility"
+format:
+  revealjs:
+    incremental: false
+---
+
+## Closing the Loop
+
+- Every habit in this series has been building toward one idea: your work
+should be usable by someone who isn't you.
+- Today: packaging your project for deposit, and what reproducibility
+actually asks of you — and doesn't.
+
+## A Policy Still Being Written
+
+- In December 2025, NIH proposed a new rule: imaging of the human face or
+head — CT, MRI, even 3D reconstructions — now counts as a **biometric
+identifier**, requiring controlled access.
+- Why now? Because researchers showed facial-recognition models could
+re-identify "de-identified" MRI scans from the 3D shape of a skull alone.
+- This policy isn't settled. It's a public comment period, open right now,
+catching up to a technical reality.
+
+## The Point Isn't This Specific Rule
+
+::: {.incremental}
+- The point is that **what counts as "appropriately shared" keeps
+changing** — and it changes because someone found a new way to extract
+identity from data that looked safe.
+- Our dataset is public mouse RNA-seq. No human subject, no biometric
+risk. But the habit this should build applies regardless of your field:
+**the norms for sharing data responsibly are still being written, in your
+discipline too.**
+- Today has two halves: packaging a project for someone else to use, and
+asking whether — and how much — it should be used.
+:::
+
+## Let's Build
+
+<!-- Bridge slide -->
+
+## Beyond FAIR: Who the Data Is About
+
+| | **FAIR asks** | **CARE asks** |
+|---|---|---|
+| **Collective Benefit** | Is it Findable, Accessible? | Does reuse benefit the community the data describes? |
+| **Authority to Control** | Is it Interoperable? | Who has *standing* to decide reuse — not just who holds the file? |
+| **Responsibility** | Is it Reusable? | Does reuse — including by an AI tool — risk harm no one anticipated? |
+| **Ethics** | — | Should this be reproduced at all? |
+
+- FAIR describes the *shape* of good data management. CARE asks a
+question FAIR never does: not just *can* this be reused, but *should* it
+be, and by whose permission.
+
+## Series Wrap-Up
+
+- The repo is the reproducible artifact — code, environment, and data,
+traveling together, with a record of how they got that way.
+- Reproducibility is necessary. It has never been sufficient. That edge is
+where today ends.

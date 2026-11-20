@@ -1,0 +1,29 @@
+---
+title: "Arc 1"
+subtitle: "R and Reproducibility"
+format:
+  revealjs:
+    incremental: false
+---
+
+## Welcome to Arc 1
+
+- First stop in the ARCS series.
+- For the full schedule, facilitators, and logistics, see the **[Schedule](../schedule.qmd)** page — we'll keep this session focused on getting you coding.
+
+## Why Reproducibility?
+
+::: {.incremental}
+- You've probably heard — or said — "it works on my machine."
+- A script runs perfectly for you, then breaks the moment someone else opens it.
+- A different computer, a missing package, a moved file — and the result changes, or the code stops running entirely.
+- **Reproducibility** means your analysis runs the same way, for anyone, on any machine, at any time.
+- Every habit in this series — from how we name files to how we write code — exists to prevent that gap.
+:::
+
+## Let's Get Coding!
+
+- The best way to understand reproducibility is to start building it.
+- Head to **Positron** — we'll pick up in the Build section.
+
+<!-- Bridge slide: transition directly into Positron / Build. No further slides until Arc 2. -->

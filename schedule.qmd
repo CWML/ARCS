@@ -1,0 +1,32 @@
+---
+title: "Schedule"
+subtitle: "ARCS Workshop Series — Current Cohort"
+toc: false
+sidebar: false
+title-block-style: default
+---
+
+## ARCS 2027
+
+**Location:** Cushing/Whitney Medical Library, Yale University  
+**Format:** Four sessions, weekly, 9:00 AM – 12:00 PM  
+**Instructors:** Levi Dolan, Sofia Fertuzinhos, Max Wegener, Justin DeMayo
+
+Before the first session, complete the [pre-workshop setup](modules/arc_0.qmd).
+
+---
+
+| Session | Date | Topic | Materials |
+|---|---|---|---|
+| Session 1 | [date] | 
+| Session 2 | [date] | 
+| 
+---
+
+::: {.callout-note icon="false"}
+## 📘 About This Series
+
+ARCS is a four-session workshop series introducing reproducible research computing with R. No prior programming experience is required. Each session builds on the last — participants leave with a working, version-controlled, reproducible project built from scratch.
+
+For background on the series, its goals, and how to reuse these materials, see [About ARCS](/).
+:::

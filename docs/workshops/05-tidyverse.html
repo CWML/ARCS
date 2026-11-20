@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tidyverse – Advancing Reproducibility with Computational Skills</title>
+<title>Tidyverse – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1670,7 +1670,7 @@ globalThis.qwebrExecuteCode = async function (
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -1678,9 +1678,8 @@ globalThis.qwebrExecuteCode = async function (
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Advancing Reproducibility with Computational Skills</span>
+    <img src="../images/arcs-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../images/arcs-logo.svg" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -1689,49 +1688,65 @@ globalThis.qwebrExecuteCode = async function (
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lessons" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Lessons</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-arcs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ARCS</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-arcs">    
         <li>
-    <a class="dropdown-item" href="../workshops/01-fundamentals.html">
- <span class="dropdown-text">Fundamentals of R</span></a>
+    <a class="dropdown-item" href="../modules/arc_1.html">
+ <span class="dropdown-text">Arc 1: R Fundamentals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/02-projects.html">
- <span class="dropdown-text">Project Management</span></a>
+    <a class="dropdown-item" href="../modules/arc_2.html">
+ <span class="dropdown-text">Arc 2: Your First Reproducible Project</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/03-structures.html">
- <span class="dropdown-text">Data Structures</span></a>
+    <a class="dropdown-item" href="../modules/arc_3.html">
+ <span class="dropdown-text">Arc 3: Data Structures</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/04-reports.html">
- <span class="dropdown-text">Reports</span></a>
+    <a class="dropdown-item" href="../modules/arc_4.html">
+ <span class="dropdown-text">Arc 4: Reproducible Reports</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/05-tidyverse.html">
- <span class="dropdown-text">Tidyverse</span></a>
+    <a class="dropdown-item" href="../modules/arc_5.html">
+ <span class="dropdown-text">Arc 5: Tidyverse</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/06-git.html">
- <span class="dropdown-text">Git &amp; Version Control</span></a>
+    <a class="dropdown-item" href="../modules/arc_6.html">
+ <span class="dropdown-text">Arc 6: Git &amp; GitHub</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/07-deseq2_pipeline.html">
- <span class="dropdown-text">DESeq2</span></a>
+    <a class="dropdown-item" href="../modules/arc_7.html">
+ <span class="dropdown-text">Arc 7: DESeq2 Pipeline</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../workshops/08-apptainer.html">
- <span class="dropdown-text">Apptainer</span></a>
+    <a class="dropdown-item" href="../modules/arc_8.html">
+ <span class="dropdown-text">Arc 8: Apptainer &amp; Containers</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../modules/arc_0.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../archive/index.html"> 
+<span class="menu-text">Archive</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -1745,123 +1760,10 @@ globalThis.qwebrExecuteCode = async function (
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshops/03-structures.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../workshops/05-tidyverse.html">Tidyverse</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/01-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentals of R</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/02-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Management</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Working with Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/03-structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Structures</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/04-reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reports</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/05-tidyverse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Tidyverse</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Collaboration &amp; Reproducibility</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/06-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git &amp; Version Control</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Pipelines &amp; Containers</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/07-deseq2_pipeline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DESeq2</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshops/08-apptainer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Apptainer</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -2202,7 +2104,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshops/03-structures.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../workshops/05-tidyverse.html">Tidyverse</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Tidyverse</h1>
 </div>
@@ -2827,6 +2729,21 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 
 </main> <!-- /main -->
+<button id="instructor-toggle-btn">Instructor Notes: Off</button>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("instructor-toggle-btn");
+  const isOn = localStorage.getItem("arcs-instructor-mode") === "true";
+  if (isOn) document.body.classList.add("instructor-mode");
+  btn.textContent = isOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+
+  btn.addEventListener("click", function() {
+    const nowOn = document.body.classList.toggle("instructor-mode");
+    localStorage.setItem("arcs-instructor-mode", nowOn);
+    btn.textContent = nowOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

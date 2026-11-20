@@ -1,0 +1,34 @@
+---
+title: "Arc 3"
+subtitle: "Data Structures and Control Flow"
+format:
+  revealjs:
+    incremental: false
+---
+
+## From Objects to Structures
+
+- So far, you've created objects and seen vectors and data frames exist.
+- Today: a second data structure (lists), enough subsetting to read others' code, and the tools to make your code make decisions.
+
+## Vectors, Matrices, Data Frames — and Lists
+
+::: {.incremental}
+- **Vector** — one type of value, in a line.
+- **Matrix** — one type of value, in rows and columns.
+- **Data frame** — mixed types allowed, organized in rows and columns; this is what most of your data will look like.
+- **List** — the most flexible structure: can hold *anything*, including other lists, vectors, or data frames, all at once.
+:::
+
+## Why Functions, Loops, and Conditionals?
+
+::: {.incremental}
+- A script that only works once, on one exact dataset, isn't reproducible — it's lucky.
+- **Functions** let you package a calculation so you don't repeat it.
+- **Loops** let you repeat an action without copy-pasting.
+- **Conditionals** let your code respond differently depending on what it finds.
+- Together, these are what let a script survive contact with messier, real data.
+
+## Let's Build
+
+<!-- Bridge slide -->

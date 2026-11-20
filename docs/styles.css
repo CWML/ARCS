@@ -1,1 +1,31 @@
 /* css styles */
+.instructor-note {
+  display: none;
+  border-left: 4px solid #f5920a;
+  background: #fff8ec;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+
+body.instructor-mode .instructor-note {
+  display: block;
+}
+
+#instructor-toggle-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 999;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+body.instructor-mode #instructor-toggle-btn {
+  background: #f5920a;
+  color: white;
+  border-color: #f5920a;
+}

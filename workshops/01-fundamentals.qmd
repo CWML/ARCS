@@ -21,6 +21,12 @@ webr:
 
 ---
 
+## Slides
+
+[Open slides fullscreen](arc_1_slides.html){target="_blank"}
+
+<iframe src="arc_1_slides.html" width="100%" height="500px" style="border:none;"></iframe>
+
 ## Setting Up the Working Directory
 
 What is your working directory? Run `getwd()` to find out.

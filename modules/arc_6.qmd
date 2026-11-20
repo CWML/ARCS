@@ -1,0 +1,553 @@
+---
+title: "Arc 6"
+subtitle: "Version Control with Git"
+---
+
+## Slides
+
+[Open slides fullscreen](arc_6_slides.html){target="_blank"}
+
+<iframe src="arc_6_slides.html" width="100%" height="450px" style="border:none;"></iframe>
+
+We'll take a project that lives only on your computer and give it a full
+version history and an online home, using three tools, each with one
+clear job:
+
+| Tool               | Its job                                     |
+|---------------------|----------------------------------------------|
+| **Positron**       | Build your local commit history              |
+| **GitHub Desktop** | The bridge — publish and sync, no SSH setup   |
+| **GitHub.com**     | The remote — host and view your project online|
+
+Everything through the GitHub Desktop step happens **locally** on your
+own computer. After that, we connect the local project to GitHub. A
+collaboration workflow (fork & pull requests) and the command-line
+equivalent of everything we do visually are both covered further down
+this page.
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Git vs. GitHub
+- **Git** is the tool that tracks changes on your computer (local).
+- **GitHub** is a website that hosts git projects online (remote), so
+  you can back them up and share them.
+
+You can use git entirely on its own. GitHub adds the online home.
+:::
+
+## Checking Whether Git Is Initialized
+
+Before using Positron's Source Control tab, confirm git is actually
+tracking your project. Open the **Terminal** tab in Positron — because
+you're working inside an R project, it opens directly in your project
+folder.
+
+```bash
+git status
+```
+
+::: {.panel-tabset}
+
+### Git is ready
+
+```
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        data/
+        scripts/
+        ...
+```
+
+Your repository is already initialized. Move on to the next section.
+
+### Not a git repository
+
+```
+fatal: not a git repository (or any of the parent directories): .git
+```
+
+Run one command to fix it:
+
+```bash
+git init
+```
+
+You should see:
+
+```
+Initialized empty Git repository in /path/to/your/project/.git/
+```
+
+Run `git status` again — you should now see the "Git is ready" output.
+
+:::
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Why the Terminal First?
+Positron's Source Control tab is a visual interface built on top of the
+same git commands you just ran. Starting here lets you see what's
+happening under the hood before switching to the GUI — and `git init` is
+the one thing the GUI can't do for you.
+:::
+
+## Local Git in Positron: Modify → Stage → Commit
+
+Your control center for git in Positron is the **Source Control** tab in
+the left activity bar. Every change you save to your history goes
+through three steps:
+
+1. **Modify** — you edit files in your project as usual
+2. **Stage** — you pick which changes to include in the next snapshot
+3. **Commit** — you save those staged changes as a permanent snapshot
+
+The "stage" step is what surprises newcomers: git lets you choose
+*exactly* what goes into each **[commit]**(/glossary.qmd#commit), so you can group related changes
+together instead of dumping everything at once.
+
+When you change files, they appear in the panel with a letter:
+
+| Indicator | Meaning |
+|-----------|---------|
+| **U** | Untracked — a new file git doesn't know about yet |
+| **M** | Modified — an existing file has changed |
+| **A** | Added — a new file that's been staged, ready to commit |
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Two Zones
+The panel has two areas: **Changes** (modified but not yet staged) and
+**Staged Changes** (packed and ready to commit). Clicking the **+** next
+to a file moves it from Changes → Staged Changes.
+:::
+
+### Your First Commit
+
+1. **Look at the Source Control tab.** You should see several files
+   listed as untracked (**U**) — the scripts and data files you've
+   worked with so far.
+2. **Stage everything.** Hover over the **Changes** heading and click
+   the **+** icon to stage all files at once. They move into
+   **Staged Changes**.
+3. **Write a commit message.** In the message box, type something
+   descriptive: `Add project scripts and data`.
+4. **Commit.** Click the **✓ Commit** button.
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Write Messages for Your Future Self
+A good commit message finishes the sentence "This commit will…".
+`Add data loading script` is useful; `stuff` and `update` are not.
+:::
+
+### A Second Commit
+
+1. **Make an edit.** Open any script and add a comment line at the top:
+
+   ```r
+   # Analysis script — tracked with git
+   ```
+
+2. **Check the panel.** The file now shows an **M** (modified) under
+   **Changes**.
+3. **Review the diff (recommended).** Click the filename to open a diff
+   view — additions in green, deletions in red. Reviewing the diff
+   before committing is the single best habit for catching mistakes
+   early.
+4. **Stage and commit.** Click **+**, type `Add header comment to
+   analysis script`, and click **✓ Commit**.
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — A Peek Behind the Curtain
+The Source Control panel just runs git commands for you. In the
+**Terminal**, run:
+
+```bash
+git status
+git log --oneline
+```
+
+You'll see the current state and the commits you just made. You never
+*have* to use the terminal — but it's good to know the GUI isn't doing
+anything magic. The full command-line workflow is in Extending Further.
+:::
+
+## Excluding Data Files: The `.gitignore` File
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Don't Depend on GitHub for Data Storage
+Git is built for *code and text*, not big datasets — it keeps every
+version of every file, so a 100 MB dataset can balloon your repo after a
+few edits, GitHub enforces a 100 MB per-file limit, and git compresses
+text well but handles large binary data poorly.
+
+But the 100 MB limit is a technical ceiling, not a research-data
+strategy. A datafile that fits comfortably under it usually still
+doesn't belong in a GitHub **[repository]**(/glossary.qmd#repository). If it's your raw data or your
+processed data, it needs to be preserved in a **[data repository]**(/glossary.qmd#data-repository): a
+system built for depositing, citing, and sharing research data (such as Zenodo, OSF, Figshare, or an institutional repository), 
+with different governance structures than a GitHub repo. [Arc 8](modules/arc_8.qmd)
+covers packaging and depositing your data for exactly this reason.
+:::
+
+You already have a **[].gitignore]**(/glossary.qmd#gitignore) in your project root — `renv::init()`
+created it back in Arc 1 to exclude its package cache. Extend it:
+
+1. **Open it.** In Positron's Explorer pane, click `.gitignore` in your
+   project root. (If you don't see it: **View → Show Hidden Files**.)
+2. **Add these lines** below what's already there:
+
+   ```gitignore
+   # Ignore data folders
+   raw_data/
+   processed_data/
+
+   # Ignore large output files
+   outputs/*.pdf
+   outputs/*.html
+   ```
+
+3. **Save the file.**
+4. **Watch git react.** The files in `raw_data/` and `processed_data/`
+   disappear from the Source Control panel — git is now ignoring them.
+5. **Commit the updated `.gitignore`**, with the message
+   `Extend .gitignore to exclude data files`.
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Track Code, Not Data
+Keep your repository lean by tracking **code, not data**. This is
+exactly what the Arc 2 "data management gone awry" story was missing:
+note where your data actually lives in your README instead of
+committing it directly.
+:::
+
+## Publishing to GitHub with GitHub Desktop
+
+Your project now has a local history. Let's give it an online home so
+it's backed up and shareable. **GitHub Desktop** handles authentication
+through your browser — no SSH keys, no tokens.
+
+::: {.callout-important collapse="true"}
+## <span class="dot dot-warning"></span> Watch Out — Make Sure You Have These First
+- A free [GitHub account](https://github.com/signup)
+- [GitHub Desktop](https://desktop.github.com/) installed and signed in
+:::
+
+**Step 1: Sign in to GitHub Desktop**
+
+1. Open **GitHub Desktop**.
+2. Go to **File → Options → Accounts** (macOS: **GitHub Desktop →
+   Settings → Accounts**).
+3. Click **Sign in** next to GitHub.com. Your browser opens — approve
+   the request, and you're authenticated.
+
+**Step 2: Add your existing project**
+
+1. **File → Add Local Repository**.
+2. Navigate to your project folder and select it.
+3. Click **Add Repository**.
+
+GitHub Desktop now shows your project and its full commit history — the
+same commits you made in Positron.
+
+**Step 3: Publish**
+
+1. Click **Publish repository** at the top.
+2. Confirm the name and add a short description if you like.
+3. **Keep this code private** — leave this checked for research work
+   (uncheck it only if you intend the project to be public).
+4. Click **Publish repository**.
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Positron ↔ GitHub Desktop
+Keep editing and committing in **Positron**, then switch to
+**GitHub Desktop** and click **Push origin** to send your latest commits
+to GitHub. Push whenever you want your online copy up to date.
+:::
+
+## Seeing It on GitHub.com
+
+1. Go to [github.com](https://github.com) and open **Your repositories**.
+2. Click the repository you just published.
+
+You should see all your files, and — by clicking the **commits** link
+(or the clock/history icon) — the complete history you built in
+Positron. Your local project now has an online backup.
+
+**Local-first vs. remote-first.** There are two ways a project's life
+can begin:
+
+- **Local-first (what we just did):** you start on your own computer,
+  build a history, then publish to GitHub — like writing a document on
+  your desktop and later uploading it to share.
+- **Remote-first (cloning):** the project already exists on GitHub. You
+  **clone** it — downloading a complete copy, history and all — before
+  you start working, like a colleague sharing a document you download
+  to edit.
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — When You'll Use Remote-First
+You'll use the remote-first / clone workflow when collaborating on
+someone else's repository — covered in Extending Further, below.
+:::
+
+## What We Did, and Why
+
+**What we built:** initialized and confirmed a git repository, practiced
+the modify → stage → commit cycle twice (once reviewing a diff), extended
+`.gitignore` to keep data out of version control, and published the
+result to GitHub with GitHub Desktop — giving the project both a local
+history and an online home.
+
+**Why it matters:** your commit history is becoming a lab notebook for
+your code — a record of what changed and why, that exists independent of
+your memory. You can now read the U/M/A status indicators, explain why
+large data files don't belong in git, and tell local-first apart from
+remote-first — the foundation every collaboration workflow below builds
+on.
+
+## Extending Further: Collaboration, the Command Line, and Institutional Options
+
+This next material goes beyond what we'll build together today — it's
+here so you know it's possible, and can come back to it on your own.
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Collaborating with Fork & Pull Requests
+One of the most powerful aspects of version control is **collaboration**.
+This walks through a complete, real-world workflow where one person
+proposes a change to another person's project.
+
+**Roles:** the **Project Owner** owns the original repository and
+decides what changes to accept; the **Contributor** wants to suggest
+improvements, fixes, or additions.
+
+**The workflow:** Fork → Clone → Branch → Edit → Push → Pull Request.
+
+**Fork the repository.** On GitHub.com, navigate to the owner's
+repository and click **Fork** — this creates an exact copy of the entire
+project history, all commits, branches, and files, under your own
+account. You can experiment freely without affecting the original.
+
+**Clone your fork.** Click the green **<> Code** button, copy the HTTPS
+URL, then in GitHub Desktop: **File → Clone Repository**, paste the URL,
+choose a save location, and click **Clone**.
+
+**Create a new branch.** In GitHub Desktop, open the **Current Branch**
+dropdown → **New Branch**. Give it a descriptive, lowercase,
+hyphen-separated, verb-focused name (`add-readme-documentation`, not
+`new-feature` or `MyBranch`), then **Create Branch** → **Publish branch**.
+
+**Make your edits in Positron.** Click **Open in Positron** from GitHub
+Desktop, make your change (a new file, a fix, documentation), and save.
+
+**Commit and push.** Back in GitHub Desktop, review your changes by
+clicking each filename, write a descriptive commit message, click
+**Commit to [your-branch-name]**, then **Push origin**.
+
+**Open a pull request.** After pushing, click **Create Pull Request**.
+Give it a clear title and a description explaining what changed and why:
+
+```
+## Summary
+Added comprehensive README documentation to help users understand
+the project's structure, objectives, and prerequisites.
+
+## Changes Made
+- Created README.md in the project root
+- Documented setup and prerequisites
+
+## Why This Improvement
+The repository lacked documentation explaining what it covers and
+what participants need to get started.
+```
+
+**The owner's review.** On the original repository's **Pull requests**
+tab, open the PR, review line-by-line differences under **Files
+changed** (green = additions, red = deletions), leave comments, and
+either **Approve and Merge**, **Request Changes**, or **Close without
+Merging**.
+
+- **Be constructive** — focus on the code, not the person
+- **Be specific** — point to exact lines and suggest improvements
+- **Be appreciative** — thank contributors for their time
+- **Test locally** — for important changes, pull the branch and test it
+  yourself before merging
+
+**After merging,** the owner can safely delete the contributor's branch;
+the contributor switches back to `main`, pulls the latest changes, and
+deletes their own feature branch — their contribution is now part of the
+official project history.
+
+**Why this matters:** the original project is never at risk during
+development, every change goes through review before integration,
+contributors and maintainers can discuss openly, and every contribution
+is documented with clear attribution.
+:::
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Git on the Command Line
+The Positron Source Control panel is a visual interface that runs git
+commands for you in the background. Here's how to run those same
+commands yourself — useful for speed, advanced operations, and remote
+servers where no GUI is available.
+
+```bash
+git status
+```
+
+```bash
+git add .
+```
+
+`.` means "add all changed files in the current directory and
+subdirectories." To stage a single file, name it:
+`git add scripts/analysis.R`.
+
+```bash
+git commit -m "Describe what changed"
+```
+
+```bash
+git log --oneline
+```
+
+Confirm your data files are actually excluded after adding a
+`.gitignore`:
+
+```bash
+git status --ignored
+```
+
+You should see your data folders listed under "Ignored files."
+
+If you've set up SSH (just below) or an HTTPS credential, you can
+connect and push from the terminal instead of GitHub Desktop:
+
+```bash
+git remote add origin git@github.com:username/yourreponame.git
+git branch -M main
+git push -u origin main
+```
+
+| Approach | Best For |
+|----------|----------|
+| GUI (Source Control panel / GitHub Desktop) | Visual learners, reviewing diffs, getting started |
+| CLI (Terminal) | Speed, advanced operations, remote servers |
+
+Many experienced users mix both: GUI for reviewing diffs, CLI for quick
+commits. On Windows, you may see "CRLF will be replaced by LF the next
+time Git touches it" — this is normal, git converting Windows-style line
+endings to Unix-style for consistency, and safe to ignore.
+:::
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — SSH Key Authentication (Advanced)
+GitHub Desktop handles authentication for you, so you don't need this
+for the core workflow. But if you prefer to push from the **command
+line**, SSH keys let you authenticate securely without typing a password
+every time.
+
+PATs (personal access tokens) are an HTTPS-based alternative, but they
+expire every 90 days and need renewal. **SSH is preferred for long-term
+research projects** because it's a one-time setup — if SSH is blocked by
+your network, GitHub Desktop (HTTPS) is the reliable fallback.
+
+**Check for existing keys** in the Positron Terminal:
+
+```bash
+ls ~/.ssh
+```
+
+If you see `id_ed25519` or `id_rsa`, you already have keys — skip to
+adding your key to GitHub, below. Otherwise:
+
+::: {.panel-tabset}
+
+## macOS / Linux
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+Press **Enter** to accept the default save location, and again twice to
+skip a passphrase (optional).
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+## Windows
+
+These commands work in the **Positron Terminal** or **Git Bash**
+(installed with Git for Windows) — the Positron Terminal is recommended
+for consistency.
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+Press **Enter** to accept the default save location, and again twice to
+skip a passphrase (optional).
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub | clip
+```
+
+If `clip` doesn't work, run `cat ~/.ssh/id_rsa.pub` and copy the output
+manually. If `ssh-agent` won't start, try running Positron or Git Bash
+**as Administrator** — and if you see "Could not open a connection to
+your authentication agent," run `ssh-agent bash` first, then retry
+`ssh-add`.
+
+:::
+
+The `.pub` file is your **public key** — safe to share with GitHub. The
+file without `.pub` is your **private key** — never share this. If
+someone asks for your SSH key, they always mean the public one.
+
+**Add it to GitHub:** profile photo → **Settings** → **SSH and GPG
+keys** → **New SSH key** → give it a descriptive title (`My Positron
+Laptop`) → paste the key → **Add SSH key**.
+
+**Test the connection:**
+
+```bash
+ssh -T git@github.com
+```
+
+Type `yes` if prompted about authenticity. You should see:
+`Hi username! You've successfully authenticated...`
+:::
+
+::: {.callout-tip collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — GitHub Enterprise Options at Yale
+If you're working with sensitive research data, Yale offers two GitHub
+Enterprise options beyond standard GitHub.com.
+
+**GitHub Enterprise Server (On-Premises)** — a self-hosted platform
+running within Yale's secure infrastructure. Suitable for
+version-controlling analysis scripts, maintaining reproducible research
+pipelines, and integrating with Yale's research computing resources.
+Hosted on Yale's own infrastructure; supports **High** data
+classification (including HIPAA-covered data); full control over data
+location and security policies.
+
+**GitHub Enterprise Cloud** — adds advanced functionality to GitHub.com,
+including SAML single sign-on with Yale credentials, additional GitHub
+Actions minutes, and enhanced security/compliance features. Cloud-based,
+managed by GitHub; supports **Moderate** data classification (not
+suitable for high-sensitivity data).
+
+| Platform | Best For |
+|----------|----------|
+| GitHub.com | Public research, open-source projects, teaching |
+| GitHub Enterprise Cloud | Collaborative research with Yale auth, moderate-sensitivity data |
+| GitHub Enterprise Server | High-sensitivity data, HIPAA compliance, institutional governance |
+
+Contact [Yale ITS](https://its.yale.edu/) for access, or
+[request GitHub Enterprise support via Yale ServiceNow](https://yale.service-now.com/it?id=service_offering&sys_id=bc29b84997f88a506f0430671153af28).
+:::

@@ -1,0 +1,204 @@
+---
+title: "Arc 1"
+subtitle: "R and Reproducibility"
+engine: knitr
+filters:
+  - webr
+webr:
+  cell-options:
+    reset-button: true
+---
+
+By the end of this arc, you will have written your first lines of R code, created objects and vectors, and built your first data frame.
+
+## Slides
+
+[Open slides fullscreen](arc_1_slides.html){target="_blank"}
+
+<iframe src="arc_1_slides.html" width="100%" height="450px" style="border:none;"></iframe>
+
+## Orient to Positron
+
+Before writing any code, take a moment to locate four things in your Positron window:
+
+1. The **Console** — where code runs and results appear
+2. The **Editor** — where you write and save scripts
+3. The **Environment pane** — where your objects (variables) appear once created
+4. The **Files pane** — where you can see and navigate your project folder
+
+Find your [working directory](/glossary.qmd#working-directory) — the folder R considers "home" for this session:
+
+```{webr-r}
+getwd()
+```
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Setting Your Working Directory Without Code
+In Positron, you can also set your working directory by right-clicking a folder in the Files pane and choosing **Set as Working Directory** — no code required. This is often faster than typing `setwd()`, and it's less error-prone since you're pointing at a real folder rather than typing a path by hand.
+:::
+
+## Two Basic Rules for Writing Reproducible Code
+
+1. **Use `#` to annotate and document your code.** A comment explains *why* you did something, not just *what* the code does — that's the difference between code you can hand to someone else and code only you can decode.
+2. **Use a visible pattern to separate sections**, e.g. `#----- Section Title ------#`. This turns a script into something a collaborator — or you, in six months — can scan and navigate without reading every line.
+
+These two habits are the first, smallest form of reproducibility: a reader who wasn't there when you wrote the code should still be able to follow your thinking.
+
+## Arithmetic
+
+R evaluates arithmetic the way you'd expect from paper math:
+
+```{webr-r}
+1 + 1
+2 * 2
+2 / 1
+2^2
+4:8
+```
+One syntax rule worth knowing up front: text must be wrapped in quotation marks `" "` — object names are the only exception. Watch what happens when you "forget".
+Run `Hello world!` on its own, then run `"Hello world!"` in quotes.
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Why does one of these fail?
+```r
+Hello world!
+```
+R reads this as an attempt to call an object named `Hello` — but `Hello` has never been created, and `world!` isn't valid syntax either. You'll see an error like `unexpected symbol`. Wrapping it in quotes tells R "this is text, not code":
+```r
+"Hello world!"
+```
+Error messages like this will come up constantly — learning to read them calmly is a core programming skill, not a sign something's gone wrong.
+:::
+
+## Objects and Assignment
+
+R stores information in **[objects](/glossary.qmd#object)** using the assignment arrow `<-`.
+
+```{webr-r}
+my_age <- 30
+birth_year <- 2026 - my_age
+birth_year
+```
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Why Didn't My Answer Update?
+
+Change my_age and re-run only that one line:
+```{webr-r}
+
+
+my_age <- 31
+birth_year
+```
+`birth_year` still shows the old value — because R doesn't recalculate it automatically. It only stores what you told it to store, at the moment you ran that line. The variable has no memory of how it was created, only what it currently holds.
+
+This is a small version of a problem that shows up everywhere in computational work: a pipeline is only as current as the last time each step was actually re-run. Changing one upstream value — a raw data point, a filtering threshold, a parameter — doesn't automatically update everything downstream of it. You have to re-run the whole chain, in order, every time.
+
+This is why, later in ARCS, you'll get in the habit of re-running entire scripts top to bottom rather than just the last line you touched — and it's part of why reproducibility isn't only "did I get the right answer," but "would I get the same answer again if I changed one thing and reran everything downstream of it?"
+:::
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — Object Naming Rules
+- Must start with a letter (not a number or symbol)
+- Can contain letters, numbers, `_` and `.`
+- Case-sensitive: `age` and `Age` are different objects
+- Avoid names that are already functions in R (e.g. `c`, `mean`, `data`)
+:::
+
+## Data Types
+
+R has a few core **[data types](/glossary.qmd#data-type)** you'll use constantly:
+
+```{webr-r}
+# character (text)
+name <- "Shank3"
+
+# numeric
+value <- 12.5
+
+# logical
+is_significant <- TRUE
+```
+
+## Vectors
+
+A **[vector](/glossary.qmd#vector)** holds multiple values of the same type, built with `c()`:
+
+```{webr-r}
+FamAges <- c(34, 28, 61, 5)
+FamAges
+```
+
+::: {.callout-caution collapse="true"}
+## <span class="dot dot-tour"></span> Code Tour — Vectors Don't Have to Be Numbers
+```r
+FamNames <- c("Ana", "Ben", "Carla", "Dev")
+is_adult  <- c(TRUE, TRUE, TRUE, FALSE)
+```
+A vector can hold character or logical values too — but every element inside *one* vector must be the same type. Try running `c(1, "two", 3)` and look closely at the result. What happened to the `1` and the `3`?
+:::
+
+## Calling Functions
+
+A **[function](/glossary.qmd#function)** takes **[arguments](/glossary.qmd#argument)** (inputs) and returns a **value** (output). You've already called one — `c()`. Here are three more:
+
+```{webr-r}
+mean(FamAges)
+sum(FamAges)
+nchar("Shank3")
+```
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Why parentheses?
+Parentheses tell R "run this now." Typing `mean` alone just shows you the function's underlying code — typing `mean()` actually executes it. This distinction matters more once you start writing your own functions, in Arc 3.
+:::
+
+## Building Your First Data Frame
+
+A **[data frame](/glossary.qmd#data-frame)** can be thought of as a table with rows and columns, like a spreadsheet. Data frames are composed of vectors in a certain order. Let's turn our family ages into one. Feel free to swap in your own numbers here instead of ours.
+
+```{webr-r}
+FamAges <- c(34, 28, 61, 5)
+FamYear <- 2026 - FamAges
+df_FamInfo <- data.frame(FamAges, FamYear)
+df_FamInfo
+```
+
+Add a names column with `cbind()`:
+
+```{webr-r}
+FamNames <- c("Ana", "Ben", "Carla", "Dev")
+df_FamInfo <- cbind(df_FamInfo, FamNames)
+df_FamInfo
+```
+
+Inspect it three ways:
+
+```{webr-r}
+head(df_FamInfo)
+str(df_FamInfo)
+dim(df_FamInfo)
+```
+
+::: {.callout-note collapse="true"}
+## <span class="dot dot-tip"></span> Learn More — head(), str(), and dim() each answer a different question
+- `head()` — "What does my data actually look like?"
+- `str()` — "What type is each column, and how is this object structured?"
+- `dim()` — "How big is this — how many rows and columns?"
+You'll run this same trio on almost every dataset you ever load into R, including the real genomics data in the next arc.
+:::
+
+---
+
+## What We Did
+
+In this arc, you:
+
+- Wrote your first lines of R — arithmetic, objects, vectors, and functions
+- Learned R's core data types: character, numeric, and logical
+- Built your first data frame from scratch
+
+## Why We Did It This Way
+
+- Learn computational skills while establishing best practices from the very first line of code
+- Build muscle memory for reading and writing R syntax before introducing project-level concepts
+- Treat errors as expected, readable feedback — not failure

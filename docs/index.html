@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ARCS – Advancing Reproducibility with Computational Skills</title>
+<title>Advancing Reproducibility with Computational Skills – ARCS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,6 +80,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -90,9 +91,8 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Advancing Reproducibility with Computational Skills</span>
+    <img src="./images/arcs-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="./images/arcs-logo.svg" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -101,49 +101,65 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lessons" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Lessons</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-arcs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ARCS</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-arcs">    
         <li>
-    <a class="dropdown-item" href="./workshops/01-fundamentals.html">
- <span class="dropdown-text">Fundamentals of R</span></a>
+    <a class="dropdown-item" href="./modules/arc_1.html">
+ <span class="dropdown-text">Arc 1: R Fundamentals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/02-projects.html">
- <span class="dropdown-text">Project Management</span></a>
+    <a class="dropdown-item" href="./modules/arc_2.html">
+ <span class="dropdown-text">Arc 2: Your First Reproducible Project</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/03-structures.html">
- <span class="dropdown-text">Data Structures</span></a>
+    <a class="dropdown-item" href="./modules/arc_3.html">
+ <span class="dropdown-text">Arc 3: Data Structures</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/04-reports.html">
- <span class="dropdown-text">Reports</span></a>
+    <a class="dropdown-item" href="./modules/arc_4.html">
+ <span class="dropdown-text">Arc 4: Reproducible Reports</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/05-tidyverse.html">
- <span class="dropdown-text">Tidyverse</span></a>
+    <a class="dropdown-item" href="./modules/arc_5.html">
+ <span class="dropdown-text">Arc 5: Tidyverse</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/06-git.html">
- <span class="dropdown-text">Git &amp; Version Control</span></a>
+    <a class="dropdown-item" href="./modules/arc_6.html">
+ <span class="dropdown-text">Arc 6: Git &amp; GitHub</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/07-deseq2_pipeline.html">
- <span class="dropdown-text">DESeq2</span></a>
+    <a class="dropdown-item" href="./modules/arc_7.html">
+ <span class="dropdown-text">Arc 7: DESeq2 Pipeline</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./workshops/08-apptainer.html">
- <span class="dropdown-text">Apptainer</span></a>
+    <a class="dropdown-item" href="./modules/arc_8.html">
+ <span class="dropdown-text">Arc 8: Apptainer &amp; Containers</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./modules/arc_0.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./archive/index.html"> 
+<span class="menu-text">Archive</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -167,7 +183,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#july-2026-arcs-2.0-workshop-schedule" id="toc-july-2026-arcs-2.0-workshop-schedule" class="nav-link active" data-scroll-target="#july-2026-arcs-2.0-workshop-schedule">July 2026 ARCS 2.0 Workshop Schedule</a></li>
+  <li><a href="#why-arcs" id="toc-why-arcs" class="nav-link active" data-scroll-target="#why-arcs">Why ARCS?</a></li>
+  <li><a href="#what-is-arcs" id="toc-what-is-arcs" class="nav-link" data-scroll-target="#what-is-arcs">What Is ARCS?</a></li>
+  <li><a href="#who-is-it-for" id="toc-who-is-it-for" class="nav-link" data-scroll-target="#who-is-it-for">Who Is It For?</a></li>
+  <li><a href="#new-to-this-site" id="toc-new-to-this-site" class="nav-link" data-scroll-target="#new-to-this-site">New to This Site?</a></li>
+  <li><a href="#reusing-and-adapting-these-materials" id="toc-reusing-and-adapting-these-materials" class="nav-link" data-scroll-target="#reusing-and-adapting-these-materials">Reusing and Adapting These Materials</a></li>
+  <li><a href="#the-arcs-team" id="toc-the-arcs-team" class="nav-link" data-scroll-target="#the-arcs-team">The ARCS Team</a></li>
   </ul>
 </nav>
     </div>
@@ -176,7 +197,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ARCS</h1>
+<h1 class="title">Advancing Reproducibility with Computational Skills</h1>
+<p class="subtitle lead">About ARCS</p>
 </div>
 
 
@@ -193,64 +215,81 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="july-2026-arcs-2.0-workshop-schedule" class="level2">
-<h2 class="anchored" data-anchor-id="july-2026-arcs-2.0-workshop-schedule">July 2026 ARCS 2.0 Workshop Schedule</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Date</th>
-<th>Time</th>
-<th>Lesson</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Friday, July 10</td>
-<td>9:30–10:30 AM</td>
-<td><a href="./workshops/01-fundamentals.html">Fundamentals of R</a></td>
-</tr>
-<tr class="even">
-<td>Friday, July 10</td>
-<td>10:30–11:30 AM</td>
-<td><a href="./workshops/02-projects.html">Project Management</a></td>
-</tr>
-<tr class="odd">
-<td>Friday, July 17</td>
-<td>9:30–10:30 AM</td>
-<td><a href="./workshops/03-structures.html">Data Structures</a></td>
-</tr>
-<tr class="even">
-<td>Friday, July 17</td>
-<td>10:30–11:30 AM</td>
-<td><a href="./workshops/04-reports.html">Reports</a></td>
-</tr>
-<tr class="odd">
-<td>Friday, July 24</td>
-<td>9:30–10:30 AM</td>
-<td><a href="./workshops/05-tidyverse.html">Tidyverse</a></td>
-</tr>
-<tr class="even">
-<td>Friday, July 24</td>
-<td>10:30–11:30 AM</td>
-<td><a href="./workshops/06-git.html">Git &amp; Version Control</a></td>
-</tr>
-<tr class="odd">
-<td>Friday, July 31</td>
-<td>9:30–10:30 AM</td>
-<td><a href="./workshops/07-deseq2_pipeline.html">DESeq2</a></td>
-</tr>
-<tr class="even">
-<td>Friday, July 31</td>
-<td>10:30–11:30 AM</td>
-<td><a href="./workshops/08-apptainer.html">Apptainer</a></td>
-</tr>
-</tbody>
-</table>
+<section id="why-arcs" class="level2">
+<h2 class="anchored" data-anchor-id="why-arcs">Why ARCS?</h2>
+<p>Many introductions to R or Python teach a tool: syntax, functions, how to make a plot. Advancing Reproducibility with Computational Skills (ARCS) teaches something adjacent but different: a research computing mindset grounded in practices that implement <a href="./glossary.html#reproducibility">reproducibility</a>. You will learn R here, but every choice we make about <em>how</em> we teach it is shaped by a second question running underneath the first: how is scientific data actually expected to be produced, managed, and shared today, and what does your code need to do to hold up under that expectation?</p>
+<p>That second question is what separates code that merely runs from code that is <strong>verifiable, repeatable, and accountable to the context it came from</strong>, taking into account what the data represents, how it should be handled, and what responsible, ethical practice requires of the person producing it. A script that works on your machine today, with no record of what version of R produced it or why a column was dropped, is internally functional. It does not meet emerging standards for scientific research.</p>
+<p>ARCS treats these as inseparable. Reproducibility is not a topic we add once you already know R. It is the lens through which the whole series is taught.</p>
+</section>
+<section id="what-is-arcs" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-arcs">What Is ARCS?</h2>
+<p>ARCS is an eight-module series introducing R-based reproducible research computing to researchers at any career stage and in any domain. No prior programming experience is required.</p>
+<p>Each module is built around roughly one hour of core hands-on work, making the series flexible to teach or work through as:</p>
+<ul>
+<li>One full day</li>
+<li>Two half-day sessions</li>
+<li>Four two-hour blocks</li>
+<li>Eight individual sessions</li>
+</ul>
+<p>The series covers:</p>
+<ul>
+<li><a href="./modules/arc_1.html"><strong>Arc 1: R and Reproducibility</strong></a></li>
+<li><a href="./modules/arc_2.html"><strong>Arc 2: Research Computing Projects</strong></a></li>
+<li><a href="./modules/arc_3.html"><strong>Arc 3: Data Structures and Control Flow</strong></a></li>
+<li><a href="./modules/arc_4.html"><strong>Arc 4: Literate Programming and Living Documents</strong></a></li>
+<li><a href="./modules/arc_5.html"><strong>Arc 5: Data Cleaning with the Tidyverse</strong></a></li>
+<li><a href="./modules/arc_6.html"><strong>Arc 6: Version Control with Git</strong></a></li>
+<li><a href="./modules/arc_7.html"><strong>Arc 7: AI and Reproducibility</strong></a></li>
+<li><a href="./modules/arc_8.html"><strong>Arc 8: Data Packaging and the Limits of Reproducibility</strong></a></li>
+</ul>
+<p>By the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them.</p>
+</section>
+<section id="who-is-it-for" class="level2">
+<h2 class="anchored" data-anchor-id="who-is-it-for">Who Is It For?</h2>
+<p>ARCS is designed for researchers — graduate students, postdocs, faculty, staff scientists — who work with data and want to make their computational work more organized, trustworthy, and reusable. It is not a statistics course and not a computer science course. It is a research computing practices course, taught through the lens of things researchers actually need to do.</p>
+<p>The series uses a genomics dataset throughout (RNA-seq data from a Shank3 mouse model), but the skills are domain-general. Instructors at other institutions are welcome to substitute a dataset appropriate to their audience.</p>
+</section>
+<section id="new-to-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="new-to-this-site">New to This Site?</h2>
+<p>Before your first module, see <strong>Session 0: Before You Arrive</strong> for setup instructions, plus a short guide to how this site is organized — including what the different callout boxes mean and how Slides, Code Tour, and hands-on sections work throughout.</p>
+</section>
+<section id="reusing-and-adapting-these-materials" class="level2">
+<h2 class="anchored" data-anchor-id="reusing-and-adapting-these-materials">Reusing and Adapting These Materials</h2>
+<p>ARCS was developed at Yale University’s Cushing/Whitney Medical Library. The core curriculum is designed to be institution-agnostic: the tools, conventions, and pedagogical approach are intended to apply broadly to introducing research computing practices.</p>
+<p>If you are an instructor at another institution and want to use or adapt these materials:</p>
+<ul>
+<li><strong>Fork the repository</strong> on GitHub and adapt freely — the materials are openly licensed</li>
+<li>Yale-specific content (contact information, institutional context, specific dataset provenance) is clearly marked and easy to replace</li>
+<li>The dataset used throughout the series is publicly available from GEO (accession GSE113754) and can be substituted with any tabular research dataset</li>
+<li>The module structure, the callout box taxonomy, and the module learning objectives are designed to transfer directly, regardless of how you schedule the eight modules</li>
+<li>Schedule and Slides files contain some situational and institutional information that you would want to customize.</li>
+</ul>
+<p>If you do adapt and use these materials, we would love to hear about it — reach out to the ARCS team at the contact information below.</p>
+</section>
+<section id="the-arcs-team" class="level2">
+<h2 class="anchored" data-anchor-id="the-arcs-team">The ARCS Team</h2>
+<p>ARCS is developed and taught by the Technology &amp; Innovation Team at the Cushing/Whitney Medical Library, Yale University. This site is built with built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>Questions or feedback? Contact us at AskYaleMedicalLibrary@yale.edu.</p>
 
 
 </section>
 
 </main> <!-- /main -->
+<button id="instructor-toggle-btn">Instructor Notes: Off</button>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("instructor-toggle-btn");
+  const isOn = localStorage.getItem("arcs-instructor-mode") === "true";
+  if (isOn) document.body.classList.add("instructor-mode");
+  btn.textContent = isOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+
+  btn.addEventListener("click", function() {
+    const nowOn = document.body.classList.toggle("instructor-mode");
+    localStorage.setItem("arcs-instructor-mode", nowOn);
+    btn.textContent = nowOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -654,14 +693,14 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>ARCS Workshop Series</p>
+<p>ARCS Series</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with <a href="https://quarto.org">Quarto</a></p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 

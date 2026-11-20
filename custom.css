@@ -1,0 +1,7 @@
+.dot { display:inline-block; width:0.7em; height:0.7em; border-radius:50%; margin-right:0.4em; }
+.dot-note      { background:#4a7fb5; } /* About This */
+.dot-tip       { background:#4a9b6e; } /* Learn More */
+.dot-warning   { background:#d98b3a; } /* Watch Out */
+.dot-live      { background:#3a9ba0; } /* Browser Version */
+.dot-important { background:#8a5ca8; } /* Instructor Note */
+.dot-tour      { background:#8a8a8a; } /* Code Tour */

@@ -1,0 +1,40 @@
+---
+title: "Arc 5"
+subtitle: "Data Cleaning with the Tidyverse"
+format:
+  revealjs:
+    incremental: false
+---
+
+## What Is a Package?
+
+- R [packages](/glossary.qmd#packages) are collections of [functions](/glossary.qmd#functions) and data that extend base R.
+- Installed once with `install.packages()`, loaded each session with `library()`.
+- Created and shared by a global community of users — not by any single authority.
+
+## Why Tidy Data?
+
+::: {.incremental}
+- **Tidy data principle:** each variable in a column, each observation in a row, each value in a cell.
+- The **tidyverse** is a collection of packages built around that one shared shape — so once your data is tidy, every tool in the family works the same way.
+- `dplyr` gives you a grammar for this: `select()`, `filter()`, `mutate()`, `arrange()`, `summarize()`, `group_by()`.
+- The pipe (`%>%`) chains these into a readable sequence of steps, read top to bottom.
+:::
+
+## Meet R Where It's At
+
+::: {.incremental}
+- Popular doesn't mean limitation-free.
+- Tidyverse functions are opinionated — they assume your data is already (or can become) tidy.
+- Knowing when a tool fits, and when it doesn't, is part of using it responsibly.
+:::
+
+## R's Flexibility, Revisited
+
+- Back in Arc 1, we said R is flexible — and that flexibility creates responsibility.
+- You've felt this by now: code ran, functions worked, but *you* decided whether the output made sense.
+- Packages don't remove that responsibility. They just change its shape.
+
+## Let's Build
+
+<!-- Bridge slide -->

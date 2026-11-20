@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.21">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Arc 6 – ARCS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-278cfcba7e0e0e33db68069b13002fc7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QL2X3Y2K3K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QL2X3Y2K3K');
+</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../custom.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/arcs-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../images/arcs-logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-arcs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ARCS</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-arcs">    
+        <li>
+    <a class="dropdown-item" href="../modules/arc_1.html">
+ <span class="dropdown-text">Arc 1: R Fundamentals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_2.html">
+ <span class="dropdown-text">Arc 2: Your First Reproducible Project</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_3.html">
+ <span class="dropdown-text">Arc 3: Data Structures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_4.html">
+ <span class="dropdown-text">Arc 4: Reproducible Reports</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_5.html">
+ <span class="dropdown-text">Arc 5: Tidyverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_6.html">
+ <span class="dropdown-text">Arc 6: Git &amp; GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_7.html">
+ <span class="dropdown-text">Arc 7: DESeq2 Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/arc_8.html">
+ <span class="dropdown-text">Arc 8: Apptainer &amp; Containers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../modules/arc_0.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../archive/index.html"> 
+<span class="menu-text">Archive</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CWML/ARCS"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modules/arc_6.html">Arc 6: Version Control with Git</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 1: R and Reproducibility</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 2: Research Computing Projects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 3: Data Structures and Control Flow</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 4: Literate Programming and Living Documents</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 5: Data Cleaning with the Tidyverse</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_6.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Arc 6: Version Control with Git</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 7: AI and Reproducibility</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modules/arc_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arc 8: Data Packaging and the Limits of Reproducibility</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#checking-whether-git-is-initialized" id="toc-checking-whether-git-is-initialized" class="nav-link" data-scroll-target="#checking-whether-git-is-initialized">Checking Whether Git Is Initialized</a></li>
+  <li><a href="#local-git-in-positron-modify-stage-commit" id="toc-local-git-in-positron-modify-stage-commit" class="nav-link" data-scroll-target="#local-git-in-positron-modify-stage-commit">Local Git in Positron: Modify → Stage → Commit</a>
+  <ul class="collapse">
+  <li><a href="#your-first-commit" id="toc-your-first-commit" class="nav-link" data-scroll-target="#your-first-commit">Your First Commit</a></li>
+  <li><a href="#a-second-commit" id="toc-a-second-commit" class="nav-link" data-scroll-target="#a-second-commit">A Second Commit</a></li>
+  </ul></li>
+  <li><a href="#excluding-data-files-the-.gitignore-file" id="toc-excluding-data-files-the-.gitignore-file" class="nav-link" data-scroll-target="#excluding-data-files-the-.gitignore-file">Excluding Data Files: The <code>.gitignore</code> File</a></li>
+  <li><a href="#publishing-to-github-with-github-desktop" id="toc-publishing-to-github-with-github-desktop" class="nav-link" data-scroll-target="#publishing-to-github-with-github-desktop">Publishing to GitHub with GitHub Desktop</a></li>
+  <li><a href="#seeing-it-on-github.com" id="toc-seeing-it-on-github.com" class="nav-link" data-scroll-target="#seeing-it-on-github.com">Seeing It on GitHub.com</a></li>
+  <li><a href="#what-we-did-and-why" id="toc-what-we-did-and-why" class="nav-link" data-scroll-target="#what-we-did-and-why">What We Did, and Why</a></li>
+  <li><a href="#extending-further-collaboration-the-command-line-and-institutional-options" id="toc-extending-further-collaboration-the-command-line-and-institutional-options" class="nav-link" data-scroll-target="#extending-further-collaboration-the-command-line-and-institutional-options">Extending Further: Collaboration, the Command Line, and Institutional Options</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Arc 6</h1>
+<p class="subtitle lead">Version Control with Git</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
+<p><a href="arc_6_slides.html" target="_blank">Open slides fullscreen</a></p>
+<iframe src="arc_6_slides.html" width="100%" height="450px" style="border:none;">
+</iframe>
+<p>We’ll take a project that lives only on your computer and give it a full version history and an online home, using three tools, each with one clear job:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Its job</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Positron</strong></td>
+<td>Build your local commit history</td>
+</tr>
+<tr class="even">
+<td><strong>GitHub Desktop</strong></td>
+<td>The bridge — publish and sync, no SSH setup</td>
+</tr>
+<tr class="odd">
+<td><strong>GitHub.com</strong></td>
+<td>The remote — host and view your project online</td>
+</tr>
+</tbody>
+</table>
+<p>Everything through the GitHub Desktop step happens <strong>locally</strong> on your own computer. After that, we connect the local project to GitHub. A collaboration workflow (fork &amp; pull requests) and the command-line equivalent of everything we do visually are both covered further down this page.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Git vs.&nbsp;GitHub
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Git</strong> is the tool that tracks changes on your computer (local).</li>
+<li><strong>GitHub</strong> is a website that hosts git projects online (remote), so you can back them up and share them.</li>
+</ul>
+<p>You can use git entirely on its own. GitHub adds the online home.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-whether-git-is-initialized" class="level2">
+<h2 class="anchored" data-anchor-id="checking-whether-git-is-initialized">Checking Whether Git Is Initialized</h2>
+<p>Before using Positron’s Source Control tab, confirm git is actually tracking your project. Open the <strong>Terminal</strong> tab in Positron — because you’re working inside an R project, it opens directly in your project folder.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Git is ready</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Not a git repository</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<pre><code>On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+        data/
+        scripts/
+        ...</code></pre>
+<p>Your repository is already initialized. Move on to the next section.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<pre><code>fatal: not a git repository (or any of the parent directories): .git</code></pre>
+<p>Run one command to fix it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see:</p>
+<pre><code>Initialized empty Git repository in /path/to/your/project/.git/</code></pre>
+<p>Run <code>git status</code> again — you should now see the “Git is ready” output.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Why the Terminal First?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Positron’s Source Control tab is a visual interface built on top of the same git commands you just ran. Starting here lets you see what’s happening under the hood before switching to the GUI — and <code>git init</code> is the one thing the GUI can’t do for you.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="local-git-in-positron-modify-stage-commit" class="level2">
+<h2 class="anchored" data-anchor-id="local-git-in-positron-modify-stage-commit">Local Git in Positron: Modify → Stage → Commit</h2>
+<p>Your control center for git in Positron is the <strong>Source Control</strong> tab in the left activity bar. Every change you save to your history goes through three steps:</p>
+<ol type="1">
+<li><strong>Modify</strong> — you edit files in your project as usual</li>
+<li><strong>Stage</strong> — you pick which changes to include in the next snapshot</li>
+<li><strong>Commit</strong> — you save those staged changes as a permanent snapshot</li>
+</ol>
+<p>The “stage” step is what surprises newcomers: git lets you choose <em>exactly</em> what goes into each <strong>[commit]</strong>(/glossary.qmd#commit), so you can group related changes together instead of dumping everything at once.</p>
+<p>When you change files, they appear in the panel with a letter:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Indicator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>U</strong></td>
+<td>Untracked — a new file git doesn’t know about yet</td>
+</tr>
+<tr class="even">
+<td><strong>M</strong></td>
+<td>Modified — an existing file has changed</td>
+</tr>
+<tr class="odd">
+<td><strong>A</strong></td>
+<td>Added — a new file that’s been staged, ready to commit</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Two Zones
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The panel has two areas: <strong>Changes</strong> (modified but not yet staged) and <strong>Staged Changes</strong> (packed and ready to commit). Clicking the <strong>+</strong> next to a file moves it from Changes → Staged Changes.</p>
+</div>
+</div>
+</div>
+<section id="your-first-commit" class="level3">
+<h3 class="anchored" data-anchor-id="your-first-commit">Your First Commit</h3>
+<ol type="1">
+<li><strong>Look at the Source Control tab.</strong> You should see several files listed as untracked (<strong>U</strong>) — the scripts and data files you’ve worked with so far.</li>
+<li><strong>Stage everything.</strong> Hover over the <strong>Changes</strong> heading and click the <strong>+</strong> icon to stage all files at once. They move into <strong>Staged Changes</strong>.</li>
+<li><strong>Write a commit message.</strong> In the message box, type something descriptive: <code>Add project scripts and data</code>.</li>
+<li><strong>Commit.</strong> Click the <strong>✓ Commit</strong> button.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Write Messages for Your Future Self
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A good commit message finishes the sentence “This commit will…”. <code>Add data loading script</code> is useful; <code>stuff</code> and <code>update</code> are not.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="a-second-commit" class="level3">
+<h3 class="anchored" data-anchor-id="a-second-commit">A Second Commit</h3>
+<ol type="1">
+<li><p><strong>Make an edit.</strong> Open any script and add a comment line at the top:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis script — tracked with git</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Check the panel.</strong> The file now shows an <strong>M</strong> (modified) under <strong>Changes</strong>.</p></li>
+<li><p><strong>Review the diff (recommended).</strong> Click the filename to open a diff view — additions in green, deletions in red. Reviewing the diff before committing is the single best habit for catching mistakes early.</p></li>
+<li><p><strong>Stage and commit.</strong> Click <strong>+</strong>, type <code>Add header comment to    analysis script</code>, and click <strong>✓ Commit</strong>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — A Peek Behind the Curtain
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Source Control panel just runs git commands for you. In the <strong>Terminal</strong>, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You’ll see the current state and the commits you just made. You never <em>have</em> to use the terminal — but it’s good to know the GUI isn’t doing anything magic. The full command-line workflow is in Extending Further.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="excluding-data-files-the-.gitignore-file" class="level2">
+<h2 class="anchored" data-anchor-id="excluding-data-files-the-.gitignore-file">Excluding Data Files: The <code>.gitignore</code> File</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Don’t Depend on GitHub for Data Storage
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Git is built for <em>code and text</em>, not big datasets — it keeps every version of every file, so a 100 MB dataset can balloon your repo after a few edits, GitHub enforces a 100 MB per-file limit, and git compresses text well but handles large binary data poorly.</p>
+<p>But the 100 MB limit is a technical ceiling, not a research-data strategy. A datafile that fits comfortably under it usually still doesn’t belong in a GitHub <strong>[repository]</strong>(/glossary.qmd#repository). If it’s your raw data or your processed data, it needs to be preserved in a <strong>[data repository]</strong>(/glossary.qmd#data-repository): a system built for depositing, citing, and sharing research data (such as Zenodo, OSF, Figshare, or an institutional repository), with different governance structures than a GitHub repo. <a href="modules/arc_8.qmd">Arc 8</a> covers packaging and depositing your data for exactly this reason.</p>
+</div>
+</div>
+</div>
+<p>You already have a <strong>[].gitignore]</strong>(/glossary.qmd#gitignore) in your project root — <code>renv::init()</code> created it back in Arc 1 to exclude its package cache. Extend it:</p>
+<ol type="1">
+<li><p><strong>Open it.</strong> In Positron’s Explorer pane, click <code>.gitignore</code> in your project root. (If you don’t see it: <strong>View → Show Hidden Files</strong>.)</p></li>
+<li><p><strong>Add these lines</strong> below what’s already there:</p>
+<pre class="gitignore"><code># Ignore data folders
+raw_data/
+processed_data/
+
+# Ignore large output files
+outputs/*.pdf
+outputs/*.html</code></pre></li>
+<li><p><strong>Save the file.</strong></p></li>
+<li><p><strong>Watch git react.</strong> The files in <code>raw_data/</code> and <code>processed_data/</code> disappear from the Source Control panel — git is now ignoring them.</p></li>
+<li><p><strong>Commit the updated <code>.gitignore</code></strong>, with the message <code>Extend .gitignore to exclude data files</code>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — Track Code, Not Data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Keep your repository lean by tracking <strong>code, not data</strong>. This is exactly what the Arc 2 “data management gone awry” story was missing: note where your data actually lives in your README instead of committing it directly.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="publishing-to-github-with-github-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-to-github-with-github-desktop">Publishing to GitHub with GitHub Desktop</h2>
+<p>Your project now has a local history. Let’s give it an online home so it’s backed up and shareable. <strong>GitHub Desktop</strong> handles authentication through your browser — no SSH keys, no tokens.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — Make Sure You Have These First
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>A free <a href="https://github.com/signup">GitHub account</a></li>
+<li><a href="https://desktop.github.com/">GitHub Desktop</a> installed and signed in</li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>Step 1: Sign in to GitHub Desktop</strong></p>
+<ol type="1">
+<li>Open <strong>GitHub Desktop</strong>.</li>
+<li>Go to <strong>File → Options → Accounts</strong> (macOS: <strong>GitHub Desktop → Settings → Accounts</strong>).</li>
+<li>Click <strong>Sign in</strong> next to GitHub.com. Your browser opens — approve the request, and you’re authenticated.</li>
+</ol>
+<p><strong>Step 2: Add your existing project</strong></p>
+<ol type="1">
+<li><strong>File → Add Local Repository</strong>.</li>
+<li>Navigate to your project folder and select it.</li>
+<li>Click <strong>Add Repository</strong>.</li>
+</ol>
+<p>GitHub Desktop now shows your project and its full commit history — the same commits you made in Positron.</p>
+<p><strong>Step 3: Publish</strong></p>
+<ol type="1">
+<li>Click <strong>Publish repository</strong> at the top.</li>
+<li>Confirm the name and add a short description if you like.</li>
+<li><strong>Keep this code private</strong> — leave this checked for research work (uncheck it only if you intend the project to be public).</li>
+<li>Click <strong>Publish repository</strong>.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Positron ↔︎ GitHub Desktop
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Keep editing and committing in <strong>Positron</strong>, then switch to <strong>GitHub Desktop</strong> and click <strong>Push origin</strong> to send your latest commits to GitHub. Push whenever you want your online copy up to date.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="seeing-it-on-github.com" class="level2">
+<h2 class="anchored" data-anchor-id="seeing-it-on-github.com">Seeing It on GitHub.com</h2>
+<ol type="1">
+<li>Go to <a href="https://github.com">github.com</a> and open <strong>Your repositories</strong>.</li>
+<li>Click the repository you just published.</li>
+</ol>
+<p>You should see all your files, and — by clicking the <strong>commits</strong> link (or the clock/history icon) — the complete history you built in Positron. Your local project now has an online backup.</p>
+<p><strong>Local-first vs.&nbsp;remote-first.</strong> There are two ways a project’s life can begin:</p>
+<ul>
+<li><strong>Local-first (what we just did):</strong> you start on your own computer, build a history, then publish to GitHub — like writing a document on your desktop and later uploading it to share.</li>
+<li><strong>Remote-first (cloning):</strong> the project already exists on GitHub. You <strong>clone</strong> it — downloading a complete copy, history and all — before you start working, like a colleague sharing a document you download to edit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — When You’ll Use Remote-First
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You’ll use the remote-first / clone workflow when collaborating on someone else’s repository — covered in Extending Further, below.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-we-did-and-why" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-did-and-why">What We Did, and Why</h2>
+<p><strong>What we built:</strong> initialized and confirmed a git repository, practiced the modify → stage → commit cycle twice (once reviewing a diff), extended <code>.gitignore</code> to keep data out of version control, and published the result to GitHub with GitHub Desktop — giving the project both a local history and an online home.</p>
+<p><strong>Why it matters:</strong> your commit history is becoming a lab notebook for your code — a record of what changed and why, that exists independent of your memory. You can now read the U/M/A status indicators, explain why large data files don’t belong in git, and tell local-first apart from remote-first — the foundation every collaboration workflow below builds on.</p>
+</section>
+<section id="extending-further-collaboration-the-command-line-and-institutional-options" class="level2">
+<h2 class="anchored" data-anchor-id="extending-further-collaboration-the-command-line-and-institutional-options">Extending Further: Collaboration, the Command Line, and Institutional Options</h2>
+<p>This next material goes beyond what we’ll build together today — it’s here so you know it’s possible, and can come back to it on your own.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Collaborating with Fork &amp; Pull Requests
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One of the most powerful aspects of version control is <strong>collaboration</strong>. This walks through a complete, real-world workflow where one person proposes a change to another person’s project.</p>
+<p><strong>Roles:</strong> the <strong>Project Owner</strong> owns the original repository and decides what changes to accept; the <strong>Contributor</strong> wants to suggest improvements, fixes, or additions.</p>
+<p><strong>The workflow:</strong> Fork → Clone → Branch → Edit → Push → Pull Request.</p>
+<p><strong>Fork the repository.</strong> On GitHub.com, navigate to the owner’s repository and click <strong>Fork</strong> — this creates an exact copy of the entire project history, all commits, branches, and files, under your own account. You can experiment freely without affecting the original.</p>
+<p><strong>Clone your fork.</strong> Click the green <strong>&lt;&gt; Code</strong> button, copy the HTTPS URL, then in GitHub Desktop: <strong>File → Clone Repository</strong>, paste the URL, choose a save location, and click <strong>Clone</strong>.</p>
+<p><strong>Create a new branch.</strong> In GitHub Desktop, open the <strong>Current Branch</strong> dropdown → <strong>New Branch</strong>. Give it a descriptive, lowercase, hyphen-separated, verb-focused name (<code>add-readme-documentation</code>, not <code>new-feature</code> or <code>MyBranch</code>), then <strong>Create Branch</strong> → <strong>Publish branch</strong>.</p>
+<p><strong>Make your edits in Positron.</strong> Click <strong>Open in Positron</strong> from GitHub Desktop, make your change (a new file, a fix, documentation), and save.</p>
+<p><strong>Commit and push.</strong> Back in GitHub Desktop, review your changes by clicking each filename, write a descriptive commit message, click <strong>Commit to [your-branch-name]</strong>, then <strong>Push origin</strong>.</p>
+<p><strong>Open a pull request.</strong> After pushing, click <strong>Create Pull Request</strong>. Give it a clear title and a description explaining what changed and why:</p>
+<pre><code>## Summary
+Added comprehensive README documentation to help users understand
+the project's structure, objectives, and prerequisites.
+
+## Changes Made
+- Created README.md in the project root
+- Documented setup and prerequisites
+
+## Why This Improvement
+The repository lacked documentation explaining what it covers and
+what participants need to get started.</code></pre>
+<p><strong>The owner’s review.</strong> On the original repository’s <strong>Pull requests</strong> tab, open the PR, review line-by-line differences under <strong>Files changed</strong> (green = additions, red = deletions), leave comments, and either <strong>Approve and Merge</strong>, <strong>Request Changes</strong>, or <strong>Close without Merging</strong>.</p>
+<ul>
+<li><strong>Be constructive</strong> — focus on the code, not the person</li>
+<li><strong>Be specific</strong> — point to exact lines and suggest improvements</li>
+<li><strong>Be appreciative</strong> — thank contributors for their time</li>
+<li><strong>Test locally</strong> — for important changes, pull the branch and test it yourself before merging</li>
+</ul>
+<p><strong>After merging,</strong> the owner can safely delete the contributor’s branch; the contributor switches back to <code>main</code>, pulls the latest changes, and deletes their own feature branch — their contribution is now part of the official project history.</p>
+<p><strong>Why this matters:</strong> the original project is never at risk during development, every change goes through review before integration, contributors and maintainers can discuss openly, and every contribution is documented with clear attribution.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Git on the Command Line
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Positron Source Control panel is a visual interface that runs git commands for you in the background. Here’s how to run those same commands yourself — useful for speed, advanced operations, and remote servers where no GUI is available.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>.</code> means “add all changed files in the current directory and subdirectories.” To stage a single file, name it: <code>git add scripts/analysis.R</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Describe what changed"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Confirm your data files are actually excluded after adding a <code>.gitignore</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see your data folders listed under “Ignored files.”</p>
+<p>If you’ve set up SSH (just below) or an HTTPS credential, you can connect and push from the terminal instead of GitHub Desktop:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:username/yourreponame.git</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GUI (Source Control panel / GitHub Desktop)</td>
+<td>Visual learners, reviewing diffs, getting started</td>
+</tr>
+<tr class="even">
+<td>CLI (Terminal)</td>
+<td>Speed, advanced operations, remote servers</td>
+</tr>
+</tbody>
+</table>
+<p>Many experienced users mix both: GUI for reviewing diffs, CLI for quick commits. On Windows, you may see “CRLF will be replaced by LF the next time Git touches it” — this is normal, git converting Windows-style line endings to Unix-style for consistency, and safe to ignore.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — SSH Key Authentication (Advanced)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>GitHub Desktop handles authentication for you, so you don’t need this for the core workflow. But if you prefer to push from the <strong>command line</strong>, SSH keys let you authenticate securely without typing a password every time.</p>
+<p>PATs (personal access tokens) are an HTTPS-based alternative, but they expire every 90 days and need renewal. <strong>SSH is preferred for long-term research projects</strong> because it’s a one-time setup — if SSH is blocked by your network, GitHub Desktop (HTTPS) is the reliable fallback.</p>
+<p><strong>Check for existing keys</strong> in the Positron Terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/.ssh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you see <code>id_ed25519</code> or <code>id_rsa</code>, you already have keys — skip to adding your key to GitHub, below. Otherwise:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">macOS / Linux</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Press <strong>Enter</strong> to accept the default save location, and again twice to skip a passphrase (optional).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>These commands work in the <strong>Positron Terminal</strong> or <strong>Git Bash</strong> (installed with Git for Windows) — the Positron Terminal is recommended for consistency.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Press <strong>Enter</strong> to accept the default save location, and again twice to skip a passphrase (optional).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_rsa</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="kw">|</span> <span class="ex">clip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>clip</code> doesn’t work, run <code>cat ~/.ssh/id_rsa.pub</code> and copy the output manually. If <code>ssh-agent</code> won’t start, try running Positron or Git Bash <strong>as Administrator</strong> — and if you see “Could not open a connection to your authentication agent,” run <code>ssh-agent bash</code> first, then retry <code>ssh-add</code>.</p>
+</div>
+</div>
+</div>
+<p>The <code>.pub</code> file is your <strong>public key</strong> — safe to share with GitHub. The file without <code>.pub</code> is your <strong>private key</strong> — never share this. If someone asks for your SSH key, they always mean the public one.</p>
+<p><strong>Add it to GitHub:</strong> profile photo → <strong>Settings</strong> → <strong>SSH and GPG keys</strong> → <strong>New SSH key</strong> → give it a descriptive title (<code>My Positron Laptop</code>) → paste the key → <strong>Add SSH key</strong>.</p>
+<p><strong>Test the connection:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Type <code>yes</code> if prompted about authenticity. You should see: <code>Hi username! You've successfully authenticated...</code></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — GitHub Enterprise Options at Yale
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you’re working with sensitive research data, Yale offers two GitHub Enterprise options beyond standard GitHub.com.</p>
+<p><strong>GitHub Enterprise Server (On-Premises)</strong> — a self-hosted platform running within Yale’s secure infrastructure. Suitable for version-controlling analysis scripts, maintaining reproducible research pipelines, and integrating with Yale’s research computing resources. Hosted on Yale’s own infrastructure; supports <strong>High</strong> data classification (including HIPAA-covered data); full control over data location and security policies.</p>
+<p><strong>GitHub Enterprise Cloud</strong> — adds advanced functionality to GitHub.com, including SAML single sign-on with Yale credentials, additional GitHub Actions minutes, and enhanced security/compliance features. Cloud-based, managed by GitHub; supports <strong>Moderate</strong> data classification (not suitable for high-sensitivity data).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Platform</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GitHub.com</td>
+<td>Public research, open-source projects, teaching</td>
+</tr>
+<tr class="even">
+<td>GitHub Enterprise Cloud</td>
+<td>Collaborative research with Yale auth, moderate-sensitivity data</td>
+</tr>
+<tr class="odd">
+<td>GitHub Enterprise Server</td>
+<td>High-sensitivity data, HIPAA compliance, institutional governance</td>
+</tr>
+</tbody>
+</table>
+<p>Contact <a href="https://its.yale.edu/">Yale ITS</a> for access, or <a href="https://yale.service-now.com/it?id=service_offering&amp;sys_id=bc29b84997f88a506f0430671153af28">request GitHub Enterprise support via Yale ServiceNow</a>.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<button id="instructor-toggle-btn">Instructor Notes: Off</button>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("instructor-toggle-btn");
+  const isOn = localStorage.getItem("arcs-instructor-mode") === "true";
+  if (isOn) document.body.classList.add("instructor-mode");
+  btn.textContent = isOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+
+  btn.addEventListener("click", function() {
+    const nowOn = document.body.classList.toggle("instructor-mode");
+    localStorage.setItem("arcs-instructor-mode", nowOn);
+    btn.textContent = nowOn ? "Instructor Notes: On" : "Instructor Notes: Off";
+  });
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>ARCS Series</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

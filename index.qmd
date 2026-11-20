@@ -1,18 +1,69 @@
 ---
-title: "ARCS"
+title: "Advancing Reproducibility with Computational Skills"
+subtitle: "About ARCS"
+toc: true
+sidebar: false
 ---
 
-## July 2026 ARCS 2.0 Workshop Schedule 
+## Why ARCS?
 
-| Date | Time | Lesson |
-|------|------|--------|
-| Friday, July 10 | 9:30–10:30 AM | [Fundamentals of R](workshops/01-fundamentals.qmd) |
-| Friday, July 10 | 10:30–11:30 AM | [Project Management](workshops/02-projects.qmd) |
-| Friday, July 17 | 9:30–10:30 AM | [Data Structures](workshops/03-structures.qmd) |
-| Friday, July 17 | 10:30–11:30 AM | [Reports](workshops/04-reports.qmd) |
-| Friday, July 24 | 9:30–10:30 AM | [Tidyverse](workshops/05-tidyverse.qmd) |
-| Friday, July 24 | 10:30–11:30 AM | [Git & Version Control](workshops/06-git.qmd) |
-| Friday, July 31 | 9:30–10:30 AM | [DESeq2](workshops/07-deseq2_pipeline.qmd) |
-| Friday, July 31 | 10:30–11:30 AM | [Apptainer](workshops/08-apptainer.qmd) |
+Many introductions to R or Python teach a tool: syntax, functions, how to make a plot. Advancing Reproducibility with Computational Skills (ARCS) teaches something adjacent but different: a research computing mindset grounded in practices that implement [reproducibility](/glossary.qmd#reproducibility). You will learn R here, but every choice we make about *how* we teach it is shaped by a second question running underneath the first: how is scientific data actually expected to be produced, managed, and shared today, and what does your code need to do to hold up under that expectation?
 
+That second question is what separates code that merely runs from code that is **verifiable, repeatable, and accountable to the context it came from**, taking into account what the data represents, how it should be handled, and what responsible, ethical practice requires of the person producing it. A script that works on your machine today, with no record of what version of R produced it or why a column was dropped, is internally functional. It does not meet emerging standards for scientific research. 
 
+ARCS treats these as inseparable. Reproducibility is not a topic we add once you already know R. It is the lens through which the whole series is taught.
+
+## What Is ARCS?
+
+ARCS is an eight-module series introducing R-based reproducible research computing to researchers at any career stage and in any domain. No prior programming experience is required.
+
+Each module is built around roughly one hour of core hands-on work, making the series flexible to teach or work through as:
+
+- One full day
+- Two half-day sessions
+- Four two-hour blocks
+- Eight individual sessions
+
+The series covers:
+
+- [**Arc 1: R and Reproducibility**](/modules/arc_1.qmd)
+- [**Arc 2: Research Computing Projects**](/modules/arc_2.qmd)
+- [**Arc 3: Data Structures and Control Flow**](/modules/arc_3.qmd)
+- [**Arc 4: Literate Programming and Living Documents**](/modules/arc_4.qmd)
+- [**Arc 5: Data Cleaning with the Tidyverse**](/modules/arc_5.qmd)
+- [**Arc 6: Version Control with Git**](/modules/arc_6.qmd)
+- [**Arc 7: AI and Reproducibility**](/modules/arc_7.qmd)
+- [**Arc 8: Data Packaging and the Limits of Reproducibility**](/modules/arc_8.qmd)
+
+By the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them.
+
+## Who Is It For?
+
+ARCS is designed for researchers — graduate students, postdocs, faculty, staff scientists — who work with data and want to make their computational work more organized, trustworthy, and reusable. It is not a statistics course and not a computer science course. It is a research computing practices course, taught through the lens of things researchers actually need to do.
+
+The series uses a genomics dataset throughout (RNA-seq data from a Shank3 mouse model), but the skills are domain-general. Instructors at other institutions are welcome to substitute a dataset appropriate to their audience. 
+
+## New to This Site?
+
+Before your first module, see **Session 0: Before You Arrive** for setup instructions, plus a short guide to how this site is organized — including what the different callout boxes mean and how Slides, Code Tour, and hands-on sections work throughout.
+
+## Reusing and Adapting These Materials
+
+ARCS was developed at Yale University's Cushing/Whitney Medical Library. The core curriculum is designed to be institution-agnostic: the tools, conventions, and pedagogical approach are intended to apply broadly to introducing research computing practices.
+
+If you are an instructor at another institution and want to use or adapt these materials:
+
+- **Fork the repository** on GitHub and adapt freely — the materials are openly licensed
+- Yale-specific content (contact information, institutional context, specific dataset provenance) is clearly marked and easy to replace
+- The dataset used throughout the series is publicly available from GEO (accession GSE113754) and can be substituted with any tabular research dataset
+- The module structure, the callout box taxonomy, and the module learning objectives are designed to transfer directly, regardless of how you schedule the eight modules
+- Schedule and Slides files contain some situational and institutional information that you would want to customize. 
+
+If you do adapt and use these materials, we would love to hear about it — reach out to the ARCS team at the contact information below.
+
+## The ARCS Team
+
+ARCS is developed and taught by the Technology & Innovation Team at the Cushing/Whitney Medical Library, Yale University.
+This site is built with built with [Quarto](https://quarto.org).
+
+Questions or feedback? Contact us at AskYaleMedicalLibrary@yale.edu.

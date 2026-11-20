@@ -1,0 +1,88 @@
+---
+title: "Arc 2"
+subtitle: "Research Computing Projects"
+format:
+  revealjs:
+    incremental: false
+---
+
+## True Story: Data Management Gone Awry (1 of 2)
+
+<!-- INSERT IMAGE: path/to/duplicated-panels-figure.png -->
+<!-- Original slide: side-by-side duplicated panels from the published figure -->
+
+- This is a real figure from a real published paper.
+- Look closely at the panels — do you notice anything?
+
+## True Story: Data Management Gone Awry (2 of 2)
+
+<!-- INSERT IMAGE: path/to/mouse-ear-microscopy-zoomed.png -->
+<!-- Original slide: zoomed mouse-ear microscopy panel showing the duplication -->
+
+- Zoomed in: the same microscopy image appears twice, used to represent two different experimental conditions.
+- This wasn't caught until after publication.
+
+## Author Explanation
+
+> <!-- INSERT ORIGINAL QUOTE: author's apology / explanation, verbatim from the correction notice -->
+
+- Mistakes like this are rarely intentional — they're almost always a data management failure, not a data fabrication one.
+
+## Where in the Computational Process Did This Happen?
+
+> <!-- INSERT ORIGINAL QUOTE: author's explanation of the file-transfer step where the error occurred -->
+
+- The error happened at a specific, identifiable point in the workflow — not randomly.
+
+## How Does This Happen?
+
+::: {.incremental}
+- **Pipeline Gaps** — steps in the process that aren't documented or automated, relying on memory instead
+- **File Transfers** — moving files between computers, drives, or collaborators, where it's easy to grab the wrong version
+- **Filenaming Variation** — inconsistent names make it hard to tell which file is which, even for the person who made them
+:::
+
+- Everything we build for the rest of this session exists to close these three gaps.
+
+## Reproducibility in Phases
+
+::: columns
+::: {.column width="50%"}
+### Creating Phase
+- Iterative data management
+- Timestamped files
+- Testing and dead ends
+- Exploratory analysis
+:::
+
+::: {.column width="50%"}
+### Sharing Phase
+- Articulating your process
+- Dynamic documents
+- Data necessary to validate and replicate findings
+- Preserving data in repositories
+:::
+:::
+
+<br>
+
+<small>Today, we're working in the **Creating** phase — but every habit we build now is also laying groundwork for the Sharing phase later.</small>
+
+## First Step: R Projects
+
+- An **R Project** keeps every file for one analysis — data, scripts, outputs — self-contained in a single folder.
+- It anchors your working directory to that folder, so file paths work the same way on any machine that opens it.
+
+::: {.fragment}
+**When and where to create one:**
+
+- Start a new R Project at the beginning of every new analysis — not partway through.
+- Give it its own dedicated folder, separate from unrelated work.
+- Never nest one R Project inside another.
+:::
+
+## Back to Building
+
+- Let's put this into practice — folder structure, `renv`, and your first script.
+
+<!-- Bridge slide: transition back into Build section -->

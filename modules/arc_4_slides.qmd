@@ -1,0 +1,38 @@
+---
+title: "Arc 4"
+subtitle: "Literate Programming and Living Documents"
+format:
+  revealjs:
+    incremental: false
+---
+
+## Static vs. Dynamic Documents
+
+A static script produces output once:
+
+```r
+data <- read.csv("data.csv")
+mean_x <- mean(data$x)
+# Output: 42.5
+```
+
+::: {.incremental}
+- If the data changes, the report is now wrong.
+- If the analysis changes, you have to remember to update the write-up separately.
+- There's no direct link between what the report says and how it was produced.
+:::
+
+## A Dynamic Possibility
+
+- A Quarto document can say: *"We loaded a dataset with `` `r nrow(data)` `` observations... the mean of x was `` `r mean_x` ``."*
+- When the data changes, the numbers in the sentence change with it — automatically.
+
+## Literate Programming
+
+- The core idea: **code + text + results**, together, in the order a human reads them.
+- Your document becomes the methods section *and* the analysis at once.
+- Note: these very slides were built in the tool you're about to use.
+
+## Let's Build
+
+<!-- Bridge slide -->

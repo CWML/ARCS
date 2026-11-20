@@ -1,0 +1,70 @@
+---
+title: "Arc 7"
+subtitle: "AI and Reproducibility"
+format:
+  revealjs:
+    incremental: false
+---
+
+## A New Kind of Collaborator
+
+- You will write code with an AI's help — maybe you already do.
+- That's not a problem this course is trying to talk you out of.
+- The problem is narrower: code that runs isn't the same as code you
+  understand, can verify, and can hand to someone else.
+
+## Runs ≠ Correct
+
+::: {.incremental}
+- An AI assistant can hand you a function that executes without error
+  and returns the wrong answer.
+- It can invent a function that doesn't exist, reorder a real
+  function's arguments, or quietly reach for an outdated package.
+- None of these mistakes announce themselves — they look exactly as
+  confident as a correct answer.
+:::
+
+## The Checklist Doesn't Change
+
+::: {.incremental}
+- Does it run?
+- Do you understand every line?
+- Is it documented in *your* words?
+- Is it committed?
+- Does `renv::snapshot()` capture what it pulled in?
+:::
+
+- Five habits this course already built. Only the source of the code
+  is new.
+
+::: {.notes}
+This is the first exercise in the series that sends students to an
+outside tool and back — their own AI assistant, not a browser cell.
+Some will get back code with an obvious, easy-to-catch error; others
+will get back something subtler, or something that's actually fine.
+Have a version of each ready to discuss if the room's results don't
+split that way on their own.
+:::
+
+## Three Quiet Failure Modes
+
+::: {.incremental}
+- **The invented function** — fails loudly, the easy case
+- **The misordered argument** — runs, finds nothing, looks fine
+- **The outdated package** — not wrong, just dated
+:::
+
+- None of these announce themselves. That's the point.
+
+## Beyond Today
+
+- **Yale:** Cushing/Whitney Medical Library runs a companion two-part
+  class — *Getting Started with Claude* and *Analyzing Research Data
+  with Claude Code* — covering permission rules, plan mode, and agent
+  workflows this arc doesn't have room for.
+- Adapting this course elsewhere? Swap in whatever AI-literacy
+  resources your own institution offers here.
+
+## Let's Build
+
+<!-- Bridge slide -->

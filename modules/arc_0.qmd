@@ -1,0 +1,212 @@
+---
+title: "Arc 0"
+subtitle: "Getting your machine ready for ARCS"
+toc: true
+sidebar: false
+---
+
+## The Short Version
+
+Before Session 1, complete the setup steps below, in order: install R, create a GitHub account, install GitHub Desktop, clone the course data, and install Positron.
+
+If you get stuck on any step, reach out to us using the contact information at the bottom of this page, or bring your questions to class.
+
+::: {.callout-important icon="false"}
+## <span class="dot dot-warning"></span> Work or School Laptop?
+
+If you are on a work or school-managed laptop, you may need **administrator rights** to install software. Test this before class by attempting to install R (Step 1 below).
+
+If you do not have admin rights, contact your IT department before the workshop and ask them to install R, Positron, and GitHub Desktop. 
+To get the most out of ARCS, do not wait until class starts to discover this.
+
+:::
+
+---
+
+## Setup Steps
+
+---
+
+### Step 1: Install R
+
+R is the computing language we will use throughout the series.
+
+**Windows and Mac:**
+
+1. Go to [cran.r-project.org](https://cran.r-project.org)
+2. Click your operating system
+3. Download the latest installer
+4. Run the installer using all default options
+
+**Windows only — also install Rtools:**
+
+After installing R, go to the [Rtools page on CRAN](https://cran.r-project.org/bin/windows/Rtools/) and download the version that matches your R installation (e.g., Rtools44 for R 4.4). Run the installer using default options.
+
+**Mac only — also install Command Line Tools:**
+
+Open the Terminal application (search for "Terminal" in Spotlight) and run:
+
+```bash
+xcode-select --install
+```
+
+A dialog box will appear — click Install and follow the prompts.
+
+::: {.callout-note icon="false"}
+## <span class="dot dot-note"></span> About This — Why Both R and Rtools/Command Line Tools?
+
+R is the language. Rtools (Windows) and Command Line Tools (Mac) are compilers that allow R to build certain packages from source code — including several packages we use in this series. You will not interact with them directly, but R needs them to be present.
+:::
+
+### Step 2: Create a GitHub Account
+
+GitHub is where we will store and share our work. You will need a free account.
+
+1. Go to [github.com](https://github.com) and click Sign up
+2. Enter your email address, create a password, and choose a username
+3. Verify your account using the code GitHub sends to your email
+4. You can skip the personalization questions at the end
+
+Keep a note of your username and password — you will need them in Step 3.
+
+### Step 3: Install GitHub Desktop
+
+GitHub Desktop is a visual application that makes it easier to work with Git and GitHub without using the command line.
+
+**Windows:**
+
+1. Go to [desktop.github.com](https://desktop.github.com)
+2. Click Download for Windows (64-bit)
+3. Run the downloaded `.exe` file — it will install and open automatically
+4. Sign in with the GitHub account you created in Step 2
+
+**Mac:**
+
+1. Go to [desktop.github.com](https://desktop.github.com)
+2. Click Download for macOS
+3. Open the downloaded `.zip` file — this extracts the GitHub Desktop app
+4. Drag GitHub Desktop into your Applications folder
+5. Open it from Applications and sign in with your GitHub account
+
+### Step 4: Get the Course Data
+
+We will use the same dataset throughout the series. Clone the course data repository using GitHub Desktop:
+
+1. Make sure GitHub Desktop is open and you are signed in
+2. Visit this URL in your browser: `https://github.com/CWML/arcs-data` `#TODO update URL`
+3. Click the green Code button
+4. Select Open with GitHub Desktop
+5. When GitHub Desktop opens, choose a location you can find easily (Desktop or Documents) and click Clone
+
+This downloads a folder called `arcs-data` `#TODO update`containing the two data files we will use. You do not need to do anything else with this folder yet — we will use it in Session 1.
+
+::: {.callout-note icon="false"}
+## <span class="dot dot-note"></span> About This — Why Clone Instead of Just Downloading?
+
+We clone the data repository rather than downloading a zip file so that you practice the same workflow you will use throughout the series. Cloning also makes it easy to get any updates we push before future sessions.
+:::
+
+### Step 5: Install Positron
+
+Positron is the [IDE (integrated development environment)](/glossary.qmd#ide) we will use to write and run R code. It was built by Posit specifically for data science work.
+
+1. Go to the Positron releases page on GitHub
+2. Find the most recent stable release
+3. Under Assets, download the installer for your operating system:
+   - Windows: `.exe` file
+   - Mac: `.dmg` file
+4. Run the installer
+5. Open Positron — it should automatically detect your R installation and show R in the bottom right corner
+
+::: {.callout-important icon="false"}
+## <span class="dot dot-warning"></span> Watch Out
+
+If Positron does not detect R automatically, go to Settings → R and point it to your R installation manually. On Mac this is usually `/usr/local/bin/R` or `/opt/homebrew/bin/R`. On Windows it is usually `C:\Program Files\R\R-4.x.x\bin\R.exe`.
+:::
+
+### Step 6: Open the Course Repository in Positron
+
+Once Positron is installed:
+
+1. Open Positron
+2. Go to File → Open Folder
+3. Navigate to the `arcs-data` folder you cloned in Step 4
+4. Click Open
+
+Positron will restart in project mode. You should see the folder contents in the file explorer panel on the left.
+
+---
+
+## How to Use This Site
+
+Each session page on this site contains everything you need to follow along:
+
+- **Slides** introduce concepts and provide the "why" before the "how"
+- Most of each session happens in topical sections with hands-on code you run and modify directly in Positron on your own machine — this hands-on building is the default way this workshop works, not a separate, labeled activity
+- **Code Tour** sections, used selectively, walk through longer or more complex code that you read and run but are not expected to write from scratch — often showing how a technique extends further than what's strictly required for that session
+- **Callout boxes** provide just-in-time context, optional depth, common-mistake warnings, browser-based alternatives, and instructor guidance
+
+If you are attending a live workshop, the site is your reference — use it to catch up, check your work, or follow along if your local environment isn't cooperating. If you are working through the materials on your own, the site is designed to be self-contained.
+
+## Understanding the Callout Boxes
+
+Throughout the session pages you will encounter five types of callout boxes, each marked with a colored circle. Here is what each one means:
+
+::: {.callout-note icon="false"}
+## <span class="dot dot-note"></span> About This
+
+Provides just-in-time context at the moment you need it — explaining *why* a convention exists, what a concept means in practice, or how a tool connects to your research workflow. Read these when you encounter them; they are part of the instruction, not optional extras.
+:::
+
+::: {.callout-tip icon="false"}
+## <span class="dot dot-tip"></span> Learn More
+
+Optional depth for the curious. These boxes point toward topics beyond the scope of the current session — tools, techniques, or concepts worth knowing about but not required for the session objectives. Return to these on your own time.
+:::
+
+::: {.callout-important icon="false"}
+## <span class="dot dot-warning"></span> Watch Out
+
+Flags a common mistake, a point of frequent confusion, or a step where something often goes wrong. Pay attention here — these are things we have seen trip people up before.
+:::
+
+::: {.callout-note icon="false"}
+## <span class="dot dot-live"></span> Browser Version
+Most code on this site runs identically whether you're working in your
+browser or on your own machine, so it appears only once. This label
+marks the exceptions — moments where the browser-based (webR) version has
+to do something differently than the local version would, such as
+reading a file from a URL instead of downloading and saving it first, or
+where something about the browser environment itself (its own virtual
+filesystem, for instance) means an identical line of code won't mean
+quite the same thing here as it does on your machine.
+:::
+
+::: {.callout-note icon="false"}
+## <span class="dot dot-tour"></span> Code Tour
+
+A guided read-through of code that goes beyond what we'll build together
+live — often because it depends on packages or concepts from a later
+module, or because it's simply more than a single session needs to cover.
+You're not expected to type this yourself: read it, run it if you're
+curious, and know it's here if you want to come back to it.
+::: 
+
+::: {.callout-warning icon="false"}
+## <span class="dot dot-important"></span> Instructor Note
+
+Guidance for instructors and helpers. These boxes contain pedagogical rationale, timing suggestions, common student difficulties, and facilitation notes. Students are welcome to read them, but they are written for the people running the session.
+:::
+
+---
+
+## Need Help Before Class?
+
+If you hit a wall during setup, reach out to us before the workshop:
+
+- Levi Dolan: levi.dolan@yale.edu
+- Max Wegener: maximilian.wegener@yale.edu
+- Sofia Fertuzinhos: sofia.fertuzinhos@yale.edu
+- Justin DeMayo: justin.demayo@yale.edu
+
+You can also come at 9:00 AM on the day of Session 1 — we will be there early and happy to help.
