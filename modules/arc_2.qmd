@@ -37,7 +37,7 @@ they don't depend on anything being saved.
 
 ## Create an R Project
 
-In Positron: **File → New Folder from Project Template → [R Project](/glossary.qmd#r-project)**, or create a plain folder and open it in Positron as your working directory.
+In Positron: **File → New Folder from Project Template → [R Project](/glossary.qmd#r-project)**, or create a plain folder and open it in Positron as your [working directory](/glossary.qmd##working-directory).
 
 ## Build Your Folder Structure
 
@@ -63,37 +63,37 @@ dir.create("outputs")
 - Be descriptive
 
 **Avoid:**
-- ❌ `data analysis.R` (spaces)
-- ❌ `data.csv` (not descriptive)
-- ❌ `final_FINAL_really_final.R` (version chaos)
+- `data analysis.R` (spaces)
+- `data.csv` (not descriptive)
+- `final_FINAL_really_final.R` (version chaos)
 
 **Prefer:**
-- ✅ `2024-03-15_survey_analysis.R`
-- ✅ `participant_demographics_clean.csv`
-- ✅ `README.md`
+- `2024-03-15_survey_analysis.R`
+- `participant_demographics_clean.csv`
+- `README.md`
 :::
 
-## What Is a Package?
-
-Base R ships with a core set of built-in functions. A **package** is an
+::: {.callout-note collapse="true"}
+## <span class="dot dot-note"></span> About This — Minimal Packages, On Purpose
+Base R ships with a core set of built-in **[functions]**(/glossary.qmd#function). 
+A **[package]**(/glossary.qmd#package) is an
 add-on that extends what R can do — installed once per machine with
 `install.packages()`, then turned on for each new R session with
 `library()`. The very next tool we use, `renv`, is a package — and it
 needs to be installed before it can do anything.
+
+This series installs very few packages before Arc 5. That's deliberate:
+the goal here is understanding what a package actually *does* for you —
+`renv` protects reproducibility, `fs` generates a file tree.
+:::
+
+## Install `renv` in your environment
 
 ```{r}
 #| eval: false
 install.packages("renv")
 ```
 
-::: {.callout-note collapse="true"}
-## <span class="dot dot-note"></span> About This — Minimal Packages, On Purpose
-This series installs very few packages before Arc 5. That's deliberate:
-the goal here is understanding what a package actually *does* for you —
-`renv` protects reproducibility, `fs` generates a file tree — not
-accumulating a long list of dependencies before you've seen why any one
-of them earns its place.
-:::
 
 ## Initialize `renv`
 

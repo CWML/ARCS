@@ -26,14 +26,14 @@ Each module is built around roughly one hour of core hands-on work, making the s
 
 The series covers:
 
-- **Module 1:** R fundamentals — objects, vectors, data types, and your first data frame
-- **Module 2:** Building your first reproducible project — folder structure, environment management with `renv`, loading real data, and writing a README
-- **Module 3:** Data structures, writing your own functions, loops, and conditionals, and reading error messages
-- **Module 4:** Producing dynamic, reproducible documents with Quarto
-- **Module 5:** Transforming and cleaning research data with the tidyverse
-- **Module 6:** Version control with Git and GitHub
-- **Module 7:** Advancing systems-level reproducibility — a DESeq2 analysis pipeline and containerization
-- **Module 8:** AI coding assistants, data packaging, and research ethics
+- [**Arc 1: R and Reproducibility**](/modules/arc_1.qmd)
+- [**Arc 2: Research Computing Projects**](/modules/arc_2.qmd)
+- [**Arc 3: Data Structures and Control Flow**](/modules/arc_3.qmd)
+- [**Arc 4: Literate Programming and Living Documents**](/modules/arc_4.qmd)
+- [**Arc 5: Data Cleaning with the Tidyverse**](/modules/arc_5.qmd)
+- [**Arc 6: Version Control with Git**](/modules/arc_6.qmd)
+- [**Arc 7: AI and Reproducibility**](/modules/arc_7.qmd)
+- [**Arc 8: Data Packaging and the Limits of Reproducibility**](/modules/arc_8.qmd)
 
 By the end of the series, participants have a working, version-controlled, reproducible research project — built from scratch, by them.
 
@@ -64,5 +64,6 @@ If you do adapt and use these materials, we would love to hear about it — reac
 ## The ARCS Team
 
 ARCS is developed and taught by the Technology & Innovation Team at the Cushing/Whitney Medical Library, Yale University.
+This site is built with built with [Quarto](https://quarto.org).
 
 Questions or feedback? Contact us at AskYaleMedicalLibrary@yale.edu.

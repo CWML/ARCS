@@ -185,12 +185,17 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#argument" id="toc-argument" class="nav-link active" data-scroll-target="#argument">Argument</a></li>
   <li><a href="#assignment-operator" id="toc-assignment-operator" class="nav-link" data-scroll-target="#assignment-operator">Assignment Operator</a></li>
+  <li><a href="#commit" id="toc-commit" class="nav-link" data-scroll-target="#commit">Commit</a></li>
   <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame">Data Frame</a></li>
+  <li><a href="#data-repository" id="toc-data-repository" class="nav-link" data-scroll-target="#data-repository">Data Repository</a></li>
   <li><a href="#data-type" id="toc-data-type" class="nav-link" data-scroll-target="#data-type">Data Type</a></li>
   <li><a href="#function" id="toc-function" class="nav-link" data-scroll-target="#function">Function</a></li>
+  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore">.gitignore</a></li>
   <li><a href="#ide" id="toc-ide" class="nav-link" data-scroll-target="#ide">IDE</a></li>
   <li><a href="#object" id="toc-object" class="nav-link" data-scroll-target="#object">Object</a></li>
+  <li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package">Package</a></li>
   <li><a href="#r-project" id="toc-r-project" class="nav-link" data-scroll-target="#r-project">R Project</a></li>
+  <li><a href="#repository" id="toc-repository" class="nav-link" data-scroll-target="#repository">Repository</a></li>
   <li><a href="#readme" id="toc-readme" class="nav-link" data-scroll-target="#readme">README</a></li>
   <li><a href="#renv" id="toc-renv" class="nav-link" data-scroll-target="#renv">renv</a></li>
   <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
@@ -224,55 +229,75 @@ ul.task-list li input[type="checkbox"] {
 <p>Short definitions of terms used across ARCS, with links back to where each one is taught and out to fuller references.</p>
 <section id="argument" class="level3">
 <h3 class="anchored" data-anchor-id="argument">Argument</h3>
-<p>A value passed into a function when it is called — the function’s input. → <a href="./arcs/arc_1.qmd#calling-functions">Arc 1</a> · <a href="http://adv-r.had.co.nz/Functions.html">Advanced R: Functions</a></p>
+<p>A value passed into a function when it is called — the function’s input. → <a href="./modules/arc_1.html#calling-functions">Arc 1</a> · <a href="http://adv-r.had.co.nz/Functions.html">Advanced R: Functions</a></p>
 </section>
 <section id="assignment-operator" class="level3">
 <h3 class="anchored" data-anchor-id="assignment-operator">Assignment Operator</h3>
-<p><code>&lt;-</code>, used to store a value in an object. Read it as “gets” — <code>x &lt;- 5</code> means “x gets 5.” → <a href="./arcs/arc_1.qmd#objects-and-assignment">Arc 1</a></p>
+<p><code>&lt;-</code>, used to store a value in an object. Read it as “gets” — <code>x &lt;- 5</code> means “x gets 5.” → <a href="./modules/arc_1.html#objects-and-assignment">Arc 1</a></p>
+</section>
+<section id="commit" class="level3">
+<h3 class="anchored" data-anchor-id="commit">Commit</h3>
+<p>A saved snapshot of a project’s files at a specific point in time, created in git with a short message describing what changed and why. → <a href="./modules/arc_6.html#local-git-in-positron-modify-stage-commit">Arc 6</a></p>
 </section>
 <section id="data-frame" class="level3">
 <h3 class="anchored" data-anchor-id="data-frame">Data Frame</h3>
-<p>A table-like object in R — rows and columns, similar to a spreadsheet. → <a href="./arcs/arc_1.qmd#building-your-first-data-frame">Arc 1</a> · <a href="https://r4ds.hadley.nz">R for Data Science: Data Frames</a></p>
+<p>A table-like object in R — rows and columns, similar to a spreadsheet. → <a href="./modules/arc_1.html#building-your-first-data-frame">Arc 1</a> · <a href="https://r4ds.hadley.nz">R for Data Science: Data Frames</a></p>
+</section>
+<section id="data-repository" class="level3">
+<h3 class="anchored" data-anchor-id="data-repository">Data Repository</h3>
+<p>A system designed for depositing, preserving, and sharing research data long-term — distinct from a code repository like GitHub, which is built for tracking changes to text and scripts, not hosting datasets. Examples include Zenodo, Dryad, and institutional repositories. → <a href="./modules/arc_6.html#excluding-data-files-the-gitignore-file">Arc 6</a> · <a href="./modules/arc_8.html">Arc 8</a></p>
 </section>
 <section id="data-type" class="level3">
 <h3 class="anchored" data-anchor-id="data-type">Data Type</h3>
-<p>The kind of value an object holds — <code>numeric</code>, <code>character</code>, or <code>logical</code>. Determines what operations R will let you perform on it. → <a href="./arcs/arc_1.qmd#data-types">Arc 1</a> · <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types">R Language Definition</a></p>
+<p>The kind of value an object holds — <code>numeric</code>, <code>character</code>, or <code>logical</code>. Determines what operations R will let you perform on it. → <a href="./modules/arc_1.html#data-types">Arc 1</a> · <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types">R Language Definition</a></p>
 </section>
 <section id="function" class="level3">
 <h3 class="anchored" data-anchor-id="function">Function</h3>
-<p>A reusable block of code that takes arguments (inputs) and returns a value (output). → <a href="./arcs/arc_1.qmd#calling-functions">Arc 1</a> · <a href="http://adv-r.had.co.nz/Functions.html">Advanced R: Functions</a></p>
+<p>A reusable block of code that takes arguments (inputs) and returns a value (output). → <a href="./modules/arc_1.html#calling-functions">Arc 1</a> · <a href="http://adv-r.had.co.nz/Functions.html">Advanced R: Functions</a></p>
+</section>
+<section id="gitignore" class="level3">
+<h3 class="anchored" data-anchor-id="gitignore">.gitignore</h3>
+<p>A plain-text file in a project’s root folder listing files and folders git should never track — typically large data files, output files, and package caches. → <a href="./modules/arc_6.html#excluding-data-files-the-gitignore-file">Arc 6</a> · <a href="https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files">GitHub: .gitignore docs</a></p>
 </section>
 <section id="ide" class="level3">
 <h3 class="anchored" data-anchor-id="ide">IDE</h3>
-<p>IDE stands for “integrated development environment”, a kind of software application that combines a variety of developer tools together into one interface, as opposed to many narrower standalone applications. Positron, R Studio, and VS Code are examples of IDEs. → <a href="./arcs/arc_0.qmd">Arc 0</a> · <a href="https://github.com/resources/articles/what-is-an-ide">GitHub: What is an IDE?</a></p>
+<p>IDE stands for “integrated development environment”, a kind of software application that combines a variety of developer tools together into one interface, as opposed to many narrower standalone applications. Positron, R Studio, and VS Code are examples of IDEs. → <a href="./modules/arc_0.html">Arc 0</a> · <a href="https://github.com/resources/articles/what-is-an-ide">GitHub: What is an IDE?</a></p>
 </section>
 <section id="object" class="level3">
 <h3 class="anchored" data-anchor-id="object">Object</h3>
-<p>A named value stored in R’s environment, created with the assignment operator <code>&lt;-</code>. → <a href="./arcs/arc_1.qmd#objects-and-assignment">Arc 1</a></p>
+<p>A named value stored in R’s environment, created with the assignment operator <code>&lt;-</code>. → <a href="./modules/arc_1.html#objects-and-assignment">Arc 1</a></p>
+</section>
+<section id="package" class="level3">
+<h3 class="anchored" data-anchor-id="package">Package</h3>
+<p>A bundle of R functions, data, and documentation that extends what base R can do — installed once with <code>install.packages()</code> and loaded per session with <code>library()</code>. → <a href="./modules/arc_2.html#what-is-a-package">Arc 2</a> · <a href="./modules/arc_5.html">Arc 5</a> · <a href="https://r-pkgs.org/">R Packages, 2nd ed.</a></p>
 </section>
 <section id="r-project" class="level3">
 <h3 class="anchored" data-anchor-id="r-project">R Project</h3>
-<p>A folder that Positron/RStudio treats as a self-contained working directory, keeping file paths and settings local to that project rather than scattered across your computer. → <a href="./arcs/arc_2.qmd#create-an-r-project">Arc 2</a></p>
+<p>A folder that Positron/RStudio treats as a self-contained working directory, keeping file paths and settings local to that project rather than scattered across your computer. → <a href="./modules/arc_2.html#create-an-r-project">Arc 2</a></p>
+</section>
+<section id="repository" class="level3">
+<h3 class="anchored" data-anchor-id="repository">Repository</h3>
+<p>In git, a project folder tracked for version history — distinct from a <a href="#data-repository">data repository</a>, which is built for depositing and sharing datasets that represent scientific findings, often governed by human curation. → <a href="./modules/arc_6.html#checking-whether-git-is-initialized">Arc 6</a> · <a href="./modules/arc_8.html">Arc 8</a></p>
 </section>
 <section id="readme" class="level3">
 <h3 class="anchored" data-anchor-id="readme">README</h3>
-<p>A plain-text file describing what a project contains and how to use it, so a collaborator — or future you — doesn’t have to guess. → <a href="./arcs/arc_2.qmd#write-a-readme">Arc 2</a> · <a href="https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230">Cornell README Template</a></p>
+<p>A plain-text file describing what a project contains and how to use it, so a collaborator — or future you — doesn’t have to guess. → <a href="./modules/arc_2.html#write-a-readme">Arc 2</a> · <a href="https://ecommons.cornell.edu/entities/publication/6effe964-798e-4c21-aac2-4194709ff230">Cornell README Template</a></p>
 </section>
 <section id="renv" class="level3">
 <h3 class="anchored" data-anchor-id="renv">renv</h3>
-<p>An R package that locks the exact version of every package a project uses, so the project runs identically on any machine, including yours a year from now. → <a href="./arcs/arc_2.qmd#initialize-renv">Arc 2</a> · <a href="https://rstudio.github.io/renv/">renv documentation</a></p>
+<p>An R package that locks the exact version of every package a project uses, so the project runs identically on any machine, including yours a year from now. → <a href="./modules/arc_2.html#initialize-renv">Arc 2</a> · <a href="https://rstudio.github.io/renv/">renv documentation</a></p>
 </section>
 <section id="reproducibility" class="level3">
 <h3 class="anchored" data-anchor-id="reproducibility">Reproducibility</h3>
-<p>The property of a project, script, or pipeline producing the same result every time it’s re-run — including after changes to upstream data, parameters, or package versions. → <a href="./arcs/arc_1.qmd#objects-and-assignment">Arc 1: Code Tour</a> · <a href="./arcs/arc_2.qmd#why-project-management-matters">Arc 2</a> · <a href="https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/#rr-overview-definitions-reproducibility">The Turing Way: Definitions</a></p>
+<p>The property of a project, script, or pipeline producing the same result every time it’s re-run — including after changes to upstream data, parameters, or package versions. → <a href="./modules/arc_1.html#objects-and-assignment">Arc 1: Code Tour</a> · <a href="./modules/arc_2.html#why-project-management-matters">Arc 2</a> · <a href="https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/#rr-overview-definitions-reproducibility">The Turing Way: Definitions</a></p>
 </section>
 <section id="vector" class="level3">
 <h3 class="anchored" data-anchor-id="vector">Vector</h3>
-<p>A collection of values of the same data type, created with <code>c()</code>. → <a href="./arcs/arc_1.qmd#vectors">Arc 1</a></p>
+<p>A collection of values of the same data type, created with <code>c()</code>. → <a href="./modules/arc_1.html#vectors">Arc 1</a></p>
 </section>
 <section id="working-directory" class="level3">
 <h3 class="anchored" data-anchor-id="working-directory">Working Directory</h3>
-<p>The folder R treats as “home” for a session — where it looks for files by default, and where relative file paths are measured from. → <a href="./arcs/arc_1.qmd#orient-to-positron">Arc 1</a></p>
+<p>The folder R treats as “home” for a session — where it looks for files by default, and where relative file paths are measured from. → <a href="./modules/arc_1.html#orient-to-positron">Arc 1</a></p>
 
 
 </section>
@@ -696,14 +721,14 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>ARCS Workshop Series</p>
+<p>ARCS Series</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with <a href="https://quarto.org">Quarto</a></p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 

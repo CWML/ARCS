@@ -6,17 +6,46 @@ format:
     incremental: false
 ---
 
+## The Problem: Version Control by Hand
+
+You've probably seen a folder like this:
+``` 
+analysis.R
+analysis_v2.R
+analysis_final.R
+analysis_final_FINAL.R
+analysis_final_FINAL_really.R 
+```
+
+::: {.incremental}
+- You can't remember what changed between versions
+- You can't safely delete any of them
+- Collaborating means emailing files back and forth
+:::
+
+## Git: A Time Machine for Your Project
+
+- Git saves **snapshots** of your work over time, called **commits**
+- You can always see what changed, when, and why — and roll back if you
+  need to
+- Instead of five copies of a file, you keep **one** file with a
+  complete history
+
 ## Git vs. GitHub
 
 ::: {.incremental}
-- **Git** — a command-line, distributed version control system. Created by Linus Torvalds in 2005. The industry standard.
-- **GitHub** — a web/desktop platform *built on* Git, adding a graphical interface, cloud hosting, Codespaces, and collaboration tools.
+- **Git** — a command-line, distributed version control system. Created
+  by Linus Torvalds in 2005. The industry standard.
+- **GitHub** — a web/desktop platform *built on* Git, adding a graphical
+  interface, cloud hosting, Codespaces, and collaboration tools.
 - Git is the engine. GitHub is one (very common) place to park the car.
 :::
 
 ## Why Version Control Matters for Research
 
-> "A system that records every change to your files, code, and documentation over time — creating a complete and auditable history of your research workflow."
+> "A system that records every change to your files, code, and
+> documentation over time — creating a complete and auditable history
+> of your research workflow."
 
 ::: {.incremental}
 - Reproducibility

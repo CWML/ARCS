@@ -13,7 +13,7 @@ webr:
 
 [Open slides fullscreen](arc_3_slides.html){target="_blank"}
 
-<iframe src="arc_3_slides.html" width="100%" height="450px" style="border:none;"></iframe>
+<iframe src="arc_3_slides.html" width="100%" height="4px" style="border:none;"></iframe>
 
 ::: {.callout-important collapse="true"}
 ## <span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
@@ -100,7 +100,7 @@ averages, totals, and models all treat a fabricated zero as real data.
 
 ## Writing Your Own Function
 
-A function has four parts: a **name**, the **arguments** it accepts, a
+A function has four parts: a **name**, the **[arguments]**(/glossary.qmd#argument) it accepts, a
 **body** of code that runs each time it's called, and a **return value** —
 the thing it hands back to you.
 

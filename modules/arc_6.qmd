@@ -21,30 +21,9 @@ clear job:
 
 Everything through the GitHub Desktop step happens **locally** on your
 own computer. After that, we connect the local project to GitHub. A
-collaboration workflow (fork & pull requests), the command-line
-equivalent of everything we do visually, and institutional hosting
-options are all covered later, in Extending Further.
-
-## Why Version Control?
-
-You've probably seen a folder like this:
-
-```
-analysis.R
-analysis_v2.R
-analysis_final.R
-analysis_final_FINAL.R
-analysis_final_FINAL_really.R
-```
-
-This is version control done by hand — and it's painful. You can't
-remember what changed between versions, you can't safely delete any of
-them, and collaborating means emailing files back and forth.
-
-**Git** solves this. It's a **time machine for your project**: it saves
-snapshots (called **commits**) of your work over time, so you can always
-see what changed, when, and why — and roll back if you need to. Instead
-of five copies of a file, you keep **one** file with a complete history.
+collaboration workflow (fork & pull requests) and the command-line
+equivalent of everything we do visually are both covered further down
+this page.
 
 ::: {.callout-note collapse="true"}
 ## <span class="dot dot-note"></span> About This — Git vs. GitHub
@@ -125,7 +104,7 @@ through three steps:
 3. **Commit** — you save those staged changes as a permanent snapshot
 
 The "stage" step is what surprises newcomers: git lets you choose
-*exactly* what goes into each commit, so you can group related changes
+*exactly* what goes into each **[commit]**(/glossary.qmd#commit), so you can group related changes
 together instead of dumping everything at once.
 
 When you change files, they appear in the panel with a letter:
@@ -196,33 +175,22 @@ anything magic. The full command-line workflow is in Extending Further.
 ## Excluding Data Files: The `.gitignore` File
 
 ::: {.callout-note collapse="true"}
-## <span class="dot dot-note"></span> About This — Don't Store Large Data Files in Git
+## <span class="dot dot-note"></span> About This — Don't Depend on GitHub for Data Storage
 Git is built for *code and text*, not big datasets — it keeps every
 version of every file, so a 100 MB dataset can balloon your repo after a
 few edits, GitHub enforces a 100 MB per-file limit, and git compresses
 text well but handles large binary data poorly.
 
 But the 100 MB limit is a technical ceiling, not a research-data
-strategy — even a file that fits comfortably under it usually still
-doesn't belong in a code repository. If it's your raw data or your
-processed data, it needs to be preserved in a **data repository**: a
-system built for depositing, citing, and sharing research data —
-Zenodo, OSF, Figshare, or an institutional repository — which is a
-fundamentally different kind of place than a GitHub repo. [Arc 8](modules/arc_8.qmd)
+strategy. A datafile that fits comfortably under it usually still
+doesn't belong in a GitHub **[repository]**(/glossary.qmd#repository). If it's your raw data or your
+processed data, it needs to be preserved in a **[data repository]**(/glossary.qmd#data-repository): a
+system built for depositing, citing, and sharing research data (such as Zenodo, OSF, Figshare, or an institutional repository), 
+with different governance structures than a GitHub repo. [Arc 8](modules/arc_8.qmd)
 covers packaging and depositing your data for exactly this reason.
 :::
 
-::: {.callout-note collapse="true"}
-## <span class="dot dot-note"></span> About This — Where Should Data Live Instead?
-| Data Size | Recommended Approach |
-|-----------|----------------------|
-| Small reference data (< 10 MB) | OK to include if it rarely changes |
-| Medium (10 MB–1 GB) | Cloud storage (Dropbox, Drive, OneDrive) — document the location |
-| Large (> 1 GB) | Institutional repositories, OSF, Zenodo, Figshare |
-| Very large | **Git LFS** — stores big files externally, keeps references in git |
-:::
-
-You already have a `.gitignore` in your project root — `renv::init()`
+You already have a **[].gitignore]**(/glossary.qmd#gitignore) in your project root — `renv::init()`
 created it back in Arc 1 to exclude its package cache. Extend it:
 
 1. **Open it.** In Positron's Explorer pane, click `.gitignore` in your

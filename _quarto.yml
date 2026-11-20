@@ -16,21 +16,21 @@ website:
     left:
       - text: "ARCS"
         menu:
-          - text: "Arc 1: R Fundamentals"
+          - text: "Arc 1: R and Reproducibility"
             href: modules/arc_1.qmd
-          - text: "Arc 2: Your First Reproducible Project"
+          - text: "Arc 2: Research Computing Projects"
             href: modules/arc_2.qmd
-          - text: "Arc 3: Data Structures"
+          - text: "Arc 3: Data Structures and Control Flow"
             href: modules/arc_3.qmd
-          - text: "Arc 4: Reproducible Reports"
+          - text: "Arc 4: Literate Programming and Living Documents"
             href: modules/arc_4.qmd
-          - text: "Arc 5: Tidyverse"
+          - text: "Arc 5: Data Cleaning with the Tidyverse"
             href: modules/arc_5.qmd
-          - text: "Arc 6: Git & GitHub"
+          - text: "Arc 6: Version Control with Git"
             href: modules/arc_6.qmd
-          - text: "Arc 7: DESeq2 Pipeline"
+          - text: "Arc 7: AI and Reproducibility"
             href: modules/arc_7.qmd
-          - text: "Arc 8: Apptainer & Containers"
+          - text: "Arc 8: Data Packaging and the Limits of Reproducibility"
             href: modules/arc_8.qmd
       - text: "About"
         href: index.qmd
@@ -70,8 +70,8 @@ website:
           href: modules/arc_8.qmd
 
   page-footer:
-    left: "ARCS Workshop Series"
-    right: "Built with [Quarto](https://quarto.org)"
+    left: "ARCS Series"
+ 
 
 format:
   html:

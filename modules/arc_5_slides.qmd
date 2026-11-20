@@ -8,7 +8,7 @@ format:
 
 ## What Is a Package?
 
-- R packages are collections of functions and data that extend base R.
+- R [packages](/glossary.qmd#packages) are collections of [functions](/glossary.qmd#functions) and data that extend base R.
 - Installed once with `install.packages()`, loaded each session with `library()`.
 - Created and shared by a global community of users — not by any single authority.
 

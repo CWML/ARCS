@@ -1696,35 +1696,35 @@ globalThis.qwebrExecuteCode = async function (
     <ul class="dropdown-menu" aria-labelledby="nav-menu-arcs">    
         <li>
     <a class="dropdown-item" href="../modules/arc_1.html">
- <span class="dropdown-text">Arc 1: R Fundamentals</span></a>
+ <span class="dropdown-text">Arc 1: R and Reproducibility</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_2.html">
- <span class="dropdown-text">Arc 2: Your First Reproducible Project</span></a>
+ <span class="dropdown-text">Arc 2: Research Computing Projects</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_3.html">
- <span class="dropdown-text">Arc 3: Data Structures</span></a>
+ <span class="dropdown-text">Arc 3: Data Structures and Control Flow</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_4.html">
- <span class="dropdown-text">Arc 4: Reproducible Reports</span></a>
+ <span class="dropdown-text">Arc 4: Literate Programming and Living Documents</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_5.html">
- <span class="dropdown-text">Arc 5: Tidyverse</span></a>
+ <span class="dropdown-text">Arc 5: Data Cleaning with the Tidyverse</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_6.html">
- <span class="dropdown-text">Arc 6: Git &amp; GitHub</span></a>
+ <span class="dropdown-text">Arc 6: Version Control with Git</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_7.html">
- <span class="dropdown-text">Arc 7: DESeq2 Pipeline</span></a>
+ <span class="dropdown-text">Arc 7: AI and Reproducibility</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_8.html">
- <span class="dropdown-text">Arc 8: Apptainer &amp; Containers</span></a>
+ <span class="dropdown-text">Arc 8: Data Packaging and the Limits of Reproducibility</span></a>
   </li>  
     </ul>
   </li>
@@ -1844,7 +1844,7 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#why-project-management-matters" id="toc-why-project-management-matters" class="nav-link" data-scroll-target="#why-project-management-matters">Why Project Management Matters</a></li>
   <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R Project</a></li>
   <li><a href="#build-your-folder-structure" id="toc-build-your-folder-structure" class="nav-link" data-scroll-target="#build-your-folder-structure">Build Your Folder Structure</a></li>
-  <li><a href="#what-is-a-package" id="toc-what-is-a-package" class="nav-link" data-scroll-target="#what-is-a-package">What Is a Package?</a></li>
+  <li><a href="#install-renv-in-your-environment" id="toc-install-renv-in-your-environment" class="nav-link" data-scroll-target="#install-renv-in-your-environment">Install <code>renv</code> in your environment</a></li>
   <li><a href="#initialize-renv" id="toc-initialize-renv" class="nav-link" data-scroll-target="#initialize-renv">Initialize <code>renv</code></a></li>
   <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">Load the Dataset</a></li>
   <li><a href="#write-a-readme" id="toc-write-a-readme" class="nav-link" data-scroll-target="#write-a-readme">Write a README</a></li>
@@ -2189,7 +2189,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="create-an-r-project" class="level2">
 <h2 class="anchored" data-anchor-id="create-an-r-project">Create an R Project</h2>
-<p>In Positron: <strong>File → New Folder from Project Template → <a href="../glossary.html#r-project">R Project</a></strong>, or create a plain folder and open it in Positron as your working directory.</p>
+<p>In Positron: <strong>File → New Folder from Project Template → <a href="../glossary.html#r-project">R Project</a></strong>, or create a plain folder and open it in Positron as your <a href="../glossary.html##working-directory">working directory</a>.</p>
 </section>
 <section id="build-your-folder-structure" class="level2">
 <h2 class="anchored" data-anchor-id="build-your-folder-structure">Build Your Folder Structure</h2>
@@ -2242,17 +2242,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>Start timestamped files with an ISO date: <code>YYYY-MM-DD</code></li>
 <li>Be descriptive</li>
 </ul>
-<p><strong>Avoid:</strong> - ❌ <code>data analysis.R</code> (spaces) - ❌ <code>data.csv</code> (not descriptive) - ❌ <code>final_FINAL_really_final.R</code> (version chaos)</p>
-<p><strong>Prefer:</strong> - ✅ <code>2024-03-15_survey_analysis.R</code> - ✅ <code>participant_demographics_clean.csv</code> - ✅ <code>README.md</code></p>
+<p><strong>Avoid:</strong> - <code>data analysis.R</code> (spaces) - <code>data.csv</code> (not descriptive) - <code>final_FINAL_really_final.R</code> (version chaos)</p>
+<p><strong>Prefer:</strong> - <code>2024-03-15_survey_analysis.R</code> - <code>participant_demographics_clean.csv</code> - <code>README.md</code></p>
 </div>
 </div>
-</div>
-</section>
-<section id="what-is-a-package" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-package">What Is a Package?</h2>
-<p>Base R ships with a core set of built-in functions. A <strong>package</strong> is an add-on that extends what R can do — installed once per machine with <code>install.packages()</code>, then turned on for each new R session with <code>library()</code>. The very next tool we use, <code>renv</code>, is a package — and it needs to be installed before it can do anything.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -2266,9 +2259,16 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This series installs very few packages before Arc 5. That’s deliberate: the goal here is understanding what a package actually <em>does</em> for you — <code>renv</code> protects reproducibility, <code>fs</code> generates a file tree — not accumulating a long list of dependencies before you’ve seen why any one of them earns its place.</p>
+<p>Base R ships with a core set of built-in <strong>[functions]</strong>(/glossary.qmd#function). A <strong>[package]</strong>(/glossary.qmd#package) is an add-on that extends what R can do — installed once per machine with <code>install.packages()</code>, then turned on for each new R session with <code>library()</code>. The very next tool we use, <code>renv</code>, is a package — and it needs to be installed before it can do anything.</p>
+<p>This series installs very few packages before Arc 5. That’s deliberate: the goal here is understanding what a package actually <em>does</em> for you — <code>renv</code> protects reproducibility, <code>fs</code> generates a file tree.</p>
 </div>
 </div>
+</div>
+</section>
+<section id="install-renv-in-your-environment" class="level2">
+<h2 class="anchored" data-anchor-id="install-renv-in-your-environment">Install <code>renv</code> in your environment</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="initialize-renv" class="level2">
@@ -2865,14 +2865,14 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>ARCS Workshop Series</p>
+<p>ARCS Series</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with <a href="https://quarto.org">Quarto</a></p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 <script type="module">

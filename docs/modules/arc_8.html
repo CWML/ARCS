@@ -412,7 +412,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"sessionInfo()","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"raw_metadata <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv\")\nraw_data     <- read.csv(\"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv\")","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"codebook <- tibble(\n  column    = names(raw_data),\n  type      = purrr::map_chr(raw_data, class),\n  n_missing = purrr::map_dbl(raw_data, ~ sum(is.na(.))),\n  description = NA_character_\n)\n\ncodebook%%MATHBLOCK0%%column == \"GSM3119015\"] <- \"RNA-seq raw count, sample GSM3119015\"\ncodebook%%MATHBLOCK1%%column == \"gene_symbol\"] <- \"HGNC gene symbol\"\n\nhead(codebook)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"sessionInfo()","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"citation(\"tidyverse\")","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}},{"code":"# Imagine a human-subjects version of a project like this one\nparticipants <- tibble(\n  age  = c(24, 41, 63, 29),\n  site = c(\"Site A\", \"Site B\", \"Site A\", \"Site C\")\n)\nparticipants\n\n# Generalizing on purpose makes this project LESS exactly reproducible --\n# a stranger can rerun the method, but can't reconstruct the exact\n# original values. That's not a bug. That's the point.\nparticipants |> mutate(age_bracket = cut(age, breaks = c(0, 30, 50, 70, 100)))","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","reset-button":"true","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1696,35 +1696,35 @@ globalThis.qwebrExecuteCode = async function (
     <ul class="dropdown-menu" aria-labelledby="nav-menu-arcs">    
         <li>
     <a class="dropdown-item" href="../modules/arc_1.html">
- <span class="dropdown-text">Arc 1: R Fundamentals</span></a>
+ <span class="dropdown-text">Arc 1: R and Reproducibility</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_2.html">
- <span class="dropdown-text">Arc 2: Your First Reproducible Project</span></a>
+ <span class="dropdown-text">Arc 2: Research Computing Projects</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_3.html">
- <span class="dropdown-text">Arc 3: Data Structures</span></a>
+ <span class="dropdown-text">Arc 3: Data Structures and Control Flow</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_4.html">
- <span class="dropdown-text">Arc 4: Reproducible Reports</span></a>
+ <span class="dropdown-text">Arc 4: Literate Programming and Living Documents</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_5.html">
- <span class="dropdown-text">Arc 5: Tidyverse</span></a>
+ <span class="dropdown-text">Arc 5: Data Cleaning with the Tidyverse</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_6.html">
- <span class="dropdown-text">Arc 6: Git &amp; GitHub</span></a>
+ <span class="dropdown-text">Arc 6: Version Control with Git</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_7.html">
- <span class="dropdown-text">Arc 7: DESeq2 Pipeline</span></a>
+ <span class="dropdown-text">Arc 7: AI and Reproducibility</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../modules/arc_8.html">
- <span class="dropdown-text">Arc 8: Apptainer &amp; Containers</span></a>
+ <span class="dropdown-text">Arc 8: Data Packaging and the Limits of Reproducibility</span></a>
   </li>  
     </ul>
   </li>
@@ -1843,15 +1843,17 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
   <li><a href="#packaging-your-project-for-someone-else" id="toc-packaging-your-project-for-someone-else" class="nav-link" data-scroll-target="#packaging-your-project-for-someone-else">Packaging Your Project for Someone Else</a>
   <ul class="collapse">
-  <li><a href="#writing-a-readme-that-could-survive-being-downloaded-by-a-stranger" id="toc-writing-a-readme-that-could-survive-being-downloaded-by-a-stranger" class="nav-link" data-scroll-target="#writing-a-readme-that-could-survive-being-downloaded-by-a-stranger">Writing a README That Could Survive Being Downloaded by a Stranger</a></li>
+  <li><a href="#your-readme-already-covers-tier-one" id="toc-your-readme-already-covers-tier-one" class="nav-link" data-scroll-target="#your-readme-already-covers-tier-one">Your README Already Covers Tier One</a></li>
+  <li><a href="#a-second-tier-the-codebook" id="toc-a-second-tier-the-codebook" class="nav-link" data-scroll-target="#a-second-tier-the-codebook">A Second Tier: The Codebook</a></li>
+  <li><a href="#when-a-repository-wants-more-than-a-codebook" id="toc-when-a-repository-wants-more-than-a-codebook" class="nav-link" data-scroll-target="#when-a-repository-wants-more-than-a-codebook">When a Repository Wants More Than a Codebook</a></li>
   <li><a href="#documenting-your-environment-automatically" id="toc-documenting-your-environment-automatically" class="nav-link" data-scroll-target="#documenting-your-environment-automatically">Documenting Your Environment, Automatically</a></li>
-  <li><a href="#what-a-doi-actually-buys-you" id="toc-what-a-doi-actually-buys-you" class="nav-link" data-scroll-target="#what-a-doi-actually-buys-you">What a DOI Actually Buys You</a></li>
+  <li><a href="#citing-a-dataset-the-way-you-cite-a-package" id="toc-citing-a-dataset-the-way-you-cite-a-package" class="nav-link" data-scroll-target="#citing-a-dataset-the-way-you-cite-a-package">Citing a Dataset the Way You Cite a Package</a></li>
   </ul></li>
   <li><a href="#the-limits-of-reproducibility" id="toc-the-limits-of-reproducibility" class="nav-link" data-scroll-target="#the-limits-of-reproducibility">The Limits of Reproducibility</a>
   <ul class="collapse">
   <li><a href="#a-live-example-of-this-exact-trap" id="toc-a-live-example-of-this-exact-trap" class="nav-link" data-scroll-target="#a-live-example-of-this-exact-trap">A Live Example of This Exact Trap</a></li>
-  <li><a href="#who-the-data-is-about-and-who-decides" id="toc-who-the-data-is-about-and-who-decides" class="nav-link" data-scroll-target="#who-the-data-is-about-and-who-decides">Who the Data Is About, and Who Decides</a></li>
-  <li><a href="#meet-r-where-its-at-one-more-time" id="toc-meet-r-where-its-at-one-more-time" class="nav-link" data-scroll-target="#meet-r-where-its-at-one-more-time">Meet R Where It’s At — One More Time</a></li>
+  <li><a href="#sometimes-the-responsible-move-is-to-share-less" id="toc-sometimes-the-responsible-move-is-to-share-less" class="nav-link" data-scroll-target="#sometimes-the-responsible-move-is-to-share-less">Sometimes the Responsible Move Is to Share Less</a></li>
+  <li><a href="#where-this-leaves-you" id="toc-where-this-leaves-you" class="nav-link" data-scroll-target="#where-this-leaves-you">Where This Leaves You</a></li>
   </ul></li>
   <li><a href="#what-we-did-and-why" id="toc-what-we-did-and-why" class="nav-link" data-scroll-target="#what-we-did-and-why">What We Did, and Why</a></li>
   </ul>
@@ -2167,10 +2169,56 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="slides" class="level2">
 <h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <p><a href="arc_8_slides.html" target="_blank">Open slides fullscreen</a></p>
-<iframe src="arc_8_slides.html" width="100%" height="450px" style="border:none;">
+<iframe src="arc_8_slides.html" width="100%" height="400px" style="border:none;">
 </iframe>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — Starting Fresh? Run This First
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you’re jumping into this module on a new day, or <code>raw_data</code> and <code>raw_metadata</code> aren’t in your environment, run this once before continuing:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>metadata_url  <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_filtered_metadata.csv"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rawcounts_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/CWML/ARCS/main/data/GSE113754_GeneLevel_Raw_data.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(metadata_url,  <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(rawcounts_url, <span class="at">destfile =</span> <span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>raw_metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_filtered_metadata.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>raw_data     <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"raw_data/GSE113754_GeneLevel_Raw_data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><span class="dot dot-live"></span> Browser Only Version — Load Straight From the URL
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+</section>
+<section id="packaging-your-project-for-someone-else" class="level2">
+<h2 class="anchored" data-anchor-id="packaging-your-project-for-someone-else">Packaging Your Project for Someone Else</h2>
+<p>Every arc so far has quietly been building toward this moment. The README you were asked to write in Arc 1, the file naming conventions from Arc 2, the <a href="../glossary.html#gitignore"><code>.gitignore</code></a> and <a href="../glossary.html#commit">commit</a> history from Arc 6 — all of it is exactly what a real data or code <a href="../glossary.html#repository">repository</a> asks you to produce at deposit time. There’s no new skill left to learn here. There’s just a new name for what you’ve already been doing: <strong>packaging</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2179,92 +2227,64 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We won’t be creating a Zenodo account or clicking through a real deposit form today. The specific repository you’ll eventually use depends on your field, your funder, and your data — that’s a decision for later, with your librarian. What matters today is the <em>shape</em> of what every deposit process asks for, so none of it is a surprise when you actually need it.</p>
+<p>We won’t be creating a Zenodo account or clicking through a real <a href="../glossary.html#repository">repository</a> deposit form today. The specific repository you’ll eventually use depends on your field, your funder, and your data — that’s a decision for later, with your librarian. What matters today is the <em>shape</em> of what every deposit process asks for, so none of it is a surprise when you actually need it.</p>
 </div>
 </div>
 </div>
+<section id="your-readme-already-covers-tier-one" class="level3">
+<h3 class="anchored" data-anchor-id="your-readme-already-covers-tier-one">Your README Already Covers Tier One</h3>
+<p>Arc 1 and Arc 4 already walked you through writing and maintaining a README. That’s still the first thing any repository will look for, and nothing about it changes here — if you want a refresher, the checklist is back in those two arcs. What’s worth asking now is: <strong>is a README always enough?</strong></p>
 </section>
-<section id="packaging-your-project-for-someone-else" class="level2">
-<h2 class="anchored" data-anchor-id="packaging-your-project-for-someone-else">Packaging Your Project for Someone Else</h2>
-<p>Every arc so far has quietly been building toward this moment. The README you were asked to write in Arc 1, the file naming conventions from Arc 2, the <code>.gitignore</code> and commit history from Arc 6 — all of it is exactly what a real data or code repository asks you to produce at deposit time. There’s no new skill left to learn here. There’s just a new name for what you’ve already been doing: <strong>packaging</strong>.</p>
-<section id="writing-a-readme-that-could-survive-being-downloaded-by-a-stranger" class="level3">
-<h3 class="anchored" data-anchor-id="writing-a-readme-that-could-survive-being-downloaded-by-a-stranger">Writing a README That Could Survive Being Downloaded by a Stranger</h3>
-<p>A repository deposit lives or dies on its README. Open your project’s <code>README.md</code> — the one you started in Arc 1 — and check it against what an actual deposit would require:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project Title</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Description</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>One paragraph: what is this project, and what question does it answer?</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Where the raw data came from (source, URL or accession number, date</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>accessed), and what license or use agreement governs it.</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Files</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>A short list of what's in each folder and what it contains —</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">`raw_data/`</span>, <span class="in">`processed_data/`</span>, <span class="in">`scripts/`</span>, <span class="in">`outputs/`</span>.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to Reproduce This</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>The exact steps someone else would run, in order, to get from</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">`raw_data/`</span> to your result. If you've been using <span class="in">`renv`</span>, say so, and</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>say which R version you used.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Citation</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>How you'd like this project cited, if someone reuses it.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contact</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Who to contact with questions, and how.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="a-second-tier-the-codebook" class="level3">
+<h3 class="anchored" data-anchor-id="a-second-tier-the-codebook">A Second Tier: The Codebook</h3>
+<p>A README describes your <em>project</em>. A <strong>codebook</strong> describes your <em>columns</em> — what each one means, what unit it’s in, and why a value might be missing. It’s the next thing a repository asks for after the README, and most of it can be generated instead of typed by hand:</p>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Why “A Stranger” Is the Right Standard
+<span class="screen-reader-only">Note</span><span class="dot dot-note"></span> About This — Generated, Then Finished by Hand
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The test for a good README isn’t “would I understand this?” — you already do, you wrote it. The test is “would someone who has never seen this project, and can’t ask me anything, get it running?” That stranger is usually future-you, eighteen months from now, having forgotten all of it.</p>
+<p><code>purrr::map_chr()</code> and <code>purrr::map_dbl()</code> — functions you already loaded with <code>tidyverse</code> in Arc 5 — can tell you a column’s type and how many values are missing automatically. They cannot tell you <em>what a column means</em> or <em>why</em> a value is missing. A codebook is always partly generated, partly irreducibly human — much like the AI-generated code from Arc 7, it still needs someone who understands the data to finish the job.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="when-a-repository-wants-more-than-a-codebook" class="level3">
+<h3 class="anchored" data-anchor-id="when-a-repository-wants-more-than-a-codebook">When a Repository Wants More Than a Codebook</h3>
+<p>Some repositories go one step further and ask for <strong>structural metadata</strong> — not just what each column means, but how separate files relate to each other. You’ve already built this, without the name attached to it. Back in Arc 5:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(clean_meta_data<span class="sc">$</span>sample_id))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(clean_meta_data<span class="sc">$</span>sample_id, <span class="fu">colnames</span>(clean_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That join <em>is</em> structural metadata — a scripted, verifiable statement of exactly how <code>clean_data</code> and <code>clean_meta_data</code> relate. Some repository formats (<code>datapackage.json</code> from the Frictionless Data standard; SDRF, used by expression-data archives like ArrayExpress) ask you to write that relationship down explicitly, in a file, rather than leave it implicit in a script. Not every repository requires this — the data-repository world is far less standardized than the code-package world is right now. But if one ever does ask, you’ll recognize what it’s asking for, because you already built the relationship it wants described.</p>
 </section>
 <section id="documenting-your-environment-automatically" class="level3">
 <h3 class="anchored" data-anchor-id="documenting-your-environment-automatically">Documenting Your Environment, Automatically</h3>
 <p>A README can describe your setup in prose. R can also just <em>tell you</em> exactly what it was, with no risk of the description drifting out of sync with reality:</p>
-<div id="qwebr-insertion-location-1"></div>
+<div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>This single function call — R version, operating system, every loaded package and its exact version — is the kind of thing a real data package often asks you to include directly, sometimes as its own file (<code>sessionInfo.txt</code> or similar). It’s <code>renv</code>’s snapshot, read back to you in plain language.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Where This Actually Goes
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>When you’re ready to deposit for real, a few common destinations:</p>
-<ul>
-<li><strong><a href="https://zenodo.org">Zenodo</a></strong> — general-purpose, issues a DOI, widely accepted by funders and journals</li>
-<li><strong><a href="https://osf.io">OSF</a></strong> — project-level, good for packaging code, data, and materials together as one unit</li>
-<li><strong><a href="https://figshare.com">Figshare</a></strong> — similar to Zenodo, popular in some fields over others</li>
-</ul>
-<p>Most funders and many journals now also require a <strong>data availability statement</strong> in the manuscript itself — a sentence or two saying where the underlying data lives and how to access it. If your field has a standard, field-specific repository instead (a gene expression database for genomics, for instance), that often takes priority over a general-purpose one. Your library’s research data services can help you figure out which applies to you.</p>
-</div>
-</div>
-</div>
 </section>
-<section id="what-a-doi-actually-buys-you" class="level3">
-<h3 class="anchored" data-anchor-id="what-a-doi-actually-buys-you">What a DOI Actually Buys You</h3>
+<section id="citing-a-dataset-the-way-you-cite-a-package" class="level3">
+<h3 class="anchored" data-anchor-id="citing-a-dataset-the-way-you-cite-a-package">Citing a Dataset the Way You Cite a Package</h3>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Run this, and look closely: R has been generating a properly formatted, machine-readable citation for every package you’ve loaded this entire course — most people never look. A <strong>DOI</strong> does the same job for data that a citation does for code: a stable, resolvable name. Your own dataset already has one. A one-line “how to cite this” entry for your own README might read:</p>
+<blockquote class="blockquote">
+<p>Data: GSE113754, NIH Gene Expression Omnibus. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE113754</p>
+</blockquote>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2273,12 +2293,35 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A repository deposit usually earns a <strong>DOI</strong> — a permanent link that won’t break even if the file moves, gets renamed, or the hosting service redesigns its site. That permanence is what lets someone else <em>cite</em> your data the same way they’d cite a paper — and what lets you point to a fixed, unchanging version of your work, instead of “whatever’s currently in my Google Drive folder.”</p>
+<p>A repository deposit usually earns a DOI — a permanent link that won’t break even if the file moves, gets renamed, or the hosting service redesigns its site. That permanence is what lets someone else <em>cite</em> your data the same way they’d cite a paper.</p>
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><span class="dot dot-tip"></span> Learn More — Where This Actually Goes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong><a href="https://zenodo.org">Zenodo</a></strong> — general-purpose, issues a DOI, widely accepted by funders and journals</li>
+<li><strong><a href="https://osf.io">OSF</a></strong> — project-level, good for packaging code, data, and materials together</li>
+<li><strong><a href="https://figshare.com">Figshare</a></strong> — similar to Zenodo, popular in some fields over others</li>
+</ul>
+<p>Most funders and journals also now require a <strong>data availability statement</strong> in the manuscript — where the underlying data lives and how to access it. If your field has a standard, field-specific <a href="../glossary.html#data-repository">repository</a> instead (a gene expression database for genomics, for instance), that often takes priority over a general-purpose one. Your library’s research data services can help you figure out which applies.</p>
+</div>
+</div>
+</div>
+<hr>
+<p>Everything above assumes that once a project is ready to share, sharing it fully is the goal. For a public mouse dataset, that assumption holds. <strong>It does not hold universally — and knowing when it doesn’t is part of reproducible practice, not an exception to it.</strong></p>
 </section>
 </section>
 <section id="the-limits-of-reproducibility" class="level2">
@@ -2293,10 +2336,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li><strong>Information</strong> — Code that runs is not always code that produces desired or understandable results</li>
 </ul>
 </blockquote>
-<p>Seven arcs later, you can read every line of that list and recognize exactly which habit answers it — <code>renv</code> and functions for efficiency, <code>here()</code> and naming conventions for data management, error messages and testing for information. Reproducibility, as this course has taught it, is the answer to <strong>“can this be run again, by someone else, and get the same result?”</strong></p>
-<p>That’s a real, necessary thing. It’s also not the whole question.</p>
+<p>Seven arcs later, you can read every line of that list and name exactly which habit answers it. There’s a fifth item that was never on that list, because no habit in this course resolves it the way <code>renv</code> resolves efficiency or <code>.gitignore</code> resolves data management:</p>
+<blockquote class="blockquote">
+<p><strong>Who the data is about, and who gets to decide how it’s used.</strong></p>
+</blockquote>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2305,22 +2350,48 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A perfectly reproducible pipeline — pinned packages, committed history, documented every step — can still analyze the wrong population, apply the wrong definition, or answer a question nobody should have asked in the first place, with full fidelity, every single time it’s run. Running the same flawed analysis twice and getting the same flawed answer twice is not a correction. It’s just a well-documented mistake.</p>
+<p>A perfectly reproducible pipeline — pinned packages, committed history, documented every step — can still analyze the wrong population, apply the wrong definition, or answer a question nobody should have asked, with full fidelity, every single time it’s run. Running the same flawed analysis twice and getting the same flawed answer twice is not a correction. It’s a well-documented mistake.</p>
 </div>
 </div>
 </div>
 <section id="a-live-example-of-this-exact-trap" class="level3">
 <h3 class="anchored" data-anchor-id="a-live-example-of-this-exact-trap">A Live Example of This Exact Trap</h3>
-<p>ARCS’s companion extension, <em>Analyzing Research Data with Claude Code</em>, walks through a real version of this. Students there ask an AI coding agent to estimate a published health statistic, and compare what happens when a single hidden decision changes — not a bug, just a quiet choice about how to handle a missing survey answer. The script still runs without error. It’s still fully reproducible — anyone re-running it gets the identical number back. But depending on that one choice, the result ranges from roughly 48% to over 90%, for the same underlying data. Nothing in that pipeline <em>looks</em> broken. The code runs is not always code that produces desired or understandable results — Arc 2’s warning, wearing new clothes.</p>
-<p>That extension calls this the <strong>garden of forking paths</strong>: when it’s cheap to try “just one more” version of a definition or a filter, and you report the version you like best, reproducibility doesn’t save you. It just means your selectively-chosen answer is now permanently, verifiably reproducible — which is a strange kind of trust to have earned.</p>
+<p>ARCS’s companion extension, <em>Analyzing Research Data with Claude Code</em>, walks through a real version of this. Students there ask an AI coding agent to estimate a published health statistic, and compare what happens when a single hidden decision changes — not a bug, just a quiet choice about how to handle a missing survey answer. The script still runs without error. It’s still fully reproducible — anyone re-running it gets the identical number back. But depending on that one choice, the result ranges from roughly 48% to over 90%, for the same underlying data. That extension calls this the <strong>garden of forking paths</strong>: when it’s cheap to try “just one more” version of a definition, and you report the version you like best, reproducibility doesn’t save you — it just means your selectively chosen answer is now permanently, verifiably reproducible.</p>
 </section>
-<section id="who-the-data-is-about-and-who-decides" class="level3">
-<h3 class="anchored" data-anchor-id="who-the-data-is-about-and-who-decides">Who the Data Is About, and Who Decides</h3>
-<p>Two frameworks, often mentioned together, ask a question reproducibility never does:</p>
+<section id="sometimes-the-responsible-move-is-to-share-less" class="level3">
+<h3 class="anchored" data-anchor-id="sometimes-the-responsible-move-is-to-share-less">Sometimes the Responsible Move Is to Share Less</h3>
+<p>Two concrete cases where limiting sharing — on purpose — is the correct call, not a gap in your packaging:</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span><span class="dot dot-tour"></span> Code Tour — Anonymization Is a Reproducibility Tradeoff, Not a Failure
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>A README that documents <em>why</em> a column was generalized is doing its job correctly — a stranger who can’t reconstruct your exact original data is sometimes exactly what responsible sharing looks like.</p>
+</div>
+</div>
+</div>
+<p>Code and data can also follow different rules entirely. A project folder can be fully honest about this:</p>
+<pre><code>project/
+├── README.md              ← includes a Data Access section
+├── data/
+│   ├── raw_data/           ← empty; .gitignore'd on purpose
+│   └── data_access.md      ← "Raw data available by request under DUA #XXXX"
+├── scripts/                ← fully public, unchanged
+└── outputs/                ← fully public, unchanged</code></pre>
+<p>Your analysis pipeline — everything this course has built — can often be fully public even when the data it ran on cannot be. “Data available by request under a data use agreement; code available here” is a complete, honest package. It is not a lesser one.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2329,38 +2400,38 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>FAIR</strong> — Findable, Accessible, Interoperable, Reusable — describes how research outputs should be structured so others (including future-you) can find and use them. Everything in the packaging section above is, in effect, FAIR in practice.</p>
-<p><strong>CARE</strong> — Collective Benefit, Authority to Control, Responsibility, Ethics — centers who the data is <em>about</em>, particularly for Indigenous data governance, asking not just “can this be reused” but “should it be, and by whose permission.”</p>
-<p>FAIR asks whether data <em>can</em> be found and reused. CARE asks whether it <em>should</em> be — and who gets to answer that. A dataset can score perfectly on every FAIR criterion and still have been collected, shared, or reused in a way the people it describes never consented to.</p>
+<p>The slides for this arc laid out FAIR and CARE side by side. The short version: <strong>FAIR</strong> asks whether data <em>can</em> be found and reused. <strong>CARE</strong> asks whether it <em>should</em> be — and who gets to answer that. A dataset can score perfectly on every FAIR criterion and still have been collected, shared, or reused in a way the people it describes never consented to. The anonymization example above is a CARE decision wearing a FAIR-looking folder.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><span class="dot dot-warning"></span> Watch Out — What Are You Pasting Into an AI Tool?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Arc 7 asked whether you could trust code an AI handed you. This is the same question, aimed the other direction: <strong>what are you handing an AI?</strong> Pasting study data into a general AI chat tool is a data-sharing decision, even when it doesn’t feel like one. Institutional tools — Yale’s Clarity portal, for instance, which keeps data encrypted on-prem — change the <em>security</em> profile. They don’t make the CARE question disappear just because the server is local.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="meet-r-where-its-at-one-more-time" class="level3">
-<h3 class="anchored" data-anchor-id="meet-r-where-its-at-one-more-time">Meet R Where It’s At — One More Time</h3>
-<p>Arc 2 closed its own list with a set of habits, not warnings:</p>
-<blockquote class="blockquote">
-<p>R Projects · README · File Naming Conventions · Workflow automation · Look beyond R</p>
-</blockquote>
-<p>Every one of those became a full arc. That’s the shape this entire course has had: name a responsibility that comes with power, then build the specific habit that answers it. Data ethics doesn’t get a habit in the same way — there’s no function call, no package, no checklist item that resolves “should this be reproduced at all?” That question doesn’t go away because you’ve finished a course. It’s meant to stay open.</p>
-<div class="instructor-note">
-<p><strong><span class="dot dot-important"></span> Instructor Note</strong></p>
-<p>Let the discussion questions below actually sit — don’t rush to supply an answer, and don’t let students treat this as a problem with a correct solution to find. The goal is the opposite of every prior arc: this is the one place in the course where “I’m not sure” is the honest and correct response. If the room goes quiet, that’s the material working, not a sign to fill the silence.</p>
-</div>
-<p><strong>For discussion:</strong></p>
-<ul>
-<li>Think of a dataset or analysis you’re familiar with. Who was it <em>about</em>? Were they consulted about how it would be used?</li>
-<li>Is there a difference between data you have <em>permission</em> to use and data you have <em>standing</em> to use?</li>
-<li>Arc 7 showed that AI-assisted code can run perfectly and still be wrong. Is a dataset with no FAIR/CARE consideration behind it a version of the same problem — technically functional, substantively compromised?</li>
-</ul>
+<section id="where-this-leaves-you" class="level3">
+<h3 class="anchored" data-anchor-id="where-this-leaves-you">Where This Leaves You</h3>
+<p>There’s no function call, no package, no checklist item that resolves “should this be reproduced at all?” That question doesn’t go away because you’ve finished a course. Computational reproducibility is necessary for trustworthy science. It has never been sufficient — a perfectly reproducible pipeline can still answer the wrong question, on the wrong data, without the right permission to ask it. No package, pin, or commit history will tell you that on its own. That part stays on you.</p>
 </section>
 </section>
 <section id="what-we-did-and-why" class="level2">
 <h2 class="anchored" data-anchor-id="what-we-did-and-why">What We Did, and Why</h2>
-<p><strong>What we built, across all eight arcs:</strong> a reproducible project, start to finish — a managed environment (<code>renv</code>), organized files and a README, vectors and functions, dynamic Quarto reports, tidyverse cleaning pipelines, a committed git history published to GitHub, a checklist for auditing AI-generated code, and — today — a package ready to hand to someone else, with an honest accounting of what packaging can’t settle on its own.</p>
-<p><strong>Why it matters:</strong> Arc 2 opened this course with a warning: R’s flexibility creates new responsibilities, and nothing about the language enforces good habits for you. Everything since has been one answer after another to that warning — a specific habit for each specific risk. Today’s isn’t a habit. It’s the reminder that the habits have a edge. Computational reproducibility is necessary for trustworthy science. It has never been sufficient. A perfectly reproducible pipeline can still answer the wrong question, on the wrong data, without the right permission to ask it in the first place — and no package, pin, or commit history will tell you that on its own. That part stays on you.</p>
+<p><strong>What we built, across all eight arcs:</strong> a reproducible project, start to finish — a managed environment (<code>renv</code>), organized files and a README, vectors and functions, dynamic Quarto reports, tidyverse cleaning pipelines, a committed git history published to GitHub, a checklist for auditing AI-generated code, and — today — a codebook, a citation, and an honest accounting of what packaging can’t settle on its own.</p>
+<p><strong>Why it matters:</strong> Arc 2 opened this course with a warning: R’s flexibility creates new responsibilities, and nothing about the language enforces good habits for you. Everything since has been one answer after another to that warning. Today wasn’t a new habit — it was the reminder that the habits have an edge, and knowing where that edge is is part of doing this work well.</p>
 
 
 </section>
@@ -2784,14 +2855,14 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>ARCS Workshop Series</p>
+<p>ARCS Series</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with <a href="https://quarto.org">Quarto</a></p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 <script type="module">
